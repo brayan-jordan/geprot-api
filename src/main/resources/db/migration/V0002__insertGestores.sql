@@ -1,2 +1,2 @@
 INSERT INTO gestor
-VALUES (67264, "Brayan Vinicius Jordn", "brayan_jordan@estudante.sc.senai.br", "123");
+VALUES (67264, "123", 1, "Recursos humanos", "Brayan Vinicius Jordan", "brayan.11fera@gmail.com");

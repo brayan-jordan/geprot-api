@@ -3,6 +3,7 @@ package net.weg.gestor.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Gestor;
 import net.weg.gestor.domain.repository.GestorRepository;
+import net.weg.gestor.domain.service.GestorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class GestorController {
 
     private GestorRepository gestorRepository;
+    private GestorService gestorService;
 
     @GetMapping("/listartodos")
     public List<Gestor> listarTodosOsGestores() {
@@ -29,9 +31,9 @@ public class GestorController {
 
     }
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public Gestor cadastrarNovoGestor(@Valid @RequestBody Gestor gestor) {
-        return gestorRepository.save(gestor);
+        return gestorService.cadastrar(gestor);
 
     }
 
@@ -54,7 +56,7 @@ public class GestorController {
 
         }
 
-        gestor.setId(gestorId);
+        gestor.setIdGestor(gestorId);
         gestor = gestorRepository.save(gestor);
         return ResponseEntity.ok(gestor);
 
