@@ -16,12 +16,12 @@ public class GestorService {
     @Transactional
     public Gestor cadastrar(Gestor gestor) {
 
-        boolean emailValidation = gestorRepository.findByEmail(gestor.getEmail()).isPresent();
-
-        if (emailValidation) {
-            throw new NegocioException("Já existe um usuario com esse email");
-
-        }
+//        boolean emailValidation = gestorRepository.findByEmail(gestor.getEmail()).isPresent();
+//
+//        if (emailValidation) {
+//            throw new NegocioException("Já existe um usuario com esse email");
+//
+//        }
 
         return gestorRepository.save(gestor);
 

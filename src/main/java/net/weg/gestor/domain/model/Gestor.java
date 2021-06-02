@@ -20,7 +20,7 @@ public class Gestor {
 
     @Id
     @NotNull
-    Long idGestor;
+    long idGestor;
 
     @NotBlank
     @Size(max = 100)
@@ -40,8 +40,4 @@ public class Gestor {
     @Email
     @Size(min = 10)
     String email;
-
-
-
-
 }

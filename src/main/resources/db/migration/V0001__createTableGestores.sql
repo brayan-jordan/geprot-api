@@ -1,9 +1,9 @@
 CREATE TABLE gestor (
-  idGestor bigint(20) NOT NULL,
-  senha varchar(50) NOT NULL,
-  idSecao int(11) NOT NULL,
-  nomeSecao varchar(100) DEFAULT NULL,
+  idGestor bigint NOT NULL,
+  senha varchar(100) NOT NULL,
+  idSecao int NOT NULL,
+  nomeSecao varchar(100) NOT NULL,
   nomeGestor varchar(100) NOT NULL,
-  email varchar(100) DEFAULT NULL,
+  email varchar(100) NOT NULL,
   PRIMARY KEY (idGestor)
 )
