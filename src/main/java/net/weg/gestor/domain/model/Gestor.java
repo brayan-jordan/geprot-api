@@ -38,6 +38,7 @@ public class Gestor {
     String nomeGestor;
 
     @Email
+    @NotBlank
     @Size(min = 10)
     String email;
 }
