@@ -12,4 +12,6 @@ public interface GestorRepository extends JpaRepository<Gestor, Long> {
 
     Optional<Gestor> findByEmail(String email);
 
+    Optional<Gestor> findByidGestor(long idGestor);
+
 }
