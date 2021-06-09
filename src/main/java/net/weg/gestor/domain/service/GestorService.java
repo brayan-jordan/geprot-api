@@ -3,21 +3,34 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Gestor;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.repository.GestorRepository;
+import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class GestorService {
 
     private GestorRepository gestorRepository;
+    private SecaoRepository secaoRepository;
+    private SecaoService secaoService;
 
     @Transactional
     public Gestor cadastrar(Gestor gestor) {
+        boolean idSecaoValidation = secaoRepository.findById(gestor.getSecao().getIdSecao()).isPresent();
+        if (!idSecaoValidation) {
+            throw new NegocioException("ID Da seção é invalido, tente novamente");
+        }
+
+        Secao secao = secaoService.buscar(gestor.getSecao().getIdSecao());
+        gestor.setSecao(secao);
+
         boolean emailValidation = gestorRepository.findByEmail(gestor.getEmail()).isPresent();
         if (emailValidation) {
             throw new NegocioException("Já existe um usuario com esse email");
@@ -26,6 +39,10 @@ public class GestorService {
         boolean idGestorValidation = gestorRepository.findByidGestor(gestor.getIdGestor()).isPresent();
         if (idGestorValidation) {
             throw new NegocioException("Já existe um gestor com esse ID");
+        }
+
+        if (gestor.getIdGestor() == 0) {
+            throw new NegocioException("ID Inválido");
         }
 
         return gestorRepository.save(gestor);
@@ -43,7 +60,7 @@ public class GestorService {
 
     public ResponseEntity<Gestor> editar(Long gestorId, Gestor gestor) {
         if(!gestorRepository.existsById(gestorId)) {
-            return ResponseEntity.notFound().build();
+            throw new NegocioException("Nao existe um gestor com esse ID para ser editado");
         }
 
         gestor.setIdGestor(gestorId);
