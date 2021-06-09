@@ -1,4 +1,4 @@
-CREATE TABLE gestor (
+CREATE TABLE gestores (
   id_gestor bigint NOT NULL,
   senha varchar(100) NOT NULL,
   id_secao int NOT NULL,
