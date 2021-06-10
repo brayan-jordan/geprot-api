@@ -3,16 +3,12 @@ package net.weg.gestor.domain.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import net.weg.gestor.domain.service.ValidationGroups;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -20,21 +16,20 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "projetos")
+@NoArgsConstructor
 public class Projeto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
-    long idprojeto;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long idprojeto;
 
     @NotBlank
     @Size(min = 5)
     String nomeprojeto;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    Date datainicio;
+    LocalDateTime datainicio;
 
-    Date datafinalizacao;
+    LocalDateTime datafinalizacao;
 
     @NotNull
     int horasprevistas;
@@ -46,14 +41,11 @@ public class Projeto {
 
     double valorutilizado;
 
-    @NotNull
     double valorrestante;
 
     @NotNull
-    @ManyToOne
-    @ConvertGroup(from = Default.class, to = ValidationGroups.Gestorid.class)
     @Valid
-    Gestor gestor;
+    long gestorid;
 
     @Enumerated(EnumType.STRING)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
