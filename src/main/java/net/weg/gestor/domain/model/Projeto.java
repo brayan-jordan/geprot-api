@@ -7,7 +7,6 @@ import net.weg.gestor.domain.service.ValidationGroups;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,38 +25,38 @@ public class Projeto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    long idProjeto;
+    long idprojeto;
 
     @NotBlank
     @Size(min = 5)
-    String nomeProjeto;
+    String nomeprojeto;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    Date dataInicio;
+    Date datainicio;
 
-    Date dataFinalizacao;
-
-    @NotNull
-    int horasPrevistas;
-
-    int horasTrabalhadas;
+    Date datafinalizacao;
 
     @NotNull
-    double valorProjeto;
+    int horasprevistas;
 
-    double valorUtilizado;
+    int horastrabalhadas;
 
     @NotNull
-    double valorRestante;
+    double valorprojeto;
+
+    double valorutilizado;
+
+    @NotNull
+    double valorrestante;
 
     @NotNull
     @ManyToOne
-    @ConvertGroup(from = Default.class, to = ValidationGroups.GestorId.class)
+    @ConvertGroup(from = Default.class, to = ValidationGroups.Gestorid.class)
     @Valid
     Gestor gestor;
 
     @Enumerated(EnumType.STRING)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private StatusProjeto statusProjeto;
+    private StatusProjeto statusprojeto;
 
 }

@@ -1,5 +1,5 @@
 CREATE TABLE secoes (
-id_secao int not null auto_increment,
-nome_secao varchar(100) not null,
-primary key (id_secao)
+idsecao int not null auto_increment,
+nomesecao varchar(100) not null,
+primary key (idsecao)
 );

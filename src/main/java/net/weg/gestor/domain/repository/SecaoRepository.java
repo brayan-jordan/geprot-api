@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SecaoRepository extends JpaRepository<Secao, Long> {
 
-    Optional<Secao> findById(long secaoId);
+    Optional<Secao> findById(long secaoid);
 
 }

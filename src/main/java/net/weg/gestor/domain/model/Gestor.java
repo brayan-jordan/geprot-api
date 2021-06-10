@@ -1,13 +1,9 @@
 package net.weg.gestor.domain.model;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 import net.weg.gestor.domain.service.ValidationGroups;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -25,21 +21,19 @@ import javax.validation.groups.Default;
 public class Gestor {
 
     @Id
-    long idGestor;
+    long idgestor;
 
     @NotBlank
     @Size(max = 100)
     String senha;
 
     @Valid
-    @ConvertGroup(from = Default.class, to = ValidationGroups.SecaoId.class)
     @NotNull
-    @ManyToOne
-    private Secao secao;
+    private long idsecao;
 
     @NotBlank
     @Size(max = 100, min = 3)
-    String nomeGestor;
+    String nomegestor;
 
     @Email
     @NotBlank

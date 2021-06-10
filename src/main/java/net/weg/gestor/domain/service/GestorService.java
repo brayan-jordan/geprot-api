@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -19,29 +18,25 @@ public class GestorService {
 
     private GestorRepository gestorRepository;
     private SecaoRepository secaoRepository;
-    private SecaoService secaoService;
 
     @Transactional
     public Gestor cadastrar(Gestor gestor) {
-        boolean idSecaoValidation = secaoRepository.findById(gestor.getSecao().getIdSecao()).isPresent();
+        boolean idSecaoValidation = secaoRepository.findById(gestor.getIdsecao()).isPresent();
         if (!idSecaoValidation) {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }
-
-        Secao secao = secaoService.buscar(gestor.getSecao().getIdSecao());
-        gestor.setSecao(secao);
 
         boolean emailValidation = gestorRepository.findByEmail(gestor.getEmail()).isPresent();
         if (emailValidation) {
             throw new NegocioException("Já existe um usuario com esse email");
         }
 
-        boolean idGestorValidation = gestorRepository.findByidGestor(gestor.getIdGestor()).isPresent();
+        boolean idGestorValidation = gestorRepository.findByidgestor(gestor.getIdgestor()).isPresent();
         if (idGestorValidation) {
             throw new NegocioException("Já existe um gestor com esse ID");
         }
 
-        if (gestor.getIdGestor() == 0) {
+        if (gestor.getIdgestor() == 0) {
             throw new NegocioException("ID Inválido");
         }
 
@@ -63,7 +58,7 @@ public class GestorService {
             throw new NegocioException("Nao existe um gestor com esse ID para ser editado");
         }
 
-        gestor.setIdGestor(gestorId);
+        gestor.setIdgestor(gestorId);
         gestor = gestorRepository.save(gestor);
         return ResponseEntity.ok(gestor);
     }

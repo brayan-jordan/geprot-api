@@ -2,7 +2,9 @@ package net.weg.gestor.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Gestor;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.service.GestorService;
+import net.weg.gestor.domain.service.SecaoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class GestorController {
 
     private GestorService gestorService;
+    private SecaoService secaoService;
 
     @GetMapping("/listartodos")
     public List<Gestor> listarTodosOsGestores() {
@@ -41,8 +44,8 @@ public class GestorController {
     }
 
     @PutMapping("/editar/{gestorId}")
-    public ResponseEntity<Gestor> editar(@Valid @PathVariable Long gestorId, @RequestBody Gestor gestor) {
-        return gestorService.editar(gestorId, gestor);
+    public ResponseEntity<Gestor> editar(@Valid @PathVariable Long gestorid, @RequestBody Gestor gestor) {
+        return gestorService.editar(gestorid, gestor);
 
     }
 

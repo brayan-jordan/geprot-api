@@ -1,10 +1,8 @@
 package net.weg.gestor.domain.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import net.weg.gestor.domain.service.ValidationGroups;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
@@ -22,10 +21,10 @@ public class Secao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    long idSecao;
+    long idsecao;
 
     @NotBlank
     @Size(min = 5, max = 100)
-    String nomeSecao;
+    String nomesecao;
 
 }
