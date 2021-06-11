@@ -7,6 +7,7 @@ import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -37,4 +38,38 @@ public class ProjetoService {
         return projetoRepository.save(projeto);
 
     }
+
+    public Projeto editar(Long idDoProjeto, Projeto projeto){
+        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
+        if(!projetoVerification){
+            throw new NegocioException("Não existe um projeto com esse ID ");
+        }
+        projeto.setIdprojeto(idDoProjeto);
+        return projetoRepository.save(projeto);
+    }
+    public Projeto editarAtrasado(Long idDoProjeto){
+        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
+        if(!projetoVerification){
+            throw new NegocioException("Não existe um projeto com esse ID ");
+        }
+
+        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+
+        projeto.setStatusprojeto(StatusProjeto.ATRASADO);
+        projetoRepository.save(projeto);
+        return projeto;
+    }
+
+    public Projeto editarConcluida(Long idDoProjeto){
+        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
+        if(!projetoVerification){
+            throw new NegocioException("Não existe um projeto com esse ID ");
+        }
+        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+
+        projeto.setStatusprojeto(StatusProjeto.CONCLUIDO);
+        projeto.setDatafinalizacao(LocalDateTime.now());
+        return projetoRepository.save(projeto);
+    }
+
 }

@@ -16,5 +16,8 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     @Query("select p from Projeto p where p.idprojeto = ?1")
     Optional<Projeto> findByidProjeto(long id);
 
+    @Query("select p from Projeto p where p.idprojeto = ?1")
+    Projeto findByIdProjeto(long id);
+
 
 }

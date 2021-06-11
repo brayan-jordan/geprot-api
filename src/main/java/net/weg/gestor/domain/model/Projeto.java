@@ -48,7 +48,6 @@ public class Projeto {
     long gestorid;
 
     @Enumerated(EnumType.STRING)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private StatusProjeto statusprojeto;
 
 }
