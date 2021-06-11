@@ -7,11 +7,11 @@ import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +21,11 @@ public class ProjetoService {
 
     public List<Projeto> listartodos() {
         return projetoRepository.findAll();
+    }
+
+    public List<Projeto> listarStatus(StatusProjeto statusprojeto){
+        return projetoRepository.findByStatusProjeto(statusprojeto);
+
     }
 
     public Projeto cadastrar(Projeto projeto){
@@ -68,6 +73,18 @@ public class ProjetoService {
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
 
         projeto.setStatusprojeto(StatusProjeto.CONCLUIDO);
+        projeto.setDatafinalizacao(LocalDateTime.now());
+        return projetoRepository.save(projeto);
+    }
+
+    public Projeto editarAndamento(Long idDoProjeto){
+        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
+        if(!projetoVerification){
+            throw new NegocioException("Não existe um projeto com esse ID ");
+        }
+        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+
+        projeto.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
         projeto.setDatafinalizacao(LocalDateTime.now());
         return projetoRepository.save(projeto);
     }

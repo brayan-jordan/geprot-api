@@ -1,7 +1,9 @@
 package net.weg.gestor.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,24 @@ public class ProjetoController {
     @GetMapping("/listar")
     public List<Projeto> listarTodosProjetos(){
         return projetoService.listartodos();
+    }
+
+    @GetMapping("/listar/{statusprojeto}")
+    public List<Projeto> listarProjetosAndamento(@PathVariable String statusprojeto) {
+
+        if (statusprojeto.equals("EM_ANDAMENTO")) {
+            return projetoService.listarStatus(StatusProjeto.EM_ANDAMENTO);
+        }
+
+        if (statusprojeto.equals("CONCLUIDO")) {
+            return projetoService.listarStatus(StatusProjeto.CONCLUIDO);
+        }
+
+        if (statusprojeto.equals("ATRASADO")) {
+            return projetoService.listarStatus(StatusProjeto.ATRASADO);
+        }
+
+        throw new NegocioException("Status indefinido");
     }
 
     @PostMapping("/cadastrar")
@@ -43,4 +63,8 @@ public class ProjetoController {
         return projetoService.editarConcluida(projetoId);
     }
 
+    @PutMapping("/editar/andamento/{projetoId}")
+    public Projeto editarAndamento(@Valid @PathVariable Long projetoId){
+        return projetoService.editarAndamento(projetoId);
+    }
 }
