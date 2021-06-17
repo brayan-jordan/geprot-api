@@ -5,6 +5,7 @@ import net.weg.gestor.domain.model.Gestor;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.service.GestorService;
 import net.weg.gestor.domain.service.SecaoService;
+import net.weg.gestor.model.GestorModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,12 @@ public class GestorController {
     @PutMapping("/editar/{gestorId}")
     public ResponseEntity<Gestor> editar(@Valid @PathVariable Long gestorid, @RequestBody Gestor gestor) {
         return gestorService.editar(gestorid, gestor);
+
+    }
+
+    @GetMapping("/listar2")
+    public List<GestorModel> list2() {
+        return gestorService.list2();
 
     }
 
