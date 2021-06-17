@@ -21,6 +21,7 @@ import javax.validation.groups.Default;
 public class Gestor {
 
     @Id
+    @NotNull(groups = ValidationGroups.Gestorid.class)
     long idgestor;
 
     @NotBlank
@@ -29,7 +30,9 @@ public class Gestor {
 
     @Valid
     @NotNull
-    private long idsecao;
+    @ManyToOne
+    @ConvertGroup(from = Default.class, to = ValidationGroups.Secaoid.class)
+    private Secao secao;
 
     @NotBlank
     @Size(max = 100, min = 3)

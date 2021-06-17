@@ -24,7 +24,7 @@ public class GestorService {
 
     @Transactional
     public Gestor cadastrar(Gestor gestor) {
-        boolean idSecaoValidation = secaoRepository.findById(gestor.getIdsecao()).isPresent();
+        boolean idSecaoValidation = secaoRepository.findById(gestor.getSecao().getIdsecao()).isPresent();
         if (!idSecaoValidation) {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }

@@ -20,7 +20,7 @@ public class Secao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @NotNull(groups = ValidationGroups.Secaoid.class)
     long idsecao;
 
     @NotBlank
