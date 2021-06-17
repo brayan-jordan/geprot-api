@@ -3,6 +3,7 @@ package net.weg.gestor.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Gestor;
 import net.weg.gestor.model.GestorModel;
+import net.weg.gestor.model.gestorinput.GestorInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,11 @@ public class GestorAssembler {
 
     public Gestor toEntity(GestorModel gestorModel) {
         return modelMapper.map(gestorModel, Gestor.class);
+
+    }
+
+    public Gestor toEntity(GestorInput gestorInput) {
+        return  modelMapper.map(gestorInput, Gestor.class);
 
     }
 
