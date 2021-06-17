@@ -1,11 +1,13 @@
 package net.weg.gestor.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.assembler.GestorAssembler;
 import net.weg.gestor.domain.model.Gestor;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.service.GestorService;
 import net.weg.gestor.domain.service.SecaoService;
 import net.weg.gestor.model.GestorModel;
+import net.weg.gestor.model.gestorinput.GestorInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,7 @@ import java.util.List;
 public class GestorController {
 
     private GestorService gestorService;
-    private SecaoService secaoService;
+    private GestorAssembler gestorAssembler;
 
     @GetMapping("/listartodos")
     public List<Gestor> listarTodosOsGestores() {
@@ -57,7 +59,15 @@ public class GestorController {
 
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public GestorModel criar2
+    @PostMapping("/cadastrar2")
+    @ResponseStatus(HttpStatus.CREATED)
+    public GestorModel criar2(@Valid @RequestBody GestorInput gestor) {
+        Gestor novoGestor = gestorAssembler.toEntity(gestor);
+        Gestor gestor1 = gestorService.cadastrar(novoGestor);
+
+        return gestorAssembler.toModel(gestor1);
+
+
+    }
 
 }
