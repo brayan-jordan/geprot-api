@@ -6,6 +6,7 @@ import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.service.GestorService;
 import net.weg.gestor.domain.service.SecaoService;
 import net.weg.gestor.model.GestorModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,5 +56,8 @@ public class GestorController {
         return gestorService.list2();
 
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public GestorModel criar2
 
 }
