@@ -16,4 +16,7 @@ public interface GestorRepository extends JpaRepository<Gestor, Long> {
 
     Optional<Gestor> findByidgestor(long idgestor);
 
+    @Query("select g from Gestor g where g.idgestor = ?1")
+    Gestor findByidgestor2(long idgestor);
+
 }
