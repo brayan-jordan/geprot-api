@@ -5,6 +5,8 @@ import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.service.ProjetoService;
+import net.weg.gestor.model.ProjetoModel;
+import net.weg.gestor.model.projetoinput.ProjetoInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +46,7 @@ public class ProjetoController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Projeto cadastraProjeto(@Valid @RequestBody Projeto projeto){
+    public ProjetoModel cadastraProjeto(@Valid @RequestBody ProjetoInput projeto){
         return projetoService.cadastrar(projeto);
     }
 
