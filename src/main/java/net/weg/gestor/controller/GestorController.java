@@ -35,11 +35,11 @@ public class GestorController {
 
     }
 
-    @PostMapping("/cadastrar")
-    public Gestor cadastrarNovoGestor(@Valid @RequestBody Gestor gestor) {
-        return gestorService.cadastrar(gestor);
-
-    }
+//    @PostMapping("/cadastrar")
+//    public Gestor cadastrarNovoGestor(@Valid @RequestBody Gestor gestor) {
+//        return gestorService.cadastrar(gestor);
+//
+//    }
 
     @DeleteMapping("/deletar/{gestorId}")
     public ResponseEntity<Gestor> remover(@PathVariable Long gestorId) {
