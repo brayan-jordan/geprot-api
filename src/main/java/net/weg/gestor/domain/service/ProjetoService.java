@@ -2,22 +2,26 @@ package net.weg.gestor.domain.service;
 
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.assembler.ProjetoAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
+import net.weg.gestor.model.ProjetoModel;
+import net.weg.gestor.model.projetoinput.ProjetoInput;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ProjetoService {
+
     private ProjetoRepository projetoRepository;
     private GestorRepository gestorRepository;
+    private ProjetoAssembler projetoAssembler;
 
     public List<Projeto> listartodos() {
         return projetoRepository.findAll();
@@ -28,19 +32,23 @@ public class ProjetoService {
 
     }
 
-    public Projeto cadastrar(Projeto projeto){
-        boolean gestorVerification = gestorRepository.findById(projeto.getGestorid()).isPresent();
+    public ProjetoModel cadastrar(ProjetoInput projeto){
+        boolean gestorVerification = gestorRepository.findById(projeto.getGestor().getIdgestor()).isPresent();
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");
         }
 
-        projeto.setHorastrabalhadas(0);
-        projeto.setDatainicio(LocalDateTime.now());
-        projeto.setHorastrabalhadas(0);
-        projeto.setValorutilizado(0);
-        projeto.setValorrestante(projeto.getValorprojeto() - projeto.getValorutilizado());
-        projeto.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
-        return projetoRepository.save(projeto);
+        Projeto projeto1 = projetoAssembler.toEntity(projeto);
+
+        projeto1.setDatainicio(LocalDateTime.now());
+        projeto1.setHorastrabalhadas(0);
+        projeto1.setValorutilizado(0);
+        projeto1.setValorrestante(projeto.getValorprojeto());
+        projeto1.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
+        projeto1.setGestor(gestorRepository.findByidgestor2(projeto1.getGestor().getIdgestor()));
+        projetoRepository.save(projeto1);
+
+        return projetoAssembler.toModel(projeto1);
 
     }
 
@@ -55,7 +63,7 @@ public class ProjetoService {
     public Projeto editarAtrasado(Long idDoProjeto){
         boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
         if(!projetoVerification){
-            throw new NegocioException("Não existe um projeto com esse ID ");
+            throw new EntidadeNaoEncontradaException("Não existe um projeto com esse ID ");
         }
 
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
