@@ -3,11 +3,15 @@ package net.weg.gestor.domain.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import net.weg.gestor.domain.service.ValidationGroups;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import java.time.LocalDateTime;
 
 @Entity
@@ -45,7 +49,9 @@ public class Projeto {
 
     @NotNull
     @Valid
-    long gestorid;
+    @ManyToOne
+    @ConvertGroup(from = Default.class, to = ValidationGroups.Gestorid.class)
+    private Gestor gestor;
 
     @Enumerated(EnumType.STRING)
     private StatusProjeto statusprojeto;
