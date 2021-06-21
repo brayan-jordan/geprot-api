@@ -63,7 +63,8 @@ public class ProjetoService {
     public Projeto editarAtrasado(Long idDoProjeto){
         boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
         if(!projetoVerification){
-            throw new EntidadeNaoEncontradaException("Não existe um projeto com esse ID ");
+            throw new NegocioException("Não existe um projeto com esse ID ");
+
         }
 
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
