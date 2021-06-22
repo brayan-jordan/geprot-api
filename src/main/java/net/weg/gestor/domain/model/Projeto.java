@@ -25,6 +25,7 @@ public class Projeto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = ValidationGroups.Idprojeto.class)
     Long idprojeto;
 
     @NotBlank

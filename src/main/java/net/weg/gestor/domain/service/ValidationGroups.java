@@ -9,4 +9,12 @@ public interface ValidationGroups {
     public interface Secaoid {
 
     }
+
+    public interface Idcentrodecusto {
+
+    }
+
+    public interface Idprojeto {
+
+    }
 }
