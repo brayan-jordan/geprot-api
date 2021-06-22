@@ -21,7 +21,4 @@ public class CentroDeCusto {
 
     private String nomecentrodecusto;
 
-    @ManyToOne
-    private Projeto projeto;
-
 }
