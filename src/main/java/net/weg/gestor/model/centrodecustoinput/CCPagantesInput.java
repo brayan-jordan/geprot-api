@@ -9,9 +9,9 @@ import net.weg.gestor.model.projetoinput.ProjetoInput;
 @Setter
 public class CCPagantesInput {
 
-    private CCPagante_ProjetoInput projetoInput;
+    private CCPagante_ProjetoInput projeto;
 
-    private CCPagante_CCInput ccInput;
+    private CCPagante_CCInput centroDeCusto;
 
     private int taxa;
 
