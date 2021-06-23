@@ -28,7 +28,7 @@ public class CCPagantes {
     @ManyToOne
     @ConvertGroup(from = Default.class, to = ValidationGroups.Idprojeto.class)
     private Projeto projeto;
-    
+
     private int taxa;
 
 }
