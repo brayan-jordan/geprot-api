@@ -9,6 +9,4 @@ public class CCPagante_CCInput {
 
     private Long codigo;
 
-    private int taxa;
-
 }

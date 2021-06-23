@@ -13,4 +13,6 @@ public class CCPagantesInput {
 
     private CCPagante_CCInput ccInput;
 
+    private int taxa;
+
 }
