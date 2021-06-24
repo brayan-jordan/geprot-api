@@ -1,0 +1,2 @@
+ALTER TABLE ccpagantes
+CHANGE COLUMN centrodecusto_idcentrodecusto centro_de_custo_idcentrodecusto bigint;
