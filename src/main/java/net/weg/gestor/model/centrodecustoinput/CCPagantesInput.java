@@ -11,7 +11,7 @@ public class CCPagantesInput {
 
     private CCPagante_ProjetoInput projeto;
 
-    private CCPagante_CCInput centroDeCusto;
+    private CCPagante_CCInput centrodecusto;
 
     private int taxa;
 

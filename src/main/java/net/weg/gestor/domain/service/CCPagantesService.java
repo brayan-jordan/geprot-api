@@ -44,13 +44,13 @@ public class CCPagantesService {
         CCPagantes ccPagantes = ccPagantesAssembler.toEntity(ccPagantesInput);
 
         boolean validation = centroDeCustoRepository.findById(
-                ccPagantes.getCentrodecusto().getIdcentrodecusto()).isPresent();
+                ccPagantes.getCentrodecusto().getCodigo()).isPresent();
 
         if (!validation) {
             throw new NegocioException("ID De centro de custo inválido, tente novamente");
         }
 
-        ccPagantes.setCentrodecusto(centroDeCustoRepository.findById2(ccPagantes.getCentrodecusto().getIdcentrodecusto()));
+        ccPagantes.setCentrodecusto(centroDeCustoRepository.findById2(ccPagantes.getCentrodecusto().getCodigo()));
         boolean validation2 = projetoRepository.findByIdProjeto2(ccPagantes.getProjeto().getIdprojeto()).isPresent();
 
         if (!validation2) {

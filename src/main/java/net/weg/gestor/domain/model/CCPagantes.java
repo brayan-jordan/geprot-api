@@ -21,11 +21,11 @@ public class CCPagantes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @ConvertGroup(from = Default.class, to = ValidationGroups.Idcentrodecusto.class)
-    @ManyToOne
+    @ConvertGroup(from = Default.class, to = ValidationGroups.Codigo.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     private CentroDeCusto centrodecusto;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @ConvertGroup(from = Default.class, to = ValidationGroups.Idprojeto.class)
     private Projeto projeto;
 

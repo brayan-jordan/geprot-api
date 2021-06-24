@@ -7,10 +7,7 @@ import lombok.Setter;
 import net.weg.gestor.domain.service.ValidationGroups;
 
 import javax.persistence.*;
-import javax.persistence.criteria.From;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 
 @Entity
 @Getter
@@ -22,8 +19,8 @@ public class CentroDeCusto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull(groups = ValidationGroups.Idcentrodecusto.class)
-    private Long idcentrodecusto;
+    @NotNull(groups = ValidationGroups.Codigo.class)
+    private Long codigo;
 
     private String nomecentrodecusto;
 

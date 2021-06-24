@@ -50,7 +50,7 @@ public class Projeto {
 
     @NotNull
     @Valid
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @ConvertGroup(from = Default.class, to = ValidationGroups.Gestorid.class)
     private Gestor gestor;
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class CentroDeCustoModel {
 
-    private Long idcentrodecusto;
+    private Long codigo;
 
     private String nomecentrodecusto;
 

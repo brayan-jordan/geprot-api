@@ -10,7 +10,7 @@ public interface ValidationGroups {
 
     }
 
-    public interface Idcentrodecusto {
+    public interface Codigo {
 
     }
 
