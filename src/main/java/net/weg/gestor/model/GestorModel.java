@@ -15,9 +15,9 @@ import javax.validation.constraints.Size;
 public class GestorModel {
 
     private long idgestor;
-    private String senha;
-    private SecaoModel secao;
     private String nomegestor;
+    private String senha;
     private String email;
+    private SecaoModel secao;
 
 }

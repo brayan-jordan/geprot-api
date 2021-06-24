@@ -9,10 +9,10 @@ public class CCPagantesModel {
 
     private int codigo;
 
-    private ProjetoModel projeto;
-
-    private CentroDeCustoModel centroDeCusto;
+    private CentroDeCustoModel centrodecusto;
 
     private int taxa;
+
+    private ProjetoModel projeto;
 
 }

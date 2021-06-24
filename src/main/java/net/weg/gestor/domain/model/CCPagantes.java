@@ -23,7 +23,7 @@ public class CCPagantes {
 
     @ConvertGroup(from = Default.class, to = ValidationGroups.Idcentrodecusto.class)
     @ManyToOne
-    private CentroDeCusto centroDeCusto;
+    private CentroDeCusto centrodecusto;
 
     @ManyToOne
     @ConvertGroup(from = Default.class, to = ValidationGroups.Idprojeto.class)

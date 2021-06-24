@@ -17,7 +17,7 @@ import javax.validation.groups.Default;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ccpagantes")
+@Table(name = "centrodecusto")
 public class CentroDeCusto {
 
     @Id
