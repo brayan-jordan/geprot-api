@@ -25,8 +25,8 @@ public class CCPagantes {
     @ManyToOne(cascade = CascadeType.ALL)
     private CentroDeCusto centrodecusto;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @ConvertGroup(from = Default.class, to = ValidationGroups.Idprojeto.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Projeto projeto;
 
     private int taxa;
