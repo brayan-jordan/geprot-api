@@ -7,6 +7,9 @@ import net.weg.gestor.model.centrodecustoinput.CCPagantesInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class CCPagantesAssembler {
@@ -25,4 +28,7 @@ public class CCPagantesAssembler {
         return modelMapper.map(ccPagantes, CCPagantesModel.class);
     }
 
+    public List<CCPagantesModel> toCollectionModel(List<CCPagantes> ccPagantes) {
+        return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
+    }
 }
