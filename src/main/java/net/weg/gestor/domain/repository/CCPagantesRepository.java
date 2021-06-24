@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CCPagantesRepository extends JpaRepository<CCPagantes, Long> {
 
-    
+
 
 }
