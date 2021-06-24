@@ -20,4 +20,9 @@ public class CCPagantesService {
 
     }
 
+    public List<CCPagantesModel> listarporprojeto(Long projetoid) {
+        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdProjeto(projetoid));
+
+    }
+
 }
