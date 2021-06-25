@@ -24,10 +24,6 @@ public class Gestor {
     @NotNull(groups = ValidationGroups.Gestorid.class)
     long idgestor;
 
-    @NotBlank
-    @Size(max = 100)
-    String senha;
-
     @Valid
     @NotNull
     @ManyToOne
@@ -38,8 +34,8 @@ public class Gestor {
     @Size(max = 100, min = 3)
     String nomegestor;
 
-    @Email
-    @NotBlank
-    @Size(min = 10)
-    String email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    Usuario usuario;
+
 }

@@ -1,2 +1,0 @@
---ALTER TABLE ccpagantes
---CHANGE COLUMN centrodecusto_idcentrodecusto centrodecusto_idcentrodecusto bigint not null;

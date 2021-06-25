@@ -1,13 +1,12 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.assembler.GestorAssembler;
+import net.weg.gestor.api.assembler.GestorAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Gestor;
-import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
-import net.weg.gestor.model.GestorModel;
+import net.weg.gestor.api.model.GestorModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

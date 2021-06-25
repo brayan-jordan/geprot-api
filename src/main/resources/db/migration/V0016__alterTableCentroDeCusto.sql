@@ -1,2 +1,0 @@
---ALTER TABLE centrodecusto
---CHANGE COLUMN idcentrodecusto codigo bigint not null auto_increment;
