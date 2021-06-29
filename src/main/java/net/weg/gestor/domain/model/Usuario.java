@@ -2,6 +2,7 @@ package net.weg.gestor.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements UserDetails {
@@ -32,7 +34,7 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @ManyToMany
-    @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
+    @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "usuarios_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "nome_role", referencedColumnName = "nome"))
     private List<Role> roles;
 

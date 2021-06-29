@@ -34,7 +34,7 @@ public class GestorService {
 //        if (emailValidation) {
 //            throw new NegocioException("Já existe um usuario com esse email");
 //        }
-        
+
         boolean idGestorValidation = gestorRepository.findByidgestor(gestor.getIdgestor()).isPresent();
         if (idGestorValidation) {
             throw new NegocioException("Já existe um gestor com esse ID");

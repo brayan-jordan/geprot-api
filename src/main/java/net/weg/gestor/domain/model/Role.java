@@ -15,7 +15,7 @@ import java.util.List;
 public class Role implements GrantedAuthority {
 
     @Id
-    private  String nome;
+    private String nome;
 
     @ManyToMany
     private List<Usuario> usuarios;
