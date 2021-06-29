@@ -11,8 +11,8 @@ import java.util.Optional;
 @Repository
 public interface GestorRepository extends JpaRepository<Gestor, Long> {
 
-    @Query("select g from Gestor g where g.email = ?1")
-    Optional<Gestor> findByEmail(String email);
+//    @Query("select g from Gestor g where g.email = ?1")
+//    Optional<Gestor> findByEmail(String email);
 
     Optional<Gestor> findByidgestor(long idgestor);
 
