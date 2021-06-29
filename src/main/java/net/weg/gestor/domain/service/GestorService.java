@@ -30,7 +30,7 @@ public class GestorService {
 
         gestor.setSecao(secaoRepository.findById2(gestor.getSecao().getIdsecao()));
 
-        boolean emailValidation = gestorRepository.findByEmail(gestor.getEmail()).isPresent();
+        boolean emailValidation = gestorRepository.findByEmail(gestor.getUsuario().getEmail()).isPresent();
         if (emailValidation) {
             throw new NegocioException("Já existe um usuario com esse email");
         }
