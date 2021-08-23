@@ -6,7 +6,7 @@ import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.service.ProjetoService;
 import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +45,7 @@ public class ProjetoController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProjetoDTO cadastraProjeto(@Valid @RequestBody ProjetoInput projeto){
+    public ProjetoDTO cadastraProjeto(@Valid @RequestBody ProjetoInputDTO projeto){
         return projetoService.cadastrar(projeto);
     }
 

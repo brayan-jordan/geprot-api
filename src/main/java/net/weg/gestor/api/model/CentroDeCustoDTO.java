@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CentroDeCustoModel {
+public class CentroDeCustoDTO {
 
     private Long codigo;
 

@@ -7,7 +7,6 @@ import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
-import net.weg.gestor.api.model.GestorModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

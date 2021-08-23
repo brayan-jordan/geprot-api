@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CCPagantesModel {
+public class CCPagantesDTO {
 
     private int codigo;
 
-    private CentroDeCustoModel centrodecusto;
+    private CentroDeCustoDTO centrodecusto;
 
     private int taxa;
 

@@ -2,7 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.service.CCPagantesService;
-import net.weg.gestor.api.model.CCPagantesModel;
+import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class CCPagantesController {
     private CCPagantesService ccPagantesService;
 
     @GetMapping
-    public List<CCPagantesModel> listartodos() {
+    public List<CCPagantesDTO> listartodos() {
         return ccPagantesService.listartodos();
     }
 
     @GetMapping("/listarporprojeto/{projetoid}")
-    public List<CCPagantesModel> listarPorProjeto(@PathVariable Long projetoid) {
+    public List<CCPagantesDTO> listarPorProjeto(@PathVariable Long projetoid) {
         return ccPagantesService.listarporprojeto(projetoid);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public CCPagantesModel cadastrarNovoccpagante(@Valid @RequestBody CCPagantesInputDTO ccPagantesInputDTO) {
+    public CCPagantesDTO cadastrarNovoccpagante(@Valid @RequestBody CCPagantesInputDTO ccPagantesInputDTO) {
         return ccPagantesService.cadastrar(ccPagantesInputDTO);
 
     }

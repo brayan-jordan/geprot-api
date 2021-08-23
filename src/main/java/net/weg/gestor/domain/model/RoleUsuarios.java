@@ -17,6 +17,6 @@ public class RoleUsuarios {
 
     private String nome_role;
 
-    private Long cadastro;
+    private Long id_usuarios;
 
 }

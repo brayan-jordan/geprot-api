@@ -7,7 +7,7 @@ import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.api.model.CCPagantesModel;
+import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,17 @@ public class CCPagantesService {
     private CentroDeCustoRepository centroDeCustoRepository;
     private ProjetoRepository projetoRepository;
 
-    public List<CCPagantesModel> listartodos() {
+    public List<CCPagantesDTO> listartodos() {
         return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findAll());
 
     }
 
-    public List<CCPagantesModel> listarporprojeto(Long projetoid) {
+    public List<CCPagantesDTO> listarporprojeto(Long projetoid) {
         return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdProjeto(projetoid));
 
     }
 
-    public CCPagantesModel cadastrar(CCPagantesInputDTO ccPagantesInputDTO) {
+    public CCPagantesDTO cadastrar(CCPagantesInputDTO ccPagantesInputDTO) {
         if (ccPagantesInputDTO.getTaxa() > 100 || ccPagantesInputDTO.getTaxa() < 1) {
             throw new NegocioException("Insira uma taxa válida");
         }
@@ -63,7 +63,7 @@ public class CCPagantesService {
     }
 
     public int valorTotalTaxa(Long projetoid, int newtaxa) {
-        List<CCPagantesModel> lista = listarporprojeto(projetoid);
+        List<CCPagantesDTO> lista = listarporprojeto(projetoid);
 
         int soma= 0;
         for (int i = 0; i < lista.size(); ++i) {

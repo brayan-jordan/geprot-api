@@ -2,7 +2,7 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.CCPagantes;
-import net.weg.gestor.api.model.CCPagantesModel;
+import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -20,15 +20,15 @@ public class CCPagantesAssembler {
         return modelMapper.map(ccPagantesInputDTO, CCPagantes.class);
     }
 
-    public CCPagantes toEntity(CCPagantesModel ccPagantesModel) {
-        return modelMapper.map(ccPagantesModel, CCPagantes.class);
+    public CCPagantes toEntity(CCPagantesDTO ccPagantesDTO) {
+        return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
-    public CCPagantesModel toModel(CCPagantes ccPagantes) {
-        return modelMapper.map(ccPagantes, CCPagantesModel.class);
+    public CCPagantesDTO toModel(CCPagantes ccPagantes) {
+        return modelMapper.map(ccPagantes, CCPagantesDTO.class);
     }
 
-    public List<CCPagantesModel> toCollectionModel(List<CCPagantes> ccPagantes) {
+    public List<CCPagantesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
         return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
     }
 }

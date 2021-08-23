@@ -9,7 +9,7 @@ import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -32,7 +32,7 @@ public class ProjetoService {
 
     }
 
-    public ProjetoDTO cadastrar(ProjetoInput projeto){
+    public ProjetoDTO cadastrar(ProjetoInputDTO projeto){
         boolean gestorVerification = usuarioRepository.findById(projeto.getUsuarioDTO().getId()).isPresent();
 
         if(!gestorVerification){
@@ -45,7 +45,7 @@ public class ProjetoService {
         projeto1.setHorastrabalhadas(0);
         projeto1.setValorutilizado(0);
         projeto1.setValorrestante(projeto.getValor());
-        projeto1.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
+        projeto1.setStatus(StatusProjeto.EM_ANDAMENTO);
         projeto1.setUsuario(usuarioRepository.findByidgestor2(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
@@ -70,7 +70,7 @@ public class ProjetoService {
 
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
 
-        projeto.setStatusprojeto(StatusProjeto.ATRASADO);
+        projeto.setStatus(StatusProjeto.ATRASADO);
         projetoRepository.save(projeto);
         return projeto;
     }
@@ -82,7 +82,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
 
-        projeto.setStatusprojeto(StatusProjeto.CONCLUIDO);
+        projeto.setStatus(StatusProjeto.CONCLUIDO);
         projeto.setDatafinalizacao(LocalDateTime.now());
         return projetoRepository.save(projeto);
     }
@@ -94,7 +94,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
 
-        projeto.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
+        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
         projeto.setDatafinalizacao(LocalDateTime.now());
         return projetoRepository.save(projeto);
     }

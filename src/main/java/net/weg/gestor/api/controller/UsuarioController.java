@@ -6,7 +6,6 @@ import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.service.UsuarioService;
-import net.weg.gestor.api.model.GestorModel;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.HttpStatus;

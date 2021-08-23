@@ -3,7 +3,6 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.domain.model.Usuario;
-import net.weg.gestor.api.model.GestorModel;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

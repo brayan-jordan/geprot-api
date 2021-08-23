@@ -6,7 +6,7 @@ import net.weg.gestor.api.model.UsuarioDTO;
 
 @Getter
 @Setter
-public class ProjetoInput {
+public class ProjetoInputDTO {
 
     private UsuarioDTO usuarioDTO;
     private String nome;

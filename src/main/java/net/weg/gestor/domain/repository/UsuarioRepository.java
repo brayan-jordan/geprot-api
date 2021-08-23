@@ -10,10 +10,11 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    Optional<Usuario> findByidgestor(long idgestor);
+    @Query("select u from Usuario u where u.id = ?1")
+    Optional<Usuario> findByidgestor(long id);
 
-    @Query("select g from Gestor g where g.idgestor = ?1")
-    Usuario findByidgestor2(long idgestor);
+    @Query("select u from Usuario u where u.id = ?1")
+    Usuario findByidgestor2(long id);
 
     @Query("select u from Usuario u WHERE u.email = ?1")
     Usuario findByEmail(String email);

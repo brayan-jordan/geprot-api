@@ -3,7 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ public class ProjetoAssembler {
 
     private ModelMapper modelMapper;
 
-    public Projeto toEntity(ProjetoInput projetoInput) {
-        return modelMapper.map(projetoInput, Projeto.class);
+    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
+        return modelMapper.map(projetoInputDTO, Projeto.class);
 
     }
 

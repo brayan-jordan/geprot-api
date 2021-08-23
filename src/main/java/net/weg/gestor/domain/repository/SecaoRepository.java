@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface SecaoRepository extends JpaRepository<Secao, Long> {
 
-    @Query("select p from Secao p where p.idsecao = ?1")
+    @Query("select p from Secao p where p.id = ?1")
     Secao findById2(long secaoid);
 
     Optional<Secao> findById(long secaoid);

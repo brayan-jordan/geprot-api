@@ -50,6 +50,6 @@ public class Projeto {
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
-    private StatusProjeto statusprojeto;
+    private StatusProjeto status;
 
 }

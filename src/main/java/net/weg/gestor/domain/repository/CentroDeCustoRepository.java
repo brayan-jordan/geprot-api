@@ -11,10 +11,10 @@ import java.util.Optional;
 @Repository
 public interface CentroDeCustoRepository extends JpaRepository<CentroDeCusto, Long> {
 
-    @Query("SELECT c FROM CentroDeCusto c WHERE c.codigo = ?1")
+    @Query("SELECT c FROM CentroDeCusto c WHERE c.id = ?1")
     Optional<CentroDeCusto> findById(Long idcentrodecusto);
 
-    @Query("SELECT c FROM CentroDeCusto c WHERE c.codigo = ?1")
+    @Query("SELECT c FROM CentroDeCusto c WHERE c.id = ?1")
     CentroDeCusto findById2(Long idcentrodecusto);
 
 }
