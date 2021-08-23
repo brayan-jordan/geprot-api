@@ -37,7 +37,7 @@ public class Projeto {
     int horastrabalhadas;
 
     @NotNull
-    double valorprojeto;
+    double valor;
 
     double valorutilizado;
 

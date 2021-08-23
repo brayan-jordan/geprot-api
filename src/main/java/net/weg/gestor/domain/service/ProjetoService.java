@@ -23,8 +23,8 @@ public class ProjetoService {
     private GestorRepository gestorRepository;
     private ProjetoAssembler projetoAssembler;
 
-    public List<Projeto> listartodos() {
-        return projetoRepository.findAll();
+    public List<ProjetoDTO> listartodos() {
+        return projetoAssembler.toCollectionModel(projetoRepository.findAll());
     }
 
     public List<Projeto> listarStatus(StatusProjeto statusprojeto){
@@ -33,7 +33,7 @@ public class ProjetoService {
     }
 
     public ProjetoDTO cadastrar(ProjetoInput projeto){
-        boolean gestorVerification = gestorRepository.findById(projeto.getGestor().getIdgestor()).isPresent();
+        boolean gestorVerification = gestorRepository.findById(projeto.getUsuarioDTO().getId()).isPresent();
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");
         }
@@ -43,7 +43,7 @@ public class ProjetoService {
         projeto1.setDatainicio(LocalDateTime.now());
         projeto1.setHorastrabalhadas(0);
         projeto1.setValorutilizado(0);
-        projeto1.setValorrestante(projeto.getValorprojeto());
+        projeto1.setValorrestante(projeto.getValor());
         projeto1.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
         projeto1.setUsuario(gestorRepository.findByidgestor2(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
