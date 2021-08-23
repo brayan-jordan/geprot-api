@@ -27,8 +27,9 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetoRepository.findAll());
     }
 
-    public List<Projeto> listarStatus(StatusProjeto statusprojeto){
-        return projetoRepository.findByStatusProjeto(statusprojeto);
+    public List<ProjetoDTO> listarStatus(StatusProjeto statusprojeto){
+        List<Projeto> projetos = projetoRepository.findByStatusProjeto(statusprojeto);
+        return projetoAssembler.toCollectionModel(projetos);
 
     }
 

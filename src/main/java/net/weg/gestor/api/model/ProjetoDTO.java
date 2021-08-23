@@ -19,7 +19,8 @@ public class ProjetoDTO {
     private double valor;
     private double valorutilizado;
     private double valorrestante;
-    private UsuarioDTO usuario;
     private StatusProjeto status;
+    private UsuarioDTO usuario;
+
 
 }

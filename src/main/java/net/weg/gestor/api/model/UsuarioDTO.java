@@ -1,5 +1,6 @@
 package net.weg.gestor.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.domain.model.Secao;
@@ -10,8 +11,10 @@ public class UsuarioDTO {
 
     private long id;
     private String nome;
-    private Secao secao;
     private String email;
+    @JsonIgnore
     private String senha;
+    
+    private Secao secao;
 
 }

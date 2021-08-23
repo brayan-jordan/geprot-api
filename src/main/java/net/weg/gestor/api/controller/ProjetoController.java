@@ -26,7 +26,7 @@ public class ProjetoController {
     }
 
     @GetMapping("/listar/{statusprojeto}")
-    public List<Projeto> listarProjetosAndamento(@PathVariable String statusprojeto) {
+    public List<ProjetoDTO> listarProjetosAndamento(@PathVariable String statusprojeto) {
 
         if (statusprojeto.equals("EM_ANDAMENTO")) {
             return projetoService.listarStatus(StatusProjeto.EM_ANDAMENTO);
