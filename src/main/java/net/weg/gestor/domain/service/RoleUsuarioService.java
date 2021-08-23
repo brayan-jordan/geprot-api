@@ -20,7 +20,9 @@ public class RoleUsuarioService {
     private RoleUsuarioAssembler roleUsuarioAssembler;
 
     @Transactional
-    public RoleUsuarios cadastrar(RoleUsuarios roleUsuarios){ return roleUsuarioRepository.save(roleUsuarios); }
+    public RoleUsuarios cadastrar(RoleUsuarios roleUsuarios){
+        return roleUsuarioRepository.save(roleUsuarios);
+    }
 
     public List<RoleUsuarioDTO> listar(){
         return roleUsuarioAssembler.toCollectionModel(roleUsuarioRepository.findAll());
