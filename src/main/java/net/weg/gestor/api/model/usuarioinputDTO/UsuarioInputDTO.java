@@ -11,17 +11,18 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UsuarioInputDTO {
 
-    private String          nome;
+    private String nome;
 
-    private long            id;
-
-    private SecaoInputDTO   secao;
+    private long id;
 
     @NotBlank
     @Email
-    private String          email;
+    private String email;
 
     @NotBlank
-    private String          senha;
+    private String senha;
+
+    private SecaoInputDTO secao;
+
 
 }
