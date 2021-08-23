@@ -3,9 +3,6 @@ package net.weg.gestor.security;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.Gestor;
-import net.weg.gestor.domain.model.Usuario;
-import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

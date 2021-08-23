@@ -2,7 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.GestorAssembler;
-import net.weg.gestor.domain.model.Gestor;
+import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.service.GestorService;
 import net.weg.gestor.api.model.GestorModel;
@@ -25,13 +25,13 @@ public class GestorController {
     private RoleUsuarioService roleUsuarioService;
 
     @GetMapping("/listartodos")
-    public List<Gestor> listarTodosOsGestores() {
+    public List<Usuario> listarTodosOsGestores() {
         return gestorService.listartodos();
 
     }
 
     @GetMapping("/buscar/{gestorId}")
-    public ResponseEntity<Gestor> buscarUmGestorPorId(@PathVariable Long gestorId) {
+    public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long gestorId) {
         return gestorService.buscar(gestorId);
 
     }
@@ -43,14 +43,14 @@ public class GestorController {
 //    }
 
     @DeleteMapping("/deletar/{gestorId}")
-    public ResponseEntity<Gestor> remover(@PathVariable Long gestorId) {
+    public ResponseEntity<Usuario> remover(@PathVariable Long gestorId) {
         return gestorService.excluir(gestorId);
 
     }
 
     @PutMapping("/editar/{gestorId}")
-    public ResponseEntity<Gestor> editar(@Valid @PathVariable Long gestorid, @RequestBody Gestor gestor) {
-        return gestorService.editar(gestorid, gestor);
+    public ResponseEntity<Usuario> editar(@Valid @PathVariable Long gestorid, @RequestBody Usuario usuario) {
+        return gestorService.editar(gestorid, usuario);
 
     }
 
@@ -63,13 +63,13 @@ public class GestorController {
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public GestorModel criar2(@Valid @RequestBody GestorInput gestor) {
-        Gestor novoGestor = gestorAssembler.toEntity(gestor);
+        Usuario novoUsuario = gestorAssembler.toEntity(gestor);
         RoleUsuarios novaRole = new RoleUsuarios();
-        novaRole.setId(novoGestor.getUsuario().getId());
-        Gestor gestor1 = gestorService.cadastrar(novoGestor);
+        novaRole.setId(novoUsuario.getUsuario().getId());
+        Usuario usuario1 = gestorService.cadastrar(novoUsuario);
         novaRole.setNome_role("ROLE_USER");
         roleUsuarioService.cadastrar(novaRole);
-        return gestorAssembler.toModel(novoGestor);
+        return gestorAssembler.toModel(novoUsuario);
 
 
     }

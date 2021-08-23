@@ -2,11 +2,9 @@ package net.weg.gestor.domain.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import net.weg.gestor.domain.service.ValidationGroups;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,11 +18,10 @@ public class Secao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull(groups = ValidationGroups.Secaoid.class)
-    long idsecao;
+    long id;
 
     @NotBlank
     @Size(min = 5, max = 100)
-    String nomesecao;
+    String nome;
 
 }

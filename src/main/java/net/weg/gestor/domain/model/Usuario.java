@@ -1,29 +1,38 @@
 package net.weg.gestor.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "usuarios")
+@Table(name = "gestores")
 public class Usuario implements UserDetails {
 
     @Id
-    private Long id;
+    long id;
+
+    @Valid
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "secao_id")
+    private Secao secao;
+
+    @NotBlank
+    @Size(max = 100, min = 3)
+    String nome;
 
     @Email
     @NotBlank
@@ -44,21 +53,33 @@ public class Usuario implements UserDetails {
     }
 
     @Override
-    public String getPassword(){ return this.senha; }
+    public String getPassword() {
+        return this.senha;
+    }
 
     @Override
-    public String getUsername(){ return this.email; }
+    public String getUsername() {
+        return this.email;
+    }
 
     @Override
-    public boolean isAccountNonExpired(){ return true; }
+    public boolean isAccountNonExpired() {
+        return false;
+    }
 
     @Override
-    public boolean isAccountNonLocked(){ return true; }
+    public boolean isAccountNonLocked() {
+        return false;
+    }
 
     @Override
-    public boolean isCredentialsNonExpired(){ return true; }
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 
     @Override
-    public boolean isEnabled(){ return true; }
+    public boolean isEnabled() {
+        return false;
+    }
 
 }

@@ -3,7 +3,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.GestorAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.Gestor;
+import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.api.model.GestorModel;
@@ -22,32 +22,32 @@ public class GestorService {
     private GestorAssembler gestorAssembler;
 
     @Transactional
-    public Gestor cadastrar(Gestor gestor) {
-        boolean idSecaoValidation = secaoRepository.findById(gestor.getSecao().getIdsecao()).isPresent();
+    public Usuario cadastrar(Usuario usuario) {
+        boolean idSecaoValidation = secaoRepository.findById(usuario.getSecao().getId()).isPresent();
         if (!idSecaoValidation) {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }
 
-        gestor.setSecao(secaoRepository.findById2(gestor.getSecao().getIdsecao()));
+        usuario.setSecao(secaoRepository.findById2(usuario.getSecao().getId()));
 
 //        boolean emailValidation = gestorRepository.findByEmail(gestor.getUsuario().getEmail()).isPresent();
 //        if (emailValidation) {
 //            throw new NegocioException("Já existe um usuario com esse email");
 //        }
 
-        boolean idGestorValidation = gestorRepository.findByidgestor(gestor.getIdgestor()).isPresent();
+        boolean idGestorValidation = gestorRepository.findByidgestor(usuario.getId()).isPresent();
         if (idGestorValidation) {
             throw new NegocioException("Já existe um gestor com esse ID");
         }
 
-        if (gestor.getIdgestor() == 0) {
+        if (usuario.getId() == 0) {
             throw new NegocioException("ID Inválido");
         }
 
-        return gestorRepository.save(gestor);
+        return gestorRepository.save(usuario);
     }
 
-    public ResponseEntity<Gestor> excluir(Long gestorId) {
+    public ResponseEntity<Usuario> excluir(Long gestorId) {
         if(!gestorRepository.existsById(gestorId)) {
             return ResponseEntity.notFound().build();
         }
@@ -57,22 +57,22 @@ public class GestorService {
 
     }
 
-    public ResponseEntity<Gestor> editar(Long gestorId, Gestor gestor) {
+    public ResponseEntity<Usuario> editar(Long gestorId, Usuario usuario) {
         if(!gestorRepository.existsById(gestorId)) {
             throw new NegocioException("Nao existe um gestor com esse ID para ser editado");
         }
 
-        gestor.setIdgestor(gestorId);
-        gestor = gestorRepository.save(gestor);
-        return ResponseEntity.ok(gestor);
+        usuario.setId(gestorId);
+        usuario = gestorRepository.save(usuario);
+        return ResponseEntity.ok(usuario);
     }
 
-    public ResponseEntity<Gestor> buscar(Long gestorId) {
+    public ResponseEntity<Usuario> buscar(Long gestorId) {
         return gestorRepository.findById(gestorId).map(gestor -> ResponseEntity.ok(gestor))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public List<Gestor> listartodos() {
+    public List<Usuario> listartodos() {
         return gestorRepository.findAll();
     }
 

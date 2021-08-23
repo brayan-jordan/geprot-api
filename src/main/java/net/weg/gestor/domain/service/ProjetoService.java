@@ -45,7 +45,7 @@ public class ProjetoService {
         projeto1.setValorutilizado(0);
         projeto1.setValorrestante(projeto.getValorprojeto());
         projeto1.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
-        projeto1.setGestor(gestorRepository.findByidgestor2(projeto1.getGestor().getIdgestor()));
+        projeto1.setUsuario(gestorRepository.findByidgestor2(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);
@@ -57,7 +57,7 @@ public class ProjetoService {
         if(!projetoVerification){
             throw new NegocioException("Não existe um projeto com esse ID ");
         }
-        projeto.setIdprojeto(idDoProjeto);
+        projeto.setId(idDoProjeto);
         return projetoRepository.save(projeto);
     }
     public Projeto editarAtrasado(Long idDoProjeto){

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.weg</groupId>
-	<artifactId>gestor</artifactId>
+	<artifactId>usuario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gestor</name>
+	<name>usuario</name>
 	<description>Persona do Gestor, projeto WEG</description>
 	<properties>
 		<java.version>11</java.version>

@@ -44,20 +44,20 @@ public class CCPagantesService {
         CCPagantes ccPagantes = ccPagantesAssembler.toEntity(ccPagantesInput);
 
         boolean validation = centroDeCustoRepository.findById(
-                ccPagantes.getCentrodecusto().getCodigo()).isPresent();
+                ccPagantes.getCentrodecusto().getId()).isPresent();
 
         if (!validation) {
             throw new NegocioException("ID De centro de custo inválido, tente novamente");
         }
 
-        ccPagantes.setCentrodecusto(centroDeCustoRepository.findById2(ccPagantes.getCentrodecusto().getCodigo()));
-        boolean validation2 = projetoRepository.findByIdProjeto2(ccPagantes.getProjeto().getIdprojeto()).isPresent();
+        ccPagantes.setCentrodecusto(centroDeCustoRepository.findById2(ccPagantes.getCentrodecusto().getId()));
+        boolean validation2 = projetoRepository.findByIdProjeto2(ccPagantes.getProjeto().getId()).isPresent();
 
         if (!validation2) {
             throw new NegocioException("ID Do Projeto inválido");
         }
 
-        ccPagantes.setProjeto(projetoRepository.findByIdProjeto(ccPagantes.getProjeto().getIdprojeto()));
+        ccPagantes.setProjeto(projetoRepository.findByIdProjeto(ccPagantes.getProjeto().getId()));
         ccPagantesRepository.save(ccPagantes);
         return ccPagantesAssembler.toModel(ccPagantes);
     }

@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.weg.gestor.domain.service.ValidationGroups;
 
 import javax.persistence.*;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 
 @Entity
 @Getter
@@ -19,13 +16,13 @@ public class CCPagantes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
+    private Long id;
 
-    @ConvertGroup(from = Default.class, to = ValidationGroups.Codigo.class)
+    @JoinColumn(name = "centrodecusto_id")
     @ManyToOne(cascade = CascadeType.ALL)
     private CentroDeCusto centrodecusto;
 
-    @ConvertGroup(from = Default.class, to = ValidationGroups.Idprojeto.class)
+    @JoinColumn(name = "projeto_id")
     @ManyToOne(cascade = CascadeType.ALL)
     private Projeto projeto;
 
