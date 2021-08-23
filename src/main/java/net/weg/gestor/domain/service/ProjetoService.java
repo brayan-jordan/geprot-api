@@ -23,8 +23,8 @@ public class ProjetoService {
     private UsuarioRepository usuarioRepository;
     private ProjetoAssembler projetoAssembler;
 
-    public List<Projeto> listartodos() {
-        return projetoRepository.findAll();
+    public List<ProjetoDTO> listartodos() {
+        return projetoAssembler.toCollectionModel(projetoRepository.findAll());
     }
 
     public List<Projeto> listarStatus(StatusProjeto statusprojeto){
@@ -34,6 +34,7 @@ public class ProjetoService {
 
     public ProjetoDTO cadastrar(ProjetoInput projeto){
         boolean gestorVerification = usuarioRepository.findById(projeto.getUsuarioDTO().getId()).isPresent();
+
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");
         }

@@ -37,7 +37,7 @@ public class Projeto {
     int horastrabalhadas;
 
     @NotNull
-    double valorprojeto;
+    double valor;
 
     double valorutilizado;
 
@@ -46,6 +46,7 @@ public class Projeto {
     @NotNull
     @Valid
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)

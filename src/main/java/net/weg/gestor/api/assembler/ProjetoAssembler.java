@@ -7,6 +7,9 @@ import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class ProjetoAssembler {
@@ -20,5 +23,9 @@ public class ProjetoAssembler {
 
     public ProjetoDTO toModel(Projeto projeto) {
         return modelMapper.map(projeto, ProjetoDTO.class);
+    }
+
+    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
+        return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
 }

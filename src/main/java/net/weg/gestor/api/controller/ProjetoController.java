@@ -21,7 +21,7 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping("/listar")
-    public List<Projeto> listarTodosProjetos(){
+    public List<ProjetoDTO> listarTodosProjetos(){
         return projetoService.listartodos();
     }
 
