@@ -1,0 +1,1 @@
+INSERT INTO centrodecusto VALUES (65, "Despesas 45 WEGSA");
