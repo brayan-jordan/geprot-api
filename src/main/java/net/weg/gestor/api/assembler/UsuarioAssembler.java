@@ -1,6 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.LoginDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
@@ -34,6 +35,10 @@ public class UsuarioAssembler {
     public Usuario toEntity(UsuarioInputDTO usuarioInputDTO) {
         return  modelMapper.map(usuarioInputDTO, Usuario.class);
 
+    }
+
+    public Usuario toEntity(LoginDTO loginDTO) {
+        return modelMapper.map(loginDTO, Usuario.class);
     }
 
 }
