@@ -2,8 +2,8 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.api.model.ProjetoModel;
-import net.weg.gestor.api.model.projetoinput.ProjetoInput;
+import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class ProjetoAssembler {
 
     }
 
-    public ProjetoModel toModel(Projeto projeto) {
-        return modelMapper.map(projeto, ProjetoModel.class);
+    public ProjetoDTO toModel(Projeto projeto) {
+        return modelMapper.map(projeto, ProjetoDTO.class);
     }
 }

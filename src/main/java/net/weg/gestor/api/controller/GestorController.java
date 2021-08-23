@@ -6,7 +6,7 @@ import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.service.GestorService;
 import net.weg.gestor.api.model.GestorModel;
-import net.weg.gestor.api.model.gestorinput.GestorInput;
+import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,7 +62,7 @@ public class GestorController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public GestorModel criar2(@Valid @RequestBody GestorInput gestor) {
+    public GestorModel criar2(@Valid @RequestBody UsuarioInputDTO gestor) {
         Usuario novoUsuario = gestorAssembler.toEntity(gestor);
         RoleUsuarios novaRole = new RoleUsuarios();
         novaRole.setId(novoUsuario.getUsuario().getId());

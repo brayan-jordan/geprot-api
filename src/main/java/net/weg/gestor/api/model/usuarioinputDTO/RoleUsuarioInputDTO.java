@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model.gestorinput;
+package net.weg.gestor.api.model.usuarioinputDTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class RoleUsuarioInputDTO {
 
     @NotNull
-    private Long cadastro;
+    private Long id;
 
     @NotBlank
     private String nome_role;

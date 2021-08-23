@@ -8,18 +8,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ProjetoModel {
+public class ProjetoDTO {
 
-    private Long idprojeto;
-    private String nomeprojeto;
+    private Long id;
+    private String nome;
     private LocalDateTime datainicio;
     private LocalDateTime datafinalizacao;
     private int horasprevistas;
     private int horastrabalhadas;
-    private double valorprojeto;
+    private double valor;
     private double valorutilizado;
     private double valorrestante;
-    private GestorModel gestor;
-    private StatusProjeto statusprojeto;
+    private UsuarioDTO usuarioDTO;
+    private StatusProjeto status;
 
 }

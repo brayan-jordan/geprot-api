@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model.centrodecustoinput;
+package net.weg.gestor.api.model.usuarioinputDTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class CCPagante_CCInput {
+public class SecaoInputDTO {
 
     @NotNull
-    private Long codigo;
+    private long idsecao;
 
 }

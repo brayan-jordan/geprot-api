@@ -10,6 +10,6 @@ public class GestorModel {
     private long idgestor;
     private String nomegestor;
     private UsuarioDTO usuarioDTO;
-    private SecaoModel secao;
+    private SecaoDTO secao;
     private UsuarioDTO usuario;
 }

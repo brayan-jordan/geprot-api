@@ -3,7 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.api.model.GestorModel;
-import net.weg.gestor.api.model.gestorinput.GestorInput;
+import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +31,8 @@ public class GestorAssembler {
 
     }
 
-    public Usuario toEntity(GestorInput gestorInput) {
-        return  modelMapper.map(gestorInput, Usuario.class);
+    public Usuario toEntity(UsuarioInputDTO usuarioInputDTO) {
+        return  modelMapper.map(usuarioInputDTO, Usuario.class);
 
     }
 

@@ -3,7 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinput.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
