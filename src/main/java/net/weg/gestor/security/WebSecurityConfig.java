@@ -24,7 +24,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private ImplementsUserDetailsService implementsUserDetailsService;
     private JWTRequestFilter jwtRequestFilter;
 
-    private static final String[] AUTH_LIST = {
+    private static final String[] GESTOR_LIST = {
+            "usuarios/cadastrar"
+
+    };
+    private static final String[] USUARIO_LIST = {
 
     };
 
@@ -38,9 +42,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/ccpagantes").hasRole("GESTOR")
-                .antMatchers(HttpMethod.GET, "/projetos/listar").hasRole("GESTOR")
-                .antMatchers(HttpMethod.POST,"/authenticate").permitAll()
+                .antMatchers(HttpMethod.GET, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PUT, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.POST,GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.DELETE,GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.GET, USUARIO_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PUT, USUARIO_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.POST,USUARIO_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.DELETE,USUARIO_LIST).hasRole("GESTOR")
                 .anyRequest().authenticated()
                     .and().cors()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
