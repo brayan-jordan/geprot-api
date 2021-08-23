@@ -25,12 +25,6 @@ public class UsuarioController {
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
 
-    @GetMapping("/listartodos")
-    public List<Usuario> listarTodosOsGestores() {
-        return usuarioService.listartodos();
-
-    }
-
     @GetMapping("/buscar/{usuarioId}")
     public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
@@ -44,15 +38,14 @@ public class UsuarioController {
     }
 
     @PutMapping("/editar/{usuarioId}")
-    public ResponseEntity<Usuario> editar(@Valid @PathVariable Long usuarioid, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> editar(@Valid @PathVariable Long usuarioid, @RequestBody UsuarioInputDTO usuario) {
         return usuarioService.editar(usuarioid, usuario);
 
     }
 
-    @GetMapping("/listar2")
+    @GetMapping("/listartodos")
     public List<UsuarioDTO> list2() {
-        return usuarioService.list2();
-
+        return usuarioService.listartodos();
     }
 
     @PostMapping("/cadastrar")
@@ -67,8 +60,6 @@ public class UsuarioController {
         novaRole.setNome_role("ROLE_USER");
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
-
-
     }
 
 }
