@@ -10,6 +10,6 @@ import javax.validation.constraints.NotNull;
 public class SecaoInputDTO {
 
     @NotNull
-    private long idsecao;
+    private long id;
 
 }

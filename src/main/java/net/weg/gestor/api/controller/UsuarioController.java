@@ -25,7 +25,7 @@ public class UsuarioController {
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
 
-    @GetMapping("/buscara/{usuarioId}")
+    @GetMapping("/buscar/{usuarioId}")
     public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
 
@@ -50,7 +50,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioDTO criar2(@Valid @RequestBody UsuarioInputDTO usuario) {
+    public UsuarioDTO criar2( @RequestBody UsuarioInputDTO usuario) {
         Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
         RoleUsuarios novaRole = new RoleUsuarios();
         novaRole.setId_usuarios(novoUsuario.getId());
