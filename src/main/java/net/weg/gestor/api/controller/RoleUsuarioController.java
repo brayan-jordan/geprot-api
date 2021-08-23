@@ -22,24 +22,23 @@ public class RoleUsuarioController {
     RoleUsuarioRepository roleUsuarioRepository;
     RoleUsuarioService roleUsuarioService;
 
-    @PostMapping
-    public RoleUsuarioDTO cadastrar(@Valid @RequestBody RoleUsuarioInputDTO roleUsuarioInputDTO){
-        RoleUsuarios novaRole = roleUsuarioAssembler.toEntity(roleUsuarioInputDTO);
-        RoleUsuarios roleUsuarios = roleUsuarioService.cadastrar(novaRole);
-        return roleUsuarioAssembler.toModel(roleUsuarios);
-    }
-
     @GetMapping
     public List<RoleUsuarioDTO> listar(){ return  roleUsuarioService.listar(); }
 
     @GetMapping("/buscar/{roleId}")
-    public ResponseEntity<RoleUsuarioDTO> buscarPorId(@PathVariable Long roleId){ return roleUsuarioService.buscarId(roleId); }
+    public ResponseEntity<RoleUsuarioDTO> buscarPorId(@PathVariable Long roleId){
+        return roleUsuarioService.buscarId(roleId); }
 
     @PutMapping("/{roleId}")
     public ResponseEntity<RoleUsuarioDTO> editar(@Valid @PathVariable Long roleId, @RequestBody RoleUsuarioInputDTO roleUsuarioInputDTO){
         RoleUsuarios roleUsuarios1 = roleUsuarioAssembler.toEntity(roleUsuarioInputDTO);
         roleUsuarioService.editar(roleId, roleUsuarios1);
         return ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios1));
+    }
+
+    @GetMapping("buscarpessoa/{usuario_id}")
+    public ResponseEntity<RoleUsuarioDTO> buscarPorIdUsuario(@PathVariable Long usuario_id){
+        return roleUsuarioService.buscarPorIdUsuario(usuario_id);
     }
 
     @DeleteMapping("/{roleId}")

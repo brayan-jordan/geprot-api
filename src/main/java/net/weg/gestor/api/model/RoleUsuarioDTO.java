@@ -11,6 +11,6 @@ public class RoleUsuarioDTO {
 
     private String nome_role;
 
-    private Long cadastro;
+    private Long id_usuarios;
 
 }

@@ -38,6 +38,12 @@ public class RoleUsuarioService {
         .orElseThrow(() -> new NegocioException("Role não encontrada."));
     }
 
+    public ResponseEntity<RoleUsuarioDTO> buscarPorIdUsuario(Long usuariosId){
+        return  roleUsuarioRepository.findRoleById(usuariosId).map(roleUsuarios -> ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios))
+        )
+                .orElseThrow(() -> new NegocioException("Pessoa não encontrada."));
+    }
+
     public ResponseEntity<RoleUsuarioDTO> editar(Long roleId, RoleUsuarios roleUsuarios){
         if (!roleUsuarioRepository.existsById(roleId)){
             throw new NegocioException("Role inexistente.");
