@@ -25,7 +25,7 @@ public class UsuarioController {
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
 
-    @GetMapping("/buscar/{usuarioId}")
+    @GetMapping("/buscara/{usuarioId}")
     public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
 
