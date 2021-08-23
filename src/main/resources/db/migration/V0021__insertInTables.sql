@@ -2,7 +2,7 @@ INSERT INTO secoes VALUES
 (null, "CentroWeg"),
 (null, "Recursos Humanos");
 
-INSERT INTO usuarios VALUES (67264,'$2a$10$vAZfFnx9T6IvxlfO9sU4AOQb0qLm/LA10vEY4I2V6CxEkVucuZAHG', '2', 'Brayan', 'brayan@gmail.com');
+INSERT INTO usuarios VALUES (67264,'$2a$10$vAZfFnx9T6IvxlfO9sU4AOQb0qLm/LA10vEY4I2V6CxEkVucuZAHG', '1', 'Brayan', 'brayan@gmail.com');
 
 INSERT INTO role_usuarios VALUES (null,"ROLE_GESTOR", 67264);
 

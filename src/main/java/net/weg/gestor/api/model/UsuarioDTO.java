@@ -12,10 +12,8 @@ public class UsuarioDTO {
     private long id;
     private String nome;
     private String email;
-
     @JsonIgnore
     private String senha;
-
     private Secao secao;
 
 }
