@@ -8,7 +8,7 @@ import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinput.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

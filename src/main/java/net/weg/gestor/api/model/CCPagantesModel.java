@@ -13,6 +13,6 @@ public class CCPagantesModel {
 
     private int taxa;
 
-    private ProjetoModel projeto;
+    private ProjetoDTO projeto;
 
 }

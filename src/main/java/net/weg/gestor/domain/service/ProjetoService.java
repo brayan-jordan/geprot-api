@@ -8,8 +8,8 @@ import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.api.model.ProjetoModel;
-import net.weg.gestor.api.model.projetoinput.ProjetoInput;
+import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -32,7 +32,7 @@ public class ProjetoService {
 
     }
 
-    public ProjetoModel cadastrar(ProjetoInput projeto){
+    public ProjetoDTO cadastrar(ProjetoInput projeto){
         boolean gestorVerification = gestorRepository.findById(projeto.getGestor().getIdgestor()).isPresent();
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");

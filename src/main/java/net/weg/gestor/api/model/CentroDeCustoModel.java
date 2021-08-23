@@ -9,6 +9,6 @@ public class CentroDeCustoModel {
 
     private Long codigo;
 
-    private String nomecentrodecusto;
+    private String nome;
 
 }

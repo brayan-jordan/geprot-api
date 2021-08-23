@@ -3,7 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.service.CCPagantesService;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinput.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

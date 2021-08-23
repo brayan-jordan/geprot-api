@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model.centrodecustoinput;
+package net.weg.gestor.api.model.centrodecustoinputDTO;
 
 import lombok.Getter;
 import lombok.Setter;
