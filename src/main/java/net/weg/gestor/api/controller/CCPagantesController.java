@@ -3,7 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.service.CCPagantesService;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +29,8 @@ public class CCPagantesController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public CCPagantesModel cadastrarNovoccpagante(@Valid @RequestBody CCPagantesInput ccPagantesInput) {
-        return ccPagantesService.cadastrar(ccPagantesInput);
+    public CCPagantesModel cadastrarNovoccpagante(@Valid @RequestBody CCPagantesInputDTO ccPagantesInputDTO) {
+        return ccPagantesService.cadastrar(ccPagantesInputDTO);
 
     }
 

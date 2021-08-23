@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CCPagantesInput {
+public class CCPagantesInputDTO {
 
-    private CCPagante_ProjetoInput projeto;
+    private CCPagante_ProjetoInputDTO projeto;
 
-    private CCPagante_CCInput centrodecusto;
+    private CCPagante_CCInputDTO centrodecusto;
 
     private int taxa;
 

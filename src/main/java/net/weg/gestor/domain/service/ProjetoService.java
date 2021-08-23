@@ -6,7 +6,7 @@ import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
-import net.weg.gestor.domain.repository.GestorRepository;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInput;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ProjetoService {
 
     private ProjetoRepository projetoRepository;
-    private GestorRepository gestorRepository;
+    private UsuarioRepository usuarioRepository;
     private ProjetoAssembler projetoAssembler;
 
     public List<Projeto> listartodos() {
@@ -33,7 +33,7 @@ public class ProjetoService {
     }
 
     public ProjetoDTO cadastrar(ProjetoInput projeto){
-        boolean gestorVerification = gestorRepository.findById(projeto.getGestor().getIdgestor()).isPresent();
+        boolean gestorVerification = usuarioRepository.findById(projeto.getUsuarioDTO().getId()).isPresent();
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");
         }
@@ -43,9 +43,9 @@ public class ProjetoService {
         projeto1.setDatainicio(LocalDateTime.now());
         projeto1.setHorastrabalhadas(0);
         projeto1.setValorutilizado(0);
-        projeto1.setValorrestante(projeto.getValorprojeto());
+        projeto1.setValorrestante(projeto.getValor());
         projeto1.setStatusprojeto(StatusProjeto.EM_ANDAMENTO);
-        projeto1.setUsuario(gestorRepository.findByidgestor2(projeto1.getUsuario().getId()));
+        projeto1.setUsuario(usuarioRepository.findByidgestor2(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);

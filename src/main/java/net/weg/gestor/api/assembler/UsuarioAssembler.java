@@ -1,6 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.api.model.GestorModel;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
@@ -12,22 +13,22 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class GestorAssembler {
+public class UsuarioAssembler {
 
     private ModelMapper modelMapper;
 
-    public GestorModel toModel(Usuario usuario) {
-        return modelMapper.map(usuario, GestorModel.class);
+    public UsuarioDTO toModel(Usuario usuario) {
+        return modelMapper.map(usuario, UsuarioDTO.class);
 
     }
 
-    public List<GestorModel> toCollectionModel(List<Usuario> gestores) {
-        return gestores.stream().map(this::toModel).collect(Collectors.toList());
+    public List<UsuarioDTO> toCollectionModel(List<Usuario> usuarios) {
+        return usuarios.stream().map(this::toModel).collect(Collectors.toList());
 
     }
 
-    public Usuario toEntity(GestorModel gestorModel) {
-        return modelMapper.map(gestorModel, Usuario.class);
+    public Usuario toEntity(UsuarioDTO usuarioDTO) {
+        return modelMapper.map(usuarioDTO, Usuario.class);
 
     }
 

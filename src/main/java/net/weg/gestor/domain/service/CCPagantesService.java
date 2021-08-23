@@ -8,7 +8,7 @@ import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,16 +32,16 @@ public class CCPagantesService {
 
     }
 
-    public CCPagantesModel cadastrar(CCPagantesInput ccPagantesInput) {
-        if (ccPagantesInput.getTaxa() > 100 || ccPagantesInput.getTaxa() < 1) {
+    public CCPagantesModel cadastrar(CCPagantesInputDTO ccPagantesInputDTO) {
+        if (ccPagantesInputDTO.getTaxa() > 100 || ccPagantesInputDTO.getTaxa() < 1) {
             throw new NegocioException("Insira uma taxa válida");
         }
 
-        if (valorTotalTaxa(ccPagantesInput.getProjeto().getIdprojeto(), ccPagantesInput.getTaxa()) > 100) {
+        if (valorTotalTaxa(ccPagantesInputDTO.getProjeto().getId(), ccPagantesInputDTO.getTaxa()) > 100) {
             throw new NegocioException("Esse valor ultrapassa o limite de 100");
         }
 
-        CCPagantes ccPagantes = ccPagantesAssembler.toEntity(ccPagantesInput);
+        CCPagantes ccPagantes = ccPagantesAssembler.toEntity(ccPagantesInputDTO);
 
         boolean validation = centroDeCustoRepository.findById(
                 ccPagantes.getCentrodecusto().getId()).isPresent();

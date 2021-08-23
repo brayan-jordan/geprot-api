@@ -3,7 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.api.model.CCPagantesModel;
-import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInput;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ public class CCPagantesAssembler {
 
     private ModelMapper modelMapper;
 
-    public CCPagantes toEntity(CCPagantesInput ccPagantesInput) {
-        return modelMapper.map(ccPagantesInput, CCPagantes.class);
+    public CCPagantes toEntity(CCPagantesInputDTO ccPagantesInputDTO) {
+        return modelMapper.map(ccPagantesInputDTO, CCPagantes.class);
     }
 
     public CCPagantes toEntity(CCPagantesModel ccPagantesModel) {

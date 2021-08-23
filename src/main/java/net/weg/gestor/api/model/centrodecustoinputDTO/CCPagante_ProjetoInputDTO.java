@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class CCPagante_ProjetoInput {
+public class CCPagante_ProjetoInputDTO {
 
     @NotNull
-    private Long idprojeto;
+    private Long id;
 
 }
