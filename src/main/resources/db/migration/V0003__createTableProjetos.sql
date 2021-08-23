@@ -5,10 +5,10 @@ create table projetos (
     datafinalizacao date,
     horasprevistas int NOT NULL,
     horastrabalhadas int,
-    valorprojeto double(20,2) not null,
+    valor double(20,2) not null,
     valorutilizado double(20,2),
     valorrestante double(20,2) not null,
     usuario_id bigint not null,
-    statusprojeto varchar(20) not null,
+    status varchar(20) not null,
     PRIMARY KEY(id)
 );
