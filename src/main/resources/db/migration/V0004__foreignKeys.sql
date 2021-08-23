@@ -1,5 +1,5 @@
 ALTER TABLE gestores ADD CONSTRAINT fk_gestores_secoes
-FOREIGN KEY (idsecao) REFERENCES secoes (idsecao);
+FOREIGN KEY (secao_id) REFERENCES secoes (id);
 
 ALTER TABLE projetos ADD CONSTRAINT fk_projetos_gestores
-FOREIGN KEY (gestorid) REFERENCES gestores (idgestor);
+FOREIGN KEY (gestor_id) REFERENCES gestores (id);
