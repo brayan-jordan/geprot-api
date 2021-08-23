@@ -10,13 +10,14 @@ import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gerentes")
+@RequestMapping("/usuarios")
 @AllArgsConstructor
 public class UsuarioController {
 
@@ -30,15 +31,15 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/buscar/{gestorId}")
-    public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long gestorId) {
-        return usuarioService.buscar(gestorId);
+    @GetMapping("/buscar/{usuarioId}")
+    public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long usuarioId) {
+        return usuarioService.buscar(usuarioId);
 
     }
 
-    @DeleteMapping("/deletar/{gestorId}")
-    public ResponseEntity<Usuario> remover(@PathVariable Long gestorId) {
-        return usuarioService.excluir(gestorId);
+    @DeleteMapping("/deletar/{usuarioId}")
+    public ResponseEntity<Usuario> remover(@PathVariable Long usuarioId) {
+        return usuarioService.excluir(usuarioId);
 
     }
 
@@ -59,7 +60,9 @@ public class UsuarioController {
     public UsuarioDTO criar2(@Valid @RequestBody UsuarioInputDTO usuario) {
         Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
         RoleUsuarios novaRole = new RoleUsuarios();
-        novaRole.setId(novoUsuario.getId());
+        novaRole.setId_usuarios(novoUsuario.getId());
+        novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+        novoUsuario.getSecao().setId(usuario.getSecao().getId());
         Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
         novaRole.setNome_role("ROLE_USER");
         roleUsuarioService.cadastrar(novaRole);
