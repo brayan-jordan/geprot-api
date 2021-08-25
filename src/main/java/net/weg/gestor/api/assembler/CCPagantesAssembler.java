@@ -24,11 +24,19 @@ public class CCPagantesAssembler {
         return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
+    public CCPagantes toEntityInput(CCPagantesInputDTO ccPagantesDTO) {
+        return modelMapper.map(ccPagantesDTO, CCPagantes.class);
+    }
+
     public CCPagantesDTO toModel(CCPagantes ccPagantes) {
         return modelMapper.map(ccPagantes, CCPagantesDTO.class);
     }
 
     public List<CCPagantesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
         return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    public List<CCPagantes> toCollectionEntity(List<CCPagantesInputDTO> ccPagantes) {
+        return ccPagantes.stream().map(this::toEntityInput).collect(Collectors.toList());
     }
 }

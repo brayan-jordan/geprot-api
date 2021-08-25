@@ -32,45 +32,50 @@ public class CCPagantesService {
 
     }
 
-    public CCPagantesDTO cadastrar(CCPagantesInputDTO ccPagantesInputDTO) {
-        if (ccPagantesInputDTO.getTaxa() > 100 || ccPagantesInputDTO.getTaxa() < 1) {
-            throw new NegocioException("Insira uma taxa válida");
+    public List<CCPagantesDTO> cadastrar(List<CCPagantesInputDTO> ccPagantesInputDTO) {
+        if (calcularTaxa(ccPagantesInputDTO) != 100) {
+            throw new NegocioException("Verifique os valores da taxa (Não é igual a 100)");
         }
 
-        if (valorTotalTaxa(ccPagantesInputDTO.getProjeto().getId(), ccPagantesInputDTO.getTaxa()) > 100) {
-            throw new NegocioException("Esse valor ultrapassa o limite de 100");
-        }
-
-        CCPagantes ccPagantes = ccPagantesAssembler.toEntity(ccPagantesInputDTO);
+        List<CCPagantes> ccPagantes = ccPagantesAssembler.toCollectionEntity(ccPagantesInputDTO);
 
         boolean validation = centroDeCustoRepository.findById(
-                ccPagantes.getCentrodecusto().getId()).isPresent();
+                ccPagantes.get(0).getCentrodecusto().getId()).isPresent();
 
         if (!validation) {
-            throw new NegocioException("ID De centro de custo inválido, tente novamente");
+            throw new NegocioException("Verifique os centros de custos informados (ID Nao encontrado)");
         }
 
-        ccPagantes.setCentrodecusto(centroDeCustoRepository.findById2(ccPagantes.getCentrodecusto().getId()));
-        boolean validation2 = projetoRepository.findByIdProjeto2(ccPagantes.getProjeto().getId()).isPresent();
+        for (int i = 0; i < ccPagantes.size(); ++i) {
+            ccPagantes.get(i).setCentrodecusto(centroDeCustoRepository.findById2
+                    (ccPagantes.get(i).getCentrodecusto().getId()));
+        }
+
+        boolean validation2 = projetoRepository.findByIdProjeto2(ccPagantes.get(0).getProjeto().getId()).isPresent();
 
         if (!validation2) {
-            throw new NegocioException("ID Do Projeto inválido");
+            throw new NegocioException("Verifique o projeto informado (ID Nao encontrado)");
         }
 
-        ccPagantes.setProjeto(projetoRepository.findByIdProjeto(ccPagantes.getProjeto().getId()));
-        ccPagantesRepository.save(ccPagantes);
-        return ccPagantesAssembler.toModel(ccPagantes);
+        for (int i = 0; i < ccPagantes.size(); ++i) {
+            ccPagantes.get(i).setProjeto(projetoRepository.findByIdProjeto(
+                    ccPagantes.get(i).getProjeto().getId()));
+        }
+
+       for (int i = 0; i < ccPagantes.size(); ++i) {
+           ccPagantesRepository.save(ccPagantes.get(i));
+       }
+
+        return ccPagantesAssembler.toCollectionModel(ccPagantes);
     }
 
-    public int valorTotalTaxa(Long projetoid, int newtaxa) {
-        List<CCPagantesDTO> lista = listarporprojeto(projetoid);
-
-        int soma= 0;
+    public int calcularTaxa(List<CCPagantesInputDTO> lista) {
+        int soma = 0;
         for (int i = 0; i < lista.size(); ++i) {
-            soma += lista.get(i).getTaxa();
+            soma =+ lista.get(i).getTaxa();
         }
+        return soma;
 
-        return soma + newtaxa;
     }
 
 }

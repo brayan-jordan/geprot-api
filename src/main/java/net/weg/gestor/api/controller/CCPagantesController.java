@@ -27,9 +27,9 @@ public class CCPagantesController {
         return ccPagantesService.listarporprojeto(projetoid);
     }
 
-    @PostMapping()
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public CCPagantesDTO cadastrarNovoccpagante(@Valid @RequestBody CCPagantesInputDTO ccPagantesInputDTO) {
+    public List<CCPagantesDTO> cadastrarNovoccpagante(@Valid @RequestBody List<CCPagantesInputDTO> ccPagantesInputDTO) {
         return ccPagantesService.cadastrar(ccPagantesInputDTO);
 
     }
