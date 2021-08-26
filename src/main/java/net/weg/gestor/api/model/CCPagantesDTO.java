@@ -9,9 +9,9 @@ public class CCPagantesDTO {
 
     private int codigo;
 
-    private CentroDeCustoDTO centrodecusto;
-
     private int taxa;
+
+    private CentroDeCustoDTO centrodecusto;
 
     private ProjetoDTO projeto;
 
