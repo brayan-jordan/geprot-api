@@ -18,7 +18,7 @@ public class CCPagantesController {
     private CCPagantesService ccPagantesService;
 
     @GetMapping
-    public List<CCPagantesDTO> listartodos() {
+    public List<CCPagantesDTO> listar() {
         return ccPagantesService.listartodos();
     }
 
@@ -29,7 +29,7 @@ public class CCPagantesController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<CCPagantesDTO> cadastrarNovoccpagante(@Valid @RequestBody List<CCPagantesInputDTO> ccPagantesInputDTO) {
+    public List<CCPagantesDTO> cadastrar(@Valid @RequestBody List<CCPagantesInputDTO> ccPagantesInputDTO) {
         return ccPagantesService.cadastrar(ccPagantesInputDTO);
 
     }
