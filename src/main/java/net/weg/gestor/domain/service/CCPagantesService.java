@@ -72,7 +72,7 @@ public class CCPagantesService {
     public int calcularTaxa(List<CCPagantesInputDTO> lista) {
         int soma = 0;
         for (int i = 0; i < lista.size(); ++i) {
-            soma = soma + lista.get(i).getTaxa();
+            soma += lista.get(i).getTaxa();
         }
         return soma;
 
