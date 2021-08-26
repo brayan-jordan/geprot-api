@@ -75,7 +75,6 @@ public class CCPagantesService {
             soma += lista.get(i).getTaxa();
         }
         return soma;
-
     }
 
 }
