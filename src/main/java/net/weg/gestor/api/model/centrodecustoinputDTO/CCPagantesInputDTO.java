@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class CCPagantesInputDTO {
 
+    private int taxa;
+
     private CCPagante_ProjetoInputDTO projeto;
 
     private CCPagante_CCInputDTO centrodecusto;
-
-    private int taxa;
 
 }
