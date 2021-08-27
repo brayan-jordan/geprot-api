@@ -3,6 +3,8 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.ProjetoInteiroDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
@@ -22,6 +24,7 @@ public class ProjetoService {
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private ProjetoAssembler projetoAssembler;
+    private CCPagantesService ccPagantesService;
 
     public List<ProjetoDTO> listartodos() {
         return projetoAssembler.toCollectionModel(projetoRepository.findAll());
@@ -34,7 +37,7 @@ public class ProjetoService {
     }
 
     public ProjetoDTO cadastrar(ProjetoInputDTO projeto){
-        boolean gestorVerification = usuarioRepository.findById(projeto.getUsuarioDTO().getId()).isPresent();
+        boolean gestorVerification = usuarioRepository.findById(projeto.getUsuario().getId()).isPresent();
 
         if(!gestorVerification){
             throw new NegocioException("Não existe um gestor com esse ID ");
@@ -53,6 +56,16 @@ public class ProjetoService {
         return projetoAssembler.toModel(projeto1);
 
     }
+
+    public ProjetoInteiroDTO cadastrarinteiro(ProjetoInteiroInputDTO projeto) {
+            Long idCadastrado = cadastrar(projeto.getProjeto()).getId();
+            for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
+                projeto.getCcpagantes().get(i).getProjeto().setId(idCadastrado);
+            }
+            ccPagantesService.cadastrar(projeto.getCcpagantes());
+            return projetoAssembler.toModelInteiro(projeto);
+    }
+
 
     public Projeto editar(Long idDoProjeto, Projeto projeto){
         boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();

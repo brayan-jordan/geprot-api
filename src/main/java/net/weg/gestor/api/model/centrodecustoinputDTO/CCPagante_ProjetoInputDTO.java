@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class CCPagante_ProjetoInputDTO {
 
-    @NotNull
     private Long id;
 
 }

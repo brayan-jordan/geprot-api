@@ -1,6 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ProjetoInteiroDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
@@ -27,5 +29,9 @@ public class ProjetoAssembler {
 
     public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    public ProjetoInteiroDTO toModelInteiro(ProjetoInteiroInputDTO projeto) {
+        return modelMapper.map(projeto, ProjetoInteiroDTO.class);
     }
 }

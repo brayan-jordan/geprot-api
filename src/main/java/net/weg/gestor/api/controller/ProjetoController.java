@@ -1,6 +1,8 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ProjetoInteiroDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
@@ -44,10 +46,18 @@ public class ProjetoController {
         throw new NegocioException("Status indefinido");
     }
 
+    // cadastrar da maneira antiga, sem cadastrar automaticamente os centros de custos
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public ProjetoDTO cadastraProjeto(@Valid @RequestBody ProjetoInputDTO projeto){
         return projetoService.cadastrar(projeto);
+    }
+
+    // cadastrar da maneira nova ja recebendo junto os centros de custos
+    @PostMapping("/cadastrarinteiro")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProjetoInteiroDTO cadastrarInteiro(@Valid @RequestBody ProjetoInteiroInputDTO projeto) {
+        return projetoService.cadastrarinteiro(projeto);
     }
 
     @PutMapping("/editar/{projetoId}")

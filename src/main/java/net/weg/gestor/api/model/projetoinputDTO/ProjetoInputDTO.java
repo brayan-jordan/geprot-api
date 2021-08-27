@@ -8,7 +8,7 @@ import net.weg.gestor.api.model.UsuarioDTO;
 @Setter
 public class ProjetoInputDTO {
 
-    private UsuarioDTO usuarioDTO;
+    private UsuarioToProjetoInputDTO usuario;
     private String nome;
     private int horasprevistas;
     private double valor;
