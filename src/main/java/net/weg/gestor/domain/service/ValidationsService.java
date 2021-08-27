@@ -5,6 +5,7 @@ import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.CentroDeCusto;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
@@ -35,6 +36,10 @@ public class ValidationsService {
         return centroDeCustoRepository.findById(centroDeCustoId);
     }
 
+    public Optional<Projeto> verificaProjetoExistente(Long projetoId) {
+        return projetoRepository.findById(projetoId);
+    }
+
     public Optional<Usuario> verificaUsuarioExiste(Long usuarioId) {
         return usuarioRepository.findById(usuarioId);
     }
@@ -48,6 +53,21 @@ public class ValidationsService {
         if (verificarCentroDeCustoExistente(projectIdToVerifications).isPresent()) {
             projetoRepository.delete(projetoRepository.findByIdProjeto(projectIdToVerifications));
             throw new NegocioException("Verifique os centros de custos informados (ID Nao encontrado)");
+        }
+    }
+
+    public StatusProjeto returnTypeStatus(int var) {
+        switch (var) {
+            case 1:
+                return StatusProjeto.EM_ANDAMENTO;
+            case 2:
+                return StatusProjeto.ATRASADO;
+            case 3:
+                return StatusProjeto.CONCLUIDO;
+            case 4:
+                return StatusProjeto.NAO_INICIADO;
+            default:
+                throw new NegocioException("Erro (verifique o typeStatus informado)");
         }
     }
 

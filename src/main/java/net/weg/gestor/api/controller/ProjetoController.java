@@ -3,18 +3,13 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
-import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.service.ProjetoService;
-import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/projetos")
@@ -36,7 +31,7 @@ public class ProjetoController {
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public ProjetoInteiroDTO cadastrarInteiro(@Valid @RequestBody ProjetoInteiroInputDTO projeto) {
-        return projetoService.cadastrarinteiro(projeto);
+        return projetoService.cadastrar(projeto);
     }
 
     @PutMapping("/editar/{projetoId}")

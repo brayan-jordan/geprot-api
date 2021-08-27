@@ -2,16 +2,12 @@ package net.weg.gestor.domain.service;
 
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.CCPagantesAssembler;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
-import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.api.model.ProjetoDTO;
@@ -20,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -38,23 +33,7 @@ public class ProjetoService {
     }
 
     public ArrayList<ProjetoInteiroDTO> listarStatus(int typeStatus){
-        StatusProjeto status;
-        switch (typeStatus) {
-            case 1:
-                status = StatusProjeto.EM_ANDAMENTO;
-                break;
-            case 2:
-                status = StatusProjeto.ATRASADO;
-                break;
-            case 3:
-                status = StatusProjeto.CONCLUIDO;
-                break;
-            case 4:
-                status = StatusProjeto.NAO_INICIADO;
-                break;
-            default:
-                throw new NegocioException("Erro (verifique o typeStatus informado)");
-        }
+        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
         return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));
     }
 
@@ -75,7 +54,7 @@ public class ProjetoService {
         return projetoAssembler.toModel(projeto1);
     }
 
-    public ProjetoInteiroDTO cadastrarinteiro(ProjetoInteiroInputDTO projeto) {
+    public ProjetoInteiroDTO cadastrar(ProjetoInteiroInputDTO projeto) {
         Long idCadastrado = cadastrar(projeto.getProjeto()).getId();
         for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
             projeto.getCcpagantes().get(i).getProjeto().setId(idCadastrado);
