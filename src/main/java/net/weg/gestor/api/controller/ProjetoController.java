@@ -48,4 +48,10 @@ public class ProjetoController {
     public void editarAndamento(@Valid @PathVariable Long projetoId){
         projetoService.editarAndamento(projetoId);
     }
+
+    @PatchMapping("/iniciar/{projetoId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void iniciarProjeto(@PathVariable Long projetoId) {
+        projetoService.iniciarProjeto(projetoId);
+    }
 }

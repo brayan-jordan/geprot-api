@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 @AllArgsConstructor
@@ -80,7 +81,6 @@ public class ProjetoService {
         projeto.setStatus(StatusProjeto.CONCLUIDO);
         projeto.setDatafinalizacao(LocalDateTime.now());
         projetoRepository.save(projeto);
-        convertsService.convertProject(idDoProjeto);
     }
 
     public void editarAndamento(Long idDoProjeto){
@@ -93,5 +93,18 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
+    public void iniciarProjeto(Long projetoId) {
+        if (!validationsService.verificaProjetoExistente(projetoId).isPresent()) {
+            throw new NegocioException("Verifique o id do projeto informado");
+        }
 
+        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
+        if (!projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
+            throw new NegocioException("Não é possivel iniciar um projeto ja iniciado");
+        }
+
+        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
+        projeto.setDatainicio(LocalDateTime.now());
+        projetoRepository.save(projeto);
+    }
 }
