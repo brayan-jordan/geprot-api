@@ -48,7 +48,7 @@ public class ProjetoService {
         projeto1.setValorutilizado(0);
         projeto1.setValorrestante(projeto.getValor());
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
-        projeto1.setUsuario(usuarioRepository.findByIdUsuario2(projeto1.getUsuario().getId()));
+        projeto1.setUsuario(usuarioRepository.findByIdUsuario(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);
