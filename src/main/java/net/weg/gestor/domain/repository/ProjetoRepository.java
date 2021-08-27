@@ -5,9 +5,9 @@ import net.weg.gestor.domain.model.StatusProjeto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
@@ -17,8 +17,5 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
     @Query("select p from Projeto p where p.id = ?1")
     Projeto findByIdProjeto(long id);
-
-    @Query("select p from Projeto p where p.id = ?1")
-    Optional<Projeto> findByIdProjeto2(Long id);
 
 }

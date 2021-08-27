@@ -13,6 +13,4 @@ public class CCPagantesDTO {
 
     private CentroDeCustoDTO centrodecusto;
 
-    private ProjetoDTO projeto;
-
 }
