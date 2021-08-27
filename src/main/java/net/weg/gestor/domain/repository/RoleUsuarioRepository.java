@@ -11,4 +11,6 @@ public interface RoleUsuarioRepository extends JpaRepository<RoleUsuarios, Long>
     @Query("SELECT p FROM RoleUsuarios p WHERE p.id_usuarios = ?1")
     Optional<RoleUsuarios> findRoleById(Long id_usuarios);
 
+    @Query("SELECT p FROM RoleUsuarios p WHERE p.id_usuarios = ?1")
+    RoleUsuarios findRoleByIdUsuario(Long id_usuarios);
 }

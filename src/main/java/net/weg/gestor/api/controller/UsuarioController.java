@@ -3,6 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.UsuarioDTO;
+import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.service.UsuarioService;
@@ -26,7 +27,7 @@ public class UsuarioController {
     private RoleUsuarioService roleUsuarioService;
 
     @GetMapping("/buscar/{usuarioId}")
-    public ResponseEntity<Usuario> buscarUmGestorPorId(@PathVariable Long usuarioId) {
+    public ResponseEntity<Usuario> buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
 
     }
@@ -38,8 +39,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/editar/{usuarioId}")
-    public ResponseEntity<Usuario> editar(@Valid @PathVariable Long usuarioid, @RequestBody UsuarioInputDTO usuario) {
-        return usuarioService.editar(usuarioid, usuario);
+    public Usuario editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
+        return usuarioService.editar(usuarioId, usuario);
 
     }
 

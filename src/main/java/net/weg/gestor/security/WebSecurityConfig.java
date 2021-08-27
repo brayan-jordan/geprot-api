@@ -25,11 +25,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTRequestFilter jwtRequestFilter;
 
     private static final String[] GESTOR_LIST = {
-            "/usuarios/cadastrar",
             "/roles/buscarpessoa/{usuario_id}",
-            "/projetos/listar"
-
-    };
+            "/projetos/listar",
+            "/usuarios/buscar/{usuarioId}",
+            "/usuarios/deletar/{usuarioId}",
+            "/usuarios/editar/{usuarioId}",
+            "/usuarios/listartodos",
+            "/usuarios/cadastrar",
+};
     private static final String[] USUARIO_LIST = {
 
     };
