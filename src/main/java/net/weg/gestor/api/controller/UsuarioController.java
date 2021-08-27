@@ -29,19 +29,16 @@ public class UsuarioController {
     @GetMapping("/buscar/{usuarioId}")
     public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
-
     }
 
     @DeleteMapping("/deletar/{usuarioId}")
     public ResponseEntity<Usuario> remover(@PathVariable Long usuarioId) {
         return usuarioService.excluir(usuarioId);
-
     }
 
     @PutMapping("/editar/{usuarioId}")
     public UsuarioDTO editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
         return usuarioService.editar(usuarioId, usuario);
-
     }
 
     @GetMapping("/listartodos")
@@ -51,7 +48,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioDTO criar2( @RequestBody UsuarioInputDTO usuario) {
+    public UsuarioDTO cadastrar(@RequestBody UsuarioInputDTO usuario) {
         Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
         RoleUsuarios novaRole = new RoleUsuarios();
         novaRole.setUsuarios_id(novoUsuario.getId());
@@ -62,5 +59,4 @@ public class UsuarioController {
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
     }
-
 }
