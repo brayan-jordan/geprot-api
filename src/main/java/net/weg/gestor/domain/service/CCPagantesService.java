@@ -57,6 +57,11 @@ public class CCPagantesService {
             throw new NegocioException("Verifique o projeto informado (ID Nao encontrado)");
         }
 
+        if (ccPagantesRepository.findByIdProjeto(ccPagantes.get(0).getProjeto().getId()).size() > 0) {
+            throw new NegocioException("Já existe os centros de custos informados para esse projeto," +
+                    "caso queira editar vá para tela de cadastro");
+        }
+
         for (int i = 0; i < ccPagantes.size(); ++i) {
             ccPagantes.get(i).setProjeto(projetoRepository.findByIdProjeto(
                     ccPagantes.get(i).getProjeto().getId()));

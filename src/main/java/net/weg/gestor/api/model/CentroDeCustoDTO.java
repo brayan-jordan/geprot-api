@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class CentroDeCustoDTO {
 
-    private Long codigo;
+    private Long id;
 
     private String nome;
 

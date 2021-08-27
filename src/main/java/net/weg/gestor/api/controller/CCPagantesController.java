@@ -17,7 +17,7 @@ public class CCPagantesController {
 
     private CCPagantesService ccPagantesService;
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<CCPagantesDTO> listar() {
         return ccPagantesService.listartodos();
     }
