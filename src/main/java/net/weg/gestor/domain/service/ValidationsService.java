@@ -33,14 +33,6 @@ public class ValidationsService {
         return centroDeCustoRepository.findById(centroDeCustoId);
     }
 
-    public Optional<Projeto> verificaExistProjeto(Long projetoId) {
-        return projetoRepository.findById(projetoId);
-    }
-
-    public int verificaExistCCPaganteOnProject(Long projetoId) {
-        return ccPagantesRepository.findByIdProjeto(projetoId).size();
-    }
-
     public void verificacoesCCpagantes(List<CCPagantesInputDTO> ccPagantesInputDTOS) {
         Long projectIdToVerifications = ccPagantesInputDTOS.get(0).getProjeto().getId();
         if (calcularTaxa(ccPagantesInputDTOS) != 100) {

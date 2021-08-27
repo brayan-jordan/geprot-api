@@ -87,7 +87,7 @@ public class ProjetoService {
             projeto.getCcpagantes().get(i).getProjeto().setId(idCadastrado);
         }
         ccPagantesService.cadastrar(projeto.getCcpagantes());
-        return convertTest(idCadastrado);
+        return convertsService.convertProject(idCadastrado);
     }
 
 
@@ -137,15 +137,5 @@ public class ProjetoService {
         return projetoRepository.save(projeto);
     }
 
-    public ProjetoInteiroDTO convertTest(Long projetoId) {
-        ProjetoInteiroDTO projetoReturn = new ProjetoInteiroDTO();
-        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
-        ProjetoDTO projetoModel = projetoAssembler.toModel(projeto);
-        projetoReturn.setProjeto(projetoModel);
-        List<CCPagantes> ccPagantesEntity = ccPagantesRepository.findByIdProjeto(projetoId);
-        List<CCPagantesDTO> ccPagantes = ccPagantesAssembler.toCollectionModel(ccPagantesEntity);
-        projetoReturn.setCcpagantes(ccPagantes);
-        return projetoReturn;
-    }
 
 }
