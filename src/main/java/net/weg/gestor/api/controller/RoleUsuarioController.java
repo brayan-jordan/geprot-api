@@ -3,14 +3,11 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
 import net.weg.gestor.api.model.RoleUsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.RoleUsuarioInputDTO;
-import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
