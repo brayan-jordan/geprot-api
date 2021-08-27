@@ -33,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/usuarios/editar/admin/{usuarioId}",
             "/usuarios/editar/user/{usuarioId}",
             "/usuarios/editar/{usuarioId}",
-            "/usuarios/cadastrar"
+            "/usuarios/cadastrar",
+            "/secao/editar/{usuarioId}"
 };
     private static final String[] USUARIO_LIST = {
 
