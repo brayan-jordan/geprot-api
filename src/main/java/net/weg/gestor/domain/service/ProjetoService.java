@@ -27,12 +27,11 @@ import java.util.List;
 public class ProjetoService {
 
     private ConvertsService convertsService;
+    private ValidationsService validationsService;
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private ProjetoAssembler projetoAssembler;
     private CCPagantesService ccPagantesService;
-    private CCPagantesRepository ccPagantesRepository;
-    private CCPagantesAssembler ccPagantesAssembler;
 
     public ArrayList<ProjetoInteiroDTO> listartodos() {
         return convertsService.convertProjectList(projetoRepository.findAll());
@@ -56,19 +55,15 @@ public class ProjetoService {
             default:
                 throw new NegocioException("Erro (verifique o typeStatus informado)");
         }
-
         return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));
     }
 
     public ProjetoDTO cadastrar(ProjetoInputDTO projeto){
-        boolean gestorVerification = usuarioRepository.findById(projeto.getUsuario().getId()).isPresent();
-
-        if(!gestorVerification){
-            throw new NegocioException("Não existe um gestor com esse ID ");
-        }
+       if (!validationsService.verificaUsuarioExiste(projeto.getUsuario().getId()).isPresent()) {
+           throw new NegocioException("Nao foi possivel cadastrar o projeto, faça o login e tente novamente");
+       }
 
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
-
         projeto1.setDatainicio(LocalDateTime.now());
         projeto1.setHorastrabalhadas(0);
         projeto1.setValorutilizado(0);
@@ -78,7 +73,6 @@ public class ProjetoService {
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);
-
     }
 
     public ProjetoInteiroDTO cadastrarinteiro(ProjetoInteiroInputDTO projeto) {
