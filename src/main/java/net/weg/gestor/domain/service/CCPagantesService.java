@@ -67,9 +67,9 @@ public class CCPagantesService {
                     ccPagantes.get(i).getProjeto().getId()));
         }
 
-       for (int i = 0; i < ccPagantes.size(); ++i) {
-           ccPagantesRepository.save(ccPagantes.get(i));
-       }
+        for (int i = 0; i < ccPagantes.size(); ++i) {
+            ccPagantesRepository.save(ccPagantes.get(i));
+        }
 
         return ccPagantesAssembler.toCollectionModel(ccPagantes);
     }

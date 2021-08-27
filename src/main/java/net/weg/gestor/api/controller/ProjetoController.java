@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,34 +24,13 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping("/listar")
-    public List<ProjetoDTO> listarTodosProjetos(){
+    public ArrayList<ProjetoInteiroDTO> listarTodosProjetos(){
         return projetoService.listartodos();
     }
 
-    @GetMapping("/listar/{statusprojeto}")
-    public List<ProjetoDTO> listarProjetosAndamento(@PathVariable String statusprojeto) {
-        // gambiarra que diz
-
-        if (statusprojeto.equals("EM_ANDAMENTO")) {
-            return projetoService.listarStatus(StatusProjeto.EM_ANDAMENTO);
-        }
-
-        if (statusprojeto.equals("CONCLUIDO")) {
-            return projetoService.listarStatus(StatusProjeto.CONCLUIDO);
-        }
-
-        if (statusprojeto.equals("ATRASADO")) {
-            return projetoService.listarStatus(StatusProjeto.ATRASADO);
-        }
-
-        throw new NegocioException("Status indefinido");
-    }
-
-    // cadastrar da maneira antiga, sem cadastrar automaticamente os centros de custos
-    @PostMapping("/cadastrar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ProjetoDTO cadastraProjeto(@Valid @RequestBody ProjetoInputDTO projeto){
-        return projetoService.cadastrar(projeto);
+    @GetMapping("/listarstatus/{typeStatus}")
+    public ArrayList<ProjetoInteiroDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
+        return projetoService.listarStatus(typeStatus);
     }
 
     // cadastrar da maneira nova ja recebendo junto os centros de custos
