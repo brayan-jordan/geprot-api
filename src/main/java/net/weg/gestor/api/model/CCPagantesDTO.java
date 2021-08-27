@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class CCPagantesDTO {
 
-    private int codigo;
+    private int id;
 
     private int taxa;
 
