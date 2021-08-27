@@ -3,12 +3,14 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.UsuarioDTO;
+import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,14 +51,16 @@ public class UsuarioService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Usuario> editar(Long gestorId, UsuarioInputDTO usuario) {
-        if(!usuarioRepository.existsById(gestorId)) {
+    public Usuario editar(Long usuarioId, UsuarioEditarInputDTO usuario) {
+        if(!usuarioRepository.existsById(usuarioId)) {
             throw new NegocioException("Nao existe um gestor com esse ID para ser editado");
         }
-        usuario.setId(gestorId);
-        Usuario usuario1 = usuarioAssembler.toEntity(usuario);
+        Usuario usuario1 = usuarioRepository.findByIdUsuario2(usuarioId);
+        usuario1.setNome(usuario.getNome());
+        usuario1.setEmail(usuario.getEmail());
+        usuario1.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         usuario1 = usuarioRepository.save(usuario1);
-        return ResponseEntity.ok(usuario1);
+        return usuario1;
     }
 
     public ResponseEntity<Usuario> buscar(Long usuarioId) {
