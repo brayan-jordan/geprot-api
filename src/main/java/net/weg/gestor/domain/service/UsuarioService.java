@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;
@@ -51,21 +50,23 @@ public class UsuarioService {
         return ResponseEntity.noContent().build();
     }
 
-    public Usuario editar(Long usuarioId, UsuarioEditarInputDTO usuario) {
+    public UsuarioDTO editar(Long usuarioId, UsuarioEditarInputDTO usuario) {
         if(!usuarioRepository.existsById(usuarioId)) {
-            throw new NegocioException("Nao existe um gestor com esse ID para ser editado");
+            throw new NegocioException("Nao existe um usuario com esse ID para ser editado");
         }
         Usuario usuario1 = usuarioRepository.findByIdUsuario2(usuarioId);
         usuario1.setNome(usuario.getNome());
         usuario1.setEmail(usuario.getEmail());
         usuario1.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-        usuario1 = usuarioRepository.save(usuario1);
-        return usuario1;
+        return usuarioAssembler.toModel(usuarioRepository.save(usuario1));
     }
 
-    public ResponseEntity<Usuario> buscar(Long usuarioId) {
-        return usuarioRepository.findByIdUsuario(usuarioId).map(gestor -> ResponseEntity.ok(gestor))
-                .orElse(ResponseEntity.notFound().build());
+    public UsuarioDTO buscar(Long usuarioId) {
+        Usuario usuario = usuarioRepository.findByIdUsuario2(usuarioId);
+        if (usuario == null ){
+            throw new NegocioException("Não existe usuario com esse ID");
+        }
+        return usuarioAssembler.toModel(usuario);
     }
 
     public List<UsuarioDTO> listartodos() {

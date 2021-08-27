@@ -37,7 +37,7 @@ public class RoleUsuarioController {
     }
 
     @GetMapping("buscarpessoa/{usuario_id}")
-    public ResponseEntity<RoleUsuarioDTO> buscarPorIdUsuario(@PathVariable Long usuario_id){
+    public RoleUsuarioDTO buscarPorIdUsuario(@PathVariable Long usuario_id){
         return roleUsuarioService.buscarPorIdUsuario(usuario_id);
     }
 

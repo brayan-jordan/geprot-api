@@ -27,7 +27,7 @@ public class UsuarioController {
     private RoleUsuarioService roleUsuarioService;
 
     @GetMapping("/buscar/{usuarioId}")
-    public ResponseEntity<Usuario> buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
+    public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
         return usuarioService.buscar(usuarioId);
 
     }
@@ -39,7 +39,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/editar/{usuarioId}")
-    public Usuario editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
+    public UsuarioDTO editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
         return usuarioService.editar(usuarioId, usuario);
 
     }
