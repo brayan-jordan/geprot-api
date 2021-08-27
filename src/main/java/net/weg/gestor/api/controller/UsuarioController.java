@@ -2,6 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.RoleUsuarioDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.model.Usuario;
@@ -25,6 +26,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
+
 
     @GetMapping("/buscar/{usuarioId}")
     public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
@@ -59,4 +61,15 @@ public class UsuarioController {
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
     }
+
+    @PutMapping("/editar/admin/{usuarioId}")
+    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){
+        return roleUsuarioService.editarPermissaoAdmin(usuarioId);
+    }
+
+    @PutMapping("/editar/user/{usuarioId}")
+    public RoleUsuarioDTO editaPermissaoUser(@Valid @PathVariable long usuarioId){
+        return roleUsuarioService.editarPermissaoUser(usuarioId);
+    }
+
 }

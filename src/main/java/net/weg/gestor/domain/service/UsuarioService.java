@@ -50,6 +50,7 @@ public class UsuarioService {
         return ResponseEntity.noContent().build();
     }
 
+    @Transactional
     public UsuarioDTO editar(Long usuarioId, UsuarioEditarInputDTO usuario) {
         if(!usuarioRepository.existsById(usuarioId)) {
             throw new NegocioException("Nao existe um usuario com esse ID para ser editado");
