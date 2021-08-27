@@ -21,6 +21,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     private SecaoRepository secaoRepository;
     private UsuarioAssembler usuarioAssembler;
+    private RoleUsuarioService roleUsuarioService;
 
     @Transactional
     public Usuario cadastrar(Usuario usuario) {
@@ -39,11 +40,12 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public ResponseEntity<Usuario> excluir(Long gestorId) {
-        if(!usuarioRepository.existsById(gestorId)) {
+    public ResponseEntity<Usuario> excluir(Long usuarioId) {
+        if(!usuarioRepository.existsById(usuarioId)) {
             return ResponseEntity.notFound().build();
         }
-        usuarioRepository.deleteById(gestorId);
+        roleUsuarioService.deletarPorIdUsuario(usuarioId);
+        usuarioRepository.deleteById(usuarioId);
         return ResponseEntity.noContent().build();
     }
 

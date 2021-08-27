@@ -56,5 +56,13 @@ public class RoleUsuarioService {
     }
 
     @Transactional
-    public void deletar(Long roleId){ roleUsuarioRepository.deleteById(roleId);}
+    public void deletar(Long roleId){
+        roleUsuarioRepository.deleteById(roleId);
+    }
+
+    @Transactional
+    public void deletarPorIdUsuario(Long usuarioId){
+        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+        roleUsuarioRepository.deleteById(roleUsuarios.getId());
+    }
 }
