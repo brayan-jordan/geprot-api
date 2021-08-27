@@ -4,11 +4,9 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -74,7 +71,7 @@ public class ProjetoService {
         projeto1.setValorutilizado(0);
         projeto1.setValorrestante(projeto.getValor());
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
-        projeto1.setUsuario(usuarioRepository.findByIdUsuario2(projeto1.getUsuario().getId()));
+        projeto1.setUsuario(usuarioRepository.findByIdUsuario(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);

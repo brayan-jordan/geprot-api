@@ -5,6 +5,7 @@ import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
@@ -26,13 +27,13 @@ public class UsuarioService {
 
     @Transactional
     public Usuario cadastrar(Usuario usuario) {
-        boolean idSecaoValidation = secaoRepository.findById(usuario.getSecao().getId()).isPresent();
-        if (!idSecaoValidation) {
+        Secao idSecaoValidation = secaoRepository.findById2(usuario.getSecao().getId());
+        if (idSecaoValidation == null) {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }
         usuario.setSecao(secaoRepository.findById2(usuario.getSecao().getId()));
-        boolean idValidation = usuarioRepository.findByIdUsuario(usuario.getId()).isPresent();
-        if (idValidation) {
+        Usuario idValidation = usuarioRepository.findByIdUsuario(usuario.getId());
+        if (idValidation == null) {
             throw new NegocioException("Já existe um gestor com esse ID");
         }
         if (usuario.getId() == 0) {
@@ -55,7 +56,7 @@ public class UsuarioService {
         if(!usuarioRepository.existsById(usuarioId)) {
             throw new NegocioException("Nao existe um usuario com esse ID para ser editado");
         }
-        Usuario usuario1 = usuarioRepository.findByIdUsuario2(usuarioId);
+        Usuario usuario1 = usuarioRepository.findByIdUsuario(usuarioId);
         usuario1.setNome(usuario.getNome());
         usuario1.setEmail(usuario.getEmail());
         usuario1.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
@@ -63,7 +64,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO buscar(Long usuarioId) {
-        Usuario usuario = usuarioRepository.findByIdUsuario2(usuarioId);
+        Usuario usuario = usuarioRepository.findByIdUsuario(usuarioId);
         if (usuario == null ){
             throw new NegocioException("Não existe usuario com esse ID");
         }

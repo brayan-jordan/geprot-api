@@ -9,10 +9,8 @@ import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class SecaoService {
         if (!secaoRepository.existsById(secaoInputDTO.getId())){
             throw new NegocioException("Não existe uma seção com esse ID");
         }
-        Usuario usuario = usuarioRepository.findByIdUsuario2(usuarioId);
+        Usuario usuario = usuarioRepository.findByIdUsuario(usuarioId);
         usuario.setSecao(secaoRepository.findById2(secaoInputDTO.getId()));
         return usuarioAssembler.toModel(usuarioRepository.save(usuario));
 
