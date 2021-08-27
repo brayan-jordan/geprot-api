@@ -5,9 +5,11 @@ import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.CentroDeCusto;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +20,8 @@ import java.util.Optional;
 public class ValidationsService {
 
     private ProjetoRepository projetoRepository;
-    private CCPagantesRepository ccPagantesRepository;
     private CentroDeCustoRepository centroDeCustoRepository;
+    private UsuarioRepository usuarioRepository;
 
     public int calcularTaxa(List<CCPagantesInputDTO> lista) {
         int soma = 0;
@@ -31,6 +33,10 @@ public class ValidationsService {
 
     public Optional<CentroDeCusto> verificarCentroDeCustoExistente(Long centroDeCustoId) {
         return centroDeCustoRepository.findById(centroDeCustoId);
+    }
+
+    public Optional<Usuario> verificaUsuarioExiste(Long usuarioId) {
+        return usuarioRepository.findById(usuarioId);
     }
 
     public void verificacoesCCpagantes(List<CCPagantesInputDTO> ccPagantesInputDTOS) {
