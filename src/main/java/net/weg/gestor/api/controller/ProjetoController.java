@@ -33,8 +33,7 @@ public class ProjetoController {
         return projetoService.listarStatus(typeStatus);
     }
 
-    // cadastrar da maneira nova ja recebendo junto os centros de custos
-    @PostMapping("/cadastrarinteiro")
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public ProjetoInteiroDTO cadastrarInteiro(@Valid @RequestBody ProjetoInteiroInputDTO projeto) {
         return projetoService.cadastrarinteiro(projeto);
