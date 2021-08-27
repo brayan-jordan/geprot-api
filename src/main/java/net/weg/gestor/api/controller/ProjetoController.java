@@ -34,23 +34,18 @@ public class ProjetoController {
         return projetoService.cadastrar(projeto);
     }
 
-    @PutMapping("/editar/{projetoId}")
-    public Projeto editar(@Valid @PathVariable Long projetoId, @RequestBody Projeto projeto){
-        return projetoService.editar(projetoId,projeto);
+    @PatchMapping("/editar/atrasado/{projetoId}")
+    public void editarAtrasado(@Valid @PathVariable Long projetoId){
+        projetoService.editarAtrasado(projetoId);
     }
 
-    @PutMapping("/editar/atrasado/{projetoId}")
-    public Projeto editarAtrasado(@Valid @PathVariable Long projetoId){
-        return projetoService.editarAtrasado(projetoId);
+    @PatchMapping("/editar/concluido/{projetoId}")
+    public void editarConcluido(@Valid @PathVariable Long projetoId){
+        projetoService.editarConcluida(projetoId);
     }
 
-    @PutMapping("/editar/concluido/{projetoId}")
-    public Projeto editarConcluido(@Valid @PathVariable Long projetoId){
-        return projetoService.editarConcluida(projetoId);
-    }
-
-    @PutMapping("/editar/andamento/{projetoId}")
-    public Projeto editarAndamento(@Valid @PathVariable Long projetoId){
-        return projetoService.editarAndamento(projetoId);
+    @PatchMapping("/editar/andamento/{projetoId}")
+    public void editarAndamento(@Valid @PathVariable Long projetoId){
+        projetoService.editarAndamento(projetoId);
     }
 }

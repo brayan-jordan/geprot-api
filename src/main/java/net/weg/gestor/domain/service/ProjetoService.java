@@ -63,16 +63,7 @@ public class ProjetoService {
         return convertsService.convertProject(idCadastrado);
     }
 
-
-    public Projeto editar(Long idDoProjeto, Projeto projeto){
-        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
-        if(!projetoVerification){
-            throw new NegocioException("Não existe um projeto com esse ID ");
-        }
-        projeto.setId(idDoProjeto);
-        return projetoRepository.save(projeto);
-    }
-    public Projeto editarAtrasado(Long idDoProjeto){
+    public void editarAtrasado(Long idDoProjeto){
         boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
         if(!projetoVerification){
             throw new NegocioException("Não existe um projeto com esse ID ");
@@ -83,22 +74,20 @@ public class ProjetoService {
 
         projeto.setStatus(StatusProjeto.ATRASADO);
         projetoRepository.save(projeto);
-        return projeto;
     }
 
-    public Projeto editarConcluida(Long idDoProjeto){
-        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
-        if(!projetoVerification){
-            throw new NegocioException("Não existe um projeto com esse ID ");
+    public void editarConcluida(Long idDoProjeto){
+        if(!validationsService.verificaProjetoExistente(idDoProjeto).isPresent()) {
+            throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-
         projeto.setStatus(StatusProjeto.CONCLUIDO);
         projeto.setDatafinalizacao(LocalDateTime.now());
-        return projetoRepository.save(projeto);
+        projetoRepository.save(projeto);
+        convertsService.convertProject(idDoProjeto);
     }
 
-    public Projeto editarAndamento(Long idDoProjeto){
+    public void editarAndamento(Long idDoProjeto){
         boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
         if(!projetoVerification){
             throw new NegocioException("Não existe um projeto com esse ID ");
@@ -107,7 +96,7 @@ public class ProjetoService {
 
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
         projeto.setDatafinalizacao(LocalDateTime.now());
-        return projetoRepository.save(projeto);
+        projetoRepository.save(projeto);
     }
 
 
