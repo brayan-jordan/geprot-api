@@ -43,7 +43,7 @@ public class ProjetoService {
        }
 
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
-        projeto1.setDatainicio(LocalDateTime.now());
+        projeto1.setDatacadastro(LocalDateTime.now());
         projeto1.setHorastrabalhadas(0);
         projeto1.setValorutilizado(0);
         projeto1.setValorrestante(projeto.getValor());
@@ -64,20 +64,16 @@ public class ProjetoService {
     }
 
     public void editarAtrasado(Long idDoProjeto){
-        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
-        if(!projetoVerification){
-            throw new NegocioException("Não existe um projeto com esse ID ");
-
+        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
+            throw new NegocioException("Verifique o id do projeto informado");
         }
-
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-
         projeto.setStatus(StatusProjeto.ATRASADO);
         projetoRepository.save(projeto);
     }
 
     public void editarConcluida(Long idDoProjeto){
-        if(!validationsService.verificaProjetoExistente(idDoProjeto).isPresent()) {
+        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
@@ -88,12 +84,10 @@ public class ProjetoService {
     }
 
     public void editarAndamento(Long idDoProjeto){
-        boolean projetoVerification = projetoRepository.findById(idDoProjeto).isPresent();
-        if(!projetoVerification){
-            throw new NegocioException("Não existe um projeto com esse ID ");
+        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
+            throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
         projeto.setDatafinalizacao(LocalDateTime.now());
         projetoRepository.save(projeto);

@@ -31,6 +31,8 @@ public class Projeto {
 
     LocalDateTime datafinalizacao;
 
+    LocalDateTime datacadastro;
+
     @NotNull
     int horasprevistas;
 
