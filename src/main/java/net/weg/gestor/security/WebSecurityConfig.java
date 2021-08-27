@@ -29,9 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/projetos/listar",
             "/usuarios/buscar/{usuarioId}",
             "/usuarios/deletar/{usuarioId}",
-            "/usuarios/editar/{usuarioId}",
             "/usuarios/listartodos",
-            "/usuarios/cadastrar",
+            "/usuarios/editar/admin/{usuarioId}",
+            "/usuarios/editar/user/{usuarioId}",
+            "/usuarios/editar/{usuarioId}",
+            "/usuarios/cadastrar"
 };
     private static final String[] USUARIO_LIST = {
 

@@ -3,14 +3,11 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
 import net.weg.gestor.api.model.RoleUsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.RoleUsuarioInputDTO;
-import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -29,15 +26,8 @@ public class RoleUsuarioController {
     public ResponseEntity<RoleUsuarioDTO> buscarPorId(@PathVariable Long roleId){
         return roleUsuarioService.buscarId(roleId); }
 
-    @PutMapping("/{roleId}")
-    public ResponseEntity<RoleUsuarioDTO> editar(@Valid @PathVariable Long roleId, @RequestBody RoleUsuarioInputDTO roleUsuarioInputDTO){
-        RoleUsuarios roleUsuarios1 = roleUsuarioAssembler.toEntity(roleUsuarioInputDTO);
-        roleUsuarioService.editar(roleId, roleUsuarios1);
-        return ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios1));
-    }
-
     @GetMapping("buscarpessoa/{usuario_id}")
-    public ResponseEntity<RoleUsuarioDTO> buscarPorIdUsuario(@PathVariable Long usuario_id){
+    public RoleUsuarioDTO buscarPorIdUsuario(@PathVariable Long usuario_id){
         return roleUsuarioService.buscarPorIdUsuario(usuario_id);
     }
 

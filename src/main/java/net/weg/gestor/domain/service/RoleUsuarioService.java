@@ -6,6 +6,7 @@ import net.weg.gestor.api.model.RoleUsuarioDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ public class RoleUsuarioService {
 
     private RoleUsuarioRepository roleUsuarioRepository;
     private RoleUsuarioAssembler roleUsuarioAssembler;
+    private UsuarioRepository usuarioRepository;
 
     @Transactional
     public RoleUsuarios cadastrar(RoleUsuarios roleUsuarios){
@@ -38,21 +40,31 @@ public class RoleUsuarioService {
         .orElseThrow(() -> new NegocioException("Role não encontrada."));
     }
 
-    public ResponseEntity<RoleUsuarioDTO> buscarPorIdUsuario(Long usuariosId){
-        return  roleUsuarioRepository.findRoleById(usuariosId).map(roleUsuarios -> ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios))
-        )
-                .orElseThrow(() -> new NegocioException("Pessoa não encontrada."));
+    public RoleUsuarioDTO buscarPorIdUsuario(Long usuariosId){
+        if (roleUsuarioRepository.findRoleByIdUsuario(usuariosId) == null){
+            throw new NegocioException("Não existe um usuario com esse ID");
+        }
+        return roleUsuarioAssembler.toModel(roleUsuarioRepository.findRoleByIdUsuario(usuariosId));
     }
 
-    public ResponseEntity<RoleUsuarioDTO> editar(Long roleId, RoleUsuarios roleUsuarios){
-        if (!roleUsuarioRepository.existsById(roleId)){
-            throw new NegocioException("Role inexistente.");
+    public RoleUsuarioDTO editarPermissaoAdmin(Long usuarioId){
+        if (!usuarioRepository.existsById(usuarioId)){
+            throw new NegocioException("Não existe um usuario com esse id");
         }
-
-        RoleUsuarios roleUsuarios1 = this.buscar(roleId);
-        roleUsuarios.setId(roleId);
+        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+        roleUsuarios.setRole_nome("ROLE_GESTOR");
         roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
-        return ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios));
+        return roleUsuarioAssembler.toModel(roleUsuarios);
+    }
+
+    public RoleUsuarioDTO editarPermissaoUser(Long usuarioId){
+        if (!usuarioRepository.existsById(usuarioId)){
+            throw new NegocioException("Não existe um usuario com esse id");
+        }
+        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+        roleUsuarios.setRole_nome("ROLE_USER");
+        roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
+        return roleUsuarioAssembler.toModel(roleUsuarios);
     }
 
     @Transactional

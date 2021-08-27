@@ -2,6 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.RoleUsuarioDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.model.Usuario;
@@ -26,22 +27,20 @@ public class UsuarioController {
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
 
-    @GetMapping("/buscar/{usuarioId}")
-    public ResponseEntity<Usuario> buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
-        return usuarioService.buscar(usuarioId);
 
+    @GetMapping("/buscar/{usuarioId}")
+    public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
+        return usuarioService.buscar(usuarioId);
     }
 
     @DeleteMapping("/deletar/{usuarioId}")
     public ResponseEntity<Usuario> remover(@PathVariable Long usuarioId) {
         return usuarioService.excluir(usuarioId);
-
     }
 
     @PutMapping("/editar/{usuarioId}")
-    public Usuario editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
+    public UsuarioDTO editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
         return usuarioService.editar(usuarioId, usuario);
-
     }
 
     @GetMapping("/listartodos")
@@ -51,7 +50,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioDTO criar2( @RequestBody UsuarioInputDTO usuario) {
+    public UsuarioDTO cadastrar(@RequestBody UsuarioInputDTO usuario) {
         Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
         RoleUsuarios novaRole = new RoleUsuarios();
         novaRole.setUsuarios_id(novoUsuario.getId());
@@ -61,6 +60,16 @@ public class UsuarioController {
         novaRole.setRole_nome("ROLE_USER");
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
+    }
+
+    @PutMapping("/editar/admin/{usuarioId}")
+    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){
+        return roleUsuarioService.editarPermissaoAdmin(usuarioId);
+    }
+
+    @PutMapping("/editar/user/{usuarioId}")
+    public RoleUsuarioDTO editaPermissaoUser(@Valid @PathVariable long usuarioId){
+        return roleUsuarioService.editarPermissaoUser(usuarioId);
     }
 
 }
