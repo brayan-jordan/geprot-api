@@ -54,11 +54,11 @@ public class UsuarioController {
     public UsuarioDTO criar2( @RequestBody UsuarioInputDTO usuario) {
         Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
         RoleUsuarios novaRole = new RoleUsuarios();
-        novaRole.setId_usuarios(novoUsuario.getId());
+        novaRole.setUsuarios_id(novoUsuario.getId());
         novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         novoUsuario.getSecao().setId(usuario.getSecao().getId());
         Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
-        novaRole.setNome_role("ROLE_USER");
+        novaRole.setRole_nome("ROLE_USER");
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
     }

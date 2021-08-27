@@ -15,8 +15,8 @@ public class RoleUsuarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome_role;
+    private String role_nome;
 
-    private Long id_usuarios;
+    private Long usuarios_id;
 
 }

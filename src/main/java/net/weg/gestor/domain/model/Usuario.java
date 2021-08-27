@@ -43,8 +43,8 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @ManyToMany
-    @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "id_usuarios", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "nome_role", referencedColumnName = "nome"))
+    @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "usuarios_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_nome", referencedColumnName = "nome"))
     private List<Role> roles;
 
     @Override
