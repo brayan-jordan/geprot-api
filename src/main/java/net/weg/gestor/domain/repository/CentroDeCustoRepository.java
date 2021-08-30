@@ -1,6 +1,5 @@
 package net.weg.gestor.domain.repository;
 
-import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.model.CentroDeCusto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

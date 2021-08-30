@@ -2,7 +2,6 @@ package net.weg.gestor.api.model.usuarioinputDTO;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.domain.model.Secao;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

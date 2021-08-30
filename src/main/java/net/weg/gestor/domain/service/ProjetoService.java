@@ -3,15 +3,15 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
-import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

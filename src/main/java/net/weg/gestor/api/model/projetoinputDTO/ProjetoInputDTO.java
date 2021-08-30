@@ -2,7 +2,6 @@ package net.weg.gestor.api.model.projetoinputDTO;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.api.model.UsuarioDTO;
 
 @Getter
 @Setter

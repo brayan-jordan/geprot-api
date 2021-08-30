@@ -7,10 +7,10 @@ import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 @AllArgsConstructor
 @Repository

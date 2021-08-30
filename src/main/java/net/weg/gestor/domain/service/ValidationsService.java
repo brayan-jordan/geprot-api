@@ -7,7 +7,6 @@ import net.weg.gestor.domain.model.CentroDeCusto;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.model.Usuario;
-import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;

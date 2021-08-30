@@ -2,13 +2,12 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
-import net.weg.gestor.domain.exception.NegocioException;
+import net.weg.gestor.api.model.CCPagantesDTO;
+import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.api.model.CCPagantesDTO;
-import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
