@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class UsuarioEditarInputDTO {
 
-    private String nome ;
+    private String nome;
     private String email;
     private String senha;
 

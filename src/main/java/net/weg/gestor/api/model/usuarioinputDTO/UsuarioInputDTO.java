@@ -12,7 +12,7 @@ public class UsuarioInputDTO {
 
     private String nome;
 
-    private long id;
+    private Long id;
 
     @NotBlank
     @Email

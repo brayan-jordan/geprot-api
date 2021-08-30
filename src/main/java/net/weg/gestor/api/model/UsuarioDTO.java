@@ -9,7 +9,7 @@ import net.weg.gestor.domain.model.Secao;
 @Setter
 public class UsuarioDTO {
 
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     @JsonIgnore
