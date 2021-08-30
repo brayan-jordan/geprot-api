@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "cc_pagantes")
 public class CCPagantes {
 
     @Id

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Service
 @AllArgsConstructor
@@ -44,10 +43,9 @@ public class ProjetoService {
        }
 
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
-        projeto1.setDatacadastro(LocalDateTime.now());
-        projeto1.setHorastrabalhadas(0);
-        projeto1.setValorutilizado(0);
-        projeto1.setValorrestante(projeto.getValor());
+        projeto1.setDataCadastro(LocalDateTime.now());
+        projeto1.setHorasTrabalhadas(0);
+        projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
         projeto1.setUsuario(usuarioRepository.findByIdUsuario(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
@@ -79,7 +77,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
         projeto.setStatus(StatusProjeto.CONCLUIDO);
-        projeto.setDatafinalizacao(LocalDateTime.now());
+        projeto.setDataFinalizacao(LocalDateTime.now());
         projetoRepository.save(projeto);
     }
 
@@ -89,7 +87,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDatafinalizacao(LocalDateTime.now());
+        projeto.setDataFinalizacao(LocalDateTime.now());
         projetoRepository.save(projeto);
     }
 
@@ -104,7 +102,7 @@ public class ProjetoService {
         }
 
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDatainicio(LocalDateTime.now());
+        projeto.setDataInicio(LocalDateTime.now());
         projetoRepository.save(projeto);
     }
 }

@@ -27,23 +27,21 @@ public class Projeto {
     @Size(min = 5)
     String nome;
 
-    LocalDateTime datainicio;
+    LocalDateTime dataInicio;
 
-    LocalDateTime datafinalizacao;
+    LocalDateTime dataFinalizacao;
 
-    LocalDateTime datacadastro;
+    LocalDateTime dataCadastro;
 
     @NotNull
-    int horasprevistas;
+    int horasPrevistas;
 
-    int horastrabalhadas;
+    int horasTrabalhadas;
 
     @NotNull
     double valor;
 
-    double valorutilizado;
-
-    double valorrestante;
+    double valorUtilizado;
 
     @NotNull
     @Valid

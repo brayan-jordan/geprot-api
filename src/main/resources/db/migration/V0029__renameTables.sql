@@ -1,0 +1,1 @@
+RENAME TABLE ccpagantes TO cc_pagantes
