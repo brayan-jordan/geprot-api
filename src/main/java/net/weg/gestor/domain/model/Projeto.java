@@ -43,12 +43,6 @@ public class Projeto {
 
     double valorUtilizado;
 
-    @NotNull
-    @Valid
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
 
