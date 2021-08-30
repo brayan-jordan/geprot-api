@@ -18,7 +18,7 @@ public class Secao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    Long id;
 
     @NotBlank
     @Size(min = 5, max = 100)

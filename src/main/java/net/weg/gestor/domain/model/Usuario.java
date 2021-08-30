@@ -22,7 +22,7 @@ import java.util.List;
 public class Usuario implements UserDetails {
 
     @Id
-    long id;
+    Long id;
 
     @Valid
     @NotNull
