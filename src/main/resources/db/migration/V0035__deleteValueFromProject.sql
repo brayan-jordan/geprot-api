@@ -1,0 +1,3 @@
+DELETE FROM projetos WHERE id = 1;
+
+INSERT INTO projetos VALUES (null, "PROJETO TO TESTE", null, null, 20, 0, 1000, 500, 67264, "EM_ANDAMENTO", 20210830);
