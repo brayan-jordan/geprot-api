@@ -47,7 +47,6 @@ public class ProjetoService {
         projeto1.setHorasTrabalhadas(0);
         projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
-        projeto1.setUsuario(usuarioRepository.findByIdUsuario(projeto1.getUsuario().getId()));
         projetoRepository.save(projeto1);
 
         return projetoAssembler.toModel(projeto1);
