@@ -1,6 +1,7 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.model.Projeto;
@@ -20,11 +21,11 @@ public class ProjetoController {
     private ProjetoService projetoService;
     private ProjetoRepository projetoRepository;
 
-//    @GetMapping("/listar")
-//    public ArrayList<ProjetoInteiroDTO> listarTodosProjetos(){
-//        return projetoService.listartodos();
-//    }
-//
+    @GetMapping("/listar")
+    public List<ProjetoDTO> listarTodosProjetos(){
+        return projetoService.listartodos();
+    }
+
 //    @GetMapping("/listarstatus/{typeStatus}")
 //    public ArrayList<ProjetoInteiroDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
 //        return projetoService.listarStatus(typeStatus);

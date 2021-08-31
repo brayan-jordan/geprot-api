@@ -1,5 +1,6 @@
 package net.weg.gestor.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -51,12 +52,12 @@ public class Projeto {
     @JoinTable(name = "consultores_alocados", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
         @JoinColumn(name = "usuarios_id", referencedColumnName = "id"))
-    List<Usuario> usuarios;
+    List<Usuario> consultores;
 
     @ManyToMany
     @JoinTable(name = "cc_pagantes", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
         @JoinColumn(name = "centros_de_custo_id", referencedColumnName = "id"))
-    List<CentroDeCusto> centroDeCustos;
+    List<CentroDeCusto> ccpagantes;
 
 }

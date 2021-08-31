@@ -3,6 +3,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
@@ -11,6 +12,7 @@ import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -27,10 +29,10 @@ public class ProjetoService {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private ConsultoresAlocadosService consultoresAlocadosService;
 
-//    public ArrayList<ProjetoInteiroDTO> listartodos() {
-//        return convertsService.convertProjectList(projetoRepository.findAll());
-//    }
-//
+    public List<ProjetoDTO> listartodos() {
+        return projetoAssembler.toCollectionModel(projetoRepository.findAll());
+    }
+
 //    public ArrayList<ProjetoInteiroDTO> listarStatus(int typeStatus){
 //        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
 //        return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));

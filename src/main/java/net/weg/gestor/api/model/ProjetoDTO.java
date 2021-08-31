@@ -5,6 +5,7 @@ import lombok.Setter;
 import net.weg.gestor.domain.model.StatusProjeto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,16 +13,18 @@ public class ProjetoDTO {
 
     private Long id;
     private String nome;
-    private LocalDateTime datainicio;
-    private LocalDateTime datafinalizacao;
-    private LocalDateTime datacadastro;
-    private int horasprevistas;
-    private int horastrabalhadas;
+    private LocalDateTime dataInicio;
+    private LocalDateTime dataFinalizacao;
+    private LocalDateTime dataCadastro;
+    private int horasPrevistas;
+    private int horasTrabalhadas;
+    private int horasRestantes;
     private double valor;
-    private double valorutilizado;
+    private double valorUtilizado;
     private double valorrestante;
     private StatusProjeto status;
-    private UsuarioDTO usuario;
+    private List<CCPagantesDTO> ccpagantes;
+    private List<ConsultorDTO> consultores;
 
 
 }

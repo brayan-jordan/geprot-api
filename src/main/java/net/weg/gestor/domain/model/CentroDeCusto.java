@@ -1,5 +1,6 @@
 package net.weg.gestor.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class CentroDeCusto {
     @NotNull
     private String nome;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "cc_pagantes", joinColumns =
         @JoinColumn(name = "centros_de_custo_id", referencedColumnName = "id"), inverseJoinColumns =
