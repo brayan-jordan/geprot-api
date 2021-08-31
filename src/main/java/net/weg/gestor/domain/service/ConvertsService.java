@@ -21,23 +21,23 @@ public class ConvertsService {
     private CCPagantesRepository ccPagantesRepository;
     private CCPagantesAssembler ccPagantesAssembler;
 
-    public ProjetoInteiroDTO convertProject(Long projetoId) {
-        ProjetoInteiroDTO projeto = new ProjetoInteiroDTO();
-        projeto.setProjeto(
-                projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoId)));
-        projeto.setCcpagantes(
-                ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdProjeto(projetoId)));
+//    public ProjetoInteiroDTO convertProject(Long projetoId) {
+//        ProjetoInteiroDTO projeto = new ProjetoInteiroDTO();
+//        projeto.setProjeto(
+//                projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoId)));
+//        projeto.setCcpagantes(
+//                ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdProjeto(projetoId)));
+//
+//        return projeto;
+//    }
 
-        return projeto;
-    }
-
-    public ArrayList<ProjetoInteiroDTO> convertProjectList(List<Projeto> projetos) {
-        ArrayList<ProjetoInteiroDTO> listProjects = new ArrayList<>();
-        for (int i = 0; i < projetos.size(); ++i) {
-            listProjects.add(convertProject(projetos.get(i).getId()));
-        }
-
-        return listProjects;
-    }
+//    public ArrayList<ProjetoInteiroDTO> convertProjectList(List<Projeto> projetos) {
+//        ArrayList<ProjetoInteiroDTO> listProjects = new ArrayList<>();
+//        for (int i = 0; i < projetos.size(); ++i) {
+//            listProjects.add(convertProject(projetos.get(i).getId()));
+//        }
+//
+//        return listProjects;
+//    }
 
 }

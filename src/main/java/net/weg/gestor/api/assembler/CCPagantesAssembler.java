@@ -1,6 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.projetoinputDTO.ProjectInputCCPagDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
@@ -24,7 +26,7 @@ public class CCPagantesAssembler {
         return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
-    public CCPagantes toEntityInput(CCPagantesInputDTO ccPagantesDTO) {
+    public CCPagantes toEntityInput(ProjectInputCCPagDTO ccPagantesDTO) {
         return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
@@ -36,7 +38,7 @@ public class CCPagantesAssembler {
         return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
     }
 
-    public List<CCPagantes> toCollectionEntity(List<CCPagantesInputDTO> ccPagantes) {
+    public List<CCPagantes> toCollectionEntity(List<ProjectInputCCPagDTO> ccPagantes) {
         return ccPagantes.stream().map(this::toEntityInput).collect(Collectors.toList());
     }
 }

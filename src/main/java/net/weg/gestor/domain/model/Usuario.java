@@ -1,5 +1,6 @@
 package net.weg.gestor.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,11 +43,20 @@ public class Usuario implements UserDetails {
     @Size(max = 100)
     private String senha;
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "consultores_alocados", joinColumns =
+        @JoinColumn(name = "usuarios_id", referencedColumnName = "id"), inverseJoinColumns =
+        @JoinColumn(name = "projetos_id", referencedColumnName = "id"))
+    private List<Projeto> projetos;
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "usuarios_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_nome", referencedColumnName = "nome"))
     private List<Role> roles;
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return (Collection<? extends GrantedAuthority>) this.roles;

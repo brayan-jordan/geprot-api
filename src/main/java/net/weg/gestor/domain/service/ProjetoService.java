@@ -3,19 +3,14 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.ProjetoInteiroDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.StatusProjeto;
-import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.domain.repository.UsuarioRepository;
+import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -25,23 +20,23 @@ public class ProjetoService {
     private ValidationsService validationsService;
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
+    private CCPagantesRepository ccPagantesRepository;
     private ProjetoAssembler projetoAssembler;
+    private CentroDeCustoRepository centroDeCustoRepository;
     private CCPagantesService ccPagantesService;
+    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultoresAlocadosService consultoresAlocadosService;
 
-    public ArrayList<ProjetoInteiroDTO> listartodos() {
-        return convertsService.convertProjectList(projetoRepository.findAll());
-    }
+//    public ArrayList<ProjetoInteiroDTO> listartodos() {
+//        return convertsService.convertProjectList(projetoRepository.findAll());
+//    }
+//
+//    public ArrayList<ProjetoInteiroDTO> listarStatus(int typeStatus){
+//        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
+//        return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));
+//    }
 
-    public ArrayList<ProjetoInteiroDTO> listarStatus(int typeStatus){
-        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
-        return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));
-    }
-
-    public ProjetoDTO cadastrar(ProjetoInputDTO projeto){
-       if (!validationsService.verificaUsuarioExiste(projeto.getUsuario().getId()).isPresent()) {
-           throw new NegocioException("Nao foi possivel cadastrar o projeto, faça o login e tente novamente");
-       }
-
+    public Projeto saveProject(ProjectInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
         projeto1.setDataCadastro(LocalDateTime.now());
         projeto1.setHorasTrabalhadas(0);
@@ -49,16 +44,29 @@ public class ProjetoService {
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
         projetoRepository.save(projeto1);
 
-        return projetoAssembler.toModel(projeto1);
+        return projeto1;
     }
 
-    public ProjetoInteiroDTO cadastrar(ProjetoInteiroInputDTO projeto) {
-        Long idCadastrado = cadastrar(projeto.getProjeto()).getId();
+    public String cadastrar(ProjectInputDTO projeto) {
+        int taxa = 0;
         for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
-            projeto.getCcpagantes().get(i).getProjeto().setId(idCadastrado);
+            if (!centroDeCustoRepository.existsById(projeto.getCcpagantes().get(i).getCentros_de_custo_id())) {
+               throw new NegocioException("ID Do " + (i+1) + "° CCPagante informado não foi encontrado");
+            }
+            taxa += projeto.getCcpagantes().get(i).getTaxa();
         }
-        ccPagantesService.cadastrar(projeto.getCcpagantes());
-        return convertsService.convertProject(idCadastrado);
+        if (taxa != 100) {
+            throw new NegocioException("Verifique os valores de taxa informados (Não é igual a 100)");
+        }
+        for (int i = 0; i < projeto.getConsultores().size(); ++i) {
+            if (!usuarioRepository.existsById(projeto.getConsultores().get(i).getUsuarios_id())) {
+                throw new NegocioException("ID Do " + (i+1) + "° Consultor informado não foi encontrado");
+            }
+        }
+        Long idCadastrado = saveProject(projeto).getId();
+        ccPagantesService.saveCcPagantes(projeto, idCadastrado);
+        consultoresAlocadosService.saveConsultoresAlocados(projeto, idCadastrado);
+        return "Deu boa";
     }
 
     public void editarAtrasado(Long idDoProjeto){

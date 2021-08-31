@@ -2,13 +2,15 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoInteiroDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInteiroInputDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
+import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/projetos")
@@ -16,20 +18,21 @@ import java.util.ArrayList;
 public class ProjetoController {
 
     private ProjetoService projetoService;
+    private ProjetoRepository projetoRepository;
 
-    @GetMapping("/listar")
-    public ArrayList<ProjetoInteiroDTO> listarTodosProjetos(){
-        return projetoService.listartodos();
-    }
-
-    @GetMapping("/listarstatus/{typeStatus}")
-    public ArrayList<ProjetoInteiroDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
-        return projetoService.listarStatus(typeStatus);
-    }
+//    @GetMapping("/listar")
+//    public ArrayList<ProjetoInteiroDTO> listarTodosProjetos(){
+//        return projetoService.listartodos();
+//    }
+//
+//    @GetMapping("/listarstatus/{typeStatus}")
+//    public ArrayList<ProjetoInteiroDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
+//        return projetoService.listarStatus(typeStatus);
+//    }
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProjetoInteiroDTO cadastrarInteiro(@Valid @RequestBody ProjetoInteiroInputDTO projeto) {
+    public String cadastrarInteiro(@Valid @RequestBody ProjectInputDTO projeto) {
         return projetoService.cadastrar(projeto);
     }
 
@@ -52,5 +55,10 @@ public class ProjetoController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void iniciarProjeto(@PathVariable Long projetoId) {
         projetoService.iniciarProjeto(projetoId);
+    }
+
+    @GetMapping("/teste")
+    public List<Projeto> tste() {
+        return projetoRepository.findAll();
     }
 }

@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cc_pagantes")
-public class CCPagantes {
+@Table(name = "consultores_alocados")
+public class ConsultoresAlocados {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,6 @@ public class CCPagantes {
     private Long projetos_id;
 
     @NotNull
-    private Long centros_de_custo_id;
-
-    @NotNull
-    private int taxa;
+    private Long usuarios_id;
 
 }

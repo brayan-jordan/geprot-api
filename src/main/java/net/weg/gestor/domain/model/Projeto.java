@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -45,5 +46,17 @@ public class Projeto {
 
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
+
+    @ManyToMany
+    @JoinTable(name = "consultores_alocados", joinColumns =
+        @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
+        @JoinColumn(name = "usuarios_id", referencedColumnName = "id"))
+    List<Usuario> usuarios;
+
+    @ManyToMany
+    @JoinTable(name = "cc_pagantes", joinColumns =
+        @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
+        @JoinColumn(name = "centros_de_custo_id", referencedColumnName = "id"))
+    List<CentroDeCusto> centroDeCustos;
 
 }

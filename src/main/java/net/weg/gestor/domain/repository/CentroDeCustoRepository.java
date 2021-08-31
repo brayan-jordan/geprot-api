@@ -13,7 +13,4 @@ public interface CentroDeCustoRepository extends JpaRepository<CentroDeCusto, Lo
     @Query("SELECT c FROM CentroDeCusto c WHERE c.id = ?1")
     Optional<CentroDeCusto> findById(Long idcentrodecusto);
 
-    @Query("SELECT c FROM CentroDeCusto c WHERE c.id = ?1")
-    CentroDeCusto findById2(Long idcentrodecusto);
-
 }

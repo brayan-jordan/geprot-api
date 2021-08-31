@@ -10,7 +10,4 @@ import java.util.List;
 @Repository
 public interface CCPagantesRepository extends JpaRepository<CCPagantes, Long> {
 
-    @Query("SELECT c FROM CCPagantes c where c.projeto.id = ?1")
-    List<CCPagantes> findByIdProjeto(Long projetoid);
-
 }

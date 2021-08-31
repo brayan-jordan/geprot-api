@@ -11,6 +11,4 @@ public class CCPagantesDTO {
 
     private int taxa;
 
-    private CentroDeCustoDTO centrodecusto;
-
 }
