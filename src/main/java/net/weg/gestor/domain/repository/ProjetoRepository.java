@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
-    @Query("select p from Projeto p where p.status = ?1")
-    List<Projeto> findByStatusProjeto(StatusProjeto statusprojeto);
-
     @Query("select p from Projeto p where p.id = ?1")
     Projeto findByIdProjeto(long id);
 

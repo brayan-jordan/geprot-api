@@ -11,6 +11,6 @@ import java.util.List;
 public interface CCPagantesRepository extends JpaRepository<CCPagantes, Long> {
 
     @Query("SELECT c FROM CCPagantes c WHERE c.projetos_id = ?1")
-    CCPagantes findByIdCC(Long ccPaganteId);
+    List<CCPagantes> findByIdCC(Long ccPaganteId);
 
 }

@@ -48,16 +48,16 @@ public class Projeto {
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "consultores_alocados", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
         @JoinColumn(name = "usuarios_id", referencedColumnName = "id"))
-    List<Usuario> consultores;
+    List<Usuario> usuarios;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "cc_pagantes", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
         @JoinColumn(name = "centros_de_custo_id", referencedColumnName = "id"))
-    List<CentroDeCusto> ccpagantes;
+    List<CentroDeCusto> centroDeCustos;
 
 }

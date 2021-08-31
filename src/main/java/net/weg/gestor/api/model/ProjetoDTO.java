@@ -18,13 +18,11 @@ public class ProjetoDTO {
     private LocalDateTime dataCadastro;
     private int horasPrevistas;
     private int horasTrabalhadas;
-    private int horasRestantes;
     private double valor;
     private double valorUtilizado;
-    private double valorrestante;
     private StatusProjeto status;
-    private List<CCPagantesDTO> ccpagantes;
-    private List<ConsultorDTO> consultores;
+    private List<CCPagantesDTO> centroDeCustos;
+    private List<ConsultorDTO> usuarios;
 
 
 }

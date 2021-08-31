@@ -9,6 +9,8 @@ public class CCPagantesDTO {
 
     private Long id;
 
+    private String nome;
+
     private int taxa;
 
 }
