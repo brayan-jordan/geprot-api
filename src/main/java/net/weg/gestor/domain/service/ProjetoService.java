@@ -74,7 +74,7 @@ public class ProjetoService {
     }
 
     public void editarAtrasado(Long idDoProjeto){
-        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
+        if(!projetoRepository.existsById(idDoProjeto)) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
@@ -83,7 +83,7 @@ public class ProjetoService {
     }
 
     public void editarConcluida(Long idDoProjeto){
-        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
+        if(!projetoRepository.existsById(idDoProjeto)) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
@@ -93,7 +93,7 @@ public class ProjetoService {
     }
 
     public void editarAndamento(Long idDoProjeto){
-        if(validationsService.verificaProjetoExistente(idDoProjeto).isEmpty()) {
+        if(!projetoRepository.existsById(idDoProjeto)) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
@@ -102,12 +102,12 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    public void iniciarProjeto(Long projetoId) {
-        if (!validationsService.verificaProjetoExistente(projetoId).isPresent()) {
+    public void iniciarProjeto(Long idDoProjeto) {
+        if (!   projetoRepository.existsById(idDoProjeto)) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
 
-        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
+        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
         if (!projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
             throw new NegocioException("Não é possivel iniciar um projeto ja iniciado");
         }
