@@ -11,6 +11,7 @@ import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class ConsultoresAlocadosService {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private ProjetoRepository projetoRepository;
+    private UsuarioRepository usuarioRepository;
 
     public List<ProjectInputConsAlocDTO> saveConsultoresAlocados(ProjectInputDTO project, Long idCadastrado) {
         List<ConsultoresAlocados> consultores = consultoresAlocadosAssembler.toCollectionEntity(project.getConsultores());
@@ -34,7 +36,7 @@ public class ConsultoresAlocadosService {
     }
 
     public ConsultorAlocadoDTO alocarConsultor(Long projetoId, Long usuarioId) {
-        if (consultoresAlocadosRepository.existsById(usuarioId) || projetoRepository.existsById(projetoId)) {
+        if (!usuarioRepository.existsById(usuarioId) || !projetoRepository.existsById(projetoId)) {
             throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
         }
         ConsultoresAlocados newConsultor = new ConsultoresAlocados();

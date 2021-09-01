@@ -31,7 +31,7 @@ public class UsuarioService {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }
         usuario.setSecao(secaoRepository.findById2(usuario.getSecao().getId()));
-        
+
         if (usuarioRepository.existsById(usuario.getId())) {
             throw new NegocioException("Já existe um gestor com esse ID");
         }
