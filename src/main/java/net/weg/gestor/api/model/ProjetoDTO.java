@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.domain.model.StatusProjeto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,9 +14,9 @@ public class ProjetoDTO {
 
     private Long id;
     private String nome;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFinalizacao;
-    private LocalDateTime dataCadastro;
+    private LocalDate dataInicio;
+    private LocalDate dataFinalizacao;
+    private LocalDate dataCadastro;
     private int horasPrevistas;
     private int horasTrabalhadas;
     private int horasRestantes;

@@ -11,8 +11,10 @@ import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,7 +41,7 @@ public class ProjetoService {
 
     public Projeto saveProject(ProjectInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
-        projeto1.setDataCadastro(LocalDateTime.now());
+        projeto1.setDataCadastro(LocalDate.now());
         projeto1.setHorasTrabalhadas(0);
         projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
@@ -86,7 +88,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
         projeto.setStatus(StatusProjeto.CONCLUIDO);
-        projeto.setDataFinalizacao(LocalDateTime.now());
+        projeto.setDataFinalizacao(LocalDate.now());
         projetoRepository.save(projeto);
     }
 
@@ -96,7 +98,7 @@ public class ProjetoService {
         }
         Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDataFinalizacao(LocalDateTime.now());
+        projeto.setDataFinalizacao(LocalDate.now());
         projetoRepository.save(projeto);
     }
 
@@ -111,7 +113,7 @@ public class ProjetoService {
         }
 
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDataInicio(LocalDateTime.now());
+        projeto.setDataInicio(LocalDate.now());
         projetoRepository.save(projeto);
     }
 

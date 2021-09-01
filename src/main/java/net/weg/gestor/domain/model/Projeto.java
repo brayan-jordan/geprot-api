@@ -9,7 +9,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,11 +31,11 @@ public class Projeto {
     @Size(min = 5)
     String nome;
 
-    LocalDateTime dataInicio;
+    LocalDate dataInicio;
 
-    LocalDateTime dataFinalizacao;
+    LocalDate dataFinalizacao;
 
-    LocalDateTime dataCadastro;
+    LocalDate dataCadastro;
 
     @NotNull
     int horasPrevistas;
