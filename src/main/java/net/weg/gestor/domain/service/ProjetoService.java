@@ -12,6 +12,7 @@ import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,10 +34,10 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetoRepository.findAll());
     }
 
-//    public ArrayList<ProjetoInteiroDTO> listarStatus(int typeStatus){
-//        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
-//        return convertsService.convertProjectList(projetoRepository.findByStatusProjeto(status));
-//    }
+    public List<ProjetoDTO> listarStatus(int typeStatus){
+        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
+        return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
+    }
 
     public Projeto saveProject(ProjectInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);

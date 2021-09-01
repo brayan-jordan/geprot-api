@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,21 +21,20 @@ import java.util.List;
 public class ProjetoController {
 
     private ProjetoService projetoService;
-    private ProjetoRepository projetoRepository;
 
     @GetMapping("/listar")
     public List<ProjetoDTO> listarTodosProjetos(){
         return projetoService.listartodos();
     }
 
-//    @GetMapping("/listarstatus/{typeStatus}")
-//    public ArrayList<ProjetoInteiroDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
-//        return projetoService.listarStatus(typeStatus);
-//    }
+    @GetMapping("/listarstatus/{typeStatus}")
+    public List<ProjetoDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
+        return projetoService.listarStatus(typeStatus);
+    }
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public String cadastrarInteiro(@Valid @RequestBody ProjectInputDTO projeto) {
+    public String cadastrar(@Valid @RequestBody ProjectInputDTO projeto) {
         return projetoService.cadastrar(projeto);
     }
 
@@ -57,11 +57,6 @@ public class ProjetoController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void iniciarProjeto(@PathVariable Long projetoId) {
         projetoService.iniciarProjeto(projetoId);
-    }
-
-    @GetMapping("/teste")
-    public List<Projeto> tste() {
-        return projetoRepository.findAll();
     }
 
 }
