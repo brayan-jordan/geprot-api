@@ -5,6 +5,7 @@ import net.weg.gestor.api.model.LoginDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +16,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UsuarioAssembler {
 
+    private RoleUsuarioRepository roleUsuarioRepository;
     private ModelMapper modelMapper;
 
     public UsuarioDTO toModel(Usuario usuario) {
-        return modelMapper.map(usuario, UsuarioDTO.class);
+        UsuarioDTO usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
+        usuarioDTO.setPermissao(roleUsuarioRepository.findRoleByIdUsuario(usuario.getId()).getRole_nome());
+        return usuarioDTO;
 
     }
 

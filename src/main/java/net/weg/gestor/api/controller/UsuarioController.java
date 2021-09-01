@@ -43,7 +43,7 @@ public class UsuarioController {
         return usuarioService.editar(usuarioId, usuario);
     }
 
-    @GetMapping("/listartodos")
+    @GetMapping("/listar")
     public List<UsuarioDTO> list2() {
         return usuarioService.listartodos();
     }

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface RoleUsuarioRepository extends JpaRepository<RoleUsuarios, Long> {
 
     @Query("SELECT p FROM RoleUsuarios p WHERE p.usuarios_id = ?1")
-    RoleUsuarios findRoleByIdUsuario(Long id_usuarios);
+    RoleUsuarios findRoleByIdUsuario(Long usuarios_id);
 }
