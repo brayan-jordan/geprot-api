@@ -9,4 +9,6 @@ public class ProjectInputConsAlocDTO {
 
     private Long usuarios_id;
 
+    private int limiteHoras;
+
 }

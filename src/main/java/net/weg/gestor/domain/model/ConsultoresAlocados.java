@@ -26,4 +26,7 @@ public class ConsultoresAlocados {
     @NotNull
     private Long usuarios_id;
 
+    @NotNull
+    private int limiteHoras;
+
 }

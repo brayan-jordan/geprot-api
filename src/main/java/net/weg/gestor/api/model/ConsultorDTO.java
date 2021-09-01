@@ -11,4 +11,6 @@ public class ConsultorDTO {
 
     private String nome;
 
+    private int limiteHoras;
+
 }
