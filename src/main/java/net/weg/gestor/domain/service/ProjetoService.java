@@ -19,8 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjetoService {
 
-    private ConvertsService convertsService;
-    private ValidationsService validationsService;
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private CCPagantesRepository ccPagantesRepository;
@@ -35,7 +33,7 @@ public class ProjetoService {
     }
 
     public List<ProjetoDTO> listarStatus(int typeStatus){
-        StatusProjeto status = validationsService.returnTypeStatus(typeStatus);
+        StatusProjeto status = returnTypeStatus(typeStatus);
         return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
     }
 
@@ -115,5 +113,20 @@ public class ProjetoService {
         projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
         projeto.setDataInicio(LocalDateTime.now());
         projetoRepository.save(projeto);
+    }
+
+    public StatusProjeto returnTypeStatus(int typeStatus) {
+        switch (typeStatus) {
+            case 1:
+                return StatusProjeto.NAO_INICIADO;
+            case 2:
+                return StatusProjeto.ATRASADO;
+            case 3:
+                return StatusProjeto.CONCLUIDO;
+            case 4:
+                return StatusProjeto.EM_ANDAMENTO;
+            default:
+                throw new NegocioException("Numero invalido");
+        }
     }
 }

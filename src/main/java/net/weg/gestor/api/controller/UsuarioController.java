@@ -57,7 +57,7 @@ public class UsuarioController {
         novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         novoUsuario.getSecao().setId(usuario.getSecao().getId());
         Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
-        novaRole.setRole_nome("ROLE_USER");
+        novaRole.setRole_nome("ROLE_CONSULTOR");
         roleUsuarioService.cadastrar(novaRole);
         return usuarioAssembler.toModel(usuario1);
     }

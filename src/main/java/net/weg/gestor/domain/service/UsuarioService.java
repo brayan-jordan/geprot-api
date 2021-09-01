@@ -27,17 +27,13 @@ public class UsuarioService {
 
     @Transactional
     public Usuario cadastrar(Usuario usuario) {
-        Secao idSecaoValidation = secaoRepository.findById2(usuario.getSecao().getId());
-        if (idSecaoValidation == null) {
+        if (!secaoRepository.existsById(usuario.getSecao().getId())) {
             throw new NegocioException("ID Da seção é invalido, tente novamente");
         }
         usuario.setSecao(secaoRepository.findById2(usuario.getSecao().getId()));
-        Usuario idValidation = usuarioRepository.findByIdUsuario(usuario.getId());
-        if (idValidation == null) {
+        
+        if (usuarioRepository.existsById(usuario.getId())) {
             throw new NegocioException("Já existe um gestor com esse ID");
-        }
-        if (usuario.getId() == 0) {
-            throw new NegocioException("ID Inválido");
         }
         return usuarioRepository.save(usuario);
     }

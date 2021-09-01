@@ -2,6 +2,7 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import net.weg.gestor.api.model.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputConsAlocDTO;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,10 @@ public class ConsultoresAlocadosAssembler {
 
     public List<ConsultoresAlocados> toCollectionEntity(List<ProjectInputConsAlocDTO> consultores) {
         return consultores.stream().map(this::toEntity).collect(Collectors.toList());
+    }
+
+    public ConsultorAlocadoDTO toModel(ConsultoresAlocados consultoresAlocados) {
+        return modelMapper.map(consultoresAlocados, ConsultorAlocadoDTO.class);
     }
 
 }
