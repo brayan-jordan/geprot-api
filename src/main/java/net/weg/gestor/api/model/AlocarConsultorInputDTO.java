@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ConsultorAlocadoDTO {
-
-    private Long usuarios_id;
+public class AlocarConsultorInputDTO {
 
     private Long projetos_id;
+
+    private Long usuarios_id;
 
     private Long limiteHoras;
 

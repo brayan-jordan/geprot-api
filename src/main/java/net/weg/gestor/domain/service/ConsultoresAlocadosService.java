@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ConsultoresAlocadosAssembler;
+import net.weg.gestor.api.model.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputConsAlocDTO;
@@ -35,13 +36,12 @@ public class ConsultoresAlocadosService {
         return null;
     }
 
-    public ConsultorAlocadoDTO alocarConsultor(Long projetoId, Long usuarioId) {
-        if (!usuarioRepository.existsById(usuarioId) || !projetoRepository.existsById(projetoId)) {
+    public ConsultorDTO alocarConsultor(AlocarConsultorInputDTO alocarConsultorInputDTO) {
+        if (!usuarioRepository.existsById(alocarConsultorInputDTO.getUsuarios_id())
+                || !projetoRepository.existsById(alocarConsultorInputDTO.getProjetos_id())) {
             throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
         }
-        ConsultoresAlocados newConsultor = new ConsultoresAlocados();
-        newConsultor.setProjetos_id(projetoId);
-        newConsultor.setUsuarios_id(usuarioId);
+        ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
         consultoresAlocadosRepository.save(newConsultor);
         return consultoresAlocadosAssembler.toModel(newConsultor);
 
