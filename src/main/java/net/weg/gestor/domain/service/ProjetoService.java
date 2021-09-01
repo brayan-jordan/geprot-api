@@ -23,11 +23,9 @@ public class ProjetoService {
 
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
-    private CCPagantesRepository ccPagantesRepository;
     private ProjetoAssembler projetoAssembler;
     private CentroDeCustoRepository centroDeCustoRepository;
     private CCPagantesService ccPagantesService;
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private ConsultoresAlocadosService consultoresAlocadosService;
 
     public List<ProjetoDTO> listartodos() {
@@ -46,7 +44,6 @@ public class ProjetoService {
         projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
         projetoRepository.save(projeto1);
-
 
         return projeto1;
     }
@@ -103,7 +100,7 @@ public class ProjetoService {
     }
 
     public void iniciarProjeto(Long idDoProjeto) {
-        if (!   projetoRepository.existsById(idDoProjeto)) {
+        if (!projetoRepository.existsById(idDoProjeto)) {
             throw new NegocioException("Verifique o id do projeto informado");
         }
 
@@ -117,7 +114,7 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    public StatusProjeto returnTypeStatus(int typeStatus) {
+    private StatusProjeto returnTypeStatus(int typeStatus) {
         switch (typeStatus) {
             case 1:
                 return StatusProjeto.NAO_INICIADO;
