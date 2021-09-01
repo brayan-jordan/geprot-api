@@ -15,5 +15,7 @@ public class UsuarioDTO {
     @JsonIgnore
     private String senha;
     private Secao secao;
+    
+    private String permissao;
 
 }
