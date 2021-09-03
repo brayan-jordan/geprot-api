@@ -46,7 +46,7 @@ public class HorasController {
 
     @GetMapping("/reprovar/{projetoId}/{usuarioId}")
     String reprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
-        return horasService.reprovarApontamentosConsultor( projetoId, usuarioId);
+        return horasService.reprovarApontamentosConsultor(projetoId, usuarioId);
     }
 
 }

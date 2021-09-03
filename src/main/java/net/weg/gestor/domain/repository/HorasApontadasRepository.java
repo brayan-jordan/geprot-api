@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface HorasApontadasRepository extends JpaRepository<HorasApontadas, Long> {
 
-    @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1")
+    @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 ORDER BY usuario")
     List<HorasApontadas> findAllInAProject (Projeto projeto);
 
     @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2 ORDER BY usuario")
@@ -21,5 +21,6 @@ public interface HorasApontadasRepository extends JpaRepository<HorasApontadas, 
     @Query("SELECT sum(quantidade_horas) FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2")
     int buscarHoraTotalUser(Projeto projeto, Usuario usuario);
 
-
+    @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2 AND h.status = ?3")
+    List<HorasApontadas> findPendente(Projeto projeto, Usuario usuario, String status);
 }

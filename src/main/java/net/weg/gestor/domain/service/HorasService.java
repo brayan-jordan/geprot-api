@@ -51,6 +51,13 @@ public class HorasService {
                 horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
                         projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
                         usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId())));
+                if (horasApontadasRepository.findPendente(
+                        projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
+                        usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()),
+                        "PENDENTE").size() > 0) {
+
+                    horasApontadasTotalDTO.setStatus("PENDENTE");
+                }
                 ultimaId = horasApontadasTotalDTO.getConsultor_id();
                 horasTotais.add(horasApontadasTotalDTO);
             }
