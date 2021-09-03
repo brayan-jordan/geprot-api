@@ -6,6 +6,9 @@ import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.api.model.CCPagantesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
+import net.weg.gestor.domain.repository.CCPagantesRepository;
+import net.weg.gestor.domain.repository.CentroDeCustoRepository;
+import net.weg.gestor.domain.repository.ProjetoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 public class CCPagantesAssembler {
 
     private ModelMapper modelMapper;
+    private ProjetoRepository projetoRepository;
+    private CentroDeCustoRepository centroDeCustoRepository;
 
     public CCPagantes toEntity(CCPagantesInputDTO ccPagantesInputDTO) {
         return modelMapper.map(ccPagantesInputDTO, CCPagantes.class);
@@ -31,7 +36,10 @@ public class CCPagantesAssembler {
     }
 
     public CCPagantesDTO toModel(CCPagantes ccPagantes) {
-        return modelMapper.map(ccPagantes, CCPagantesDTO.class);
+        CCPagantesDTO ccPagantesDTO = modelMapper.map(ccPagantes, CCPagantesDTO.class);
+        ccPagantesDTO.setValor(projetoRepository.findByIdProjeto(ccPagantes.getProjetos_id()).getValor() / 100 * ccPagantesDTO.getTaxa());
+        ccPagantesDTO.setNome(centroDeCustoRepository.buscar(ccPagantes.getCentros_de_custo_id()).getNome());
+        return ccPagantesDTO;
     }
 
     public List<CCPagantesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {

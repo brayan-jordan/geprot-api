@@ -22,10 +22,10 @@ public class CCPagantesController {
         return ccPagantesService.listartodos();
     }
 
-//    @GetMapping("/listarporprojeto/{projetoid}")
-//    public List<CCPagantesDTO> listarPorProjeto(@PathVariable Long projetoid) {
-//        return ccPagantesService.listarporprojeto(projetoid);
-//    }
+    @GetMapping("/listarporprojeto/{projetoid}")
+    public List<CCPagantesDTO> listarPorProjeto(@PathVariable Long projetoid) {
+        return ccPagantesService.listarporprojeto(projetoid);
+    }
 
 //    @PostMapping("/cadastrar")
 //    @ResponseStatus(HttpStatus.CREATED)

@@ -33,10 +33,10 @@ public class CCPagantesService {
         return null;
     }
 
-//    public List<CCPagantesDTO> listarporprojeto(Long projetoid) {
-//        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdProjeto(projetoid));
-//
-//    }
+    public List<CCPagantesDTO> listarporprojeto(Long projetoid) {
+        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));
+
+    }
 
 //    public List<CCPagantesDTO> cadastrar(List<CCPagantesInputDTO> ccPagantesInputDTO) {
 //        validationsService.verificacoesCCpagantes(ccPagantesInputDTO);
