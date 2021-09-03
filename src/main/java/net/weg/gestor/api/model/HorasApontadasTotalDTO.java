@@ -2,7 +2,6 @@ package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.domain.model.StatusApontamento;
 
 @Getter
 @Setter
@@ -12,7 +11,7 @@ public class HorasApontadasTotalDTO {
 
     private String nome;
 
-    private StatusApontamento status;
+    private String status;
 
     private int horasTotais;
 
