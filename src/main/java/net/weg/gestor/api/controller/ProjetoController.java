@@ -22,6 +22,11 @@ public class ProjetoController {
         return projetoService.listartodos();
     }
 
+    @GetMapping("/listar/{projetoId}")
+    public ProjetoDTO listarProjetoID(@PathVariable Long projetoId){
+        return projetoService.listarPorId(projetoId);
+    }
+
     @GetMapping("/listarstatus/{typeStatus}")
     public List<ProjetoDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
         return projetoService.listarStatus(typeStatus);

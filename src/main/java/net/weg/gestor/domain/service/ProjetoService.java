@@ -32,6 +32,14 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetoRepository.findAll());
     }
 
+    public ProjetoDTO listarPorId(Long projetoID){
+        boolean validationProjeto = projetoRepository.findById(projetoID).isPresent();
+        if (!validationProjeto){
+            throw new NegocioException("Não existe um projeto com esse Id");
+        }
+        return projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoID));
+    }
+
     public List<ProjetoDTO> listarStatus(int typeStatus){
         StatusProjeto status = returnTypeStatus(typeStatus);
         return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
