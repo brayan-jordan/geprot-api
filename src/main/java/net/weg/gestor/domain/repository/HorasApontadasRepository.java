@@ -21,4 +21,5 @@ public interface HorasApontadasRepository extends JpaRepository<HorasApontadas, 
     @Query("SELECT sum(quantidade_horas) FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2")
     int buscarHoraTotalUser(Projeto projeto, Usuario usuario);
 
+
 }

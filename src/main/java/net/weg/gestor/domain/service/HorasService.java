@@ -69,4 +69,28 @@ public class HorasService {
         return lista;
     }
 
+    public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findAllProjectAndUsuario(
+                projetoRepository.findByIdProjeto(projetoId),
+                usuarioRepository.findByIdUsuario(usuarioId)
+        );
+        for (int i = 0; i < horasApontadas.size(); ++i) {
+            horasApontadas.get(i).setStatus("APROVADO");
+        }
+        horasApontadasRepository.saveAll(horasApontadas);
+        return "Horas aprovadas com sucesso";
+    }
+
+    public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findAllProjectAndUsuario(
+                projetoRepository.findByIdProjeto(projetoId),
+                usuarioRepository.findByIdUsuario(usuarioId)
+        );
+        for (int i = 0; i < horasApontadas.size(); ++i) {
+            horasApontadas.get(i).setStatus("REPROVADO");
+        }
+        horasApontadasRepository.saveAll(horasApontadas);
+        return "Horas reprovadas com sucesso";
+    }
+
 }
