@@ -46,17 +46,15 @@ public class HorasService {
                         projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
                         usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()));
                 HorasApontadasTotalDTO horasApontadasTotalDTO = new HorasApontadasTotalDTO();
-                horasApontadasTotalDTO.setConsultor_id(porUsuario.get(0).getId());
+                horasApontadasTotalDTO.setConsultor_id(porUsuario.get(0).getUsuario().getId());
                 horasApontadasTotalDTO.setStatus(porUsuario.get(0).getStatus());
                 horasApontadasTotalDTO.setNome(porUsuario.get(0).getUsuario().getNome());
-                for (int j = 0; j < porUsuario.size(); ++i) {
-                    horasApontadasTotalDTO.setHorasTotais(horasApontadasTotalDTO.getHorasTotais()
-                            + porUsuario.get(j).getQuantidade_horas());
-                }
-                ultimaId = porUsuario.get(0).getUsuario().getId();
+                horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
+                        projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
+                        usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId())));
+                ultimaId = horasApontadasTotalDTO.getConsultor_id();
                 horasTotais.add(horasApontadasTotalDTO);
             }
-
         }
         return horasTotais;
 
