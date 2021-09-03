@@ -49,6 +49,12 @@ public class ProjetoAssembler {
         projectReturn.setHorasRestantes(projectReturn.getHorasPrevistas() - projectReturn.getHorasTrabalhadas());
         projectReturn.setValorRestante(projectReturn.getValor() - projectReturn.getValorUtilizado());
 
+        for (int i = 0; i < projectReturn.getCentroDeCustos().size(); i++){
+            double valorPagoCC = projectReturn.getCentroDeCustos().get(i).getTaxa() * projectReturn.getValor();
+            projectReturn.getCentroDeCustos().get(i).setValor(valorPagoCC / 100);
+        }
+
+
         return projectReturn;
     }
 

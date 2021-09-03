@@ -13,4 +13,6 @@ public class CCPagantesDTO {
 
     private int taxa;
 
+    private double valor;
+
 }
