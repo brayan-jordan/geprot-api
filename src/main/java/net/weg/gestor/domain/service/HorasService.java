@@ -26,11 +26,6 @@ public class HorasService {
         return horasApontadasRepository.findAll();
     }
 
-    public List<HorasApontadas> listarDeUmProjeto(Long projetoId) {
-        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
-        return horasApontadasRepository.findAllInAProject(projeto);
-    }
-
     public ArrayList<HorasApontadasTotalDTO> apontamentoTotal(Long projetoId) {
         Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
         List<HorasApontadas> horasDoProjeto = horasApontadasRepository.findAllInAProject(projeto);

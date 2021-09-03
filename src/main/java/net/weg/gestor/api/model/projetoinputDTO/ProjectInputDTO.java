@@ -19,6 +19,8 @@ public class ProjectInputDTO {
     @NotNull
     private double valor;
 
+    private String descricao;
+
     @Size(min = 1)
     private List<ProjectInputCCPagDTO> ccpagantes;
 

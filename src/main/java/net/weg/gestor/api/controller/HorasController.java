@@ -33,23 +33,6 @@ public class HorasController {
         return horasService.listarTodos();
     }
 
-    @PostMapping("/teste")
-    HorasApontadas teste() {
-        HorasApontadas horasApontadas = new HorasApontadas();
-        horasApontadas.setData_hora(LocalDate.now());
-        horasApontadas.setQuantidade_horas(200);
-        horasApontadas.setProjeto(projetoRepository.findByIdProjeto(1));
-        horasApontadas.setUsuario(usuarioRepository.findByIdUsuario(67264));
-        horasApontadas.setDescricao_trabalho("Ola");
-        horasApontadas.setStatus(StatusApontamento.RECUSADO);
-        return horasApontadasRepository.save(horasApontadas);
-    }
-
-//    @GetMapping("/listar/{projetoId}")
-//    List<HorasApontadas> listarPorProjeto(@PathVariable Long projetoId) {
-//        return horasService.listarDeUmProjeto(projetoId);
-//    }
-
     @GetMapping("/listar/{projetoId}")
     ArrayList<HorasApontadasTotalDTO> listarPorProjeto(@PathVariable Long projetoId) {
         return horasService.apontamentoTotal(projetoId);

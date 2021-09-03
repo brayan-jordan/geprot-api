@@ -24,6 +24,7 @@ public class ProjetoDTO {
     private double valorUtilizado;
     private double valorRestante;
     private StatusProjeto status;
+    private String descricao;
     private List<CCPagantesDTO> centroDeCustos;
     private List<ConsultorDTO> usuarios;
 

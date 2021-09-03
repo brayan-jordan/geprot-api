@@ -50,6 +50,8 @@ public class Projeto {
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
 
+    private String descricao;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "consultores_alocados", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
