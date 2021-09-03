@@ -43,4 +43,6 @@ public class HorasApontadas {
     @NotBlank
     private String descricao_trabalho;
 
+    private StatusApontamento status;
+
 }
