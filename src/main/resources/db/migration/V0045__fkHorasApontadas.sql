@@ -1,5 +1,0 @@
---ALTER TABLE horas_apontadas ADD CONSTRAINT fk_horas_projetos
---FOREIGN KEY (projetoid) REFERENCES projetos(id);
---
---ALTER TABLE horas_apontadas ADD CONSTRAINT fk_consultor_horas
---FOREIGN KEY (consultorid) REFERENCES usuarios(id);

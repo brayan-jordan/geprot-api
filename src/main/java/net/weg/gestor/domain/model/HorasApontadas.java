@@ -23,7 +23,7 @@ public class HorasApontadas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "projeto_id")
+    @JoinColumn(name = "projetos_id")
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private Projeto projeto;
@@ -35,10 +35,10 @@ public class HorasApontadas {
     @NotNull
     private LocalDateTime data_hora;
 
-    @JoinColumn(name = "consultor_id")
+    @JoinColumn(name = "usuarios_id")
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
-    private Usuario consultor;
+    private Usuario usuario;
 
     @NotBlank
     private String descricao_trabalho;
