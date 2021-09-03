@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
+import net.weg.gestor.api.model.ListaApontamentoConsultor;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
@@ -22,9 +23,6 @@ import java.util.List;
 public class HorasController {
 
     private HorasService horasService;
-    private ProjetoRepository projetoRepository;
-    private UsuarioRepository usuarioRepository;
-    private HorasApontadasRepository horasApontadasRepository;
 
     @GetMapping("/listar")
     List<HorasApontadas> listarTodos() {
@@ -35,4 +33,10 @@ public class HorasController {
     ArrayList<HorasApontadasTotalDTO> listarPorProjeto(@PathVariable Long projetoId) {
         return horasService.apontamentoTotal(projetoId);
     }
+
+    @GetMapping("/listar/{projetoId}/{usuarioId}")
+    ListaApontamentoConsultor listarApontamentoConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
+        return horasService.buscarApontamentoConsultor(projetoId, usuarioId);
+    }
+
 }

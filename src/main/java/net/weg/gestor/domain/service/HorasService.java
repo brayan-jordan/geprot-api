@@ -3,7 +3,10 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.api.assembler.HorasAssembler;
+import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
+import net.weg.gestor.api.model.ListaApontamentoConsultor;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
@@ -21,6 +24,7 @@ public class HorasService {
     private HorasApontadasRepository horasApontadasRepository;
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
+    private HorasAssembler horasAssembler;
 
     public List<HorasApontadas> listarTodos() {
         return horasApontadasRepository.findAll();
@@ -53,6 +57,16 @@ public class HorasService {
         }
         return horasTotais;
 
+    }
+
+    public ListaApontamentoConsultor buscarApontamentoConsultor(Long projetoId, Long usuarioId) {
+        ListaApontamentoConsultor lista = new ListaApontamentoConsultor();
+        lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findAllProjectAndUsuario(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId))));
+        lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
+        lista.setValorGasto(lista.getTotalHoras() * 200.50);
+        return lista;
     }
 
 }

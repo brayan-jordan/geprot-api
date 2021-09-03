@@ -34,7 +34,7 @@ public class HorasApontadas {
     private int quantidade_horas;
 
     @NotNull
-    private LocalDate data_hora;
+    private LocalDate data;
 
     @JoinColumn(name = "usuarios_id")
     @NotNull
