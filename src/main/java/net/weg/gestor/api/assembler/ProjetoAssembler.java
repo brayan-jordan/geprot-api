@@ -53,8 +53,6 @@ public class ProjetoAssembler {
             double valorPagoCC = projectReturn.getCentroDeCustos().get(i).getTaxa() * projectReturn.getValor();
             projectReturn.getCentroDeCustos().get(i).setValor(valorPagoCC / 100);
         }
-
-
         return projectReturn;
     }
 
