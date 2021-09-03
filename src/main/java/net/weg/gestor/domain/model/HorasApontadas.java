@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,7 +34,7 @@ public class HorasApontadas {
     private int quantidade_horas;
 
     @NotNull
-    private LocalDateTime data_hora;
+    private LocalDate data_hora;
 
     @JoinColumn(name = "usuarios_id")
     @NotNull
