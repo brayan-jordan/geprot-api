@@ -5,7 +5,6 @@ import lombok.Setter;
 import net.weg.gestor.domain.model.StatusProjeto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -25,7 +24,7 @@ public class ProjetoDTO {
     private double valorRestante;
     private StatusProjeto status;
     private String descricao;
-    private List<CCPagantesDTO> centroDeCustos;
+    private List<SecoesDTO> secaos;
     private List<ConsultorDTO> usuarios;
 
 

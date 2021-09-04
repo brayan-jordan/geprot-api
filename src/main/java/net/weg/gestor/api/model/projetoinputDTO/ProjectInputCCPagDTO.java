@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ProjectInputCCPagDTO {
 
-    private Long centros_de_custo_id;
+    private Long secoes_id;
 
     private int taxa;
 

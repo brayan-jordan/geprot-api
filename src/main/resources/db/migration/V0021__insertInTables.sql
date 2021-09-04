@@ -1,6 +1,6 @@
 INSERT INTO secoes VALUES
-(null, "CentroWeg"),
-(null, "Recursos Humanos");
+(1, "CentroWeg"),
+(2, "Recursos Humanos");
 
 INSERT INTO usuarios VALUES (67264,'$2a$10$vAZfFnx9T6IvxlfO9sU4AOQb0qLm/LA10vEY4I2V6CxEkVucuZAHG', '1', 'Brayan', 'brayan@gmail.com');
 

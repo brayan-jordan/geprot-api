@@ -28,7 +28,7 @@ public class Usuario implements UserDetails {
     @Valid
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "secao_id")
+    @JoinColumn(name = "secoes_id")
     private Secao secao;
 
     @NotBlank

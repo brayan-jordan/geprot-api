@@ -1,2 +1,2 @@
-ALTER TABLE centrodecusto
-CHANGE COLUMN `id` `id` BIGINT(20) NOT NULL ;
+--ALTER TABLE centrodecusto
+--CHANGE COLUMN `id` `id` BIGINT(20) NOT NULL ;

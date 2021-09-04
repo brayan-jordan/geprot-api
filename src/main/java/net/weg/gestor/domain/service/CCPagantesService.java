@@ -2,12 +2,10 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
-import net.weg.gestor.api.model.CCPagantesDTO;
+import net.weg.gestor.api.model.SecoesDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
-import net.weg.gestor.domain.repository.CentroDeCustoRepository;
-import net.weg.gestor.domain.repository.ProjetoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,12 +17,12 @@ public class CCPagantesService {
     private CCPagantesAssembler ccPagantesAssembler;
     private final CCPagantesRepository ccPagantesRepository;
 
-    public List<CCPagantesDTO> listartodos() {
+    public List<SecoesDTO> listartodos() {
         return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findAll());
 
     }
 
-    public List<CCPagantesDTO> saveCcPagantes(ProjectInputDTO project, Long idCadastro) {
+    public List<SecoesDTO> saveCcPagantes(ProjectInputDTO project, Long idCadastro) {
         List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
         for (int i = 0; i < newCcPagantes.size(); ++i) {
             newCcPagantes.get(i).setProjetos_id(idCadastro);
@@ -33,7 +31,7 @@ public class CCPagantesService {
         return null;
     }
 
-    public List<CCPagantesDTO> listarporprojeto(Long projetoid) {
+    public List<SecoesDTO> listarporprojeto(Long projetoid) {
         return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));
 
     }

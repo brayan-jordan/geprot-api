@@ -24,7 +24,7 @@ public class CCPagantes {
     private Long projetos_id;
 
     @NotNull
-    private Long centros_de_custo_id;
+    private Long secoes_id;
 
     @NotNull
     private int taxa;

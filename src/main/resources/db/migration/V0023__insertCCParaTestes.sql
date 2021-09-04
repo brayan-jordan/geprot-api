@@ -1,1 +1,1 @@
-INSERT INTO centrodecusto VALUES (1, "Despesas");
+--INSERT INTO centrodecusto VALUES (1, "Despesas");

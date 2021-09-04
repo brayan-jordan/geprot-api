@@ -1,1 +1,1 @@
-RENAME TABLE centrodecusto TO centros_de_custo
+--RENAME TABLE centrodecusto TO centros_de_custo

@@ -2,13 +2,11 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputCCPagDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
-import net.weg.gestor.api.model.CCPagantesDTO;
+import net.weg.gestor.api.model.SecoesDTO;
 import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
-import net.weg.gestor.domain.repository.CCPagantesRepository;
-import net.weg.gestor.domain.repository.CentroDeCustoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
+import net.weg.gestor.domain.repository.SecaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,28 +19,28 @@ public class CCPagantesAssembler {
 
     private ModelMapper modelMapper;
     private ProjetoRepository projetoRepository;
-    private CentroDeCustoRepository centroDeCustoRepository;
+    private SecaoRepository secaoRepository;
 
     public CCPagantes toEntity(CCPagantesInputDTO ccPagantesInputDTO) {
         return modelMapper.map(ccPagantesInputDTO, CCPagantes.class);
     }
 
-    public CCPagantes toEntity(CCPagantesDTO ccPagantesDTO) {
-        return modelMapper.map(ccPagantesDTO, CCPagantes.class);
+    public CCPagantes toEntity(SecoesDTO secoesDTO) {
+        return modelMapper.map(secoesDTO, CCPagantes.class);
     }
 
     public CCPagantes toEntityInput(ProjectInputCCPagDTO ccPagantesDTO) {
         return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
-    public CCPagantesDTO toModel(CCPagantes ccPagantes) {
-        CCPagantesDTO ccPagantesDTO = modelMapper.map(ccPagantes, CCPagantesDTO.class);
-        ccPagantesDTO.setValor(projetoRepository.findByIdProjeto(ccPagantes.getProjetos_id()).getValor() / 100 * ccPagantesDTO.getTaxa());
-        ccPagantesDTO.setNome(centroDeCustoRepository.buscar(ccPagantes.getCentros_de_custo_id()).getNome());
-        return ccPagantesDTO;
+    public SecoesDTO toModel(CCPagantes ccPagantes) {
+        SecoesDTO secoesDTO = modelMapper.map(ccPagantes, SecoesDTO.class);
+        secoesDTO.setValor(projetoRepository.findByIdProjeto(ccPagantes.getProjetos_id()).getValor() / 100 * secoesDTO.getTaxa());
+        secoesDTO.setNome(secaoRepository.findById2(ccPagantes.getSecoes_id()).getNome());
+        return secoesDTO;
     }
 
-    public List<CCPagantesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
+    public List<SecoesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
         return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
     }
 

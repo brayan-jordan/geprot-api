@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CCPagantesDTO {
+public class SecoesDTO {
 
     private Long id;
 

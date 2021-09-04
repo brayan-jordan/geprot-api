@@ -7,14 +7,12 @@ import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +22,7 @@ public class ProjetoService {
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private ProjetoAssembler projetoAssembler;
-    private CentroDeCustoRepository centroDeCustoRepository;
+    private SecaoRepository secaoRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
 
@@ -59,7 +57,7 @@ public class ProjetoService {
     public String cadastrar(ProjectInputDTO projeto) {
         int taxa = 0;
         for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
-            if (!centroDeCustoRepository.existsById(projeto.getCcpagantes().get(i).getCentros_de_custo_id())) {
+            if (!secaoRepository.existsById(projeto.getCcpagantes().get(i).getSecoes_id())) {
                throw new NegocioException("ID Do " + (i+1) + "° CCPagante informado não foi encontrado");
             }
             taxa += projeto.getCcpagantes().get(i).getTaxa();
