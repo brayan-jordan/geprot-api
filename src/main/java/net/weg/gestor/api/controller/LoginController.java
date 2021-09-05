@@ -2,9 +2,10 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
-import net.weg.gestor.api.model.LoginDTO;
+import net.weg.gestor.api.model.UsuarioLoginInputDTO;
 import net.weg.gestor.domain.model.AuthenticationResponse;
 import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.security.ImplementsUserDetailsService;
 import net.weg.gestor.security.JWTUtil;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,11 @@ public class LoginController {
     private ImplementsUserDetailsService implementsUserDetailsService;
     private JWTUtil jwtUtil;
     private UsuarioAssembler usuarioAssembler;
+    private UsuarioRepository usuarioRepository;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginDTO usuario) throws Exception {
-        Usuario usuario1 = usuarioAssembler.toEntity(usuario);
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UsuarioLoginInputDTO usuario) throws Exception {
+        Usuario usuario1 = usuarioAssembler.toEntityLogin(usuario);
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuario1.getUsername(), usuario1.getPassword()));
@@ -38,7 +40,8 @@ public class LoginController {
         final UserDetails userDetails = implementsUserDetailsService.loadUserByUsername(
                 usuario1.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        usuario1 = usuarioRepository.findByEmail(usuario1.getEmail());
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, usuarioAssembler.toModelLogin(usuario1)));
     }
 
 }

@@ -1,13 +1,10 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import net.weg.gestor.api.model.AlocarConsultorInputDTO;
-import net.weg.gestor.api.model.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.ConsultorDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjectInputConsAlocDTO;
+import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
-import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -22,11 +19,11 @@ public class ConsultoresAlocadosAssembler {
     private ModelMapper modelMapper;
     private UsuarioRepository usuarioRepository;
 
-    public ConsultoresAlocados toEntity(ProjectInputConsAlocDTO consultor) {
+    public ConsultoresAlocados toEntity(AlocarConsultoresInputDTO consultor) {
         return modelMapper.map(consultor, ConsultoresAlocados.class);
     }
 
-    public List<ConsultoresAlocados> toCollectionEntity(List<ProjectInputConsAlocDTO> consultores) {
+    public List<ConsultoresAlocados> toCollectionEntity(List<AlocarConsultoresInputDTO> consultores) {
         return consultores.stream().map(this::toEntity).collect(Collectors.toList());
     }
 

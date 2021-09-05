@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class HorasInputDTO {
 
-    private ProjetoInputDTO projeto;
+    private ProjetoApontadoInputDTO projeto;
 
 }

@@ -3,7 +3,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
 import net.weg.gestor.api.model.SecoesDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import org.springframework.stereotype.Service;
@@ -22,13 +22,12 @@ public class CCPagantesService {
 
     }
 
-    public List<SecoesDTO> saveCcPagantes(ProjectInputDTO project, Long idCadastro) {
+    public void saveCcPagantes(ProjetoInputDTO project, Long idCadastro) {
         List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
         for (int i = 0; i < newCcPagantes.size(); ++i) {
             newCcPagantes.get(i).setProjetos_id(idCadastro);
         }
         ccPagantesRepository.saveAll(newCcPagantes);
-        return null;
     }
 
     public List<SecoesDTO> listarporprojeto(Long projetoid) {

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ProjectInputDTO {
+public class ProjetoInputDTO {
 
     @NotNull
     private String nome;
@@ -22,9 +22,9 @@ public class ProjectInputDTO {
     private String descricao;
 
     @Size(min = 1)
-    private List<ProjectInputCCPagDTO> ccpagantes;
+    private List<AlocarCCPagantesInputDTO> ccpagantes;
 
     @Size(min = 1)
-    private List<ProjectInputConsAlocDTO> consultores;
+    private List<AlocarConsultoresInputDTO> consultores;
 
 }

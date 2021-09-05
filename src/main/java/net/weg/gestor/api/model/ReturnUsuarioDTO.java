@@ -5,9 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LoginDTO {
+public class ReturnUsuarioDTO {
 
+    private String nome;
     private String email;
-    private String senha;
+    private Long id;
+    private SecaoDoUsuarioDTO secao;
 
 }

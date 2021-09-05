@@ -1,7 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.Projeto;
@@ -24,7 +24,7 @@ public class ProjetoAssembler {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private CCPagantesRepository ccPagantesRepository;
 
-    public Projeto toEntity(ProjectInputDTO projetoInputDTO) {
+    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
         return modelMapper.map(projetoInputDTO, Projeto.class);
 
     }

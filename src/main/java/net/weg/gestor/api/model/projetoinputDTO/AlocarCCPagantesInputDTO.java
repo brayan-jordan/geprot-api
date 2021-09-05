@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProjectInputConsAlocDTO {
+public class AlocarCCPagantesInputDTO {
 
-    private Long usuarios_id;
+    private Long secoes_id;
 
-    private int limiteHoras;
+    private int taxa;
 
 }

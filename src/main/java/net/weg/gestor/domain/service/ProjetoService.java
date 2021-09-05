@@ -4,10 +4,9 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjectInputDTO;
+import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,7 @@ public class ProjetoService {
     }
 
     public ProjetoDTO listarPorId(Long projetoID){
-        boolean validationProjeto = projetoRepository.findById(projetoID).isPresent();
-        if (!validationProjeto){
+        if (!projetoRepository.existsById(projetoID)){
             throw new NegocioException("Não existe um projeto com esse Id");
         }
         return projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoID));
@@ -43,7 +41,7 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
     }
 
-    public Projeto saveProject(ProjectInputDTO projeto){
+    public Projeto saveProject(ProjetoInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
         projeto1.setDataCadastro(LocalDate.now());
         projeto1.setHorasTrabalhadas(0);
@@ -54,7 +52,7 @@ public class ProjetoService {
         return projeto1;
     }
 
-    public String cadastrar(ProjectInputDTO projeto) {
+    public ProjetoDTO cadastrar(ProjetoInputDTO projeto) {
         int taxa = 0;
         for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
             if (!secaoRepository.existsById(projeto.getCcpagantes().get(i).getSecoes_id())) {
@@ -70,10 +68,10 @@ public class ProjetoService {
                 throw new NegocioException("ID Do " + (i+1) + "° Consultor informado não foi encontrado");
             }
         }
-        Long idCadastrado = saveProject(projeto).getId();
-        ccPagantesService.saveCcPagantes(projeto, idCadastrado);
-        consultoresAlocadosService.saveConsultoresAlocados(projeto, idCadastrado);
-        return "Deu boa";
+        Projeto projetoSalvo = saveProject(projeto);
+        ccPagantesService.saveCcPagantes(projeto, projetoSalvo.getId());
+        consultoresAlocadosService.saveConsultoresAlocados(projeto, projetoSalvo.getId());
+        return projetoAssembler.toModel(projetoSalvo);
     }
 
     public void editarAtrasado(Long idDoProjeto){
