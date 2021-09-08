@@ -1,0 +1,48 @@
+_id: req_11c02265029349bb826b547290ec6e2a
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1630675105947
+created: 1623333017186
+url: "{{ _.url }}/projetos/cadastrar"
+name: Cadastrar
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"nome": "PROJETTeste2",
+    	"horasPrevistas": 100,
+    	"valor": 200.05,
+    	"ccpagantes": [
+    		{
+    			"centros_de_custo_id": 2,
+    			"taxa": 40
+    		},
+    		{
+    			"centros_de_custo_id": 1,
+    			"taxa": 60
+    		}
+    	],
+    	"consultores": [
+    		{
+    			"usuarios_id": 67264
+    		}
+    	]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_2689e3740bd34d528a12bee19fe2b967
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1623322884171
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

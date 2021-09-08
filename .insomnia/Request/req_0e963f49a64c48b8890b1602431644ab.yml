@@ -1,0 +1,26 @@
+_id: req_0e963f49a64c48b8890b1602431644ab
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1623419566038
+created: 1623414347715
+url: localhost:8585/projetos/editar/atrasado/3
+name: Editar Atrasado
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c2fa61ca5bd441eab6d05602a28da7ba
+authentication: {}
+metaSortKey: -1623366495409
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

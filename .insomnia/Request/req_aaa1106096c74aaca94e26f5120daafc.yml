@@ -1,0 +1,31 @@
+_id: req_aaa1106096c74aaca94e26f5120daafc
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630086536742
+created: 1630086087199
+url: "{{ _.url }}/secao/editar/67264"
+name: Editar Seção
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"id":2
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_30767fec32ff4ed1a64f9eddd8b73917
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1630086087199
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
