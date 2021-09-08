@@ -29,4 +29,6 @@ public class ConsultoresAlocados {
     @NotNull
     private int limiteHoras;
 
+    private int horasApontadas;
+
 }

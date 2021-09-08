@@ -29,6 +29,8 @@ public class HorasController {
         return horasService.listarTodos();
     }
 
+    
+
     @GetMapping("/listar/{projetoId}")
     ArrayList<HorasApontadasTotalDTO> listarPorProjeto(@PathVariable Long projetoId) {
         return horasService.apontamentoTotal(projetoId);
