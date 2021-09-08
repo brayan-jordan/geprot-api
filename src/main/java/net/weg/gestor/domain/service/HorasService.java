@@ -79,9 +79,10 @@ public class HorasService {
     }
 
     public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findAllProjectAndUsuario(
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findPendente(
                 projetoRepository.findByIdProjeto(projetoId),
-                usuarioRepository.findByIdUsuario(usuarioId)
+                usuarioRepository.findByIdUsuario(usuarioId),
+                "PENDENTE"
         );
         for (int i = 0; i < horasApontadas.size(); ++i) {
             horasApontadas.get(i).setStatus("APROVADO");
@@ -91,9 +92,10 @@ public class HorasService {
     }
 
     public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findAllProjectAndUsuario(
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findPendente(
                 projetoRepository.findByIdProjeto(projetoId),
-                usuarioRepository.findByIdUsuario(usuarioId)
+                usuarioRepository.findByIdUsuario(usuarioId),
+                "PENDENTE"
         );
         for (int i = 0; i < horasApontadas.size(); ++i) {
             horasApontadas.get(i).setStatus("REPROVADO");
