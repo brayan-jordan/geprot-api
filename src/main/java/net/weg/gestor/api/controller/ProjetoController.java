@@ -34,7 +34,7 @@ public class ProjetoController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProjetoDTO cadastrar(@Valid @RequestBody ProjetoInputDTO projeto) {
+    public String cadastrar(@Valid @RequestBody ProjetoInputDTO projeto) {
         return projetoService.cadastrar(projeto);
     }
 

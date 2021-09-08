@@ -7,6 +7,7 @@ import net.weg.gestor.api.assembler.HorasAssembler;
 import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.ListaApontamentoConsultor;
+import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
@@ -14,6 +15,7 @@ import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +100,16 @@ public class HorasService {
         }
         horasApontadasRepository.saveAll(horasApontadas);
         return "Horas reprovadas com sucesso";
+    }
+
+    public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
+        HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
+        horaApontada.setData(LocalDate.now());
+        horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuario_id()));
+        horaApontada.setProjeto(projetoRepository.findByIdProjeto(apontamento.getProjeto_id()));
+        horaApontada.setStatus("PENDENTE");
+        horasApontadasRepository.save(horaApontada);
+        return "Hora apontada com sucesso";
     }
 
 }

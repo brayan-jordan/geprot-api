@@ -14,8 +14,6 @@ public class ProjetoInputDTO {
     @NotNull
     private String nome;
 
-    private int horasPrevistas;
-
     @NotNull
     private double valor;
 

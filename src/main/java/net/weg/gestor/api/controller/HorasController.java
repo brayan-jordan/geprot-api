@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.ListaApontamentoConsultor;
+import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
@@ -29,7 +30,10 @@ public class HorasController {
         return horasService.listarTodos();
     }
 
-    
+    @PostMapping("/apontar")
+    String apontamentoConsultor(@RequestBody ApontamentoDeHoraInputDTO apontamento) {
+        return horasService.apontarHoras(apontamento);
+    }
 
     @GetMapping("/listar/{projetoId}")
     ArrayList<HorasApontadasTotalDTO> listarPorProjeto(@PathVariable Long projetoId) {

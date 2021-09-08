@@ -4,6 +4,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
@@ -44,6 +45,7 @@ public class ProjetoService {
     public Projeto saveProject(ProjetoInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
         projeto1.setDataCadastro(LocalDate.now());
+        projeto1.setHorasPrevistas(calcularHorasPrevistas(projeto.getConsultores()));
         projeto1.setHorasTrabalhadas(0);
         projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
@@ -52,7 +54,7 @@ public class ProjetoService {
         return projeto1;
     }
 
-    public ProjetoDTO cadastrar(ProjetoInputDTO projeto) {
+    public String cadastrar(ProjetoInputDTO projeto) {
         int taxa = 0;
         for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
             if (!secaoRepository.existsById(projeto.getCcpagantes().get(i).getSecoes_id())) {
@@ -71,7 +73,7 @@ public class ProjetoService {
         Projeto projetoSalvo = saveProject(projeto);
         ccPagantesService.saveCcPagantes(projeto, projetoSalvo.getId());
         consultoresAlocadosService.saveConsultoresAlocados(projeto, projetoSalvo.getId());
-        return projetoAssembler.toModel(projetoSalvo);
+        return "Projeto cadastrado";
     }
 
     public void editarAtrasado(Long idDoProjeto){
@@ -131,5 +133,13 @@ public class ProjetoService {
             default:
                 throw new NegocioException("Numero invalido");
         }
+    }
+
+    public int calcularHorasPrevistas(List<AlocarConsultoresInputDTO> consultores) {
+        int var = 0;
+        for (int i = 0; i < consultores.size(); ++i) {
+            var += consultores.get(i).getLimiteHoras();
+        }
+        return var;
     }
 }
