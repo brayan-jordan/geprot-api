@@ -24,6 +24,4 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     @Query("SELECT sum(valor) FROM Projeto p where p.id = ?1 ")
     double findVerbaUtilizadaSecao(Long secaoId);
 
-
-
 }
