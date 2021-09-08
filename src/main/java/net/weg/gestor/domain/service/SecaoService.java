@@ -6,15 +6,15 @@ import net.weg.gestor.api.model.DashboardSecaoDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.SecaoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.Secao;
-import net.weg.gestor.domain.model.StatusProjeto;
-import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.model.*;
+import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +25,7 @@ public class SecaoService {
     private UsuarioRepository usuarioRepository;
     private UsuarioAssembler usuarioAssembler;
     private ProjetoRepository projetoRepository;
+    private CCPagantesRepository ccPagantesRepository;
 
     @Transactional
     public Secao buscar(Long secaoId) {
@@ -52,11 +53,25 @@ public class SecaoService {
 
     public DashboardSecaoDTO listarDashboard(Long secaoId) {
         DashboardSecaoDTO dashboardSecaoDTO = new DashboardSecaoDTO();
-        dashboardSecaoDTO.setProjetosAtrasados(projetoRepository.findByStatus(StatusProjeto.ATRASADO).size());
-        dashboardSecaoDTO.setProjetosEmAndamento(projetoRepository.findByStatus(StatusProjeto.EM_ANDAMENTO).size());
-        dashboardSecaoDTO.setProjetosConcluidos(projetoRepository.findByStatus(StatusProjeto.CONCLUIDO).size());
+        Secao secao = secaoRepository.findByIdAux(secaoId);
+        dashboardSecaoDTO.setProjetosAtrasados(this.porcentoStatus(StatusProjeto.ATRASADO, secao));
+        dashboardSecaoDTO.setProjetosEmAndamento(this.porcentoStatus(StatusProjeto.EM_ANDAMENTO, secao));
+        dashboardSecaoDTO.setProjetosConcluidos(this.porcentoStatus(StatusProjeto.CONCLUIDO, secao));
+        dashboardSecaoDTO.setProjetosNaoIniciados(this.porcentoStatus(StatusProjeto.NAO_INICIADO, secao));
         dashboardSecaoDTO.setVerbasAprovadas(secaoRepository.findByIdAux(secaoId).getVerba());
         dashboardSecaoDTO.setVerbasDisponivel(projetoRepository.findVerbaUtilizadaSecao(secaoId));
         return dashboardSecaoDTO;
+    }
+
+    public double porcentoStatus (StatusProjeto statusProjeto, Secao secao) {
+        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
+        int contador = 0;
+        for (int i = 0; i < ccPagantes.size(); i ++){
+            Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
+            if(projetoRepository.findByStatusSecao(statusProjeto, projeto.getId()) != null){
+                contador++;
+            }
+        }
+        return contador * 100 / ccPagantes.size();
     }
 }
