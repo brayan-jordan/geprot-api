@@ -11,4 +11,7 @@ public interface ConsultoresAlocadosRepository extends JpaRepository<Consultores
     @Query("SELECT c FROM ConsultoresAlocados c where c.usuarios_id =?1 and c.projetos_id = ?2")
     ConsultoresAlocados buscar (Long usuarioId, Long projetoId);
 
+    @Query("SELECT c FROM ConsultoresAlocados c where c.usuarios_id =?1")
+    ConsultoresAlocados findByIdConsultor(Long usuarioId);
+
 }
