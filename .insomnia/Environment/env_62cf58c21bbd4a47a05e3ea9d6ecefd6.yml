@@ -1,0 +1,16 @@
+_id: env_62cf58c21bbd4a47a05e3ea9d6ecefd6
+type: Environment
+parentId: env_64eb75f16a203241c5afcf14e05d12b1cb9e243d
+modified: 1631120674299
+created: 1624986194078
+name: Projeto
+data:
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF5YW5AZ21haWwuY29tIiwiZXhwIjoxNjMyMzIwNjU4LCJpYXQiOjE2MzExMjA2NTh9.QP1SjHB_tqgRsHf9fbF43G27dkbfV89JZ4ExGQqgy_s
+  url: localhost:8585
+dataPropertyOrder:
+  "&":
+    - token
+    - url
+color: "#7d69cb"
+isPrivate: false
+metaSortKey: 1624986194078

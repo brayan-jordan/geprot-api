@@ -1,0 +1,23 @@
+_id: req_e71cacebb7744e659610315c5e498c11
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630086881570
+created: 1629728754492
+url: "{{ _.url }}/roles/buscarpessoa/67265"
+name: Procurar permissão
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1629728754492
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

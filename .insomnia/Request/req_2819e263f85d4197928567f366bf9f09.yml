@@ -1,0 +1,26 @@
+_id: req_2819e263f85d4197928567f366bf9f09
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1623420200196
+created: 1623420196769
+url: localhost:8585/projetos/editar/andamento/3
+name: Editar Andamento
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c2fa61ca5bd441eab6d05602a28da7ba
+authentication: {}
+metaSortKey: -1623333787018
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

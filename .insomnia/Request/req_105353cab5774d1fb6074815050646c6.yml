@@ -1,0 +1,23 @@
+_id: req_105353cab5774d1fb6074815050646c6
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630084171976
+created: 1622469885923
+url: "{{ _.url }}/usuarios/buscar/67265"
+name: Buscar
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1622469885923
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

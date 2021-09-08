@@ -1,0 +1,30 @@
+_id: req_07f5065e538c4061bd562b8ad4df2b6d
+type: Request
+parentId: fld_5459934a278a4fb39182dbf0f453bcac
+modified: 1630081669191
+created: 1629725507765
+url: localhost:8585/authenticate
+name: Login
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	 "email":"brayan@gmail.com",
+    	 "senha":"123456"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c11fa9ffd19b453a9e9f19c572dd5030
+authentication: {}
+metaSortKey: -1629725507765
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

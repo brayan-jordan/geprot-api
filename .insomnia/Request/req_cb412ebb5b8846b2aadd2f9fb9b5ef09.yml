@@ -1,0 +1,39 @@
+_id: req_cb412ebb5b8846b2aadd2f9fb9b5ef09
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1623411811536
+created: 1623410106597
+url: localhost:8585/projetos/editar/2
+name: Editar
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-2
+      {
+
+        "nomeprojeto": "Teste2",
+        "datainicio": "2018-01-07T16:11:26.485",
+        "datafinalizacao": null,
+        "horasprevistas": 10,
+        "horastrabalhadas": 10,
+        "valorprojeto": 10.0,
+        "valorutilizado": 10.0,
+        "valorrestante": 10.0,
+        "gestorid": 67265,
+        "statusprojeto": "ATRASADO"
+      }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c2fa61ca5bd441eab6d05602a28da7ba
+authentication: {}
+metaSortKey: -1623410106597
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

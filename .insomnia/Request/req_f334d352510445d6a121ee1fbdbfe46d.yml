@@ -1,0 +1,33 @@
+_id: req_f334d352510445d6a121ee1fbdbfe46d
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630084153481
+created: 1630062945164
+url: "{{ _.url }}/usuarios/editar/6727"
+name: Editar
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    "nome" :"Brendon",
+    "email":"brendon@gmail.com",
+    "senha":"123456"
+    }	
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_ef93d6b0b04c440795dc3fd3d3c48f3a
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1630062945164
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

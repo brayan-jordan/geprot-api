@@ -1,0 +1,23 @@
+_id: req_c408b31be8af416f8d57d724dacb6cf9
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630084177746
+created: 1622469821027
+url: "{{ _.url }}/usuarios/listartodos"
+name: Listar todos
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1622469821027
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

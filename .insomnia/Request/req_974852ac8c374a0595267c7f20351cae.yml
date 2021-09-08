@@ -1,0 +1,38 @@
+_id: req_974852ac8c374a0595267c7f20351cae
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630086869927
+created: 1622468581998
+url: "{{ _.url }}/usuarios/cadastrar"
+name: Cadastrar
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+
+    	"nome": "Brendon",
+    	"id": 67265,
+    	"email": "brendon@gmail.com",
+    	"senha": "123456",
+    	"secao": {
+    		"id": 1
+    	}
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_9a1584d7b26640f8a342af8559281110
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJicmF5YW5AZ21haWwuY29tIiwiZXhwIjoxNjMxMjgxODE1LCJpYXQiOjE2MzAwODE4MTV9.zWJfnkCISLvYglSzXrL1DAoVlBBuCf1SzMsOk5LuYVs
+metaSortKey: -1622468581998
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
