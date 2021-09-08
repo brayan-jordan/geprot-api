@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface SecaoRepository extends JpaRepository<Secao, Long> {
 
     @Query("select p from Secao p where p.id = ?1")
-    Secao findById2(long secaoid);
+    Secao findByIdAux(long secaoid);
 
 
 }
