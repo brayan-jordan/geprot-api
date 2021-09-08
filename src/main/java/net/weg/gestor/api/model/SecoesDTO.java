@@ -13,6 +13,6 @@ public class SecoesDTO {
 
     private int taxa;
 
-    private double valor;
+    private double verba;
 
 }

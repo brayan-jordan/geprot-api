@@ -51,7 +51,7 @@ public class ProjetoAssembler {
 
         for (int i = 0; i < projectReturn.getSecaos().size(); i++){
             double valorPagoCC = projectReturn.getSecaos().get(i).getTaxa() * projectReturn.getValor();
-            projectReturn.getSecaos().get(i).setValor(valorPagoCC / 100);
+            projectReturn.getSecaos().get(i).setVerba(valorPagoCC / 100);
         }
         return projectReturn;
     }
