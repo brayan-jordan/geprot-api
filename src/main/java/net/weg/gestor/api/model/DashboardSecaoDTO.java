@@ -7,11 +7,13 @@ import lombok.Setter;
 @Setter
 public class DashboardSecaoDTO {
 
-    private int projetosConcluidos;
+    private double projetosConcluidos;
 
-    private int projetosAtrasados;
+    private double projetosAtrasados;
 
-    private int projetosEmAndamento;
+    private double projetosEmAndamento;
+
+    private double projetosNaoIniciados;
 
     private double verbasDisponivel;
 

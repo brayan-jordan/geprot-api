@@ -35,19 +35,4 @@ public class CCPagantesService {
 
     }
 
-//    public List<CCPagantesDTO> cadastrar(List<CCPagantesInputDTO> ccPagantesInputDTO) {
-//        validationsService.verificacoesCCpagantes(ccPagantesInputDTO);
-//
-//        List<CCPagantes> ccPagantes = ccPagantesAssembler.toCollectionEntity(ccPagantesInputDTO);
-//        for (int i = 0; i < ccPagantes.size(); ++i) {
-//            ccPagantes.get(i).setCentrodecusto(centroDeCustoRepository.findById2
-//                    (ccPagantes.get(i).getCentrodecusto().getId()));
-//            ccPagantes.get(i).setProjeto(projetoRepository.findByIdProjeto(
-//                    ccPagantes.get(i).getProjeto().getId()));
-//            ccPagantesRepository.save(ccPagantes.get(i));
-//        }
-//
-//        return ccPagantesAssembler.toCollectionModel(ccPagantes);
-//    }
-
 }
