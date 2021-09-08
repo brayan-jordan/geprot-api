@@ -1,0 +1,23 @@
+_id: req_23c03a90599a434eae3cd1b77a2e5843
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1630667251643
+created: 1623322884221
+url: localhost:8585/projetos/listar/1
+name: Listar todos
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1623322884221
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

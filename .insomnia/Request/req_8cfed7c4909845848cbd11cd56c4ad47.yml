@@ -1,0 +1,23 @@
+_id: req_8cfed7c4909845848cbd11cd56c4ad47
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630084270064
+created: 1622470858768
+url: "{{ _.url }}/usuarios/deletar/67265"
+name: Excluir
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1622470858768
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

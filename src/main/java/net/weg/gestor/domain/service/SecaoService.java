@@ -2,11 +2,14 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.DashboardSecaoDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.SecaoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Secao;
+import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,7 @@ public class SecaoService {
     private SecaoRepository secaoRepository;
     private UsuarioRepository usuarioRepository;
     private UsuarioAssembler usuarioAssembler;
+    private ProjetoRepository projetoRepository;
 
     @Transactional
     public Secao buscar(Long secaoId) {
@@ -41,8 +45,18 @@ public class SecaoService {
             throw new NegocioException("Não existe uma seção com esse ID");
         }
         Usuario usuario = usuarioRepository.findByIdUsuario(usuarioId);
-        usuario.setSecao(secaoRepository.findById2(secaoInputDTO.getId()));
+        usuario.setSecao(secaoRepository.findByIdAux(secaoInputDTO.getId()));
         return usuarioAssembler.toModel(usuarioRepository.save(usuario));
 
+    }
+
+    public DashboardSecaoDTO listarDashboard(Long secaoId) {
+        DashboardSecaoDTO dashboardSecaoDTO = new DashboardSecaoDTO();
+        dashboardSecaoDTO.setProjetosAtrasados(projetoRepository.findByStatus(StatusProjeto.ATRASADO).size());
+        dashboardSecaoDTO.setProjetosEmAndamento(projetoRepository.findByStatus(StatusProjeto.EM_ANDAMENTO).size());
+        dashboardSecaoDTO.setProjetosConcluidos(projetoRepository.findByStatus(StatusProjeto.CONCLUIDO).size());
+        dashboardSecaoDTO.setVerbasAprovadas(secaoRepository.findByIdAux(secaoId).getVerba());
+        dashboardSecaoDTO.setVerbasDisponivel(projetoRepository.findVerbaUtilizadaSecao(secaoId));
+        return dashboardSecaoDTO;
     }
 }

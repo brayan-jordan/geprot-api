@@ -1,6 +1,7 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.DashboardSecaoDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.SecaoInputDTO;
 import net.weg.gestor.domain.service.SecaoService;
@@ -18,5 +19,8 @@ public class SecaoController {
         return secaoService.editarSecao(usuarioId, secaoInputDTO);
     }
 
-
+    @GetMapping("/listar/{secaoId}")
+    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
+        return secaoService.listarDashboard(secaoId);
+    }
 }

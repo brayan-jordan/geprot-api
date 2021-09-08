@@ -1,0 +1,23 @@
+_id: req_6a056786bb8941939cf91c0f904c107d
+type: Request
+parentId: fld_7ed9de2437d047d1b9ab7095cb6ae03c
+modified: 1630084966664
+created: 1630083831322
+url: "{{ _.url }}/usuarios/editar/user/67264"
+name: Editar User
+description: ""
+method: PUT
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1630073384999.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -36,7 +36,7 @@ public class CCPagantesAssembler {
     public SecoesDTO toModel(CCPagantes ccPagantes) {
         SecoesDTO secoesDTO = modelMapper.map(ccPagantes, SecoesDTO.class);
         secoesDTO.setVerba(projetoRepository.findByIdProjeto(ccPagantes.getProjetos_id()).getValor() / 100 * secoesDTO.getTaxa());
-        secoesDTO.setNome(secaoRepository.findById2(ccPagantes.getSecoes_id()).getNome());
+        secoesDTO.setNome(secaoRepository.findByIdAux(ccPagantes.getSecoes_id()).getNome());
         return secoesDTO;
     }
 

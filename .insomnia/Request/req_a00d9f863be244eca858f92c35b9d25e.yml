@@ -1,0 +1,26 @@
+_id: req_a00d9f863be244eca858f92c35b9d25e
+type: Request
+parentId: fld_72a3bbf0f0274b4e87ce2724f3b509bc
+modified: 1631107659579
+created: 1623414507522
+url: localhost:8585/projetos/editar/concluido/1
+name: Editar Concluido
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c2fa61ca5bd441eab6d05602a28da7ba
+authentication: {}
+metaSortKey: -1623344689815
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
