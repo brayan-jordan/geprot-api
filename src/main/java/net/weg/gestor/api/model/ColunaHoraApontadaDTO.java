@@ -16,4 +16,6 @@ public class ColunaHoraApontadaDTO {
 
     private int quantidade_horas;
 
+    private String status;
+
 }
