@@ -1,15 +1,14 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import net.weg.gestor.api.assembler.HorasAssembler;
-import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.ListaApontamentoConsultor;
 import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
+import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
@@ -24,6 +23,7 @@ import java.util.List;
 public class HorasService {
 
     private HorasApontadasRepository horasApontadasRepository;
+    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private HorasAssembler horasAssembler;
@@ -105,10 +105,16 @@ public class HorasService {
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
         HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
         horaApontada.setData(LocalDate.now());
-        horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuario_id()));
-        horaApontada.setProjeto(projetoRepository.findByIdProjeto(apontamento.getProjeto_id()));
+        horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id()));
+        horaApontada.setProjeto(projetoRepository.findByIdProjeto(apontamento.getProjetos_id()));
         horaApontada.setStatus("PENDENTE");
         horasApontadasRepository.save(horaApontada);
+        Projeto projeto = projetoRepository.findByIdProjeto(apontamento.getProjetos_id());
+        projeto.setHorasTrabalhadas(projeto.getHorasTrabalhadas() + horaApontada.getQuantidade_horas());
+        projetoRepository.save(projeto);
+        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.findByIdConsultor(apontamento.getUsuarios_id());
+        consultoresAlocados.setHorasApontadas(consultoresAlocados.getHorasApontadas() + apontamento.getQuantidade_horas());
+        consultoresAlocadosRepository.save(consultoresAlocados);
         return "Hora apontada com sucesso";
     }
 
