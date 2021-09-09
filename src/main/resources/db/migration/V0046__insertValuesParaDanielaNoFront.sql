@@ -9,7 +9,7 @@ INSERT INTO cc_pagantes VALUES
 (null, 2, 1, 50);
 
 INSERT INTO usuarios VALUES
-(67265, "$2a$10$vAZfFnx9T6IvxlfO9sU4AOQb0qLm/LA10vEY4I2V6CxEkVucuZAHG", 1, "Brendon", "brendon@gmail.com");
+(67265, "$2a$10$vAZfFnx9T6IvxlfO9sU4AOQb0qLm/LA10vEY4I2V6CxEkVucuZAHG", 2, "Brendon", "brendon@gmail.com");
 
 INSERT INTO role_usuarios VALUES
 (null, "ROLE_CONSULTOR", 67265);
