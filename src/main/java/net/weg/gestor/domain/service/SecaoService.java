@@ -59,19 +59,45 @@ public class SecaoService {
         dashboardSecaoDTO.setProjetosConcluidos(this.porcentoStatus(StatusProjeto.CONCLUIDO, secao));
         dashboardSecaoDTO.setProjetosNaoIniciados(this.porcentoStatus(StatusProjeto.NAO_INICIADO, secao));
         dashboardSecaoDTO.setVerbasAprovadas(secaoRepository.findByIdAux(secaoId).getVerba());
-        dashboardSecaoDTO.setVerbasDisponivel(projetoRepository.findVerbaUtilizadaSecao(secaoId));
+        dashboardSecaoDTO.setVerbasDisponivel(dashboardSecaoDTO.getVerbasAprovadas() - this.SomaVerbaProjetos(secao));
         return dashboardSecaoDTO;
     }
 
     public double porcentoStatus (StatusProjeto statusProjeto, Secao secao) {
         List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
-        int contador = 0;
+        float contador = 0;
         for (int i = 0; i < ccPagantes.size(); i ++){
             Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
             if(projetoRepository.findByStatusSecao(statusProjeto, projeto.getId()) != null){
                 contador++;
             }
         }
-        return contador * 100 / ccPagantes.size();
+        float tamanho = ccPagantes.size();
+        return (contador * 100) / tamanho;
     }
+
+    public List<Projeto> listarCards(Secao secao){
+        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
+        List<Projeto> projetos = new ArrayList<>();
+        for (int i = 0; i < ccPagantes.size(); i ++){
+            Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
+            if(projeto.getId() != null){
+                projetos.add(projeto);
+            }
+        }
+        return projetos;
+    }
+
+    public float SomaVerbaProjetos(Secao secao){
+        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
+        float soma = 0;
+        for (int i = 0; i < ccPagantes.size(); i ++){
+            Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
+            if(projeto.getId() != null){
+                soma += projeto.getValor();
+            }
+        }
+        return soma;
+    }
+
 }

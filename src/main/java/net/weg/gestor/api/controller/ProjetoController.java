@@ -17,12 +17,12 @@ public class ProjetoController {
 
     private ProjetoService projetoService;
 
-    @GetMapping("/listar")
-    public List<ProjetoDTO> listarTodosProjetos(){
-        return projetoService.listartodos();
+    @GetMapping("/listar/{secaoId}")
+    public List<ProjetoDTO> listarTodosProjetosDaSecao(@PathVariable Long secaoId){
+        return projetoService.listartodos(secaoId);
     }
 
-    @GetMapping("/listar/{projetoId}")
+    @GetMapping("/listar/projetos/{projetoId}")
     public ProjetoDTO listarProjetoID(@PathVariable Long projetoId){
         return projetoService.listarPorId(projetoId);
     }

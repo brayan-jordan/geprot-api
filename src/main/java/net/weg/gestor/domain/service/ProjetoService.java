@@ -8,6 +8,7 @@ import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,11 @@ public class ProjetoService {
     private SecaoRepository secaoRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
+    private SecaoService secaoService;
 
-    public List<ProjetoDTO> listartodos() {
-        return projetoAssembler.toCollectionModel(projetoRepository.findAll());
+    public List<ProjetoDTO> listartodos(Long secaoId) {
+        Secao secao = secaoRepository.findByIdAux(secaoId);
+        return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
     }
 
     public ProjetoDTO listarPorId(Long projetoID){
