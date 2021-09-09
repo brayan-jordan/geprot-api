@@ -53,6 +53,8 @@ public class ProjetoAssembler {
             double valorPagoCC = projectReturn.getSecaos().get(i).getTaxa() * projectReturn.getValor();
             projectReturn.getSecaos().get(i).setVerba(valorPagoCC / 100);
         }
+
+         projectReturn.setBarraProgresso((projectReturn.getHorasTrabalhadas() * 100) / projectReturn.getHorasPrevistas());
         return projectReturn;
     }
 

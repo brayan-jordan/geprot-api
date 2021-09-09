@@ -26,6 +26,7 @@ public class ProjetoDTO {
     private String descricao;
     private List<SecoesDTO> secaos;
     private List<ConsultorDTO> usuarios;
+    private int barraProgresso;
 
 
 }
