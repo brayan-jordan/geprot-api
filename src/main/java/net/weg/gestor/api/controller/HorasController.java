@@ -13,6 +13,7 @@ import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.service.HorasService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class HorasController {
     }
 
     @PostMapping("/apontar")
-    String apontamentoConsultor(@RequestBody ApontamentoDeHoraInputDTO apontamento) {
+    String apontamentoConsultor(@RequestBody @Valid ApontamentoDeHoraInputDTO apontamento) {
         return horasService.apontarHoras(apontamento);
     }
 

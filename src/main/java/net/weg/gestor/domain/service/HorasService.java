@@ -5,6 +5,7 @@ import net.weg.gestor.api.assembler.HorasAssembler;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.ListaApontamentoConsultor;
 import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.model.Projeto;
@@ -105,6 +106,8 @@ public class HorasService {
     }
 
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
+
+        // perguntar pro professor porque o @Valid nao estava funcionando
         HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
         horaApontada.setData(LocalDate.now());
         horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id()));
