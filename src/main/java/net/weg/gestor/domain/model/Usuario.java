@@ -56,6 +56,8 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_nome", referencedColumnName = "nome"))
     private List<Role> roles;
 
+    private double precoHora;
+
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
