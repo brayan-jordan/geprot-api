@@ -14,9 +14,6 @@ public class ProjetoInputDTO {
     @NotNull
     private String nome;
 
-    @NotNull
-    private double valor;
-
     private String descricao;
 
     @Size(min = 1)

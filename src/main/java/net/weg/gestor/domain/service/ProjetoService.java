@@ -49,6 +49,7 @@ public class ProjetoService {
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
         projeto1.setDataCadastro(LocalDate.now());
         projeto1.setHorasPrevistas(calcularHorasPrevistas(projeto.getConsultores()));
+        projeto1.setValor(calcularValorPrevisto(projeto.getConsultores()));
         projeto1.setHorasTrabalhadas(0);
         projeto1.setValorUtilizado(0);
         projeto1.setStatus(StatusProjeto.NAO_INICIADO);
@@ -142,6 +143,15 @@ public class ProjetoService {
         int var = 0;
         for (int i = 0; i < consultores.size(); ++i) {
             var += consultores.get(i).getLimiteHoras();
+        }
+        return var;
+    }
+
+    public double calcularValorPrevisto(List<AlocarConsultoresInputDTO> consultores) {
+        double var = 0;
+        for (int i = 0; i < consultores.size(); ++i) {
+            var += consultores.get(i).getLimiteHoras() *
+                    usuarioRepository.findByIdUsuario(consultores.get(i).getUsuarios_id()).getPrecoHora();
         }
         return var;
     }
