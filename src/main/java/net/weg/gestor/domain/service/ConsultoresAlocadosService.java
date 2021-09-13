@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ConsultoresAlocadosAssembler;
 import net.weg.gestor.api.model.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.ConsultorDTO;
+import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
+import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
@@ -39,9 +42,15 @@ public class ConsultoresAlocadosService {
             throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
         }
 
-        if (!usuarioService.buscar(alocarConsultorInputDTO.getUsuarios_id()).getPermissao().equals("ROLE_CONSULTOR")) {
+        UsuarioDTO usuario = usuarioService.buscar(alocarConsultorInputDTO.getUsuarios_id());
+        if (!usuario.getPermissao().equals("ROLE_CONSULTOR")) {
             throw new NegocioException("O usuário que você está tentando alocar não é um consultor");
         }
+
+        Projeto projeto = projetoRepository.findByIdProjeto(alocarConsultorInputDTO.getProjetos_id());
+
+        projeto.setValor(projeto.getValor() + (usuario.getPrecoHora() * alocarConsultorInputDTO.getLimiteHoras()));
+        projetoRepository.save(projeto);
 
         ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
         consultoresAlocadosRepository.save(newConsultor);
