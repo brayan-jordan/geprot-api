@@ -50,7 +50,7 @@ public class HorasService {
                 HorasApontadasTotalDTO horasApontadasTotalDTO = new HorasApontadasTotalDTO();
                 horasApontadasTotalDTO.setConsultor_id(porUsuario.get(0).getUsuario().getId());
                 horasApontadasTotalDTO.setQuantidade_horas(
-                        consultoresAlocadosRepository.findByIdConsultor(porUsuario.get(i).getUsuario().getId()).getLimiteHoras());
+                        consultoresAlocadosRepository.findByIdConsultor(porUsuario.get(0).getUsuario().getId()).getLimiteHoras());
                 horasApontadasTotalDTO.setStatus(porUsuario.get(0).getStatus());
                 horasApontadasTotalDTO.setNome(porUsuario.get(0).getUsuario().getNome());
                 horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
@@ -75,10 +75,9 @@ public class HorasService {
         ListaApontamentoConsultor lista = new ListaApontamentoConsultor();
         lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findAllProjectAndUsuario(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId))));
-//        lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
-//                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
-        lista.setTotalHoras(0);
-        lista.setValorGasto(lista.getTotalHoras() * 200.50);
+        lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
+        lista.setValorGasto(lista.getTotalHoras() * usuarioRepository.findByIdUsuario(usuarioId).getPrecoHora());
         return lista;
     }
 
@@ -116,7 +115,9 @@ public class HorasService {
             throw new NegocioException("Voce esta tentando apontar mais horas que o seu limite!");
         }
 
-        if (buscarApontamentoConsultor(apontamento.getProjetos_id(), apontamento.getUsuarios_id()).getTodosApontamentos().size() > 0) {
+        if (horasApontadasRepository.findAllProjectAndUsuario(
+                projetoRepository.findByIdProjeto(apontamento.getProjetos_id()),
+                usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id())).size() > 0) {
             if (horasApontadasRepository.findAllProjectAndUsuario(
                     projetoRepository.findByIdProjeto(apontamento.getProjetos_id()),
                     usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id())).
