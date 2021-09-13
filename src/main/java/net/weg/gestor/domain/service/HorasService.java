@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.HorasAssembler;
+import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.ListaApontamentoConsultor;
 import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
@@ -40,6 +41,7 @@ public class HorasService {
     }
 
     public ArrayList<HorasApontadasTotalDTO> convert(List<HorasApontadas> apontadas) {
+        // Gambiarra que falta otimizar
         ArrayList<HorasApontadasTotalDTO> horasTotais = new ArrayList<HorasApontadasTotalDTO>();
         long ultimaId = 0;
         for (int i = 0; i < apontadas.size(); ++i) {
@@ -56,7 +58,7 @@ public class HorasService {
                 horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
                         projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
                         usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId())));
-                if (horasApontadasRepository.findPendente(
+                if (horasApontadasRepository.findStatus(
                         projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
                         usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()),
                         "PENDENTE").size() > 0) {
@@ -73,8 +75,13 @@ public class HorasService {
 
     public ListaApontamentoConsultor buscarApontamentoConsultor(Long projetoId, Long usuarioId) {
         ListaApontamentoConsultor lista = new ListaApontamentoConsultor();
-        lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findAllProjectAndUsuario(
-                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId))));
+        lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "APROVADO")));
+        List<ColunaHoraApontadaDTO> listToUse = horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "REPROVADO"));
+        for (int i = 0; i < listToUse.size(); ++i) {
+            lista.getTodosApontamentos().add(listToUse.get(0));
+        }
         lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
         lista.setValorGasto(lista.getTotalHoras() * usuarioRepository.findByIdUsuario(usuarioId).getPrecoHora());
@@ -82,7 +89,7 @@ public class HorasService {
     }
 
     public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findPendente(
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findStatus(
                 projetoRepository.findByIdProjeto(projetoId),
                 usuarioRepository.findByIdUsuario(usuarioId),
                 "PENDENTE"
@@ -95,7 +102,7 @@ public class HorasService {
     }
 
     public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findPendente(
+        List<HorasApontadas> horasApontadas = horasApontadasRepository.findStatus(
                 projetoRepository.findByIdProjeto(projetoId),
                 usuarioRepository.findByIdUsuario(usuarioId),
                 "PENDENTE"

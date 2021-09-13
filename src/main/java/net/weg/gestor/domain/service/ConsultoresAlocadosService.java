@@ -15,6 +15,7 @@ import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,17 +40,22 @@ public class ConsultoresAlocadosService {
     }
 
     public ConsultorDTO alocarConsultor(AlocarConsultorInputDTO alocarConsultorInputDTO) {
-        if (!usuarioRepository.existsById(alocarConsultorInputDTO.getUsuarios_id())
-                || !projetoRepository.existsById(alocarConsultorInputDTO.getProjetos_id())) {
+        Long usuarioId = alocarConsultorInputDTO.getUsuarios_id();
+        Long projetoId = alocarConsultorInputDTO.getProjetos_id();
+        if (!usuarioRepository.existsById(usuarioId) || !projetoRepository.existsById(projetoId)) {
             throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
         }
 
-        UsuarioDTO usuario = usuarioService.buscar(alocarConsultorInputDTO.getUsuarios_id());
+        if (consultoresAlocadosRepository.existsVerify(usuarioId, projetoId).isPresent()) {
+            throw new NegocioException("Esse usuario já esta alocado no projeto");
+        }
+
+        UsuarioDTO usuario = usuarioService.buscar(usuarioId);
         if (!usuario.getPermissao().equals("ROLE_CONSULTOR")) {
             throw new NegocioException("O usuário que você está tentando alocar não é um consultor");
         }
 
-        Projeto projeto = projetoRepository.findByIdProjeto(alocarConsultorInputDTO.getProjetos_id());
+        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
         projeto.setValor(projeto.getValor() + (usuario.getPrecoHora() * alocarConsultorInputDTO.getLimiteHoras()));
         projeto.setHorasPrevistas(projeto.getHorasPrevistas() + alocarConsultorInputDTO.getLimiteHoras());
         projetoRepository.save(projeto);

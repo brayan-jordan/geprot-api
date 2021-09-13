@@ -22,5 +22,6 @@ public interface HorasApontadasRepository extends JpaRepository<HorasApontadas, 
     int buscarHoraTotalUser(Projeto projeto, Usuario usuario);
 
     @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2 AND h.status = ?3")
-    List<HorasApontadas> findPendente(Projeto projeto, Usuario usuario, String status);
+    List<HorasApontadas> findStatus(Projeto projeto, Usuario usuario, String status);
+
 }
