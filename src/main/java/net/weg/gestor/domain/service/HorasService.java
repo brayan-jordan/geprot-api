@@ -79,8 +79,13 @@ public class HorasService {
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "APROVADO")));
         List<ColunaHoraApontadaDTO> listToUse = horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "REPROVADO"));
+        List<ColunaHoraApontadaDTO> listToUse2 = horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
+                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "PENDENTE"));
         for (int i = 0; i < listToUse.size(); ++i) {
             lista.getTodosApontamentos().add(listToUse.get(0));
+        }
+        for (int i = 0; i < listToUse2.size(); ++i) {
+            lista.getTodosApontamentos().add(listToUse2.get(0));
         }
         lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
@@ -116,7 +121,10 @@ public class HorasService {
     }
 
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
-
+        if (consultoresAlocadosRepository.existsVerify(
+                apontamento.getUsuarios_id(), apontamento.getProjetos_id()).isEmpty()) {
+            throw new NegocioException("Esse consultor não está alocado nesse projeto, tente novamente");
+        }
 
         ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(
                 apontamento.getUsuarios_id(), apontamento.getProjetos_id());
