@@ -14,12 +14,12 @@ INSERT INTO usuarios VALUES
 INSERT INTO role_usuarios VALUES
 (null, "ROLE_CONSULTOR", 67265);
 
-INSERT INTO horas_apontadas VALUES
-(null, 1, 50, "20210209", 67264, "Trabalho bom", "APROVADO");
-
-INSERT INTO horas_apontadas VALUES
-(null, 1, 50, "20210209", 67264, "Trabalho bom", "APROVADO");
-
-INSERT INTO horas_apontadas VALUES
-(null, 1, 70, "20210209", 67265, "Trabalhin", "PENDENTE");
+--INSERT INTO horas_apontadas VALUES
+--(null, 1, 50, "20210209", 67264, "Trabalho bom", "APROVADO");
+--
+--INSERT INTO horas_apontadas VALUES
+--(null, 1, 50, "20210209", 67264, "Trabalho bom", "APROVADO");
+--
+--INSERT INTO horas_apontadas VALUES
+--(null, 1, 70, "20210209", 67265, "Trabalhin", "PENDENTE");
 
