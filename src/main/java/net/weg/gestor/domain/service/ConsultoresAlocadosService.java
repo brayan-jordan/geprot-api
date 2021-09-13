@@ -5,6 +5,7 @@ import net.weg.gestor.api.assembler.ConsultoresAlocadosAssembler;
 import net.weg.gestor.api.model.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
+import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
@@ -28,12 +29,13 @@ public class ConsultoresAlocadosService {
     private UsuarioRepository usuarioRepository;
 
     public void saveConsultoresAlocados(ProjetoInputDTO project, Long idCadastrado) {
-        List<ConsultoresAlocados> consultores = consultoresAlocadosAssembler.toCollectionEntity(project.getConsultores());
-        for (int i = 0; i < consultores.size(); ++i) {
-            consultores.get(i).setProjetos_id(idCadastrado);
+        for (int i = 0; i < project.getConsultores().size(); ++i) {
+            AlocarConsultorInputDTO alocar = new AlocarConsultorInputDTO();
+            alocar.setProjetos_id(idCadastrado);
+            alocar.setLimiteHoras(project.getConsultores().get(i).getLimiteHoras());
+            alocar.setUsuarios_id(project.getConsultores().get(i).getUsuarios_id());
+            alocarConsultor(alocar);
         }
-
-        consultoresAlocadosRepository.saveAll(consultores);
     }
 
     public ConsultorDTO alocarConsultor(AlocarConsultorInputDTO alocarConsultorInputDTO) {
