@@ -15,4 +15,6 @@ public class HorasApontadasTotalDTO {
 
     private int horasTotais;
 
+    private int quantidade_horas;
+
 }

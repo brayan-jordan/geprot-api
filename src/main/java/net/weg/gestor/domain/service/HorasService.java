@@ -49,6 +49,8 @@ public class HorasService {
                         usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()));
                 HorasApontadasTotalDTO horasApontadasTotalDTO = new HorasApontadasTotalDTO();
                 horasApontadasTotalDTO.setConsultor_id(porUsuario.get(0).getUsuario().getId());
+                horasApontadasTotalDTO.setQuantidade_horas(
+                        consultoresAlocadosRepository.findByIdConsultor(porUsuario.get(i).getUsuario().getId()).getLimiteHoras());
                 horasApontadasTotalDTO.setStatus(porUsuario.get(0).getStatus());
                 horasApontadasTotalDTO.setNome(porUsuario.get(0).getUsuario().getNome());
                 horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
@@ -73,8 +75,9 @@ public class HorasService {
         ListaApontamentoConsultor lista = new ListaApontamentoConsultor();
         lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findAllProjectAndUsuario(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId))));
-        lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
-                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
+//        lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
+//                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
+        lista.setTotalHoras(0);
         lista.setValorGasto(lista.getTotalHoras() * 200.50);
         return lista;
     }
@@ -113,10 +116,11 @@ public class HorasService {
             throw new NegocioException("Voce esta tentando apontar mais horas que o seu limite!");
         }
 
-        if (apontamentoTotal(apontamento.getProjetos_id()).size() > 0) {
-           if (apontamentoTotal(apontamento.getProjetos_id()).get(0).getStatus().equals("REPROVADO")) {
-               throw new NegocioException("Voce tem hora recusada, resolva elas primeiramente");
-           }
+        if (buscarApontamentoConsultor(apontamento.getProjetos_id(), apontamento.getUsuarios_id()).getTodosApontamentos().size() > 0) {
+            if (buscarApontamentoConsultor(apontamento.getProjetos_id(), apontamento.getUsuarios_id()).
+                    getTodosApontamentos().get(0).getStatus().equals("REPROVADO")) {
+                throw new NegocioException("Voce tem horas recusada");
+            }
         }
 
         HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
