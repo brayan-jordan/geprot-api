@@ -117,8 +117,10 @@ public class HorasService {
         }
 
         if (buscarApontamentoConsultor(apontamento.getProjetos_id(), apontamento.getUsuarios_id()).getTodosApontamentos().size() > 0) {
-            if (buscarApontamentoConsultor(apontamento.getProjetos_id(), apontamento.getUsuarios_id()).
-                    getTodosApontamentos().get(0).getStatus().equals("REPROVADO")) {
+            if (horasApontadasRepository.findAllProjectAndUsuario(
+                    projetoRepository.findByIdProjeto(apontamento.getProjetos_id()),
+                    usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id())).
+                    get(0).getStatus().equals("REPROVADO")) {
                 throw new NegocioException("Voce tem horas recusada");
             }
         }
