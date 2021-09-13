@@ -2,6 +2,7 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
+import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
 import net.weg.gestor.domain.model.HorasApontadas;
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,10 @@ public class HorasAssembler {
 
     public HorasApontadas toEntity(ApontamentoDeHoraInputDTO apontamento) {
         return modelMapper.map(apontamento, HorasApontadas.class);
+    }
+
+    public HorasApontadasTotalDTO toModelTotal(HorasApontadas horasApontadas) {
+        return modelMapper.map(horasApontadas, HorasApontadasTotalDTO.class);
     }
 
 }

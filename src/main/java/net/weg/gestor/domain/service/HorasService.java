@@ -34,43 +34,36 @@ public class HorasService {
         return horasApontadasRepository.findAll();
     }
 
-    public ArrayList<HorasApontadasTotalDTO> apontamentoTotal(Long projetoId) {
-        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
-        List<HorasApontadas> horasDoProjeto = horasApontadasRepository.findAllInAProject(projeto);
-        return convert(horasDoProjeto);
-    }
-
-    public ArrayList<HorasApontadasTotalDTO> convert(List<HorasApontadas> apontadas) {
-        // Gambiarra que falta otimizar
-        ArrayList<HorasApontadasTotalDTO> horasTotais = new ArrayList<HorasApontadasTotalDTO>();
-        long ultimaId = 0;
-        for (int i = 0; i < apontadas.size(); ++i) {
-            if (!(ultimaId == apontadas.get(i).getUsuario().getId())) {
-                List<HorasApontadas> porUsuario = horasApontadasRepository.findAllProjectAndUsuario(
-                        projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
-                        usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()));
-                HorasApontadasTotalDTO horasApontadasTotalDTO = new HorasApontadasTotalDTO();
-                horasApontadasTotalDTO.setConsultor_id(porUsuario.get(0).getUsuario().getId());
-                horasApontadasTotalDTO.setQuantidade_horas(
-                        consultoresAlocadosRepository.findByIdConsultor(porUsuario.get(0).getUsuario().getId()).getLimiteHoras());
-                horasApontadasTotalDTO.setStatus(porUsuario.get(0).getStatus());
-                horasApontadasTotalDTO.setNome(porUsuario.get(0).getUsuario().getNome());
-                horasApontadasTotalDTO.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser(
-                        projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
-                        usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId())));
-                if (horasApontadasRepository.findStatus(
-                        projetoRepository.findByIdProjeto(apontadas.get(i).getProjeto().getId()),
-                        usuarioRepository.findByIdUsuario(apontadas.get(i).getUsuario().getId()),
-                        "PENDENTE").size() > 0) {
-
-                    horasApontadasTotalDTO.setStatus("PENDENTE");
-                }
-                ultimaId = horasApontadasTotalDTO.getConsultor_id();
-                horasTotais.add(horasApontadasTotalDTO);
+    public ArrayList<HorasApontadasTotalDTO> getApontamentoTotal(Long projetoId) {
+        List<HorasApontadas> thisHorasApontadas = horasApontadasRepository.findTeste(projetoRepository.findByIdProjeto(projetoId));
+        ArrayList<HorasApontadasTotalDTO> listToReturn = new ArrayList<>();
+        for (int i = 0; i < thisHorasApontadas.size(); ++i) {
+            HorasApontadasTotalDTO horaApontada = new HorasApontadasTotalDTO();
+            ConsultoresAlocados consultor = consultoresAlocadosRepository.buscar
+                    (thisHorasApontadas.get(i).getUsuario().getId(), projetoId);
+            horaApontada.setQuantidade_horas(consultor.getLimiteHoras());
+            horaApontada.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser
+                    (projetoRepository.findByIdProjeto(projetoId),
+                            usuarioRepository.findByIdUsuario(consultor.getUsuarios_id())));
+            horaApontada.setNome(usuarioRepository.findByIdUsuario(consultor.getUsuarios_id()).getNome());
+            horaApontada.setConsultor_id(consultor.getUsuarios_id());
+            if (horasApontadasRepository.findStatus(
+                    projetoRepository.findByIdProjeto(projetoId),
+                    usuarioRepository.findByIdUsuario(consultor.getUsuarios_id()),
+                    "PENDENTE").size() > 0) {
+                horaApontada.setStatus("PENDENTE");
+            } else if (horasApontadasRepository.findStatus(
+                    projetoRepository.findByIdProjeto(projetoId),
+                    usuarioRepository.findByIdUsuario(consultor.getUsuarios_id()),
+                    "REPROVADO").size() > 0) {
+                horaApontada.setStatus("REPROVADO");
+            } else {
+                horaApontada.setStatus("APROVADO");
             }
+            listToReturn.add(horaApontada);
         }
-        return horasTotais;
 
+        return listToReturn;
     }
 
     public ListaApontamentoConsultor buscarApontamentoConsultor(Long projetoId, Long usuarioId) {

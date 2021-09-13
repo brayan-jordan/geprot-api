@@ -36,11 +36,6 @@ public class HorasController {
         return horasService.apontarHoras(apontamento);
     }
 
-    @GetMapping("/listar/{projetoId}")
-    ArrayList<HorasApontadasTotalDTO> listarPorProjeto(@PathVariable Long projetoId) {
-        return horasService.apontamentoTotal(projetoId);
-    }
-
     @GetMapping("/listar/{projetoId}/{usuarioId}")
     ListaApontamentoConsultor listarApontamentoConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
         return horasService.buscarApontamentoConsultor(projetoId, usuarioId);
@@ -54,6 +49,11 @@ public class HorasController {
     @GetMapping("/reprovar/{projetoId}/{usuarioId}")
     String reprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
         return horasService.reprovarApontamentosConsultor(projetoId, usuarioId);
+    }
+
+    @GetMapping("/listar/{projetoId}")
+    ArrayList<HorasApontadasTotalDTO> teste(@PathVariable Long projetoId) {
+        return horasService.getApontamentoTotal(projetoId);
     }
 
 }

@@ -15,6 +15,9 @@ public interface HorasApontadasRepository extends JpaRepository<HorasApontadas, 
     @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 ORDER BY usuario")
     List<HorasApontadas> findAllInAProject (Projeto projeto);
 
+    @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 GROUP BY usuario")
+    List<HorasApontadas> findTeste (Projeto projeto);
+
     @Query("SELECT h FROM HorasApontadas h WHERE h.projeto = ?1 AND h.usuario = ?2 ORDER BY usuario")
     List<HorasApontadas> findAllProjectAndUsuario(Projeto projeto, Usuario usuario);
 
