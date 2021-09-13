@@ -11,6 +11,6 @@ public class AlocarConsultorInputDTO {
 
     private Long usuarios_id;
 
-    private Long limiteHoras;
+    private int limiteHoras;
 
 }

@@ -48,8 +48,8 @@ public class ConsultoresAlocadosService {
         }
 
         Projeto projeto = projetoRepository.findByIdProjeto(alocarConsultorInputDTO.getProjetos_id());
-
         projeto.setValor(projeto.getValor() + (usuario.getPrecoHora() * alocarConsultorInputDTO.getLimiteHoras()));
+        projeto.setHorasPrevistas(projeto.getHorasPrevistas() + alocarConsultorInputDTO.getLimiteHoras());
         projetoRepository.save(projeto);
 
         ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
