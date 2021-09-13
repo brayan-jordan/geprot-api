@@ -23,5 +23,6 @@ public class UsuarioInputDTO {
 
     private SecaoInputDTO secao;
 
+    private double precoHora;
 
 }
