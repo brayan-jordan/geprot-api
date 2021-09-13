@@ -106,8 +106,19 @@ public class HorasService {
     }
 
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
+        ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(
+                apontamento.getUsuarios_id(), apontamento.getProjetos_id());
 
-        // perguntar pro professor porque o @Valid nao estava funcionando
+        if ((apontamento.getQuantidade_horas() + alocado.getHorasApontadas()) > alocado.getLimiteHoras()) {
+            throw new NegocioException("Voce esta tentando apontar mais horas que o seu limite!");
+        }
+
+        if (apontamentoTotal(apontamento.getProjetos_id()).size() > 0) {
+           if (apontamentoTotal(apontamento.getProjetos_id()).get(0).getStatus().equals("REPROVADO")) {
+               throw new NegocioException("Voce tem hora recusada, resolva elas primeiramente");
+           }
+        }
+
         HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
         horaApontada.setData(LocalDate.now());
         horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id()));
