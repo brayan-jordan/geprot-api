@@ -21,6 +21,7 @@ public class ConsultoresAlocadosService {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private ProjetoRepository projetoRepository;
+    private UsuarioService usuarioService;
     private UsuarioRepository usuarioRepository;
 
     public void saveConsultoresAlocados(ProjetoInputDTO project, Long idCadastrado) {
@@ -37,6 +38,11 @@ public class ConsultoresAlocadosService {
                 || !projetoRepository.existsById(alocarConsultorInputDTO.getProjetos_id())) {
             throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
         }
+
+        if (!usuarioService.buscar(alocarConsultorInputDTO.getUsuarios_id()).getPermissao().equals("ROLE_CONSULTOR")) {
+            throw new NegocioException("O usuário que você está tentando alocar não é um consultor");
+        }
+
         ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
         consultoresAlocadosRepository.save(newConsultor);
         return consultoresAlocadosAssembler.toModel(newConsultor);
