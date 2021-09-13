@@ -15,4 +15,6 @@ public class ListaApontamentoConsultor {
 
     private double valorGasto;
 
+    private String nome;
+
 }

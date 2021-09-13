@@ -85,6 +85,7 @@ public class HorasService {
         lista.setTotalHoras(horasApontadasRepository.buscarHoraTotalUser(
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
         lista.setValorGasto(lista.getTotalHoras() * usuarioRepository.findByIdUsuario(usuarioId).getPrecoHora());
+        lista.setNome(usuarioRepository.findByIdUsuario(usuarioId).getNome());
         return lista;
     }
 
@@ -115,6 +116,8 @@ public class HorasService {
     }
 
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
+
+
         ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(
                 apontamento.getUsuarios_id(), apontamento.getProjetos_id());
 
