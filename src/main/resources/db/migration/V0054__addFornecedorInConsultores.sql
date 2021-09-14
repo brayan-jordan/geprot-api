@@ -5,13 +5,13 @@ CREATE TABLE fornecedores (
 );
 
 INSERT INTO fornecedores VALUES
-    (1, "Senai empreendimentos LTDA"),
+    (1, "Sem fornecedor"),
     (2, "Daniela desenhos"),
     (3, "Fornecedor de peças"),
-    (4, "Pineapple Storm");
+    (4, "Senai empreendimentos");
 
 ALTER TABLE usuarios ADD COLUMN
-fornecedores_id BIGINT NOT NULL DEFAULT 0;
+fornecedores_id BIGINT NOT NULL DEFAULT 1;
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_fornecedores_id
 FOREIGN KEY (fornecedores_id) REFERENCES fornecedores(id);
