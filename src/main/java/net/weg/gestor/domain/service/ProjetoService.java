@@ -88,7 +88,7 @@ public class ProjetoService {
         List<ConsultoresAlocados> consultores = consultoresAlocadosRepository.findUnallocateds(usuarioId);
         for (int i = 0; i < consultores.size(); ++i) {
             projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto
-                    (consultores.get(0).getProjetos_id())));
+                    (consultores.get(i).getProjetos_id())));
         }
         return projetos;
     }
