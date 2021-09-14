@@ -20,6 +20,8 @@ public class ProjetoDTO {
     private int horasTrabalhadas;
     private int horasRestantes;
     private double valor;
+    private String nomeSolicitante;
+    private String nomeResponsavel;
     private double valorUtilizado;
     private double valorRestante;
     private StatusProjeto status;

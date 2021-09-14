@@ -16,6 +16,10 @@ public class ProjetoInputDTO {
 
     private String descricao;
 
+    private String nomeSolicitante;
+
+    private String nomeResponsavel;
+
     @Size(min = 1)
     private List<AlocarCCPagantesInputDTO> ccpagantes;
 

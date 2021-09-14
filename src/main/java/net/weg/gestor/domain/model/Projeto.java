@@ -52,6 +52,12 @@ public class Projeto {
 
     private String descricao;
 
+    @NotNull
+    private String nomeSolicitante;
+
+    @NotNull
+    private String nomeResponsavel;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "consultores_alocados", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
