@@ -3,6 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.RoleUsuarioDTO;
+import net.weg.gestor.api.model.UsuarioConsultorDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.model.Usuario;
@@ -72,6 +73,10 @@ public class UsuarioController {
         return roleUsuarioService.editarPermissaoUser(usuarioId);
     }
 
+    @GetMapping("/listar/consultores")
+    public List<UsuarioConsultorDTO> buscarConsultores() {
+        return usuarioService.buscarConsultores();
 
+    }
 
 }

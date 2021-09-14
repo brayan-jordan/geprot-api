@@ -14,7 +14,7 @@ public class UsuarioDTO {
     private String email;
     @JsonIgnore
     private String senha;
-    private SecoesDTO secao;
+    private SecaoDoUsuarioDTO secao;
     private double precoHora;
     private FornecedorDTO fornecedor;
     

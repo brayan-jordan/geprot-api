@@ -1,0 +1,1 @@
+UPDATE usuarios SET fornecedores_id = 1;

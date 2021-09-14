@@ -11,7 +11,7 @@ INSERT INTO fornecedores VALUES
     (4, "Pineapple Storm");
 
 ALTER TABLE usuarios ADD COLUMN
-fornecedores_id BIGINT NOT NULL;
+fornecedores_id BIGINT NOT NULL DEFAULT 0;
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_fornecedores_id
 FOREIGN KEY (fornecedores_id) REFERENCES fornecedores(id);

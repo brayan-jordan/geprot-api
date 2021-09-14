@@ -5,12 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SecaoDoUsuarioDTO {
+public class UsuarioConsultorDTO {
 
     private Long id;
-
     private String nome;
-
-    private String nome_responsavel;
+    private FornecedorDTO fornecedor;
+    private int demandas;
 
 }

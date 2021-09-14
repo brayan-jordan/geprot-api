@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.UsuarioConsultorDTO;
 import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
@@ -69,5 +70,9 @@ public class UsuarioService {
 
     public List<UsuarioDTO> listartodos() {
         return usuarioAssembler.toCollectionModel(usuarioRepository.findAll());
+    }
+
+    public List<UsuarioConsultorDTO> buscarConsultores() {
+        return usuarioAssembler.toCollectionModelConsultor(usuarioRepository.findConsultores());
     }
 }

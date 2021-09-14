@@ -143,7 +143,7 @@ public class HorasService {
         horaApontada.setProjeto(projetoRepository.findByIdProjeto(apontamento.getProjetos_id()));
         horaApontada.setStatus("PENDENTE");
         horasApontadasRepository.save(horaApontada);
-        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.findByIdConsultor(apontamento.getUsuarios_id());
+        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.buscar(apontamento.getUsuarios_id(), apontamento.getProjetos_id());
         consultoresAlocados.setHorasApontadas(consultoresAlocados.getHorasApontadas() + apontamento.getQuantidade_horas());
         consultoresAlocadosRepository.save(consultoresAlocados);
         Projeto projeto = projetoRepository.findByIdProjeto(apontamento.getProjetos_id());
