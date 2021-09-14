@@ -72,4 +72,6 @@ public class UsuarioController {
         return roleUsuarioService.editarPermissaoUser(usuarioId);
     }
 
+
+
 }

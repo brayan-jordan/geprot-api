@@ -5,16 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SecoesDTO {
+public class FornecedorDTO {
 
     private Long id;
 
     private String nome;
-
-    private int taxa;
-
-    private double verba;
-
-    private String nome_responsavel;
 
 }

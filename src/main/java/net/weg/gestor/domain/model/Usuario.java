@@ -2,6 +2,7 @@ package net.weg.gestor.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +31,10 @@ public class Usuario implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "secoes_id")
     private Secao secao;
+
+    @ManyToOne
+    @JoinColumn(name = "fornecedores_id")
+    private Fornecedor fornecedor;
 
     @NotBlank
     @Size(max = 100, min = 3)
