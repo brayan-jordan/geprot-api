@@ -79,4 +79,9 @@ public class UsuarioController {
 
     }
 
+    @GetMapping("/buscar/consultor/{consultorId}")
+    public UsuarioConsultorDTO buscarConsultor(@PathVariable Long consultorId) {
+        return usuarioService.buscarConsultor(consultorId);
+    }
+
 }

@@ -75,4 +75,8 @@ public class UsuarioService {
     public List<UsuarioConsultorDTO> buscarConsultores() {
         return usuarioAssembler.toCollectionModelConsultor(usuarioRepository.findConsultores());
     }
+
+    public UsuarioConsultorDTO buscarConsultor(Long consultorId) {
+        return usuarioAssembler.toModelConsultor(usuarioRepository.findConsultor(consultorId));
+    }
 }

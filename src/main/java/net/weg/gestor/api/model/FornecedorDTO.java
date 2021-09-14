@@ -11,4 +11,7 @@ public class FornecedorDTO {
 
     private String nome;
 
+    private String email;
+
+
 }
