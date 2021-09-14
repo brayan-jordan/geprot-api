@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class Secao {
     @NotBlank
     @Size(min = 5, max = 100)
     String nome;
+
+    @JoinColumn(name = "nome_responsavel")
+    @ManyToOne
+    @NotNull
+    private Usuario usuario;
 
     @NotBlank
     double verba;
