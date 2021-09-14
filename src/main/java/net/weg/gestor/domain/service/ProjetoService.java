@@ -7,6 +7,7 @@ import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
+import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
@@ -14,6 +15,7 @@ import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +29,7 @@ public class ProjetoService {
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
     private SecaoService secaoService;
+    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
 
     public List<ProjetoDTO> listartodos(Long secaoId) {
         Secao secao = secaoRepository.findByIdAux(secaoId);
@@ -78,6 +81,16 @@ public class ProjetoService {
         ccPagantesService.saveCcPagantes(projeto, projetoSalvo.getId());
         consultoresAlocadosService.saveConsultoresAlocados(projeto, projetoSalvo.getId());
         return "Projeto cadastrado";
+    }
+
+    public ArrayList<ProjetoDTO> findNoAllocateds(Long usuarioId) {
+        ArrayList<ProjetoDTO> projetos = new ArrayList<>();
+        List<ConsultoresAlocados> consultores = consultoresAlocadosRepository.findUnallocateds(usuarioId);
+        for (int i = 0; i < consultores.size(); ++i) {
+            projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto
+                    (consultores.get(0).getProjetos_id())));
+        }
+        return projetos;
     }
 
     public void editarAtrasado(Long idDoProjeto){

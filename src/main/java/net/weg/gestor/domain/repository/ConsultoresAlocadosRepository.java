@@ -23,4 +23,7 @@ public interface ConsultoresAlocadosRepository extends JpaRepository<Consultores
     @Query("SELECT c FROM ConsultoresAlocados c where c.usuarios_id =?1")
     List<ConsultoresAlocados> findByIdConsultor2(Long usuarioId);
 
+    @Query("SELECT c FROM ConsultoresAlocados c where c.usuarios_id !=?1 group by (projetos_id)")
+    List<ConsultoresAlocados> findUnallocateds(Long usuarioId);
+
 }

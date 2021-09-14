@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/secao/editar/{usuarioId}",
             "/secao/listar/{secaoId}",
             "/usuarios/listar/consultores",
-            "/usuarios/buscar/consultor/{consultorId}"
+            "/usuarios/buscar/consultor/{consultorId}",
+            "/projetos/naoalocados/{usuarioId}"
     };
 
     @Override

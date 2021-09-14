@@ -59,4 +59,9 @@ public class ProjetoController {
         projetoService.iniciarProjeto(projetoId);
     }
 
+    @GetMapping("/naoalocados/{usuarioId}")
+    public List<ProjetoDTO> buscarNaoAlocados(@PathVariable Long usuarioId) {
+        return projetoService.findNoAllocateds(usuarioId);
+    }
+
 }
