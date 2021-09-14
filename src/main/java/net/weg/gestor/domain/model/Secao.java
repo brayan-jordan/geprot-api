@@ -27,10 +27,8 @@ public class Secao {
     @Size(min = 5, max = 100)
     String nome;
 
-    @JoinColumn(name = "nome_responsavel")
-    @ManyToOne
-    @NotNull
-    private Usuario usuario;
+    @NotBlank
+    private String nome_responsavel;
 
     @NotBlank
     double verba;
