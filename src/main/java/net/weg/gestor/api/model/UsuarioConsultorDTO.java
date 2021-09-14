@@ -9,7 +9,7 @@ public class UsuarioConsultorDTO {
 
     private Long id;
     private String nome;
-    private FornecedorDTO fornecedor;
     private int demandas;
+    private FornecedorDTO fornecedor;
 
 }

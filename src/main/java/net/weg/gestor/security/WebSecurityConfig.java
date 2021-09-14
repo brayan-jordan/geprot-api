@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/horas/listar/{projetoId}/{usuarioId}",
             "/aprovar/{projetoId}/{usuarioId}",
             "/secao/editar/{usuarioId}",
-            "/secao/listar/{secaoId}"
+            "/secao/listar/{secaoId}",
+            "/usuarios/listar/consultores"
     };
 
     @Override
