@@ -41,12 +41,12 @@ public class HorasController {
         return horasService.buscarApontamentoConsultor(projetoId, usuarioId);
     }
 
-    @GetMapping("/aprovar/{projetoId}/{usuarioId}")
+    @PutMapping("/aprovar/{projetoId}/{usuarioId}")
     String aprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
         return horasService.aprovarApontamentosConsultor(projetoId, usuarioId);
     }
 
-    @GetMapping("/reprovar/{projetoId}/{usuarioId}")
+    @PutMapping("/reprovar/{projetoId}/{usuarioId}")
     String reprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
         return horasService.reprovarApontamentosConsultor(projetoId, usuarioId);
     }
