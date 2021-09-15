@@ -24,6 +24,7 @@ public class ProjetoService {
 
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
+    private VerificationsService verificationsService;
     private ProjetoAssembler projetoAssembler;
     private SecaoRepository secaoRepository;
     private CCPagantesService ccPagantesService;
@@ -36,6 +37,11 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
     }
 
+    public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
+        Secao secao = secaoRepository.findByIdAux(secaoId);
+        return projetoAssembler.toCollectionModel(secaoService.listarCardsStatus(secao, typeStatus));
+    }
+
     public ProjetoDTO listarPorId(Long projetoID){
         if (!projetoRepository.existsById(projetoID)){
             throw new NegocioException("Não existe um projeto com esse Id");
@@ -44,7 +50,7 @@ public class ProjetoService {
     }
 
     public List<ProjetoDTO> listarStatus(int typeStatus){
-        StatusProjeto status = returnTypeStatus(typeStatus);
+        StatusProjeto status = verificationsService.returnTypeStatus(typeStatus);
         return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
     }
 
@@ -137,19 +143,6 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    private StatusProjeto returnTypeStatus(int typeStatus) {
-        switch (typeStatus) {
-            case 1:
-                return StatusProjeto.NAO_INICIADO;
-            case 2:
-                return StatusProjeto.ATRASADO;
-            case 3:
-                return StatusProjeto.CONCLUIDO;
-            case 4:
-                return StatusProjeto.EM_ANDAMENTO;
-            default:
-                throw new NegocioException("Numero invalido");
-        }
-    }
+
 
 }

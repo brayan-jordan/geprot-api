@@ -22,6 +22,7 @@ import java.util.List;
 public class SecaoService {
 
     private SecaoRepository secaoRepository;
+    private VerificationsService verificationsService;
     private UsuarioRepository usuarioRepository;
     private UsuarioAssembler usuarioAssembler;
     private ProjetoRepository projetoRepository;
@@ -82,6 +83,19 @@ public class SecaoService {
         for (int i = 0; i < ccPagantes.size(); i ++){
             Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
             if(projeto.getId() != null){
+                projetos.add(projeto);
+            }
+        }
+        return projetos;
+    }
+
+    public List<Projeto> listarCardsStatus(Secao secao, int status){
+        StatusProjeto statusParaLista = verificationsService.returnTypeStatus(status);
+        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
+        List<Projeto> projetos = new ArrayList<>();
+        for (int i = 0; i < ccPagantes.size(); i ++){
+            Projeto projeto = projetoRepository.findByIdProjeto(ccPagantes.get(i).getProjetos_id());
+            if(projeto.getId() != null && projeto.getStatus().equals(statusParaLista)){
                 projetos.add(projeto);
             }
         }
