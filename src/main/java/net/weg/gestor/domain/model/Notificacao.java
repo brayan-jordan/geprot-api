@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -23,5 +24,9 @@ public class Notificacao {
 
     @JoinColumn(name = "usuarios_id")
     private Usuario usuario;
+
+    private LocalDate data;
+
+    private boolean status_leitura;
 
 }
