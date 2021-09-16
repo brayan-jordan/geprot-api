@@ -10,10 +10,12 @@ import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.HorasApontadas;
 import net.weg.gestor.domain.model.Projeto;
+import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,6 +31,7 @@ public class HorasService {
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
     private HorasAssembler horasAssembler;
+    private ComponentsService componentsService;
 
     public List<HorasApontadas> listarTodos() {
         return horasApontadasRepository.findAll();
@@ -88,69 +91,62 @@ public class HorasService {
     }
 
     public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId),
-                usuarioRepository.findByIdUsuario(usuarioId),
-                "PENDENTE"
-        );
-        for (int i = 0; i < horasApontadas.size(); ++i) {
-            horasApontadas.get(i).setStatus("APROVADO");
+        List<HorasApontadas> horasApontadas = componentsService.buscarHorasApontadas(projetoId, usuarioId);
+        if (horasApontadas.size() == 0) {
+            throw new NegocioException("Esse consultor já está com todas suas horas aprovadas");
+        }
+        for (HorasApontadas horasApontada : horasApontadas) {
+            horasApontada.setStatus("APROVADO");
         }
         horasApontadasRepository.saveAll(horasApontadas);
         return "Horas aprovadas com sucesso";
     }
 
     public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId),
-                usuarioRepository.findByIdUsuario(usuarioId),
-                "PENDENTE"
-        );
-        for (int i = 0; i < horasApontadas.size(); ++i) {
-            horasApontadas.get(i).setStatus("REPROVADO");
+        List<HorasApontadas> horasApontadas = componentsService.buscarHorasApontadas(projetoId, usuarioId);
+        if (horasApontadas.size() == 0) {
+            throw new NegocioException("Esse consultor não tem horas pendentes para serem reprovadas");
+        }
+        for (HorasApontadas horasApontada : horasApontadas) {
+            horasApontada.setStatus("REPROVADO");
         }
         horasApontadasRepository.saveAll(horasApontadas);
         return "Horas reprovadas com sucesso";
     }
 
     public String apontarHoras(ApontamentoDeHoraInputDTO apontamento) {
-        if (consultoresAlocadosRepository.existsVerify(
-                apontamento.getUsuarios_id(), apontamento.getProjetos_id()).isEmpty()) {
+        long consultorId = apontamento.getUsuarios_id();
+        long projetoId = apontamento.getProjetos_id();
+        if (consultoresAlocadosRepository.existsVerify(consultorId, projetoId).isEmpty()) {
             throw new NegocioException("Esse consultor não está alocado nesse projeto, tente novamente");
         }
 
-        ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(
-                apontamento.getUsuarios_id(), apontamento.getProjetos_id());
+        ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(consultorId, projetoId);
 
         if ((apontamento.getQuantidade_horas() + alocado.getHorasApontadas()) > alocado.getLimiteHoras()) {
             throw new NegocioException("Voce esta tentando apontar mais horas que o seu limite!");
         }
 
-        if (horasApontadasRepository.findAllProjectAndUsuario(
-                projetoRepository.findByIdProjeto(apontamento.getProjetos_id()),
-                usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id())).size() > 0) {
-            if (horasApontadasRepository.findAllProjectAndUsuario(
-                    projetoRepository.findByIdProjeto(apontamento.getProjetos_id()),
-                    usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id())).
-                    get(0).getStatus().equals("REPROVADO")) {
-                throw new NegocioException("Voce tem horas recusada");
-            }
+        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
+        Usuario consultor = usuarioRepository.findByIdUsuario(consultorId);
+
+        if (horasApontadasRepository.findStatus(projeto, consultor, "REPROVADO").size() > 0) {
+            throw new NegocioException("Ajuste primeiramente suas horas reprovadas para conseguir apontar novamente");
         }
 
         HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
         horaApontada.setData(LocalDate.now());
-        horaApontada.setUsuario(usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id()));
-        horaApontada.setProjeto(projetoRepository.findByIdProjeto(apontamento.getProjetos_id()));
+        horaApontada.setUsuario(consultor);
+        horaApontada.setProjeto(projeto);
         horaApontada.setStatus("PENDENTE");
         horasApontadasRepository.save(horaApontada);
-        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.buscar(apontamento.getUsuarios_id(), apontamento.getProjetos_id());
+        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.buscar(consultorId, projetoId);
         consultoresAlocados.setHorasApontadas(consultoresAlocados.getHorasApontadas() + apontamento.getQuantidade_horas());
         consultoresAlocadosRepository.save(consultoresAlocados);
-        Projeto projeto = projetoRepository.findByIdProjeto(apontamento.getProjetos_id());
+        Projeto projetoEdit = projetoRepository.findByIdProjeto(projetoId);
         projeto.setHorasTrabalhadas(projeto.getHorasTrabalhadas() + horaApontada.getQuantidade_horas());
-        projeto.setValorUtilizado(projeto.getValorUtilizado() +
-                usuarioRepository.findByIdUsuario(apontamento.getUsuarios_id()).getPrecoHora() *
-                apontamento.getQuantidade_horas());
+        projeto.setValorUtilizado(
+                projeto.getValorUtilizado() + consultor.getPrecoHora() * apontamento.getQuantidade_horas());
         projetoRepository.save(projeto);
         return "Hora apontada com sucesso";
     }
