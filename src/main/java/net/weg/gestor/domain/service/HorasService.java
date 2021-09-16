@@ -92,7 +92,7 @@ public class HorasService {
     }
 
     public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "APROVADO");
+        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
         if (horasApontadas.size() == 0) {
             throw new NegocioException("Esse consultor já está com todas suas horas aprovadas");
         }

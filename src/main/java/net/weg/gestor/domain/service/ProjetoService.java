@@ -91,10 +91,11 @@ public class ProjetoService {
 
     public ArrayList<ProjetoDTO> findNoAllocateds(Long usuarioId) {
         ArrayList<ProjetoDTO> projetos = new ArrayList<>();
-        List<ConsultoresAlocados> consultores = consultoresAlocadosRepository.findUnallocateds(usuarioId);
-        for (int i = 0; i < consultores.size(); ++i) {
-            projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto
-                    (consultores.get(i).getProjetos_id())));
+        List<Projeto> projetosCadastrados = projetoRepository.findAll();
+        for (int i = 0; i < projetosCadastrados.size(); ++i) {
+            if (!consultoresAlocadosRepository.exists(usuarioId, projetosCadastrados.get(i).getId()).isPresent()) {
+                projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetosCadastrados.get(i).getId())));
+            }
         }
         return projetos;
     }
