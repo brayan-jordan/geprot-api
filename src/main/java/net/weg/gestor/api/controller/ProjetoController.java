@@ -25,7 +25,7 @@ public class ProjetoController {
     @GetMapping("/listar/{secaoId}/{typeStatus}")
     public List<ProjetoDTO> listarTodosProjetosDaSecaoPorStatus(@PathVariable Long secaoId, @PathVariable int typeStatus){
         if (typeStatus == 0) {
-            projetoService.listartodos(secaoId);
+            return projetoService.listartodos(secaoId);
         }
         return projetoService.listartodosstatus(secaoId, typeStatus);
     }
