@@ -15,7 +15,6 @@ import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -71,12 +70,14 @@ public class HorasService {
 
     public ListaApontamentoConsultor buscarApontamentoConsultor(Long projetoId, Long usuarioId) {
         ListaApontamentoConsultor lista = new ListaApontamentoConsultor();
-        lista.setTodosApontamentos(horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "APROVADO")));
-        List<ColunaHoraApontadaDTO> listToUse = horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "REPROVADO"));
-        List<ColunaHoraApontadaDTO> listToUse2 = horasAssembler.toCollectionModel(horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId), "PENDENTE"));
+        Usuario usuario = usuarioRepository.findByIdUsuario(usuarioId);
+        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
+        lista.setTodosApontamentos(horasAssembler.toCollectionModel(
+                componentsService.buscarHorasPorStatus(projetoId, usuarioId, "APROVADO")));
+        List<ColunaHoraApontadaDTO> listToUse = horasAssembler.toCollectionModel(
+                componentsService.buscarHorasPorStatus(projetoId, usuarioId, "REPROVADO"));
+        List<ColunaHoraApontadaDTO> listToUse2 = horasAssembler.toCollectionModel(
+                componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE"));
         for (int i = 0; i < listToUse.size(); ++i) {
             lista.getTodosApontamentos().add(listToUse.get(0));
         }
@@ -91,7 +92,7 @@ public class HorasService {
     }
 
     public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = componentsService.buscarHorasApontadas(projetoId, usuarioId);
+        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "APROVADO");
         if (horasApontadas.size() == 0) {
             throw new NegocioException("Esse consultor já está com todas suas horas aprovadas");
         }
@@ -103,7 +104,7 @@ public class HorasService {
     }
 
     public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-        List<HorasApontadas> horasApontadas = componentsService.buscarHorasApontadas(projetoId, usuarioId);
+        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
         if (horasApontadas.size() == 0) {
             throw new NegocioException("Esse consultor não tem horas pendentes para serem reprovadas");
         }
