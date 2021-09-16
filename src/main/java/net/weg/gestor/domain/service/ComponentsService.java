@@ -17,11 +17,11 @@ public class ComponentsService {
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
 
-    public List<HorasApontadas> buscarHorasApontadas(Long projetoId, Long usuarioId) {
+    public List<HorasApontadas> buscarHorasPorStatus(Long projetoId, Long usuarioId, String status) {
         return (horasApontadasRepository.findStatus(
                 projetoRepository.findByIdProjeto(projetoId),
                 usuarioRepository.findByIdUsuario(usuarioId),
-                "PENDENTE"
+                status
         ));
     }
 
