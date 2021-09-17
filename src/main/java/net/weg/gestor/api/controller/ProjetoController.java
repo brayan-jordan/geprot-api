@@ -1,6 +1,7 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
 import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.service.ProjetoService;
@@ -71,5 +72,10 @@ public class ProjetoController {
     public List<ProjetoDTO> buscarNaoAlocados(@PathVariable Long usuarioId) {
         return projetoService.findNoAllocateds(usuarioId);
     }
+
+//    @GetMapping("/teste/{secaoId}")
+//    public List<BaseDashboardConcluidosDTO> teste(@PathVariable long secaoId) {
+//        return projetoService.buscar7days(secaoId);
+//    }
 
 }
