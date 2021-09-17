@@ -3,6 +3,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
 import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
@@ -35,6 +36,12 @@ public class ProjetoService {
     public List<ProjetoDTO> listartodos(Long secaoId) {
         Secao secao = secaoRepository.findByIdAux(secaoId);
         return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
+    }
+
+    // brayan fazendo cagadinhas
+    public List<ProjetoDTO> listartodos2(Long secaoId, LocalDate data) {
+        Secao secao = secaoRepository.findByIdAux(secaoId);
+        return projetoAssembler.toCollectionModel(secaoService.listarCardsTeste(secao, data));
     }
 
     public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
@@ -144,6 +151,18 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
+//    public List<BaseDashboardConcluidosDTO> buscar7days(long secaoId) {
+//        List<BaseDashboardConcluidosDTO> lista = new ArrayList<>();
+//        for (int i = 1; i < 8; ++i) {
+//            BaseDashboardConcluidosDTO base = new BaseDashboardConcluidosDTO();
+//            base.setData(LocalDate.now().minusDays(i));
+//            base.setQuantidade();
+//        }
+//        LocalDate dateMenos7 = LocalDate.now().minusDays(7);
+//        System.out.println(dateMenos7);
+//
+//
+//    }
 
 
 }
