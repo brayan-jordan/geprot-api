@@ -46,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/usuarios/buscar/consultor/{consultorId}",
             "/projetos/listar/{secaoId}/{typeStatus}",
             "/projetos/naoalocados/{usuarioId}"
+
     };
 
     @Override
@@ -58,10 +59,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, GESTOR_LIST).permitAll()
-                .antMatchers(HttpMethod.PUT, GESTOR_LIST).permitAll()
-                .antMatchers(HttpMethod.POST,GESTOR_LIST).permitAll()
-                .antMatchers(HttpMethod.DELETE,GESTOR_LIST).permitAll()
+                .antMatchers(HttpMethod.GET, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PUT, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.POST,GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.DELETE,GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.GET, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.PUT, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.POST,USUARIO_LIST).permitAll()

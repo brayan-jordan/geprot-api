@@ -19,4 +19,12 @@ public class DashboardSecaoDTO {
 
     private double verbasAprovadas;
 
+    private double restoProjetosAtrasados;
+
+    private double restoProjetosEmAndamento;
+
+    private double restoProjetosNaoIniciados;
+
+
+
 }

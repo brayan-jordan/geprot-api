@@ -61,6 +61,9 @@ public class SecaoService {
         dashboardSecaoDTO.setProjetosNaoIniciados(this.porcentoStatus(StatusProjeto.NAO_INICIADO, secao));
         dashboardSecaoDTO.setVerbasAprovadas(secaoRepository.findByIdAux(secaoId).getVerba());
         dashboardSecaoDTO.setVerbasDisponivel(dashboardSecaoDTO.getVerbasAprovadas() - this.SomaVerbaProjetos(secao));
+        dashboardSecaoDTO.setRestoProjetosAtrasados(100 - dashboardSecaoDTO.getProjetosAtrasados());
+        dashboardSecaoDTO.setRestoProjetosEmAndamento(100 - dashboardSecaoDTO.getProjetosEmAndamento());
+        dashboardSecaoDTO.setRestoProjetosNaoIniciados(100 - dashboardSecaoDTO.getProjetosNaoIniciados());
         return dashboardSecaoDTO;
     }
 
