@@ -73,9 +73,9 @@ public class ProjetoController {
         return projetoService.findNoAllocateds(usuarioId);
     }
 
-//    @GetMapping("/teste/{secaoId}")
-//    public List<BaseDashboardConcluidosDTO> teste(@PathVariable long secaoId) {
-//        return projetoService.buscar7days(secaoId);
-//    }
+    @GetMapping("/concluidos/7dias/{secaoId}")
+    public List<BaseDashboardConcluidosDTO> teste(@PathVariable long secaoId) {
+        return projetoService.buscar7days(secaoId);
+    }
 
 }
