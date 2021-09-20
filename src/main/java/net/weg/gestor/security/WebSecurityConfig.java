@@ -43,10 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/usuarios/buscar/consultor/{consultorId}",
             "/projetos/listar/{secaoId}/{typeStatus}",
             "/projetos/naoalocados/{usuarioId}",
-            "/consultores/alocar"
+            "/consultores/alocar",
 };
     private static final String[] USUARIO_LIST = {
-
+            "/  projetos/concluidos/7dias/{secaoId}"
     };
 
     @Override

@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
 import net.weg.gestor.api.model.ProjetoDTO;
-import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
@@ -100,7 +98,7 @@ public class ProjetoService {
         ArrayList<ProjetoDTO> projetos = new ArrayList<>();
         List<Projeto> projetosCadastrados = projetoRepository.findAll();
         for (int i = 0; i < projetosCadastrados.size(); ++i) {
-            if (!consultoresAlocadosRepository.exists(usuarioId, projetosCadastrados.get(i).getId()).isPresent()) {
+            if (consultoresAlocadosRepository.exists(usuarioId, projetosCadastrados.get(i).getId()).isEmpty()) {
                 projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetosCadastrados.get(i).getId())));
             }
         }
