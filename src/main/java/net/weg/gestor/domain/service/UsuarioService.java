@@ -8,6 +8,7 @@ import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class UsuarioService {
     private SecaoRepository secaoRepository;
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
+    private FornecedorRepository fornecedorRepository;
 
     @Transactional
     public Usuario cadastrar(Usuario usuario) {
@@ -35,6 +37,10 @@ public class UsuarioService {
 
         if (usuarioRepository.existsById(usuario.getId())) {
             throw new NegocioException("Já existe um gestor com esse ID");
+        }
+
+        if (!fornecedorRepository.existsById(usuario.getFornecedor().getId())) {
+            throw new NegocioException("Não existe um fornecedor com esse ID");
         }
         return usuarioRepository.save(usuario);
     }

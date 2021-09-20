@@ -8,6 +8,7 @@ import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.model.RoleUsuarios;
+import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.service.UsuarioService;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.service.RoleUsuarioService;
@@ -27,6 +28,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
+    private FornecedorRepository fornecedorRepository;
 
 
     @GetMapping("/buscar/{usuarioId}")
@@ -57,6 +59,7 @@ public class UsuarioController {
         novaRole.setUsuarios_id(novoUsuario.getId());
         novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         novoUsuario.getSecao().setId(usuario.getSecao().getId());
+        novoUsuario.setFornecedor(fornecedorRepository.findByIdFornecedor(usuario.getIdFornecedor().getId()));
         Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
         novaRole.setRole_nome("ROLE_CONSULTOR");
         roleUsuarioService.cadastrar(novaRole);
