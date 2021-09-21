@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
+import net.weg.gestor.api.model.BasePorPeriodoDashboardDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,5 +25,28 @@ public class DashboardService {
         }
         return  lista;
     }
+
+    public List<BasePorPeriodoDashboardDTO> buscarUltimoMes(long secaoId) {
+        List<BasePorPeriodoDashboardDTO> lista = new ArrayList<>();
+        for (long i = 0; i < 4; ++i) {
+            BasePorPeriodoDashboardDTO base = new BasePorPeriodoDashboardDTO();
+            // data
+            LocalDate dataFinalPeriodo, dataInicioPeriodo;
+            // verificação, caso o index for igual a 0 é o primeiro periodo, o que indica que terminou a apenas um dia
+            // nao sendo necessário nenhuma multiplicação
+            if (i == 0) {
+                dataFinalPeriodo = LocalDate.now().minusDays(1);
+            } else {
+                dataFinalPeriodo = LocalDate.now().minusDays((i * 7 + 1));
+            }
+            dataInicioPeriodo = dataFinalPeriodo.minusDays(6);
+            base.setFinalPeriodo(dataFinalPeriodo);
+            base.setInicioPeriodo(dataInicioPeriodo);
+            base.setQuantidade(projetoService.countProjetosConcluidosPorPeriodo(secaoId, dataInicioPeriodo, dataFinalPeriodo));
+            lista.add(base);
+        }
+        return  lista;
+    }
+
 
 }

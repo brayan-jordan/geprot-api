@@ -93,19 +93,6 @@ public class SecaoService {
         return projetos;
     }
 
-    // brayan fazendo gambiarras, dps dou um jeito
-    public List<Projeto> listarCardsTeste(Secao secao, LocalDate date){
-        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
-        List<Projeto> projetos = new ArrayList<>();
-        for (int i = 0; i < ccPagantes.size(); i ++){
-            Projeto projeto = projetoRepository.findByIdAndDate(ccPagantes.get(i).getProjetos_id(), date);
-            if(projeto.getId() != null){
-                projetos.add(projeto);
-            }
-        }
-        return projetos;
-    }
-
     public List<Projeto> listarCardsStatus(Secao secao, int status){
         StatusProjeto statusParaLista = verificationsService.returnTypeStatus(status);
         List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());

@@ -36,12 +36,6 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
     }
 
-    // brayan fazendo cagadinhas
-    public List<ProjetoDTO> listartodos2(Long secaoId, LocalDate data) {
-        Secao secao = secaoRepository.findByIdAux(secaoId);
-        return projetoAssembler.toCollectionModel(secaoService.listarCardsTeste(secao, data));
-    }
-
     public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
         Secao secao = secaoRepository.findByIdAux(secaoId);
         return projetoAssembler.toCollectionModel(secaoService.listarCardsStatus(secao, typeStatus));
@@ -149,14 +143,26 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-
-
     public int countProjetosConcluidos(Long secaoId, LocalDate data) {
         int quantidadeConcluidos = 0;
         List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
         for (Projeto projeto : projetos) {
             if (projeto.getDataFinalizacao() != null) {
                 if (projeto.getDataFinalizacao().isEqual(data)) {
+                    quantidadeConcluidos++;
+                }
+            }
+        }
+        return quantidadeConcluidos;
+    }
+
+    public int countProjetosConcluidosPorPeriodo(Long secaoId, LocalDate dataInicio, LocalDate dataFinal) {
+        int quantidadeConcluidos = 0;
+        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
+        for (Projeto projeto : projetos) {
+            if (projeto.getDataFinalizacao() != null) {
+                if ((projeto.getDataFinalizacao().isAfter(dataInicio) || projeto.getDataFinalizacao().isEqual(dataInicio))
+                        && (projeto.getDataFinalizacao().isBefore(dataFinal) || projeto.getDataFinalizacao().isEqual(dataFinal))) {
                     quantidadeConcluidos++;
                 }
             }
