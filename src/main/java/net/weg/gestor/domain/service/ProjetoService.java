@@ -149,16 +149,7 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    public List<BaseDashboardConcluidosDTO> buscar7days(long secaoId) {
-        List<BaseDashboardConcluidosDTO> lista = new ArrayList<>();
-        for (int i = 1; i < 8; ++i) {
-            BaseDashboardConcluidosDTO base = new BaseDashboardConcluidosDTO();
-            base.setData(LocalDate.now().minusDays(i));
-            base.setQuantidade(countProjetosConcluidos(secaoId, LocalDate.now().minusDays(i)));
-            lista.add(base);
-        }
-        return  lista;
-    }
+
 
     public int countProjetosConcluidos(Long secaoId, LocalDate data) {
         int quantidadeConcluidos = 0;
