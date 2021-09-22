@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
+import net.weg.gestor.api.model.BasePorMesDashboardDTO;
 import net.weg.gestor.api.model.BasePorPeriodoDashboardDTO;
 import org.springframework.stereotype.Service;
 
@@ -48,23 +49,16 @@ public class DashboardService {
         return  lista;
     }
 
-    public List<BasePorPeriodoDashboardDTO> buscarUltimos6meses(long secaoId) {
-        List<BasePorPeriodoDashboardDTO> lista = new ArrayList<>();
-        for (long i = 0; i < 4; ++i) {
-            BasePorPeriodoDashboardDTO base = new BasePorPeriodoDashboardDTO();
-            // data
-            LocalDate dataFinalPeriodo, dataInicioPeriodo;
-            // verificação, caso o index for igual a 0 é o primeiro periodo, o que indica que terminou a apenas um dia
-            // nao sendo necessário nenhuma multiplicação
-            if (i == 0) {
-                dataFinalPeriodo = LocalDate.now().minusDays(1);
-            } else {
-                dataFinalPeriodo = LocalDate.now().minusDays((i * 7 + 1));
+    public List<BasePorMesDashboardDTO> buscarUltimos6meses(long secaoId) {
+        List<BasePorMesDashboardDTO> lista = new ArrayList<>();
+        for (long i = 0; i < 6; ++i) {
+            LocalDate dataParaUsar = LocalDate.now();
+            if (i != 0) {
+                dataParaUsar = dataParaUsar.minusMonths(i);
             }
-            dataInicioPeriodo = dataFinalPeriodo.minusDays(6);
-            base.setFinalPeriodo(dataFinalPeriodo);
-            base.setInicioPeriodo(dataInicioPeriodo);
-            base.setQuantidade(projetoService.countProjetosConcluidosPorPeriodo(secaoId, dataInicioPeriodo, dataFinalPeriodo));
+            BasePorMesDashboardDTO base = new BasePorMesDashboardDTO();
+            base.setMesAno(dataParaUsar.getMonth()+" "+dataParaUsar.getYear());
+            base.setQuantidade(projetoService.countProjetosConcluidosPorMes(secaoId, dataParaUsar.getMonth(), dataParaUsar.getYear()));
             lista.add(base);
         }
         return  lista;

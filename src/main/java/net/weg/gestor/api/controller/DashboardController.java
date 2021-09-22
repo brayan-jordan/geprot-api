@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
+import net.weg.gestor.api.model.BasePorMesDashboardDTO;
 import net.weg.gestor.api.model.BasePorPeriodoDashboardDTO;
 import net.weg.gestor.domain.service.DashboardService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,11 @@ public class DashboardController {
     @GetMapping("/concluidos/ultimoMes/{secaoId}")
     public List<BasePorPeriodoDashboardDTO> buscarUltimoMes(@PathVariable long secaoId) {
         return dashboardService.buscarUltimoMes(secaoId);
+    }
+
+    @GetMapping("/concluidos/ultimos6Meses/{secaoId}")
+    public List<BasePorMesDashboardDTO> buscarUltimos6Mes(@PathVariable long secaoId) {
+        return dashboardService.buscarUltimos6meses(secaoId);
     }
 
 }

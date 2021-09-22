@@ -11,9 +11,11 @@ import net.weg.gestor.domain.model.Projeto;
 import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,6 +165,19 @@ public class ProjetoService {
             if (projeto.getDataFinalizacao() != null) {
                 if ((projeto.getDataFinalizacao().isAfter(dataInicio) || projeto.getDataFinalizacao().isEqual(dataInicio))
                         && (projeto.getDataFinalizacao().isBefore(dataFinal) || projeto.getDataFinalizacao().isEqual(dataFinal))) {
+                    quantidadeConcluidos++;
+                }
+            }
+        }
+        return quantidadeConcluidos;
+    }
+
+    public int countProjetosConcluidosPorMes(Long secaoId, Month month, int year) {
+        int quantidadeConcluidos = 0;
+        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
+        for (Projeto projeto : projetos) {
+            if (projeto.getDataFinalizacao() != null) {
+                if (projeto.getDataFinalizacao().getMonth() == month && projeto.getDataFinalizacao().getYear() == year) {
                     quantidadeConcluidos++;
                 }
             }
