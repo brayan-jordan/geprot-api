@@ -35,8 +35,13 @@ public class DashboardController {
     }
 
     @GetMapping("/concluidos/ultimos6Meses/{secaoId}")
-    public List<BasePorMesDashboardDTO> buscarUltimos6Mes(@PathVariable long secaoId) {
+    public List<BasePorMesDashboardDTO> buscarUltimos6meses(@PathVariable long secaoId) {
         return dashboardService.buscarUltimos6meses(secaoId);
+    }
+
+    @GetMapping("/concluidos/ultimoano/{secaoId}")
+    public List<BasePorMesDashboardDTO> buscarUltimoAno(@PathVariable long secaoId) {
+        return dashboardService.buscarUltimoAno(secaoId);
     }
 
 }

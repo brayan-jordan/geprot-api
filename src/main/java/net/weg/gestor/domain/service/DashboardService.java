@@ -64,5 +64,19 @@ public class DashboardService {
         return  lista;
     }
 
+    public List<BasePorMesDashboardDTO> buscarUltimoAno(long secaoId) {
+        List<BasePorMesDashboardDTO> lista = new ArrayList<>();
+        for (long i = 0; i < 12; ++i) {
+            LocalDate dataParaUsar = LocalDate.now();
+            if (i != 0) {
+                dataParaUsar = dataParaUsar.minusMonths(i);
+            }
+            BasePorMesDashboardDTO base = new BasePorMesDashboardDTO();
+            base.setMesAno(dataParaUsar.getMonth()+" "+dataParaUsar.getYear());
+            base.setQuantidade(projetoService.countProjetosConcluidosPorMes(secaoId, dataParaUsar.getMonth(), dataParaUsar.getYear()));
+            lista.add(base);
+        }
+        return  lista;
+    }
 
 }
