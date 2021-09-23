@@ -25,16 +25,16 @@ public class DashboardController {
     private DashboardService dashboardService;
 
     @GetMapping("/concluidos/7dias/{secaoId}")
-    public List<BaseDashboardConcluidosDTO> buscar7days(@PathVariable long secaoId) {
+    public List<BasePorMesDashboardDTO> buscar7days(@PathVariable long secaoId) {
         return dashboardService.buscar7days(secaoId);
     }
 
     @GetMapping("/concluidos/ultimoMes/{secaoId}")
-    public List<BasePorPeriodoDashboardDTO> buscarUltimoMes(@PathVariable long secaoId) {
+    public List<BasePorMesDashboardDTO> buscarUltimoMes(@PathVariable long secaoId) {
         return dashboardService.buscarUltimoMes(secaoId);
     }
 
-    @GetMapping("/concluidos/ultimos6Meses/{secaoId}")
+    @GetMapping("/concluidos/ultimos6meses/{secaoId}")
     public List<BasePorMesDashboardDTO> buscarUltimos6meses(@PathVariable long secaoId) {
         return dashboardService.buscarUltimos6meses(secaoId);
     }

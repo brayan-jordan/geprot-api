@@ -7,6 +7,7 @@ import net.weg.gestor.api.model.BasePorPeriodoDashboardDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,33 +17,27 @@ public class DashboardService {
 
     private ProjetoService projetoService;
 
-    public List<BaseDashboardConcluidosDTO> buscar7days(long secaoId) {
-        List<BaseDashboardConcluidosDTO> lista = new ArrayList<>();
+    public List<BasePorMesDashboardDTO> buscar7days(long secaoId) {
+        List<BasePorMesDashboardDTO> lista = new ArrayList<>();
         for (int i = 1; i < 8; ++i) {
-            BaseDashboardConcluidosDTO base = new BaseDashboardConcluidosDTO();
-            base.setData(LocalDate.now().minusDays(i));
+            BasePorMesDashboardDTO base = new BasePorMesDashboardDTO();
+            base.setMesAno(LocalDate.now().minusDays(i).format(DateTimeFormatter.ofPattern("dd/MM")));
             base.setQuantidade(projetoService.countProjetosConcluidos(secaoId, LocalDate.now().minusDays(i)));
             lista.add(base);
         }
         return  lista;
     }
 
-    public List<BasePorPeriodoDashboardDTO> buscarUltimoMes(long secaoId) {
-        List<BasePorPeriodoDashboardDTO> lista = new ArrayList<>();
+    public List<BasePorMesDashboardDTO> buscarUltimoMes(long secaoId) {
+        List<BasePorMesDashboardDTO> lista = new ArrayList<>();
         for (long i = 0; i < 4; ++i) {
-            BasePorPeriodoDashboardDTO base = new BasePorPeriodoDashboardDTO();
-            // data
+            BasePorMesDashboardDTO base = new BasePorMesDashboardDTO();
             LocalDate dataFinalPeriodo, dataInicioPeriodo;
-            // verificação, caso o index for igual a 0 é o primeiro periodo, o que indica que terminou a apenas um dia
-            // nao sendo necessário nenhuma multiplicação
-            if (i == 0) {
-                dataFinalPeriodo = LocalDate.now().minusDays(1);
-            } else {
-                dataFinalPeriodo = LocalDate.now().minusDays((i * 7 + 1));
-            }
+            dataFinalPeriodo = LocalDate.now().minusDays(1);dataFinalPeriodo = LocalDate.now().minusDays((i * 7 + 1));
             dataInicioPeriodo = dataFinalPeriodo.minusDays(6);
-            base.setFinalPeriodo(dataFinalPeriodo);
-            base.setInicioPeriodo(dataInicioPeriodo);
+            String teste1 = dataInicioPeriodo.format(DateTimeFormatter.ofPattern("dd/MM"));
+            String teste2 = dataFinalPeriodo.format(DateTimeFormatter.ofPattern("dd/MM"));
+            base.setMesAno(teste1 + " - " + teste2);
             base.setQuantidade(projetoService.countProjetosConcluidosPorPeriodo(secaoId, dataInicioPeriodo, dataFinalPeriodo));
             lista.add(base);
         }
@@ -72,7 +67,7 @@ public class DashboardService {
                 dataParaUsar = dataParaUsar.minusMonths(i);
             }
             BasePorMesDashboardDTO base = new BasePorMesDashboardDTO();
-            base.setMesAno(dataParaUsar.getMonth()+" "+dataParaUsar.getYear());
+            base.setMesAno(dataParaUsar.format(DateTimeFormatter.ofPattern("MM/yy")));
             base.setQuantidade(projetoService.countProjetosConcluidosPorMes(secaoId, dataParaUsar.getMonth(), dataParaUsar.getYear()));
             lista.add(base);
         }
