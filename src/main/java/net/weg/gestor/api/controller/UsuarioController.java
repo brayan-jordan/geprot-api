@@ -58,7 +58,7 @@ public class UsuarioController {
         RoleUsuarios novaRole = new RoleUsuarios();
         novaRole.setUsuarios_id(novoUsuario.getId());
         novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-        novoUsuario.getSecao().setId(usuario.getSecao().getId());
+            novoUsuario.getSecao().setId(usuario.getSecao().getId());
         novoUsuario.setFornecedor(fornecedorRepository.findByIdFornecedor(usuario.getIdFornecedor().getId()));
         Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
         novaRole.setRole_nome("ROLE_CONSULTOR");
