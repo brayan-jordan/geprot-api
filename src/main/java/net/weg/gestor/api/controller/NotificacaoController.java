@@ -23,4 +23,9 @@ public class NotificacaoController {
         return notificacaoService.buscarTodasNotificacoes(usuarioId);
     }
 
+    @PutMapping("/marcarlida/{notificacaoId}")
+    public String marcarLida(@PathVariable Long notificacaoId) {
+        return notificacaoService.marcarLida(notificacaoId);
+    }
+
 }

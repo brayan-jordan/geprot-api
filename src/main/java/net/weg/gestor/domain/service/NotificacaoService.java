@@ -42,6 +42,14 @@ public class NotificacaoService {
         return infoNotificacoesDTO;
     }
 
+    public String marcarLida(Long notificacaoId) {
+        Notificacao notificacao = notificacaoRepository.findById(notificacaoId).orElseThrow(() -> new NegocioException("Erro"));
+        notificacao.setStatusLeitura(true);
+        notificacaoRepository.save(notificacao);
+        return "Deu boa";
+
+    }
+
     public Notificacao preencherDados(long usuarioId) {
         Notificacao notificacao = new Notificacao();
         notificacao.setData(LocalDate.now());
