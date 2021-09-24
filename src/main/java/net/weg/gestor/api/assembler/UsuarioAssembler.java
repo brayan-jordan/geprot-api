@@ -14,6 +14,7 @@ import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,7 @@ public class UsuarioAssembler {
     public UsuarioConsultorDTO toModelConsultor(Usuario usuario) {
         UsuarioConsultorDTO returnUsuario = modelMapper.map(usuario, UsuarioConsultorDTO.class);
         returnUsuario.setDemandas(consultoresAlocadosRepository.findByIdConsultor2(returnUsuario.getId()).size());
+        returnUsuario.setDataFormatada(returnUsuario.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         return returnUsuario;
     }
 

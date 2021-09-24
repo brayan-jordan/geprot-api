@@ -2,6 +2,9 @@ package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.domain.model.StatusUsuario;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,5 +16,8 @@ public class UsuarioConsultorDTO {
     private String email;
     private double precoHora;
     private FornecedorDTO fornecedor;
+    private LocalDate dataCadastro;
+    private StatusUsuario status;
+    private String dataFormatada;
 
 }
