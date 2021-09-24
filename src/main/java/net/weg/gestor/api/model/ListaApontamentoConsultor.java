@@ -17,4 +17,6 @@ public class ListaApontamentoConsultor {
 
     private String nome;
 
+    private String statusTotal;
+
 }

@@ -88,6 +88,19 @@ public class HorasService {
                 projetoRepository.findByIdProjeto(projetoId), usuarioRepository.findByIdUsuario(usuarioId)));
         lista.setValorGasto(lista.getTotalHoras() * usuarioRepository.findByIdUsuario(usuarioId).getPrecoHora());
         lista.setNome(usuarioRepository.findByIdUsuario(usuarioId).getNome());
+        lista.setStatusTotal("POSSIVEL");
+        // verificacoes para retornar para fazer o botao se tem horas possiveis para aprovar
+        // nada que um // gambiarra nao resolva
+        for(int i = 0; i < lista.getTodosApontamentos().size(); ++i) {
+            if (lista.getTodosApontamentos().get(i).getStatus().equals("REPROVADO")) {
+                lista.setStatusTotal("NAO_POSSIVEL");
+            }
+        }
+        if (horasApontadasRepository.findStatus(projetoRepository.findByIdProjeto(projetoId),
+                usuarioRepository.findByIdUsuario(usuarioId), "APROVADO").size() == lista.getTodosApontamentos().size()) {
+            lista.setStatusTotal("NAO_POSSIVEL");
+        }
+
         return lista;
     }
 
