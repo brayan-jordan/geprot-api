@@ -17,16 +17,19 @@ import java.time.LocalDate;
 public class Notificacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String descricao;
 
     @JoinColumn(name = "usuarios_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 
     private LocalDate data;
 
-    private boolean status_leitura;
+    private boolean statusLeitura;
+
+    private TypeNotificacao tipo;
 
 }
