@@ -7,6 +7,7 @@ import net.weg.gestor.api.model.UsuarioDTO;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Secao;
+import net.weg.gestor.domain.model.StatusUsuario;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -42,6 +44,8 @@ public class UsuarioService {
         if (!fornecedorRepository.existsById(usuario.getFornecedor().getId())) {
             throw new NegocioException("Não existe um fornecedor com esse ID");
         }
+        usuario.setDataCadastro(LocalDate.now());
+        usuario.setStatus(StatusUsuario.ATIVO);
         return usuarioRepository.save(usuario);
     }
 

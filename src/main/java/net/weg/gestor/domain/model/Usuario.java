@@ -12,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,6 +44,10 @@ public class Usuario implements UserDetails {
     @Email
     @NotBlank
     private String email;
+
+    private LocalDate dataCadastro;
+
+    StatusUsuario status;
 
     @NotBlank
     @Size(max = 100)
