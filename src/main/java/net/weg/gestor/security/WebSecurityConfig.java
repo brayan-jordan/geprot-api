@@ -35,13 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/projetos/listar/projetos/{projetoId}",
             "/horas/listar/{projetoId}",
             "/horas/listar/{projetoId}/{usuarioId}",
-            "/horas/aprovar/{projetoId}/{usuarioId}",
             "/secao/editar/{usuarioId}",
             "/secao/listar/{secaoId}",
             "/usuarios/listar/consultores",
             "/usuarios/buscar/consultor/{consultorId}",
             "/projetos/listar/{secaoId}/{typeStatus}",
             "/projetos/naoalocados/{usuarioId}",
+            "/horas/aprovar/{projetoId}/{usuarioId}",
             "/consultores/alocar",
     };
 
@@ -62,8 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.PUT, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PATCH, GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.POST,GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.DELETE,GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PATCH, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.GET, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.PUT, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.POST,USUARIO_LIST).permitAll()

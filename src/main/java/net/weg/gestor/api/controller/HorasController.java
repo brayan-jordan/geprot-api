@@ -41,7 +41,7 @@ public class HorasController {
         return horasService.buscarApontamentoConsultor(projetoId, usuarioId);
     }
 
-    @PutMapping("/aprovar/{projetoId}/{usuarioId}")
+    @PatchMapping("/aprovar/{projetoId}/{usuarioId}")
     String aprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
         return horasService.aprovarApontamentosConsultor(projetoId, usuarioId);
     }
