@@ -1,0 +1,2 @@
+ALTER TABLE notificacoes ADD COLUMN
+tipo VARCHAR(20) NOT NULL;
