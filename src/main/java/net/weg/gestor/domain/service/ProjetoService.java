@@ -38,9 +38,9 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
     }
 
-    public List<ProjetoDTO> listarContaining(Long secaoId, String pesquisa) {
+    public List<ProjetoDTO> listarContaining(Long secaoId, String pesquisa, int typeStatus) {
         Secao secao = secaoRepository.findByIdAux(secaoId);
-        return projetoAssembler.toCollectionModel(secaoService.listarContaining(secao, pesquisa));
+        return projetoAssembler.toCollectionModel(secaoService.listarContaining(secao, pesquisa, typeStatus));
     }
 
     public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {

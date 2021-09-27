@@ -106,15 +106,25 @@ public class SecaoService {
         return projetos;
     }
 
-    public List<Projeto> listarContaining(Secao secao, String busca){
+    public List<Projeto> listarContaining(Secao secao, String busca, int typeStatus){
         List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
         List<Projeto> projetos = new ArrayList<>();
         List<Projeto> containing = projetoRepository.findByNomeContaining(busca);
-        for (int i = 0; i < containing.size(); i ++){
-            if(verificaSecao(ccPagantes, containing.get(i))){
-                projetos.add(containing.get(i));
+        if (typeStatus == 0) {
+            for (int i = 0; i < containing.size(); i++) {
+                if (verificaSecao(ccPagantes, containing.get(i))) {
+                    projetos.add(containing.get(i));
+                }
+            }
+        } else {
+            StatusProjeto statusParaLista = verificationsService.returnTypeStatus(typeStatus);
+            for (int i = 0; i < containing.size(); i++) {
+                if (verificaSecao(ccPagantes, containing.get(i)) && containing.get(i).getStatus().equals(statusParaLista)) {
+                    projetos.add(containing.get(i));
+                }
             }
         }
+
         return projetos;
     }
 

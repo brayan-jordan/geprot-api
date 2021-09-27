@@ -18,9 +18,9 @@ public class ProjetoController {
 
     private ProjetoService projetoService;
 
-    @GetMapping("/listarcontaining/{secaoId}/{busca}")
-    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca) {
-        return projetoService.listarContaining(secaoId, busca);
+    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")
+    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca, @PathVariable int typeStatus) {
+        return projetoService.listarContaining(secaoId, busca, typeStatus);
     }
 
     @GetMapping("/listar/{secaoId}")
