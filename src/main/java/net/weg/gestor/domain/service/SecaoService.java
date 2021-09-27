@@ -106,6 +106,27 @@ public class SecaoService {
         return projetos;
     }
 
+    public List<Projeto> listarContaining(Secao secao, String busca){
+        List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
+        List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> containing = projetoRepository.findByNomeContaining(busca);
+        for (int i = 0; i < containing.size(); i ++){
+            if(verificaSecao(ccPagantes, containing.get(i))){
+                projetos.add(containing.get(i));
+            }
+        }
+        return projetos;
+    }
+
+    public boolean verificaSecao(List<CCPagantes> ccPagantes, Projeto projeto) {
+        for (int i = 0; i < ccPagantes.size(); ++i) {
+            if (projeto.getId() == ccPagantes.get(i).getProjetos_id()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public float SomaVerbaProjetos(Secao secao){
         List<CCPagantes> ccPagantes = ccPagantesRepository.findByIdSecao(secao.getId());
         float soma = 0;

@@ -38,6 +38,11 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
     }
 
+    public List<ProjetoDTO> listarContaining(Long secaoId, String pesquisa) {
+        Secao secao = secaoRepository.findByIdAux(secaoId);
+        return projetoAssembler.toCollectionModel(secaoService.listarContaining(secao, pesquisa));
+    }
+
     public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
         Secao secao = secaoRepository.findByIdAux(secaoId);
         return projetoAssembler.toCollectionModel(secaoService.listarCardsStatus(secao, typeStatus));
