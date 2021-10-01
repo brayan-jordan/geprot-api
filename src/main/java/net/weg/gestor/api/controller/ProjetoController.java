@@ -52,26 +52,26 @@ public class ProjetoController {
 //        return projetoService.cadastrar(projeto);
 //    }
 
-    @PatchMapping("/editar/atrasado/{projetoId}")
-    public void editarAtrasado(@Valid @PathVariable Long projetoId){
-        projetoService.editarAtrasado(projetoId);
-    }
+//    @PatchMapping("/editar/atrasado/{projetoId}")
+//    public void editarAtrasado(@Valid @PathVariable Long projetoId){
+//        projetoService.editarAtrasado(projetoId);
+//    }
 
-    @PatchMapping("/editar/concluido/{projetoId}")
-    public void editarConcluido(@Valid @PathVariable Long projetoId){
-        projetoService.editarConcluida(projetoId);
-    }
-
-    @PatchMapping("/editar/andamento/{projetoId}")
-    public void editarAndamento(@Valid @PathVariable Long projetoId){
-        projetoService.editarAndamento(projetoId);
-    }
-
-    @PatchMapping("/iniciar/{projetoId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void iniciarProjeto(@PathVariable Long projetoId) {
-        projetoService.iniciarProjeto(projetoId);
-    }
+//    @PatchMapping("/editar/concluido/{projetoId}")
+//    public void editarConcluido(@Valid @PathVariable Long projetoId){
+//        projetoService.editarConcluida(projetoId);
+//    }
+//
+//    @PatchMapping("/editar/andamento/{projetoId}")
+//    public void editarAndamento(@Valid @PathVariable Long projetoId){
+//        projetoService.editarAndamento(projetoId);
+//    }
+//
+//    @PatchMapping("/iniciar/{projetoId}")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    public void iniciarProjeto(@PathVariable Long projetoId) {
+//        projetoService.iniciarProjeto(projetoId);
+//    }
 
 //    @GetMapping("/naoalocados/{usuarioId}")
 //    public List<ProjetoDTO> buscarNaoAlocados(@PathVariable Long usuarioId) {

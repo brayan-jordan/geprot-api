@@ -14,9 +14,9 @@ public class ConsultoresController {
 
     private ConsultoresAlocadosService consultoresAlocadosService;
 
-    @PostMapping("/alocar")
-    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
-        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
-    }
+//    @PostMapping("/alocar")
+//    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
+//        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
+//    }
 
 }

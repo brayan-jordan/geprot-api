@@ -106,49 +106,49 @@ public class ProjetoService {
 //        return projetos;
 //    }
 
-    public void editarAtrasado(Long idDoProjeto){
-        if(!projetoRepository.existsById(idDoProjeto)) {
-            throw new NegocioException("Verifique o id do projeto informado");
-        }
-        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-        projeto.setStatus(StatusProjeto.ATRASADO);
-        projetoRepository.save(projeto);
-    }
-
-    public void editarConcluida(Long idDoProjeto){
-        if(!projetoRepository.existsById(idDoProjeto)) {
-            throw new NegocioException("Verifique o id do projeto informado");
-        }
-        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-        projeto.setStatus(StatusProjeto.CONCLUIDO);
-        projeto.setDataFinalizacao(LocalDate.now());
-        projetoRepository.save(projeto);
-    }
-
-    public void editarAndamento(Long idDoProjeto){
-        if(!projetoRepository.existsById(idDoProjeto)) {
-            throw new NegocioException("Verifique o id do projeto informado");
-        }
-        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDataFinalizacao(LocalDate.now());
-        projetoRepository.save(projeto);
-    }
-
-    public void iniciarProjeto(Long idDoProjeto) {
-        if (!projetoRepository.existsById(idDoProjeto)) {
-            throw new NegocioException("Verifique o id do projeto informado");
-        }
-
-        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
-        if (!projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
-            throw new NegocioException("Não é possivel iniciar um projeto ja iniciado");
-        }
-
-        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
-        projeto.setDataInicio(LocalDate.now());
-        projetoRepository.save(projeto);
-    }
+//    public void editarAtrasado(Long idDoProjeto){
+//        if(!projetoRepository.existsById(idDoProjeto)) {
+//            throw new NegocioException("Verifique o id do projeto informado");
+//        }
+//        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+//        projeto.setStatus(StatusProjeto.ATRASADO);
+//        projetoRepository.save(projeto);
+//    }
+//
+//    public void editarConcluida(Long idDoProjeto){
+//        if(!projetoRepository.existsById(idDoProjeto)) {
+//            throw new NegocioException("Verifique o id do projeto informado");
+//        }
+//        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+//        projeto.setStatus(StatusProjeto.CONCLUIDO);
+//        projeto.setDataFinalizacao(LocalDate.now());
+//        projetoRepository.save(projeto);
+//    }
+//
+//    public void editarAndamento(Long idDoProjeto){
+//        if(!projetoRepository.existsById(idDoProjeto)) {
+//            throw new NegocioException("Verifique o id do projeto informado");
+//        }
+//        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+//        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
+//        projeto.setDataFinalizacao(LocalDate.now());
+//        projetoRepository.save(projeto);
+//    }
+//
+//    public void iniciarProjeto(Long idDoProjeto) {
+//        if (!projetoRepository.existsById(idDoProjeto)) {
+//            throw new NegocioException("Verifique o id do projeto informado");
+//        }
+//
+//        Projeto projeto = projetoRepository.findByIdProjeto(idDoProjeto);
+//        if (!projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
+//            throw new NegocioException("Não é possivel iniciar um projeto ja iniciado");
+//        }
+//
+//        projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
+//        projeto.setDataInicio(LocalDate.now());
+//        projetoRepository.save(projeto);
+//    }
 
 //    public int countProjetosConcluidos(Long secaoId, LocalDate data) {
 //        int quantidadeConcluidos = 0;

@@ -29,41 +29,41 @@ public class ConsultoresAlocadosService {
     private UsuarioService usuarioService;
     private UsuarioRepository usuarioRepository;
 
-    public void saveConsultoresAlocados(ProjetoInputDTO project, Long idCadastrado) {
-        for (int i = 0; i < project.getConsultores().size(); ++i) {
-            AlocarConsultorInputDTO alocar = new AlocarConsultorInputDTO();
-            alocar.setProjetos_id(idCadastrado);
-            alocar.setLimiteHoras(project.getConsultores().get(i).getLimiteHoras());
-            alocar.setUsuarios_id(project.getConsultores().get(i).getUsuarios_id());
-            alocarConsultor(alocar);
-        }
-    }
+//    public void saveConsultoresAlocados(ProjetoInputDTO project, Long idCadastrado) {
+//        for (int i = 0; i < project.getConsultores().size(); ++i) {
+//            AlocarConsultorInputDTO alocar = new AlocarConsultorInputDTO();
+//            alocar.setProjetos_id(idCadastrado);
+//            alocar.setLimiteHoras(project.getConsultores().get(i).getLimiteHoras());
+//            alocar.setUsuarios_id(project.getConsultores().get(i).getUsuarios_id());
+//            alocarConsultor(alocar);
+//        }
+//    }
 
-    public ConsultorDTO alocarConsultor(AlocarConsultorInputDTO alocarConsultorInputDTO) {
-        Long usuarioId = alocarConsultorInputDTO.getUsuarios_id();
-        Long projetoId = alocarConsultorInputDTO.getProjetos_id();
-        if (!usuarioRepository.existsById(usuarioId) || !projetoRepository.existsById(projetoId)) {
-            throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
-        }
-
-        if (consultoresAlocadosRepository.existsVerify(usuarioId, projetoId).isPresent()) {
-            throw new NegocioException("Esse usuario já esta alocado no projeto");
-        }
-
-        UsuarioDTO usuario = usuarioService.buscar(usuarioId);
-        if (!usuario.getPermissao().equals("ROLE_CONSULTOR")) {
-            throw new NegocioException("O usuário que você está tentando alocar não é um consultor");
-        }
-
-        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
-        projeto.setValor(projeto.getValor() + (usuario.getPrecoHora() * alocarConsultorInputDTO.getLimiteHoras()));
-        projeto.setHorasPrevistas(projeto.getHorasPrevistas() + alocarConsultorInputDTO.getLimiteHoras());
-        projetoRepository.save(projeto);
-
-        ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
-        consultoresAlocadosRepository.save(newConsultor);
-        return consultoresAlocadosAssembler.toModel(newConsultor);
-
-    }
+//    public ConsultorDTO alocarConsultor(AlocarConsultorInputDTO alocarConsultorInputDTO) {
+//        Long usuarioId = alocarConsultorInputDTO.getUsuarios_id();
+//        Long projetoId = alocarConsultorInputDTO.getProjetos_id();
+//        if (!usuarioRepository.existsById(usuarioId) || !projetoRepository.existsById(projetoId)) {
+//            throw new NegocioException("Verifique os valores de ProjetoId e UsuarioId informados");
+//        }
+//
+//        if (consultoresAlocadosRepository.existsVerify(usuarioId, projetoId).isPresent()) {
+//            throw new NegocioException("Esse usuario já esta alocado no projeto");
+//        }
+//
+//        UsuarioDTO usuario = usuarioService.buscar(usuarioId);
+//        if (!usuario.getPermissao().equals("ROLE_CONSULTOR")) {
+//            throw new NegocioException("O usuário que você está tentando alocar não é um consultor");
+//        }
+//
+//        Projeto projeto = projetoRepository.findByIdProjeto(projetoId);
+//        projeto.setValor(projeto.getValor() + (usuario.getPrecoHora() * alocarConsultorInputDTO.getLimiteHoras()));
+//        projeto.setHorasPrevistas(projeto.getHorasPrevistas() + alocarConsultorInputDTO.getLimiteHoras());
+//        projetoRepository.save(projeto);
+//
+//        ConsultoresAlocados newConsultor = consultoresAlocadosAssembler.toEntity(alocarConsultorInputDTO);
+//        consultoresAlocadosRepository.save(newConsultor);
+//        return consultoresAlocadosAssembler.toModel(newConsultor);
+//
+//    }
 
 }

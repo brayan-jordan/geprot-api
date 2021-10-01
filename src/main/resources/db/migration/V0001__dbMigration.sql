@@ -74,7 +74,7 @@ CREATE TABLE projetos (
     data_cadastro date,
     horas_previstas int not null,
     horas_trabalhadas int,
-    valor (10, 2) not null,
+    valor double(10, 2) not null,
     valor_utilizado double(10,2),
     status varchar(20) not null,
     descricao varchar(1000) not null,
@@ -91,14 +91,6 @@ CREATE TABLE role_usuarios (
     id bigint not null auto_increment,
     role_nome varchar(60),
     usuarios_id bigint not null,
-    primary key (id)
-);
-
-CREATE TABLE secoes (
-    id bigint not null auto_increment,
-    nome varchar(50) not null,
-    nome_responsavel varchar(100) not null,
-    verba double(10,2) not null,
     primary key (id)
 );
 

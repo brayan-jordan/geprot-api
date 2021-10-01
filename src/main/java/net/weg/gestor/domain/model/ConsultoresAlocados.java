@@ -22,9 +22,11 @@ public class ConsultoresAlocados {
 
     @NotNull
     @JoinColumn(name = "projetos_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Projeto projeto;
 
     @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "consultores_id")
     private Consultor consultor;
 

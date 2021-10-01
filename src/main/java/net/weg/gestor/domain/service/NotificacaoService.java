@@ -30,17 +30,17 @@ public class NotificacaoService {
         return "Notificado";
     }
 
-    public InfoNotificacoesDTO buscarTodasNotificacoes(Long usuarioId) {
-        if (usuarioRepository.findById(usuarioId).isEmpty()) {
-            throw new NegocioException("Nao existe um usuario com esse ID para notificar");
-        }
-
-        InfoNotificacoesDTO infoNotificacoesDTO = new InfoNotificacoesDTO();
-        infoNotificacoesDTO.setNotificacoes(notificacaoAssembler.toCollectionModel(
-                notificacaoRepository.buscarTodasPorUsuario(usuarioRepository.findByIdUsuario(usuarioId))));
-        infoNotificacoesDTO.setQuantidade(buscarNaoLidas(usuarioId));
-        return infoNotificacoesDTO;
-    }
+//    public InfoNotificacoesDTO buscarTodasNotificacoes(Long usuarioId) {
+//        if (usuarioRepository.findById(usuarioId).isEmpty()) {
+//            throw new NegocioException("Nao existe um usuario com esse ID para notificar");
+//        }
+//
+//        InfoNotificacoesDTO infoNotificacoesDTO = new InfoNotificacoesDTO();
+//        infoNotificacoesDTO.setNotificacoes(notificacaoAssembler.toCollectionModel(
+//                notificacaoRepository.buscarTodasPorUsuario(usuarioRepository.findByIdUsuario(usuarioId))));
+//        infoNotificacoesDTO.setQuantidade(buscarNaoLidas(usuarioId));
+//        return infoNotificacoesDTO;
+//    }
 
     public String marcarLida(Long notificacaoId) {
         Notificacao notificacao = notificacaoRepository.findById(notificacaoId).orElseThrow(() -> new NegocioException("Erro"));
@@ -60,8 +60,8 @@ public class NotificacaoService {
         return notificacao;
     }
 
-    public int buscarNaoLidas(Long usuarioId) {
-        return notificacaoRepository.buscarQuantidadeNaoLida(usuarioRepository.findByIdUsuario(usuarioId)).size();
-    }
+//    public int buscarNaoLidas(Long usuarioId) {
+//        return notificacaoRepository.buscarQuantidadeNaoLida(usuarioRepository.findByIdUsuario(usuarioId)).size();
+//    }
 
 }

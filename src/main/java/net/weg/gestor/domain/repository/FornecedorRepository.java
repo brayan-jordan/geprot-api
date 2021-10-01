@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
-    @Query("SELECT f FROM Fornecedor f where f.id = ?1")
-    Fornecedor findByIdFornecedor(Long id);
+//    @Query("SELECT f FROM Fornecedor f where f.id = ?1")
+//    Fornecedor findByIdFornecedor(Long id);
 }

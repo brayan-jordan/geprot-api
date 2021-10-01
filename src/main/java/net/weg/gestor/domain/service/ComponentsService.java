@@ -17,12 +17,12 @@ public class ComponentsService {
     private ProjetoRepository projetoRepository;
     private UsuarioRepository usuarioRepository;
 
-    public List<HorasApontadas> buscarHorasPorStatus(Long projetoId, Long usuarioId, String status) {
-        return (horasApontadasRepository.findStatus(
-                projetoRepository.findByIdProjeto(projetoId),
-                usuarioRepository.findByIdUsuario(usuarioId),
-                status
-        ));
-    }
+//    public List<HorasApontadas> buscarHorasPorStatus(Long projetoId, Long usuarioId, String status) {
+//        return (horasApontadasRepository.findStatus(
+//                projetoRepository.findByIdProjeto(projetoId),
+//                usuarioRepository.findByIdUsuario(usuarioId),
+//                status
+//        ));
+//    }
 
 }

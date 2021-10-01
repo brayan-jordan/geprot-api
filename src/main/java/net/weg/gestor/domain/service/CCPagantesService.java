@@ -17,10 +17,10 @@ public class CCPagantesService {
     private CCPagantesAssembler ccPagantesAssembler;
     private final CCPagantesRepository ccPagantesRepository;
 
-    public List<SecoesDTO> listartodos() {
-        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findAll());
-
-    }
+//    public List<SecoesDTO> listartodos() {
+//        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findAll());
+//
+//    }
 
 //    public void saveCcPagantes(ProjetoInputDTO project, Long idCadastro) {
 //        List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
@@ -30,9 +30,9 @@ public class CCPagantesService {
 //        ccPagantesRepository.saveAll(newCcPagantes);
 //    }
 
-    public List<SecoesDTO> listarporprojeto(Long projetoid) {
-        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));
-
-    }
+//    public List<SecoesDTO> listarporprojeto(Long projetoid) {
+//        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));
+//
+//    }
 
 }

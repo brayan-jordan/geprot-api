@@ -18,10 +18,10 @@ public class NotificacaoController {
         return notificacaoService.addNotificacaoFechamento(usuarioId);
     }
 
-    @GetMapping("buscar/{usuarioId}")
-    public InfoNotificacoesDTO buscarNotificacoes(@PathVariable Long usuarioId) {
-        return notificacaoService.buscarTodasNotificacoes(usuarioId);
-    }
+//    @GetMapping("buscar/{usuarioId}")
+//    public InfoNotificacoesDTO buscarNotificacoes(@PathVariable Long usuarioId) {
+//        return notificacaoService.buscarTodasNotificacoes(usuarioId);
+//    }
 
     @PutMapping("/marcarlida/{notificacaoId}")
     public String marcarLida(@PathVariable Long notificacaoId) {

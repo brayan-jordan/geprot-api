@@ -31,25 +31,25 @@ public class UsuarioController {
     private FornecedorRepository fornecedorRepository;
 
 
-    @GetMapping("/buscar/{usuarioId}")
-    public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
-        return usuarioService.buscar(usuarioId);
-    }
+//    @GetMapping("/buscar/{usuarioId}")
+//    public UsuarioDTO buscarUmUsuarioPorId(@PathVariable Long usuarioId) {
+//        return usuarioService.buscar(usuarioId);
+//    }
 
-    @DeleteMapping("/deletar/{usuarioId}")
-    public ResponseEntity<Usuario> remover(@PathVariable Long usuarioId) {
-        return usuarioService.excluir(usuarioId);
-    }
+//    @DeleteMapping("/deletar/{usuarioId}")
+//    public ResponseEntity<Usuario> remover(@PathVariable Long usuarioId) {
+//        return usuarioService.excluir(usuarioId);
+//    }
 
-    @PutMapping("/editar/{usuarioId}")
-    public UsuarioDTO editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
-        return usuarioService.editar(usuarioId, usuario);
-    }
+//    @PutMapping("/editar/{usuarioId}")
+//    public UsuarioDTO editar(@Valid @PathVariable Long usuarioId, @RequestBody UsuarioEditarInputDTO usuario) {
+//        return usuarioService.editar(usuarioId, usuario);
+//    }
 
-    @GetMapping("/listar")
-    public List<UsuarioDTO> list2() {
-        return usuarioService.listartodos();
-    }
+//    @GetMapping("/listar")
+//    public List<UsuarioDTO> list2() {
+//        return usuarioService.listartodos();
+//    }
 
 //    @PostMapping("/cadastrar")
 //    @ResponseStatus(HttpStatus.CREATED)
@@ -66,25 +66,25 @@ public class UsuarioController {
 //        return usuarioAssembler.toModel(usuario1);
 //    }
 
-    @PutMapping("/editar/admin/{usuarioId}")
-    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){
-        return roleUsuarioService.editarPermissaoAdmin(usuarioId);
-    }
-
-    @PutMapping("/editar/user/{usuarioId}")
-    public RoleUsuarioDTO editaPermissaoUser(@Valid @PathVariable long usuarioId){
-        return roleUsuarioService.editarPermissaoUser(usuarioId);
-    }
-
-    @GetMapping("/listar/consultores")
-    public List<UsuarioConsultorDTO> buscarConsultores() {
-        return usuarioService.buscarConsultores();
-
-    }
-
-    @GetMapping("/buscar/consultor/{consultorId}")
-    public UsuarioConsultorDTO buscarConsultor(@PathVariable Long consultorId) {
-        return usuarioService.buscarConsultor(consultorId);
-    }
+//    @PutMapping("/editar/admin/{usuarioId}")
+//    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){
+//        return roleUsuarioService.editarPermissaoAdmin(usuarioId);
+//    }
+//
+//    @PutMapping("/editar/user/{usuarioId}")
+//    public RoleUsuarioDTO editaPermissaoUser(@Valid @PathVariable long usuarioId){
+//        return roleUsuarioService.editarPermissaoUser(usuarioId);
+//    }
+//
+//    @GetMapping("/listar/consultores")
+//    public List<UsuarioConsultorDTO> buscarConsultores() {
+//        return usuarioService.buscarConsultores();
+//
+//    }
+//
+//    @GetMapping("/buscar/consultor/{consultorId}")
+//    public UsuarioConsultorDTO buscarConsultor(@PathVariable Long consultorId) {
+//        return usuarioService.buscarConsultor(consultorId);
+//    }
 
 }

@@ -40,41 +40,41 @@ public class RoleUsuarioService {
         .orElseThrow(() -> new NegocioException("Role não encontrada."));
     }
 
-    public RoleUsuarioDTO buscarPorIdUsuario(Long usuariosId){
-        if (roleUsuarioRepository.findRoleByIdUsuario(usuariosId) == null){
-            throw new NegocioException("Não existe um usuario com esse ID");
-        }
-        return roleUsuarioAssembler.toModel(roleUsuarioRepository.findRoleByIdUsuario(usuariosId));
-    }
+//    public RoleUsuarioDTO buscarPorIdUsuario(Long usuariosId){
+//        if (roleUsuarioRepository.findRoleByIdUsuario(usuariosId) == null){
+//            throw new NegocioException("Não existe um usuario com esse ID");
+//        }
+//        return roleUsuarioAssembler.toModel(roleUsuarioRepository.findRoleByIdUsuario(usuariosId));
+//    }
 
-    public RoleUsuarioDTO editarPermissaoAdmin(Long usuarioId){
-        if (!usuarioRepository.existsById(usuarioId)){
-            throw new NegocioException("Não existe um usuario com esse id");
-        }
-        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
-        roleUsuarios.setRole_nome("ROLE_GESTOR");
-        roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
-        return roleUsuarioAssembler.toModel(roleUsuarios);
-    }
-
-    public RoleUsuarioDTO editarPermissaoUser(Long usuarioId){
-        if (!usuarioRepository.existsById(usuarioId)){
-            throw new NegocioException("Não existe um usuario com esse id");
-        }
-        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
-        roleUsuarios.setRole_nome("ROLE_USER");
-        roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
-        return roleUsuarioAssembler.toModel(roleUsuarios);
-    }
+//    public RoleUsuarioDTO editarPermissaoAdmin(Long usuarioId){
+//        if (!usuarioRepository.existsById(usuarioId)){
+//            throw new NegocioException("Não existe um usuario com esse id");
+//        }
+//        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+//        roleUsuarios.setRole_nome("ROLE_GESTOR");
+//        roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
+//        return roleUsuarioAssembler.toModel(roleUsuarios);
+//    }
+//
+//    public RoleUsuarioDTO editarPermissaoUser(Long usuarioId){
+//        if (!usuarioRepository.existsById(usuarioId)){
+//            throw new NegocioException("Não existe um usuario com esse id");
+//        }
+//        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+//        roleUsuarios.setRole_nome("ROLE_USER");
+//        roleUsuarios = roleUsuarioRepository.save(roleUsuarios);
+//        return roleUsuarioAssembler.toModel(roleUsuarios);
+//    }
 
     @Transactional
     public void deletar(Long roleId){
         roleUsuarioRepository.deleteById(roleId);
     }
 
-    @Transactional
-    public void deletarPorIdUsuario(Long usuarioId){
-        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
-        roleUsuarioRepository.deleteById(roleUsuarios.getId());
-    }
+//    @Transactional
+//    public void deletarPorIdUsuario(Long usuarioId){
+//        RoleUsuarios roleUsuarios = roleUsuarioRepository.findRoleByIdUsuario(usuarioId);
+//        roleUsuarioRepository.deleteById(roleUsuarios.getId());
+//    }
 }

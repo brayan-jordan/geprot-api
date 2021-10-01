@@ -26,10 +26,10 @@ public class RoleUsuarioController {
     public ResponseEntity<RoleUsuarioDTO> buscarPorId(@PathVariable Long roleId){
         return roleUsuarioService.buscarId(roleId); }
 
-    @GetMapping("buscarpessoa/{usuario_id}")
-    public RoleUsuarioDTO buscarPorIdUsuario(@PathVariable Long usuario_id){
-        return roleUsuarioService.buscarPorIdUsuario(usuario_id);
-    }
+//    @GetMapping("buscarpessoa/{usuario_id}")
+//    public RoleUsuarioDTO buscarPorIdUsuario(@PathVariable Long usuario_id){
+//        return roleUsuarioService.buscarPorIdUsuario(usuario_id);
+//    }
 
     @DeleteMapping("/{roleId}")
     public ResponseEntity<RoleUsuarioDTO> remover(@PathVariable Long roleId){

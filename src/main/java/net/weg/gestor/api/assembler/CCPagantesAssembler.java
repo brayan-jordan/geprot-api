@@ -33,16 +33,16 @@ public class CCPagantesAssembler {
         return modelMapper.map(ccPagantesDTO, CCPagantes.class);
     }
 
-    public SecoesDTO toModel(CCPagantes ccPagantes) {
-        SecoesDTO secoesDTO = modelMapper.map(ccPagantes, SecoesDTO.class);
-        secoesDTO.setVerba(projetoRepository.findByIdProjeto(ccPagantes.getProjeto().getId()).getValor() / 100 * secoesDTO.getTaxa());
-        secoesDTO.setNome(secaoRepository.findByIdAux(ccPagantes.getSecao().getId()).getNome());
-        return secoesDTO;
-    }
+//    public SecoesDTO toModel(CCPagantes ccPagantes) {
+//        SecoesDTO secoesDTO = modelMapper.map(ccPagantes, SecoesDTO.class);
+//        secoesDTO.setVerba(projetoRepository.findByIdProjeto(ccPagantes.getProjeto().getId()).getValor() / 100 * secoesDTO.getTaxa());
+//        secoesDTO.setNome(secaoRepository.findByIdAux(ccPagantes.getSecao().getId()).getNome());
+//        return secoesDTO;
+//    }
 
-    public List<SecoesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
-        return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
-    }
+//    public List<SecoesDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
+//        return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
+//    }
 
     public List<CCPagantes> toCollectionEntity(List<AlocarCCPagantesInputDTO> ccPagantes) {
         return ccPagantes.stream().map(this::toEntityInput).collect(Collectors.toList());
