@@ -25,7 +25,7 @@ public class Consultor {
     @JoinColumn(name = "usuarios_id")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fornecedores_id")
     private Fornecedor fornecedor;
 

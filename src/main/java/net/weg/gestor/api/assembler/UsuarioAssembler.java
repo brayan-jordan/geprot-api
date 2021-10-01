@@ -1,16 +1,12 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ReturnUsuarioDTO;
-import net.weg.gestor.api.model.UsuarioConsultorDTO;
-import net.weg.gestor.api.model.UsuarioLoginInputDTO;
-import net.weg.gestor.api.model.UsuarioDTO;
+import net.weg.gestor.api.model.*;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
+import net.weg.gestor.domain.model.Gestor;
 import net.weg.gestor.domain.model.Usuario;
-import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
-import net.weg.gestor.domain.repository.RoleUsuarioRepository;
-import net.weg.gestor.domain.repository.UsuarioRepository;
+import net.weg.gestor.domain.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +20,11 @@ public class UsuarioAssembler {
 
     private RoleUsuarioRepository roleUsuarioRepository;
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private GestorRepository gestorRepository;
+    private SecaoAssembler secaoAssembler;
+    private SecaoRepository secaoRepository;
     private ModelMapper modelMapper;
+    private UsuarioRepository usuarioRepository;
 
 //    public UsuarioDTO toModel(Usuario usuario) {
 //        UsuarioDTO usuarioDTO = modelMapper.map(usuario, UsuarioDTO.class);
@@ -63,8 +63,14 @@ public class UsuarioAssembler {
         return modelMapper.map(usuarioLoginInputDTO, Usuario.class);
     }
 
-    public ReturnUsuarioDTO toModelLogin(Usuario usuario) {
-        return modelMapper.map(usuario, ReturnUsuarioDTO.class);
+    public GestorDTO toModelLogin(Usuario usuario) {
+        GestorDTO gestorDTO = new GestorDTO();
+        gestorDTO.setUsuario(modelMapper.map(usuario, UsuarioDTO.class));
+        Usuario usuario1 = usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId());
+        Gestor gestor = gestorRepository.findByUsuarioId(usuario1);
+        gestorDTO.setId(gestor.getId());
+        gestorDTO.setSecao(secaoAssembler.toModel(gestorRepository.findByUsuarioId(usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId())).getSecao().getId()));
+        return modelMapper.map(usuario, GestorDTO.class);
     }
 
 }
