@@ -1,6 +1,5 @@
 package net.weg.gestor.security;
 
-
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.model.Usuario;
