@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.POST,USUARIO_LIST).permitAll()
                 .antMatchers(HttpMethod.DELETE,USUARIO_LIST).permitAll()
-                .antMatchers(HttpMethod.POST,"/authenticate").permitAll()
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .anyRequest().authenticated()
                     .and().cors()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

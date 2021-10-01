@@ -27,7 +27,7 @@ public class LoginController {
     private UsuarioAssembler usuarioAssembler;
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UsuarioLoginInputDTO usuario) throws Exception {
         Usuario usuario1 = usuarioAssembler.toEntityLogin(usuario);
 
