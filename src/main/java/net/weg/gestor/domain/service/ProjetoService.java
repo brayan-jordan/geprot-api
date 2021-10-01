@@ -33,32 +33,32 @@ public class ProjetoService {
     private SecaoService secaoService;
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
 
-    public List<ProjetoDTO> listartodos(Long secaoId) {
-        Secao secao = secaoRepository.findByIdAux(secaoId);
-        return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
-    }
+//    public List<ProjetoDTO> listartodos(Long secaoId) {
+//        Secao secao = secaoRepository.findByIdAux(secaoId);
+//        return projetoAssembler.toCollectionModel(secaoService.listarCards(secao));
+//    }
 
-    public List<ProjetoDTO> listarContaining(Long secaoId, String pesquisa, int typeStatus) {
-        Secao secao = secaoRepository.findByIdAux(secaoId);
-        return projetoAssembler.toCollectionModel(secaoService.listarContaining(secao, pesquisa, typeStatus));
-    }
+//    public List<ProjetoDTO> listarContaining(Long secaoId, String pesquisa, int typeStatus) {
+//        Secao secao = secaoRepository.findByIdAux(secaoId);
+//        return projetoAssembler.toCollectionModel(secaoService.listarContaining(secao, pesquisa, typeStatus));
+//    }
 
-    public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
-        Secao secao = secaoRepository.findByIdAux(secaoId);
-        return projetoAssembler.toCollectionModel(secaoService.listarCardsStatus(secao, typeStatus));
-    }
+//    public List<ProjetoDTO> listartodosstatus(Long secaoId, int typeStatus) {
+//        Secao secao = secaoRepository.findByIdAux(secaoId);
+//        return projetoAssembler.toCollectionModel(secaoService.listarCardsStatus(secao, typeStatus));
+//    }
 
-    public ProjetoDTO listarPorId(Long projetoID){
-        if (!projetoRepository.existsById(projetoID)){
-            throw new NegocioException("Não existe um projeto com esse Id");
-        }
-        return projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoID));
-    }
+//    public ProjetoDTO listarPorId(Long projetoID){
+//        if (!projetoRepository.existsById(projetoID)){
+//            throw new NegocioException("Não existe um projeto com esse Id");
+//        }
+//        return projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetoID));
+//    }
 
-    public List<ProjetoDTO> listarStatus(int typeStatus){
-        StatusProjeto status = verificationsService.returnTypeStatus(typeStatus);
-        return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
-    }
+//    public List<ProjetoDTO> listarStatus(int typeStatus){
+//        StatusProjeto status = verificationsService.returnTypeStatus(typeStatus);
+//        return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
+//    }
 
     public Projeto saveProject(ProjetoInputDTO projeto){
         Projeto projeto1 = projetoAssembler.toEntity(projeto);
@@ -73,38 +73,38 @@ public class ProjetoService {
         return projeto1;
     }
 
-    public String cadastrar(ProjetoInputDTO projeto) {
-        int taxa = 0;
-        for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
-            if (!secaoRepository.existsById(projeto.getCcpagantes().get(i).getSecoes_id())) {
-               throw new NegocioException("ID Do " + (i+1) + "° CCPagante informado não foi encontrado");
-            }
-            taxa += projeto.getCcpagantes().get(i).getTaxa();
-        }
-        if (taxa != 100) {
-            throw new NegocioException("Verifique os valores de taxa informados (Não é igual a 100)");
-        }
-        for (int i = 0; i < projeto.getConsultores().size(); ++i) {
-            if (!usuarioRepository.existsById(projeto.getConsultores().get(i).getUsuarios_id())) {
-                throw new NegocioException("ID Do " + (i+1) + "° Consultor informado não foi encontrado");
-            }
-        }
-        Projeto projetoSalvo = saveProject(projeto);
-        ccPagantesService.saveCcPagantes(projeto, projetoSalvo.getId());
-        consultoresAlocadosService.saveConsultoresAlocados(projeto, projetoSalvo.getId());
-        return "Projeto cadastrado";
-    }
+//    public String cadastrar(ProjetoInputDTO projeto) {
+//        int taxa = 0;
+//        for (int i = 0; i < projeto.getCcpagantes().size(); ++i) {
+//            if (!secaoRepository.existsById(projeto.getCcpagantes().get(i).getSecoes_id())) {
+//               throw new NegocioException("ID Do " + (i+1) + "° CCPagante informado não foi encontrado");
+//            }
+//            taxa += projeto.getCcpagantes().get(i).getTaxa();
+//        }
+//        if (taxa != 100) {
+//            throw new NegocioException("Verifique os valores de taxa informados (Não é igual a 100)");
+//        }
+//        for (int i = 0; i < projeto.getConsultores().size(); ++i) {
+//            if (!usuarioRepository.existsById(projeto.getConsultores().get(i).getUsuarios_id())) {
+//                throw new NegocioException("ID Do " + (i+1) + "° Consultor informado não foi encontrado");
+//            }
+//        }
+//        Projeto projetoSalvo = saveProject(projeto);
+//        ccPagantesService.saveCcPagantes(projeto, projetoSalvo.getId());
+//        consultoresAlocadosService.saveConsultoresAlocados(projeto, projetoSalvo.getId());
+//        return "Projeto cadastrado";
+//    }
 
-    public ArrayList<ProjetoDTO> findNoAllocateds(Long usuarioId) {
-        ArrayList<ProjetoDTO> projetos = new ArrayList<>();
-        List<Projeto> projetosCadastrados = projetoRepository.findAll();
-        for (int i = 0; i < projetosCadastrados.size(); ++i) {
-            if (consultoresAlocadosRepository.exists(usuarioId, projetosCadastrados.get(i).getId()).isEmpty()) {
-                projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetosCadastrados.get(i).getId())));
-            }
-        }
-        return projetos;
-    }
+//    public ArrayList<ProjetoDTO> findNoAllocateds(Long usuarioId) {
+//        ArrayList<ProjetoDTO> projetos = new ArrayList<>();
+//        List<Projeto> projetosCadastrados = projetoRepository.findAll();
+//        for (int i = 0; i < projetosCadastrados.size(); ++i) {
+//            if (consultoresAlocadosRepository.exists(usuarioId, projetosCadastrados.get(i).getId()).isEmpty()) {
+//                projetos.add(projetoAssembler.toModel(projetoRepository.findByIdProjeto(projetosCadastrados.get(i).getId())));
+//            }
+//        }
+//        return projetos;
+//    }
 
     public void editarAtrasado(Long idDoProjeto){
         if(!projetoRepository.existsById(idDoProjeto)) {
@@ -150,45 +150,45 @@ public class ProjetoService {
         projetoRepository.save(projeto);
     }
 
-    public int countProjetosConcluidos(Long secaoId, LocalDate data) {
-        int quantidadeConcluidos = 0;
-        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
-        for (Projeto projeto : projetos) {
-            if (projeto.getDataFinalizacao() != null) {
-                if (projeto.getDataFinalizacao().isEqual(data)) {
-                    quantidadeConcluidos++;
-                }
-            }
-        }
-        return quantidadeConcluidos;
-    }
+//    public int countProjetosConcluidos(Long secaoId, LocalDate data) {
+//        int quantidadeConcluidos = 0;
+//        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
+//        for (Projeto projeto : projetos) {
+//            if (projeto.getDataFinalizacao() != null) {
+//                if (projeto.getDataFinalizacao().isEqual(data)) {
+//                    quantidadeConcluidos++;
+//                }
+//            }
+//        }
+//        return quantidadeConcluidos;
+//    }
 
-    public int countProjetosConcluidosPorPeriodo(Long secaoId, LocalDate dataInicio, LocalDate dataFinal) {
-        int quantidadeConcluidos = 0;
-        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
-        for (Projeto projeto : projetos) {
-            if (projeto.getDataFinalizacao() != null) {
-                if ((projeto.getDataFinalizacao().isAfter(dataInicio) || projeto.getDataFinalizacao().isEqual(dataInicio))
-                        && (projeto.getDataFinalizacao().isBefore(dataFinal) || projeto.getDataFinalizacao().isEqual(dataFinal))) {
-                    quantidadeConcluidos++;
-                }
-            }
-        }
-        return quantidadeConcluidos;
-    }
+//    public int countProjetosConcluidosPorPeriodo(Long secaoId, LocalDate dataInicio, LocalDate dataFinal) {
+//        int quantidadeConcluidos = 0;
+//        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
+//        for (Projeto projeto : projetos) {
+//            if (projeto.getDataFinalizacao() != null) {
+//                if ((projeto.getDataFinalizacao().isAfter(dataInicio) || projeto.getDataFinalizacao().isEqual(dataInicio))
+//                        && (projeto.getDataFinalizacao().isBefore(dataFinal) || projeto.getDataFinalizacao().isEqual(dataFinal))) {
+//                    quantidadeConcluidos++;
+//                }
+//            }
+//        }
+//        return quantidadeConcluidos;
+//    }
 
-    public int countProjetosConcluidosPorMes(Long secaoId, Month month, int year) {
-        int quantidadeConcluidos = 0;
-        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
-        for (Projeto projeto : projetos) {
-            if (projeto.getDataFinalizacao() != null) {
-                if (projeto.getDataFinalizacao().getMonth() == month && projeto.getDataFinalizacao().getYear() == year) {
-                    quantidadeConcluidos++;
-                }
-            }
-        }
-        return quantidadeConcluidos;
-    }
+//    public int countProjetosConcluidosPorMes(Long secaoId, Month month, int year) {
+//        int quantidadeConcluidos = 0;
+//        List<Projeto> projetos =  secaoService.listarCards(secaoRepository.findByIdAux(secaoId));
+//        for (Projeto projeto : projetos) {
+//            if (projeto.getDataFinalizacao() != null) {
+//                if (projeto.getDataFinalizacao().getMonth() == month && projeto.getDataFinalizacao().getYear() == year) {
+//                    quantidadeConcluidos++;
+//                }
+//            }
+//        }
+//        return quantidadeConcluidos;
+//    }
 
 
 }

@@ -36,10 +36,10 @@ public class HorasApontadas {
     @NotNull
     private LocalDate data;
 
-    @JoinColumn(name = "usuarios_id")
+    @JoinColumn(name = "consultores_id")
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
+    private Consultor consultor;
 
     @NotBlank
     private String descricao_trabalho;

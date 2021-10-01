@@ -18,39 +18,39 @@ public class ProjetoController {
 
     private ProjetoService projetoService;
 
-    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")
-    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca, @PathVariable int typeStatus) {
-        return projetoService.listarContaining(secaoId, busca, typeStatus);
-    }
-
-    @GetMapping("/listar/{secaoId}")
-    public List<ProjetoDTO> listarTodosProjetosDaSecao(@PathVariable Long secaoId){
-        return projetoService.listartodos(secaoId);
-    }
-
-    @GetMapping("/listar/{secaoId}/{typeStatus}")
-    public List<ProjetoDTO> listarTodosProjetosDaSecaoPorStatus(@PathVariable Long secaoId, @PathVariable int typeStatus){
-        if (typeStatus == 0) {
-            return projetoService.listartodos(secaoId);
-        }
-        return projetoService.listartodosstatus(secaoId, typeStatus);
-    }
-
-    @GetMapping("/listar/projetos/{projetoId}")
-    public ProjetoDTO listarProjetoID(@PathVariable Long projetoId){
-        return projetoService.listarPorId(projetoId);
-    }
-
-    @GetMapping("/listarstatus/{typeStatus}")
-    public List<ProjetoDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
-        return projetoService.listarStatus(typeStatus);
-    }
-
-    @PostMapping("/cadastrar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String cadastrar(@Valid @RequestBody ProjetoInputDTO projeto) {
-        return projetoService.cadastrar(projeto);
-    }
+//    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")
+//    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca, @PathVariable int typeStatus) {
+//        return projetoService.listarContaining(secaoId, busca, typeStatus);
+//    }
+//
+//    @GetMapping("/listar/{secaoId}")
+//    public List<ProjetoDTO> listarTodosProjetosDaSecao(@PathVariable Long secaoId){
+//        return projetoService.listartodos(secaoId);
+//    }
+//
+//    @GetMapping("/listar/{secaoId}/{typeStatus}")
+//    public List<ProjetoDTO> listarTodosProjetosDaSecaoPorStatus(@PathVariable Long secaoId, @PathVariable int typeStatus){
+//        if (typeStatus == 0) {
+//            return projetoService.listartodos(secaoId);
+//        }
+//        return projetoService.listartodosstatus(secaoId, typeStatus);
+//    }
+//
+//    @GetMapping("/listar/projetos/{projetoId}")
+//    public ProjetoDTO listarProjetoID(@PathVariable Long projetoId){
+//        return projetoService.listarPorId(projetoId);
+//    }
+//
+//    @GetMapping("/listarstatus/{typeStatus}")
+//    public List<ProjetoDTO> listarProjetosAndamento(@PathVariable int typeStatus) {
+//        return projetoService.listarStatus(typeStatus);
+//    }
+//
+//    @PostMapping("/cadastrar")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public String cadastrar(@Valid @RequestBody ProjetoInputDTO projeto) {
+//        return projetoService.cadastrar(projeto);
+//    }
 
     @PatchMapping("/editar/atrasado/{projetoId}")
     public void editarAtrasado(@Valid @PathVariable Long projetoId){
@@ -73,10 +73,10 @@ public class ProjetoController {
         projetoService.iniciarProjeto(projetoId);
     }
 
-    @GetMapping("/naoalocados/{usuarioId}")
-    public List<ProjetoDTO> buscarNaoAlocados(@PathVariable Long usuarioId) {
-        return projetoService.findNoAllocateds(usuarioId);
-    }
+//    @GetMapping("/naoalocados/{usuarioId}")
+//    public List<ProjetoDTO> buscarNaoAlocados(@PathVariable Long usuarioId) {
+//        return projetoService.findNoAllocateds(usuarioId);
+//    }
 
 
 

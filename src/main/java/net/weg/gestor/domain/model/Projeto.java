@@ -61,8 +61,8 @@ public class Projeto {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "consultores_alocados", joinColumns =
         @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
-        @JoinColumn(name = "usuarios_id", referencedColumnName = "id"))
-    List<Usuario> usuarios;
+        @JoinColumn(name = "consultores_id", referencedColumnName = "id"))
+    List<Consultor> consultores;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "cc_pagantes", joinColumns =

@@ -29,7 +29,7 @@ public class ConsultoresAlocadosAssembler {
 
     public ConsultorDTO toModel(ConsultoresAlocados consultoresAlocados) {
        ConsultorDTO consultorDTO = modelMapper.map(consultoresAlocados, ConsultorDTO.class);
-       consultorDTO.setNome(usuarioRepository.findByIdUsuario(consultoresAlocados.getUsuarios_id()).getNome());
+       consultorDTO.setNome(usuarioRepository.findByIdUsuario(consultoresAlocados.getConsultor().getId()).getNome());
         return consultorDTO;
     }
 

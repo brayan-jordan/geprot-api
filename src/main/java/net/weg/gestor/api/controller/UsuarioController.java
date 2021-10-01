@@ -51,20 +51,20 @@ public class UsuarioController {
         return usuarioService.listartodos();
     }
 
-    @PostMapping("/cadastrar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioDTO cadastrar(@RequestBody UsuarioInputDTO usuario) {
-        Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
-        RoleUsuarios novaRole = new RoleUsuarios();
-        novaRole.setUsuarios_id(novoUsuario.getId());
-        novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-            novoUsuario.getSecao().setId(usuario.getSecao().getId());
-        novoUsuario.setFornecedor(fornecedorRepository.findByIdFornecedor(usuario.getIdFornecedor().getId()));
-        Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
-        novaRole.setRole_nome("ROLE_CONSULTOR");
-        roleUsuarioService.cadastrar(novaRole);
-        return usuarioAssembler.toModel(usuario1);
-    }
+//    @PostMapping("/cadastrar")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UsuarioDTO cadastrar(@RequestBody UsuarioInputDTO usuario) {
+//        Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
+//        RoleUsuarios novaRole = new RoleUsuarios();
+//        novaRole.setUsuarios_id(novoUsuario.getId());
+//        novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+//            novoUsuario.getSecao().setId(usuario.getSecao().getId());
+//        novoUsuario.setFornecedor(fornecedorRepository.findByIdFornecedor(usuario.getIdFornecedor().getId()));
+//        Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
+//        novaRole.setRole_nome("ROLE_CONSULTOR");
+//        roleUsuarioService.cadastrar(novaRole);
+//        return usuarioAssembler.toModel(usuario1);
+//    }
 
     @PutMapping("/editar/admin/{usuarioId}")
     public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){

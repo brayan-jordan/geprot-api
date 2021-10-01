@@ -29,37 +29,37 @@ public class ProjetoAssembler {
 
     }
 
-    public ProjetoDTO toModel(Projeto projeto) {
-        for (int i = 0; i < projeto.getUsuarios().size(); ++i) {
-            projeto.getUsuarios().get(i).setNome(
-                    usuarioRepository.findByIdUsuario(projeto.getUsuarios().get(i).getId()).getNome());
-        }
-        List<CCPagantes> teste = ccPagantesRepository.findByIdCC(projeto.getId());
-        ProjetoDTO projectReturn = modelMapper.map(projeto, ProjetoDTO.class);
-        for (int i = 0; i < projectReturn.getUsuarios().size(); ++i) {
-            ConsultoresAlocados buscarHoras = consultoresAlocadosRepository.buscar(
-                    projectReturn.getUsuarios().get(i).getId(), projectReturn.getId()
-            );
-            projectReturn.getUsuarios().get(i).setLimiteHoras(buscarHoras.getLimiteHoras());
-        }
+//    public ProjetoDTO toModel(Projeto projeto) {
+//        for (int i = 0; i < projeto.getConsultores().size(); ++i) {
+//            projeto.getConsultores().get(i).set(
+//                    usuarioRepository.findByIdUsuario(projeto.getConsultores().get(i).getId()).getNome());
+//        }
+//        List<CCPagantes> teste = ccPagantesRepository.findByIdCC(projeto.getId());
+//        ProjetoDTO projectReturn = modelMapper.map(projeto, ProjetoDTO.class);
+//        for (int i = 0; i < projectReturn.getUsuarios().size(); ++i) {
+//            ConsultoresAlocados buscarHoras = consultoresAlocadosRepository.buscar(
+//                    projectReturn.getUsuarios().get(i).getId(), projectReturn.getId()
+//            );
+//            projectReturn.getUsuarios().get(i).setLimiteHoras(buscarHoras.getLimiteHoras());
+//        }
+//
+//        for (int i = 0; i < teste.size(); ++i) {
+//            projectReturn.getSecaos().get(i).setTaxa(teste.get(i).getTaxa());
+//        }
+//        projectReturn.setHorasRestantes(projectReturn.getHorasPrevistas() - projectReturn.getHorasTrabalhadas());
+//        projectReturn.setValorRestante(projectReturn.getValor() - projectReturn.getValorUtilizado());
+//
+//        for (int i = 0; i < projectReturn.getSecaos().size(); i++){
+//            double valorPagoCC = projectReturn.getSecaos().get(i).getTaxa() * projectReturn.getValor();
+//            projectReturn.getSecaos().get(i).setVerba(valorPagoCC / 100);
+//        }
+//
+//         projectReturn.setBarraProgresso((projectReturn.getHorasTrabalhadas() * 100) / projectReturn.getHorasPrevistas());
+//        return projectReturn;
+//    }
 
-        for (int i = 0; i < teste.size(); ++i) {
-            projectReturn.getSecaos().get(i).setTaxa(teste.get(i).getTaxa());
-        }
-        projectReturn.setHorasRestantes(projectReturn.getHorasPrevistas() - projectReturn.getHorasTrabalhadas());
-        projectReturn.setValorRestante(projectReturn.getValor() - projectReturn.getValorUtilizado());
-
-        for (int i = 0; i < projectReturn.getSecaos().size(); i++){
-            double valorPagoCC = projectReturn.getSecaos().get(i).getTaxa() * projectReturn.getValor();
-            projectReturn.getSecaos().get(i).setVerba(valorPagoCC / 100);
-        }
-
-         projectReturn.setBarraProgresso((projectReturn.getHorasTrabalhadas() * 100) / projectReturn.getHorasPrevistas());
-        return projectReturn;
-    }
-
-    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
-        return projetos.stream().map(this::toModel).collect(Collectors.toList());
-    }
+//    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
+//        return projetos.stream().map(this::toModel).collect(Collectors.toList());
+//    }
 
 }

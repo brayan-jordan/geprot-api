@@ -22,13 +22,13 @@ public class CCPagantesService {
 
     }
 
-    public void saveCcPagantes(ProjetoInputDTO project, Long idCadastro) {
-        List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
-        for (int i = 0; i < newCcPagantes.size(); ++i) {
-            newCcPagantes.get(i).setProjetos_id(idCadastro);
-        }
-        ccPagantesRepository.saveAll(newCcPagantes);
-    }
+//    public void saveCcPagantes(ProjetoInputDTO project, Long idCadastro) {
+//        List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
+//        for (int i = 0; i < newCcPagantes.size(); ++i) {
+//            newCcPagantes.get(i).setProjetos_id(idCadastro);
+//        }
+//        ccPagantesRepository.saveAll(newCcPagantes);
+//    }
 
     public List<SecoesDTO> listarporprojeto(Long projetoid) {
         return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));

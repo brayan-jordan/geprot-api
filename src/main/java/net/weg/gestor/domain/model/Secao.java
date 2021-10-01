@@ -28,12 +28,11 @@ public class Secao {
     String nome;
 
     @NotBlank
-    private String nome_responsavel;
+    private String nomeResponsavel;
 
     @NotBlank
     double verba;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "cc_pagantes", joinColumns =
     @JoinColumn(name = "secoes_id", referencedColumnName = "id"), inverseJoinColumns =

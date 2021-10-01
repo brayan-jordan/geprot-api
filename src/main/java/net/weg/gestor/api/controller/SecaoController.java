@@ -14,13 +14,13 @@ public class SecaoController {
 
     private SecaoService secaoService;
 
-    @PutMapping("/editar/{usuarioId}")
-    public UsuarioDTO alterarSecao(@PathVariable long usuarioId, @RequestBody SecaoInputDTO secaoInputDTO){
-        return secaoService.editarSecao(usuarioId, secaoInputDTO);
-    }
-
-    @GetMapping("/listar/{secaoId}")
-    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
-        return secaoService.listarDashboard(secaoId);
-    }
+//    @PutMapping("/editar/{usuarioId}")
+//    public UsuarioDTO alterarSecao(@PathVariable long usuarioId, @RequestBody SecaoInputDTO secaoInputDTO){
+//        return secaoService.editarSecao(usuarioId, secaoInputDTO);
+//    }
+//
+//    @GetMapping("/listar/{secaoId}")
+//    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
+//        return secaoService.listarDashboard(secaoId);
+//    }
 }

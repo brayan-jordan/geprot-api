@@ -21,12 +21,14 @@ public class CCPagantes {
     private Long id;
 
     @NotNull
-    private Long projetos_id;
+    @JoinColumn(name = "projetos_id")
+    private Projeto projeto;
 
     @NotNull
-    private Long secoes_id;
+    @JoinColumn(name = "secoes_id")
+    private Secao secao;
 
     @NotNull
-    private int taxa;
+    private double taxa;
 
 }

@@ -8,29 +8,25 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "consultores_alocados")
-public class ConsultoresAlocados {
+@Table(name = "gestores")
+public class Gestor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @JoinColumn(name = "projetos_id")
-    private Projeto projeto;
+    @ManyToOne
+    @JoinColumn(name = "secoes_id")
+    private Secao secao;
 
-    @NotNull
-    @JoinColumn(name = "consultores_id")
-    private Consultor consultor;
-
-    @NotNull
-    private int limiteHoras;
-
-    private int horasApontadas;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuarios_id")
+    private Usuario usuario;
 
 }

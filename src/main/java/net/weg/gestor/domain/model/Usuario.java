@@ -27,16 +27,6 @@ public class Usuario implements UserDetails {
     @Id
     Long id;
 
-    @Valid
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "secoes_id")
-    private Secao secao;
-
-    @ManyToOne
-    @JoinColumn(name = "fornecedores_id")
-    private Fornecedor fornecedor;
-
     @NotBlank
     @Size(max = 100, min = 3)
     String nome;
@@ -65,8 +55,6 @@ public class Usuario implements UserDetails {
     @JoinTable(name = "role_usuarios", joinColumns = @JoinColumn(name = "usuarios_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_nome", referencedColumnName = "nome"))
     private List<Role> roles;
-
-    private double precoHora;
 
     @JsonIgnore
     @Override
