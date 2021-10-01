@@ -22,9 +22,7 @@ public class Notificacao {
 
     private String descricao;
 
-    @JoinColumn(name = "usuarios_id")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
+    private Long usuarios_id;
 
     private LocalDate data;
 

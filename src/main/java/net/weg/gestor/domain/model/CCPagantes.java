@@ -21,14 +21,10 @@ public class CCPagantes {
     private Long id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "projetos_id")
-    private Projeto projeto;
+    private Long projetos_id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "secoes_id")
-    private Secao secao;
+    private Long secoes_id;
 
     @NotNull
     private double taxa;

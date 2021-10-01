@@ -17,16 +17,11 @@ import javax.validation.constraints.NotNull;
 public class Gestor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "secoes_id")
-    private Secao secao;
+    private Long secoes_id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuarios_id")
-    private Usuario usuario;
+    private Long usuarios_id;
 
 }

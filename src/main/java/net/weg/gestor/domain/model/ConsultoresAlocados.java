@@ -21,14 +21,10 @@ public class ConsultoresAlocados {
     private Long id;
 
     @NotNull
-    @JoinColumn(name = "projetos_id")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Projeto projeto;
+    private Long projetos_id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "consultores_id")
-    private Consultor consultor;
+    private Long consultores_id;
 
     @NotNull
     private int limiteHoras;

@@ -25,6 +25,7 @@ import java.util.List;
 public class Usuario implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @NotBlank
@@ -42,13 +43,6 @@ public class Usuario implements UserDetails {
     @NotBlank
     @Size(max = 100)
     private String senha;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "consultores_alocados", joinColumns =
-        @JoinColumn(name = "usuarios_id", referencedColumnName = "id"), inverseJoinColumns =
-        @JoinColumn(name = "projetos_id", referencedColumnName = "id"))
-    private List<Projeto> projetos;
 
     @JsonIgnore
     @ManyToMany

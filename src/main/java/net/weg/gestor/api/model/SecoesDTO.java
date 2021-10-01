@@ -11,10 +11,8 @@ public class SecoesDTO {
 
     private String nome;
 
-    private int taxa;
-
     private double verba;
 
-    private String nome_responsavel;
+    private String nomeResponsavel;
 
 }

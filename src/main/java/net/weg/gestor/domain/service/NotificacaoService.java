@@ -21,14 +21,14 @@ public class NotificacaoService {
     private NotificacaoRepository notificacaoRepository;
     private NotificacaoAssembler notificacaoAssembler;
 
-    public String addNotificacaoFechamento(Long usuarioId) {
-        if (usuarioRepository.findById(usuarioId).isEmpty()) {
-            throw new NegocioException("Nao existe um usuario com esse ID para notificar");
-        }
-
-        notificacaoRepository.save(preencherDados(usuarioId));
-        return "Notificado";
-    }
+//    public String addNotificacaoFechamento(Long usuarioId) {
+//        if (usuarioRepository.findById(usuarioId).isEmpty()) {
+//            throw new NegocioException("Nao existe um usuario com esse ID para notificar");
+//        }
+//
+//        notificacaoRepository.save(preencherDados(usuarioId));
+//        return "Notificado";
+//    }
 
 //    public InfoNotificacoesDTO buscarTodasNotificacoes(Long usuarioId) {
 //        if (usuarioRepository.findById(usuarioId).isEmpty()) {
@@ -50,15 +50,15 @@ public class NotificacaoService {
 
     }
 
-    public Notificacao preencherDados(long usuarioId) {
-        Notificacao notificacao = new Notificacao();
-        notificacao.setData(LocalDate.now());
-        notificacao.setDescricao("ATENÇÃO! Inicio de um novo mês, está na hora de aprovar as horas pendentes");
-        notificacao.setStatusLeitura(false);
-        notificacao.setUsuario(usuarioRepository.findByIdUsuario(usuarioId));
-        notificacao.setTipo(TypeNotificacao.FECHAMENTO_MES);
-        return notificacao;
-    }
+//    public Notificacao preencherDados(long usuarioId) {
+//        Notificacao notificacao = new Notificacao();
+//        notificacao.setData(LocalDate.now());
+//        notificacao.setDescricao("ATENÇÃO! Inicio de um novo mês, está na hora de aprovar as horas pendentes");
+//        notificacao.setStatusLeitura(false);
+//        notificacao.setUsuario(usuarioRepository.findByIdUsuario(usuarioId));
+//        notificacao.setTipo(TypeNotificacao.FECHAMENTO_MES);
+//        return notificacao;
+//    }
 
 //    public int buscarNaoLidas(Long usuarioId) {
 //        return notificacaoRepository.buscarQuantidadeNaoLida(usuarioRepository.findByIdUsuario(usuarioId)).size();

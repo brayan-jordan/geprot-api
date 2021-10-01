@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GestorRepository extends JpaRepository<Gestor, Long> {
 
-    @Query("SELECT g FROM Gestor g where g.usuario = ?1")
-    Gestor findByUsuarioId(Usuario usuario);
+    @Query("SELECT g FROM Gestor g where g.usuarios_id = ?1")
+    Gestor findByUsuarioId(Long usuarios_id);
 
 }

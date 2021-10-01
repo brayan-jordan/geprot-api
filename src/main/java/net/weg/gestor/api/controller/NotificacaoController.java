@@ -13,10 +13,10 @@ public class NotificacaoController {
 
     private NotificacaoService notificacaoService;
 
-    @PostMapping("/fechamentomes/{usuarioId}")
-    public String addNotificacaoFechamento(@PathVariable Long usuarioId) {
-        return notificacaoService.addNotificacaoFechamento(usuarioId);
-    }
+//    @PostMapping("/fechamentomes/{usuarioId}")
+//    public String addNotificacaoFechamento(@PathVariable Long usuarioId) {
+//        return notificacaoService.addNotificacaoFechamento(usuarioId);
+//    }
 
 //    @GetMapping("buscar/{usuarioId}")
 //    public InfoNotificacoesDTO buscarNotificacoes(@PathVariable Long usuarioId) {

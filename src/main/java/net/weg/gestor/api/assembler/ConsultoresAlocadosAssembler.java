@@ -27,11 +27,11 @@ public class ConsultoresAlocadosAssembler {
         return consultores.stream().map(this::toEntity).collect(Collectors.toList());
     }
 
-    public ConsultorDTO toModel(ConsultoresAlocados consultoresAlocados) {
-       ConsultorDTO consultorDTO = modelMapper.map(consultoresAlocados, ConsultorDTO.class);
-       consultorDTO.setNome(usuarioRepository.findByIdUsuario(consultoresAlocados.getConsultor().getId()).getNome());
-        return consultorDTO;
-    }
+//    public ConsultorDTO toModel(ConsultoresAlocados consultoresAlocados) {
+//       ConsultorDTO consultorDTO = modelMapper.map(consultoresAlocados, ConsultorDTO.class);
+//       consultorDTO.setNome(usuarioRepository.findByIdUsuario(consultoresAlocados.getConsultor().getId()).getNome());
+//        return consultorDTO;
+//    }
 
     public ConsultoresAlocados toEntity(AlocarConsultorInputDTO alocarConsultorInputDTO) {
         return modelMapper.map(alocarConsultorInputDTO, ConsultoresAlocados.class);

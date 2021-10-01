@@ -5,6 +5,7 @@ import net.weg.gestor.api.model.*;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.model.ConsultoresAlocados;
 import net.weg.gestor.domain.model.Gestor;
+import net.weg.gestor.domain.model.Secao;
 import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.*;
 import org.modelmapper.ModelMapper;
@@ -67,10 +68,10 @@ public class UsuarioAssembler {
         GestorDTO gestorDTO = new GestorDTO();
         gestorDTO.setUsuario(modelMapper.map(usuario, UsuarioDTO.class));
         Usuario usuario1 = usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId());
-        Gestor gestor = gestorRepository.findByUsuarioId(usuario1);
+        Gestor gestor = gestorRepository.findByUsuarioId(usuario1.getId());
         gestorDTO.setId(gestor.getId());
-        gestorDTO.setSecao(secaoAssembler.toModel(gestorRepository.findByUsuarioId(usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId())).getSecao().getId()));
-        return modelMapper.map(usuario, GestorDTO.class);
+        gestorDTO.setSecao(secaoAssembler.toModel(gestor.getSecoes_id()));
+        return gestorDTO;
     }
 
 }

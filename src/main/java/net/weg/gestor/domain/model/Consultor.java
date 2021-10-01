@@ -18,16 +18,13 @@ import java.util.List;
 public class Consultor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuarios_id")
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fornecedores_id")
-    private Fornecedor fornecedor;
+    private Long fornecedores_id;
 
     @ManyToMany
     @JoinTable(name = "consultores_alocados", joinColumns =
