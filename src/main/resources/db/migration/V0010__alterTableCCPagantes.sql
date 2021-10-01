@@ -1,1 +1,0 @@
-ALTER TABLE ccpagantes ADD COLUMN taxa int not null;

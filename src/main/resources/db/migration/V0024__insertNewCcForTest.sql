@@ -1,1 +1,0 @@
---INSERT INTO centrodecusto VALUES (2, "Despesas2");

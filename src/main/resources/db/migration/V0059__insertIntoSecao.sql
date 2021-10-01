@@ -1,1 +1,0 @@
-INSERT INTO secoes VALUES (0,"Colaboradores", 0, "Fornecedores");

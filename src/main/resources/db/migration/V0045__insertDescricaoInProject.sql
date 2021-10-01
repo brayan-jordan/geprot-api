@@ -1,2 +1,0 @@
-ALTER TABLE projetos ADD COLUMN
-descricao VARCHAR(200);
