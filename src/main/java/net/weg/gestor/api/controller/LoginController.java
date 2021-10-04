@@ -2,7 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
-import net.weg.gestor.api.modelantiga.UsuarioLoginInputDTO;
+import net.weg.gestor.api.model.UsuarioLoginInputDTO;
 import net.weg.gestor.domain.entities.AuthenticationResponse;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.UsuarioRepository;

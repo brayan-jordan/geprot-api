@@ -1,16 +1,15 @@
-package net.weg.gestor.api.modelantiga;
+package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SecaoDoUsuarioDTO {
+public class FornecedorDTO {
 
     private Long id;
 
     private String nome;
 
-    private String nome_responsavel;
-
+    private String email;
 }

@@ -23,10 +23,6 @@ public class ProjetoAssembler {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private CCPagantesRepository ccPagantesRepository;
 
-//    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
-//        return modelMapper.map(projetoInputDTO, Projeto.class);
-//
-//    }
 
     public ProjetoDTO toModel(Projeto projeto) {
         return modelMapper.map(projeto, ProjetoDTO.class);
@@ -35,6 +31,7 @@ public class ProjetoAssembler {
     public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
+
 
 //    public ProjetoDTO toModel(Projeto projeto) {
 //        for (int i = 0; i < projeto.getConsultores().size(); ++i) {

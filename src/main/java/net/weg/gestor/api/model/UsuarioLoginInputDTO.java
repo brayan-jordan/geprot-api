@@ -1,4 +1,4 @@
-package net.weg.gestor.api.modelantiga;
+package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,6 @@ import lombok.Setter;
 public class UsuarioLoginInputDTO {
 
     private String email;
-    private String senha;
 
+    private String senha;
 }

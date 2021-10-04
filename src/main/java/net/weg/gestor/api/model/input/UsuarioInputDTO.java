@@ -1,15 +1,15 @@
-package net.weg.gestor.api.modelantiga;
+package net.weg.gestor.api.model.input;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioDTO {
+public class UsuarioInputDTO {
 
-    private Long id;
     private String nome;
-    private String email;
-    private String permissao;
 
+    private String email;
+
+    private String senha;
 }

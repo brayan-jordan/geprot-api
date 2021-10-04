@@ -1,8 +1,6 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.modelantiga.AlocarConsultorInputDTO;
-import net.weg.gestor.api.modelantiga.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.domain.entities.ConsultoresAlocados;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -18,13 +16,13 @@ public class ConsultoresAlocadosAssembler {
     private ModelMapper modelMapper;
     private UsuarioRepository usuarioRepository;
 
-    public ConsultoresAlocados toEntity(AlocarConsultoresInputDTO consultor) {
+    /*public ConsultoresAlocados toEntity(AlocarConsultoresInputDTO consultor) {
         return modelMapper.map(consultor, ConsultoresAlocados.class);
     }
 
     public List<ConsultoresAlocados> toCollectionEntity(List<AlocarConsultoresInputDTO> consultores) {
         return consultores.stream().map(this::toEntity).collect(Collectors.toList());
-    }
+    }*/
 
 //    public ConsultorDTO toModel(ConsultoresAlocados consultoresAlocados) {
 //       ConsultorDTO consultorDTO = modelMapper.map(consultoresAlocados, ConsultorDTO.class);
@@ -32,8 +30,8 @@ public class ConsultoresAlocadosAssembler {
 //        return consultorDTO;
 //    }
 
-    public ConsultoresAlocados toEntity(AlocarConsultorInputDTO alocarConsultorInputDTO) {
-        return modelMapper.map(alocarConsultorInputDTO, ConsultoresAlocados.class);
-    }
 
+//    public ConsultoresAlocados toEntity(AlocarConsultorInputDTO alocarConsultorInputDTO) {
+//        return modelMapper.map(alocarConsultorInputDTO, ConsultoresAlocados.class);
+//    }
 }

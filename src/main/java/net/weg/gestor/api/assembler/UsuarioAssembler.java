@@ -1,8 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.modelantiga.*;
-import net.weg.gestor.api.modelantiga.usuarioinputDTO.UsuarioInputDTO;
+import net.weg.gestor.api.model.UsuarioLoginInputDTO;
+import net.weg.gestor.api.model.input.UsuarioInputDTO;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.*;
 import org.modelmapper.ModelMapper;
@@ -42,6 +42,11 @@ public class UsuarioAssembler {
 
     }
 
+    public Usuario toEntityLogin(UsuarioLoginInputDTO usuarioInputDTO) {
+        return  modelMapper.map(usuarioInputDTO, Usuario.class);
+
+    }
+
 //    public UsuarioConsultorDTO toModelConsultor(Usuario usuario) {
 //        UsuarioConsultorDTO returnUsuario = modelMapper.map(usuario, UsuarioConsultorDTO.class);
 //        returnUsuario.setDemandas(consultoresAlocadosRepository.findByIdConsultor2(returnUsuario.getId()).size());
@@ -53,9 +58,9 @@ public class UsuarioAssembler {
 //        return usuarios.stream().map(this::toModelConsultor).collect(Collectors.toList());
 //    }
 
-    public Usuario toEntityLogin(UsuarioLoginInputDTO usuarioLoginInputDTO) {
-        return modelMapper.map(usuarioLoginInputDTO, Usuario.class);
-    }
+//    public Usuario toEntityLogin(UsuarioLoginInputDTO usuarioLoginInputDTO) {
+//        return modelMapper.map(usuarioLoginInputDTO, Usuario.class);
+//    }
 
 //    public GestorDTO toModelLogin(Usuario usuario) {
 //        GestorDTO gestorDTO = new GestorDTO();

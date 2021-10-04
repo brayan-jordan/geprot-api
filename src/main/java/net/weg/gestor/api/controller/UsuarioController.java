@@ -1,10 +1,18 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.assembler.ConsultorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.ConsultorDTO;
+import net.weg.gestor.api.model.input.ConsultorInputDTO;
+import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.entities.RoleUsuarios;
+import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.service.UsuarioService;
 import net.weg.gestor.domain.service.RoleUsuarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +24,7 @@ public class UsuarioController {
     private UsuarioAssembler usuarioAssembler;
     private RoleUsuarioService roleUsuarioService;
     private FornecedorRepository fornecedorRepository;
+    private ConsultorAssembler consultorAssembler;
 
 
 //    @GetMapping("/buscar/{usuarioId}")
@@ -38,20 +47,19 @@ public class UsuarioController {
 //        return usuarioService.listartodos();
 //    }
 
-//    @PostMapping("/cadastrar")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public UsuarioDTO cadastrar(@RequestBody UsuarioInputDTO usuario) {
-//        Usuario novoUsuario = usuarioAssembler.toEntity(usuario);
-//        RoleUsuarios novaRole = new RoleUsuarios();
-//        novaRole.setUsuarios_id(novoUsuario.getId());
-//        novoUsuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-//            novoUsuario.getSecao().setId(usuario.getSecao().getId());
-//        novoUsuario.setFornecedor(fornecedorRepository.findByIdFornecedor(usuario.getIdFornecedor().getId()));
-//        Usuario usuario1 = usuarioService.cadastrar(novoUsuario);
-//        novaRole.setRole_nome("ROLE_CONSULTOR");
-//        roleUsuarioService.cadastrar(novaRole);
-//        return usuarioAssembler.toModel(usuario1);
-//    }
+    @PostMapping("/cadastrar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ConsultorDTO cadastrar(@RequestBody ConsultorInputDTO consultor) {
+        Usuario newUsuario = usuarioAssembler.toEntity(consultor.getUsuario());
+        RoleUsuarios novaRole = new RoleUsuarios();
+        novaRole.setUsuarios_id(newUsuario.getId());
+        newUsuario.setSenha(new BCryptPasswordEncoder().encode(consultor.getUsuario().getSenha()));
+        Usuario usuario1 = usuarioService.cadastrar(newUsuario);
+        novaRole.setRole_nome("ROLE_CONSULTOR");
+        roleUsuarioService.cadastrar(novaRole);
+        Consultor consultor1 = consultorAssembler.toEntity(consultor);
+        return consultorAssembler.toModel(consultor1);
+    }
 
 //    @PutMapping("/editar/admin/{usuarioId}")
 //    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){

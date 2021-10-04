@@ -2,7 +2,6 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
-import net.weg.gestor.api.modelantiga.RoleUsuarioDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
@@ -10,8 +9,6 @@ import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -26,19 +23,19 @@ public class RoleUsuarioService {
         return roleUsuarioRepository.save(roleUsuarios);
     }
 
-    public List<RoleUsuarioDTO> listar(){
+    /*public List<RoleUsuarioDTO> listar(){
         return roleUsuarioAssembler.toCollectionModel(roleUsuarioRepository.findAll());
-    }
+    }*/
 
     public RoleUsuarios buscar(Long roleId){
         return roleUsuarioRepository.findById(roleId).orElseThrow(() -> new NegocioException("Role não encontrada."));
     }
-
+/*
     public ResponseEntity<RoleUsuarioDTO> buscarId(Long roleId){
         return  roleUsuarioRepository.findById(roleId).map(roleUsuarios -> ResponseEntity.ok(roleUsuarioAssembler.toModel(roleUsuarios))
         )
         .orElseThrow(() -> new NegocioException("Role não encontrada."));
-    }
+    }*/
 
 //    public RoleUsuarioDTO buscarPorIdUsuario(Long usuariosId){
 //        if (roleUsuarioRepository.findRoleByIdUsuario(usuariosId) == null){

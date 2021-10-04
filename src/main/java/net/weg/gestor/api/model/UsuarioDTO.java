@@ -1,4 +1,4 @@
-package net.weg.gestor.api.modelantiga;
+package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,16 +8,16 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UsuarioConsultorDTO {
+public class UsuarioDTO {
 
     private Long id;
+
     private String nome;
-    private int demandas;
+
     private String email;
-    private double precoHora;
-    private FornecedorDTO fornecedor;
+
     private LocalDate dataCadastro;
+
     private StatusUsuario status;
-    private String dataFormatada;
 
 }
