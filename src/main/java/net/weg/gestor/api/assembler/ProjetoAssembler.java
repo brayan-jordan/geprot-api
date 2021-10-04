@@ -1,12 +1,20 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.CCPaganteDTO;
+import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -17,10 +25,33 @@ public class ProjetoAssembler {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private CCPagantesRepository ccPagantesRepository;
 
-//    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
-//        return modelMapper.map(projetoInputDTO, Projeto.class);
-//
-//    }
+
+    public ProjetoDTO toModel(Projeto projeto) {
+        ProjetoDTO projetoDTO = modelMapper.map(projeto, ProjetoDTO.class);
+        projetoDTO.setHorasRestantes(projeto.getHorasPrevistas() - projeto.getHorasTrabalhadas());
+        projetoDTO.setValorRestante(projetoDTO.getValor() - projetoDTO.getValorUtilizado());
+        return projetoDTO;
+    }
+
+    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
+        return projetos.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
+        ProjetoDetalhadoDTO projetoDetalhado = modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
+        List<CCPaganteDTO> ccPagantesProjeto = new ArrayList<>();
+        ccPagantes.forEach(ccpagante -> {
+            ccPagantesProjeto.add(new CCPaganteDTO(
+                    ccpagante.getSecao().getId(),
+                    ccpagante.getSecao().getNome(),
+                    ccpagante.getTaxa()
+            ));
+        });
+        projetoDetalhado.setCcPagantes(ccPagantesProjeto);
+        return projetoDetalhado;
+
+    }
+
 
 //    public ProjetoDTO toModel(Projeto projeto) {
 //        for (int i = 0; i < projeto.getConsultores().size(); ++i) {

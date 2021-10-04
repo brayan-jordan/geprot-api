@@ -5,10 +5,12 @@ import lombok.Setter;
 import net.weg.gestor.domain.entities.StatusProjeto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-public class ProjetoDTO {
+public class ProjetoDetalhadoDTO {
 
     private Long id;
     private String nome;
@@ -25,5 +27,6 @@ public class ProjetoDTO {
     private String descricao;
     private String nomeSolicitante;
     private String nomeResponsavel;
+    private List<CCPaganteDTO> ccPagantes;
 
 }

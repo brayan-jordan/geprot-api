@@ -3,12 +3,16 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
-import net.weg.gestor.domain.entities.StatusProjeto;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -19,10 +23,30 @@ public class ProjetoService {
     private VerificationsService verificationsService;
     private ProjetoAssembler projetoAssembler;
     private SecaoRepository secaoRepository;
+    private CCPagantesRepository ccPagantesRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
     private SecaoService secaoService;
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+
+    public List<ProjetoDTO> listarPorSecao(Long secaoId) {
+        List<CCPagantes> secoesPagantes = ccPagantesService.listarPorSecao(secaoId);
+        List<Projeto> projetos = new ArrayList<>();
+        secoesPagantes.forEach(secao -> {
+            projetos.add(projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+                () -> new NegocioException("Projeto nao encontrado")));
+        });
+        return projetoAssembler.toCollectionModel(projetos);
+
+    }
+
+    public ProjetoDetalhadoDTO buscarProjeto(Long secaoId ,Long projetoId) {
+        return projetoAssembler.toModelDetalhada(
+                projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado")),
+                ccPagantesService.listarPorSecaoAndProjeto(secaoId, projetoId)
+        );
+    }
+
 
 //    public List<ProjetoDTO> listartodos(Long secaoId) {
 //        Secao secao = secaoRepository.findByIdAux(secaoId);

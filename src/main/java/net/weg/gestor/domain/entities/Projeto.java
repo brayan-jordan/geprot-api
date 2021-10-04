@@ -43,7 +43,6 @@ public class Projeto {
 
     double valorUtilizado;
 
-    @Enumerated(EnumType.STRING)
     private StatusProjeto status;
 
     private String descricao;
