@@ -1,4 +1,4 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +22,9 @@ public class Notificacao {
 
     private String descricao;
 
-    private Long usuarios_id;
+    @JoinColumn(name = "usuarios_id")
+    @ManyToOne
+    private Usuario usuario;
 
     private LocalDate data;
 

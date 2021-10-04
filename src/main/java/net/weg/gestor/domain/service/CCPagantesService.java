@@ -2,13 +2,8 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
-import net.weg.gestor.api.model.SecoesDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
-import net.weg.gestor.domain.model.CCPagantes;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service

@@ -1,8 +1,7 @@
 package net.weg.gestor.domain.repository;
 
-import net.weg.gestor.domain.model.Fornecedor;
+import net.weg.gestor.domain.entities.Fornecedor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository

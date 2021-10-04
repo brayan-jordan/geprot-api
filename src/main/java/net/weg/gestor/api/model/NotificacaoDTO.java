@@ -2,7 +2,7 @@ package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.domain.model.TypeNotificacao;
+import net.weg.gestor.domain.entities.TypeNotificacao;
 
 import java.time.LocalDate;
 

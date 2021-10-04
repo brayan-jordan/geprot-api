@@ -1,4 +1,4 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -24,7 +23,9 @@ public class HorasApontadas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long projetos_id;
+    @JoinColumn(name = "projetos_id")
+    @ManyToOne
+    private Projeto projeto;
 
     @NotNull
     @Size(min = 1, max = 24)
@@ -33,11 +34,13 @@ public class HorasApontadas {
     @NotNull
     private LocalDate data;
 
-    private Long consultores_id;
+    @JoinColumn(name = "consultores_id")
+    @ManyToOne
+    private Consultor consultor;
 
     @NotBlank
     private String descricao_trabalho;
 
-    private String status;
+    private StatusApontamento status;
 
 }

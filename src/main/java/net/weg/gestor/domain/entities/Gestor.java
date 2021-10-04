@@ -1,4 +1,4 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,8 +20,12 @@ public class Gestor {
     private Long id;
 
     @NotNull
-    private Long secoes_id;
+    @JoinColumn(name = "secoes_id")
+    @ManyToOne
+    private Secao secao;
 
-    private Long usuarios_id;
+    @JoinColumn(name = "usuarios_id")
+    @OneToOne
+    private Usuario usuario;
 
 }

@@ -1,16 +1,13 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -26,11 +23,11 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @NotBlank
     @Size(max = 100, min = 3)
-    String nome;
+    private String nome;
 
     @Email
     @NotBlank
@@ -38,7 +35,7 @@ public class Usuario implements UserDetails {
 
     private LocalDate dataCadastro;
 
-    StatusUsuario status;
+    private StatusUsuario status;
 
     @NotBlank
     @Size(max = 100)

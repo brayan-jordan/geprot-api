@@ -2,18 +2,12 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
-import net.weg.gestor.domain.model.CCPagantes;
-import net.weg.gestor.domain.model.ConsultoresAlocados;
-import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor

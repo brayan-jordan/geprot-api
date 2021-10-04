@@ -2,7 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.StatusProjeto;
+import net.weg.gestor.domain.entities.StatusProjeto;
 import org.springframework.stereotype.Service;
 
 @Service

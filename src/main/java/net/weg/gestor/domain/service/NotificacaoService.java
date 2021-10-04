@@ -2,16 +2,11 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.NotificacaoAssembler;
-import net.weg.gestor.api.model.InfoNotificacoesDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.Notificacao;
-import net.weg.gestor.domain.model.TypeNotificacao;
+import net.weg.gestor.domain.entities.Notificacao;
 import net.weg.gestor.domain.repository.NotificacaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
-
-import java.net.PortUnreachableException;
-import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor

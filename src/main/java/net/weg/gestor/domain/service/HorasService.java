@@ -2,23 +2,13 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.HorasAssembler;
-import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
-import net.weg.gestor.api.model.HorasApontadasTotalDTO;
-import net.weg.gestor.api.model.ListaApontamentoConsultor;
-import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
-import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.ConsultoresAlocados;
-import net.weg.gestor.domain.model.HorasApontadas;
-import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.entities.HorasApontadas;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

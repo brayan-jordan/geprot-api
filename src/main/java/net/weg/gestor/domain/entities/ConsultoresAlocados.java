@@ -1,4 +1,4 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,20 +13,26 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cc_pagantes")
-public class CCPagantes {
+@Table(name = "consultores_alocados")
+public class ConsultoresAlocados {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private Long projetos_id;
+    @ManyToOne
+    @JoinColumn(name = "projetos_id")
+    private Projeto projeto;
 
     @NotNull
-    private Long secoes_id;
+    @JoinColumn(name = "consultores_id")
+    @ManyToOne
+    private Consultor consultor;
 
     @NotNull
-    private double taxa;
+    private int limiteHoras;
+
+    private int horasApontadas;
 
 }

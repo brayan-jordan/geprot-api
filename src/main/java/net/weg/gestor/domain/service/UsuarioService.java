@@ -2,23 +2,10 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
-import net.weg.gestor.api.model.UsuarioConsultorDTO;
-import net.weg.gestor.api.model.UsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
-import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.Secao;
-import net.weg.gestor.domain.model.StatusUsuario;
-import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 @Service

@@ -2,9 +2,7 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.projetoinputDTO.AlocarCCPagantesInputDTO;
-import net.weg.gestor.domain.model.CCPagantes;
-import net.weg.gestor.api.model.SecoesDTO;
-import net.weg.gestor.api.model.centrodecustoinputDTO.CCPagantesInputDTO;
+import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.modelmapper.ModelMapper;

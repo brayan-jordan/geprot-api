@@ -3,17 +3,10 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.*;
 import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
-import net.weg.gestor.domain.model.ConsultoresAlocados;
-import net.weg.gestor.domain.model.Gestor;
-import net.weg.gestor.domain.model.Secao;
-import net.weg.gestor.domain.model.Usuario;
+import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -64,14 +57,14 @@ public class UsuarioAssembler {
         return modelMapper.map(usuarioLoginInputDTO, Usuario.class);
     }
 
-    public GestorDTO toModelLogin(Usuario usuario) {
-        GestorDTO gestorDTO = new GestorDTO();
-        gestorDTO.setUsuario(modelMapper.map(usuario, UsuarioDTO.class));
-        Usuario usuario1 = usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId());
-        Gestor gestor = gestorRepository.findByUsuarioId(usuario1.getId());
-        gestorDTO.setId(gestor.getId());
-        gestorDTO.setSecao(secaoAssembler.toModel(gestor.getSecoes_id()));
-        return gestorDTO;
-    }
+//    public GestorDTO toModelLogin(Usuario usuario) {
+//        GestorDTO gestorDTO = new GestorDTO();
+//        gestorDTO.setUsuario(modelMapper.map(usuario, UsuarioDTO.class));
+//        Usuario usuario1 = usuarioRepository.findByIdUsuario(gestorDTO.getUsuario().getId());
+//        Gestor gestor = gestorRepository.findByUsuarioId(usuario1.getId());
+//        gestorDTO.setId(gestor.getId());
+//        gestorDTO.setSecao(secaoAssembler.toModel(gestor.getSecoes_id()));
+//        return gestorDTO;
+//    }
 
 }

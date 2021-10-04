@@ -2,22 +2,10 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ConsultoresAlocadosAssembler;
-import net.weg.gestor.api.model.AlocarConsultorInputDTO;
-import net.weg.gestor.api.model.ConsultorDTO;
-import net.weg.gestor.api.model.UsuarioDTO;
-import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
-import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.model.ConsultoresAlocados;
-import net.weg.gestor.domain.model.Projeto;
-import net.weg.gestor.domain.model.Usuario;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service

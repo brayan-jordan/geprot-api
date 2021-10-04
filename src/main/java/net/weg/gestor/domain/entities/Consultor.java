@@ -1,6 +1,5 @@
-package net.weg.gestor.domain.model;
+package net.weg.gestor.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +19,14 @@ public class Consultor {
     @Id
     private Long id;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuarios_id")
     private Usuario usuario;
 
-    private Long fornecedores_id;
+    @JoinColumn(name = "fornecedores_id")
+    @ManyToOne
+    private Fornecedor fornecedor;
 
     @ManyToMany
     @JoinTable(name = "consultores_alocados", joinColumns =

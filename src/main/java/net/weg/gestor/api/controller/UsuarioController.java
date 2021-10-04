@@ -2,23 +2,10 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
-import net.weg.gestor.api.model.RoleUsuarioDTO;
-import net.weg.gestor.api.model.UsuarioConsultorDTO;
-import net.weg.gestor.api.model.UsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.UsuarioEditarInputDTO;
-import net.weg.gestor.domain.model.Usuario;
-import net.weg.gestor.domain.model.RoleUsuarios;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.service.UsuarioService;
-import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.service.RoleUsuarioService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ColunaHoraApontadaDTO;
 import net.weg.gestor.api.model.HorasApontadasTotalDTO;
 import net.weg.gestor.api.model.apontarinputDTO.ApontamentoDeHoraInputDTO;
-import net.weg.gestor.domain.model.HorasApontadas;
+import net.weg.gestor.domain.entities.HorasApontadas;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package net.weg.gestor.domain.repository;
 
-import net.weg.gestor.domain.model.Secao;
+import net.weg.gestor.domain.entities.Secao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -2,7 +2,7 @@ package net.weg.gestor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.domain.model.StatusUsuario;
+import net.weg.gestor.domain.entities.StatusUsuario;
 
 import java.time.LocalDate;
 
