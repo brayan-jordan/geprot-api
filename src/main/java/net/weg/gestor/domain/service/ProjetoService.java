@@ -3,13 +3,15 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.modelantiga.projetoinputDTO.ProjetoInputDTO;
+import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
-import net.weg.gestor.domain.entities.StatusProjeto;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -20,10 +22,23 @@ public class ProjetoService {
     private VerificationsService verificationsService;
     private ProjetoAssembler projetoAssembler;
     private SecaoRepository secaoRepository;
+    private CCPagantesRepository ccPagantesRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
     private SecaoService secaoService;
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+
+    public List<ProjetoDTO> listarPorSecao(Long secaoId) {
+        List<CCPagantes> secoesPagantes = ccPagantesService.listarPorSecao(secaoId);
+        List<Projeto> projetos = new ArrayList<>();
+        secoesPagantes.forEach(secao -> {
+            projetos.add(projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+                () -> new NegocioException("Projeto nao encontrado")));
+        });
+        return projetoAssembler.toCollectionModel(projetos);
+
+    }
+
 
 //    public List<ProjetoDTO> listartodos(Long secaoId) {
 //        Secao secao = secaoRepository.findByIdAux(secaoId);
@@ -52,18 +67,18 @@ public class ProjetoService {
 //        return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
 //    }
 
-    public Projeto saveProject(ProjetoInputDTO projeto){
-        Projeto projeto1 = projetoAssembler.toEntity(projeto);
-        projeto1.setDataCadastro(LocalDate.now());
-        projeto1.setHorasPrevistas(0);
-        projeto1.setValor(0);
-        projeto1.setHorasTrabalhadas(0);
-        projeto1.setValorUtilizado(0);
-        projeto1.setStatus(StatusProjeto.NAO_INICIADO);
-        projetoRepository.save(projeto1);
-
-        return projeto1;
-    }
+//    public Projeto saveProject(ProjetoInputDTO projeto){
+//        Projeto projeto1 = projetoAssembler.toEntity(projeto);
+//        projeto1.setDataCadastro(LocalDate.now());
+//        projeto1.setHorasPrevistas(0);
+//        projeto1.setValor(0);
+//        projeto1.setHorasTrabalhadas(0);
+//        projeto1.setValorUtilizado(0);
+//        projeto1.setStatus(StatusProjeto.NAO_INICIADO);
+//        projetoRepository.save(projeto1);
+//
+//        return projeto1;
+//    }
 
 //    public String cadastrar(ProjetoInputDTO projeto) {
 //        int taxa = 0;

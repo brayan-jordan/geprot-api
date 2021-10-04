@@ -1,6 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.api.modelantiga.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
@@ -8,6 +9,10 @@ import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -18,9 +23,17 @@ public class ProjetoAssembler {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
     private CCPagantesRepository ccPagantesRepository;
 
-    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
-        return modelMapper.map(projetoInputDTO, Projeto.class);
+//    public Projeto toEntity(ProjetoInputDTO projetoInputDTO) {
+//        return modelMapper.map(projetoInputDTO, Projeto.class);
+//
+//    }
 
+    public ProjetoDTO toModel(Projeto projeto) {
+        return modelMapper.map(projeto, ProjetoDTO.class);
+    }
+
+    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
+        return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
 //    public ProjetoDTO toModel(Projeto projeto) {
