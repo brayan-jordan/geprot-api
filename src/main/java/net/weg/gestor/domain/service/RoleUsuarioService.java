@@ -2,7 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
-import net.weg.gestor.api.model.RoleUsuarioDTO;
+import net.weg.gestor.api.modelantiga.RoleUsuarioDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;

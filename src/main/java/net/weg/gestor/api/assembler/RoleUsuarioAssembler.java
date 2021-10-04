@@ -2,8 +2,8 @@ package net.weg.gestor.api.assembler;
 
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.RoleUsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.RoleUsuarioInputDTO;
+import net.weg.gestor.api.modelantiga.RoleUsuarioDTO;
+import net.weg.gestor.api.modelantiga.usuarioinputDTO.RoleUsuarioInputDTO;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import org.modelmapper.ModelMapper;

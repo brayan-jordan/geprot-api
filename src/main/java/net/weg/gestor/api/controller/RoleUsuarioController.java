@@ -2,7 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
-import net.weg.gestor.api.model.RoleUsuarioDTO;
+import net.weg.gestor.api.modelantiga.RoleUsuarioDTO;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,6 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import net.weg.gestor.api.model.InfoNotificacoesDTO;
 import net.weg.gestor.domain.service.NotificacaoService;
 import org.springframework.web.bind.annotation.*;
 

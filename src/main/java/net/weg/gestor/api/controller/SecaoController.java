@@ -1,9 +1,6 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.DashboardSecaoDTO;
-import net.weg.gestor.api.model.UsuarioDTO;
-import net.weg.gestor.api.model.usuarioinputDTO.SecaoInputDTO;
 import net.weg.gestor.domain.service.SecaoService;
 import org.springframework.web.bind.annotation.*;
 

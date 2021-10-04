@@ -1,8 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.AlocarConsultorInputDTO;
-import net.weg.gestor.api.model.projetoinputDTO.AlocarConsultoresInputDTO;
+import net.weg.gestor.api.modelantiga.AlocarConsultorInputDTO;
+import net.weg.gestor.api.modelantiga.projetoinputDTO.AlocarConsultoresInputDTO;
 import net.weg.gestor.domain.entities.ConsultoresAlocados;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;

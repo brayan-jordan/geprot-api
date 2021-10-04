@@ -1,8 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.*;
-import net.weg.gestor.api.model.usuarioinputDTO.UsuarioInputDTO;
+import net.weg.gestor.api.modelantiga.*;
+import net.weg.gestor.api.modelantiga.usuarioinputDTO.UsuarioInputDTO;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.*;
 import org.modelmapper.ModelMapper;

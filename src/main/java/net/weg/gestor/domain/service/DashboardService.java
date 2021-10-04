@@ -1,15 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.BaseDashboardConcluidosDTO;
-import net.weg.gestor.api.model.BasePorMesDashboardDTO;
-import net.weg.gestor.api.model.BasePorPeriodoDashboardDTO;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @Service

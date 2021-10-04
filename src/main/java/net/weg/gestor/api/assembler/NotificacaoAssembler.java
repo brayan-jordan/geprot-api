@@ -1,8 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.NotificacaoDTO;
-import net.weg.gestor.api.model.notificacaoinputDTO.NotificacaoInputDTO;
+import net.weg.gestor.api.modelantiga.NotificacaoDTO;
+import net.weg.gestor.api.modelantiga.notificacaoinputDTO.NotificacaoInputDTO;
 import net.weg.gestor.domain.entities.Notificacao;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
