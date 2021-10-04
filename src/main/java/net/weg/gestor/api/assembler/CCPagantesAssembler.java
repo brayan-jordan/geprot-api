@@ -1,7 +1,6 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.modelantiga.projetoinputDTO.AlocarCCPagantesInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
@@ -27,9 +26,9 @@ public class CCPagantesAssembler {
 //        return modelMapper.map(secoesDTO, CCPagantes.class);
 //    }
 
-    public CCPagantes toEntityInput(AlocarCCPagantesInputDTO ccPagantesDTO) {
-        return modelMapper.map(ccPagantesDTO, CCPagantes.class);
-    }
+//    public CCPagantes toEntityInput(AlocarCCPagantesInputDTO ccPagantesDTO) {
+//        return modelMapper.map(ccPagantesDTO, CCPagantes.class);
+//    }
 
 //    public SecoesDTO toModel(CCPagantes ccPagantes) {
 //        SecoesDTO secoesDTO = modelMapper.map(ccPagantes, SecoesDTO.class);
@@ -42,7 +41,7 @@ public class CCPagantesAssembler {
 //        return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
 //    }
 
-    public List<CCPagantes> toCollectionEntity(List<AlocarCCPagantesInputDTO> ccPagantes) {
-        return ccPagantes.stream().map(this::toEntityInput).collect(Collectors.toList());
-    }
+//    public List<CCPagantes> toCollectionEntity(List<AlocarCCPagantesInputDTO> ccPagantes) {
+//        return ccPagantes.stream().map(this::toEntityInput).collect(Collectors.toList());
+//    }
 }

@@ -2,10 +2,15 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.domain.entities.StatusUsuario;
+import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @Service
@@ -17,24 +22,12 @@ public class UsuarioService {
     private RoleUsuarioService roleUsuarioService;
     private FornecedorRepository fornecedorRepository;
 
-//    @Transactional
-//    public Usuario cadastrar(Usuario usuario) {
-//        if (!secaoRepository.existsById(usuario.getSecao().getId())) {
-//            throw new NegocioException("ID Da seção é invalido, tente novamente");
-//        }
-//        usuario.setSecao(secaoRepository.findByIdAux(usuario.getSecao().getId()));
-//
-//        if (usuarioRepository.existsById(usuario.getId())) {
-//            throw new NegocioException("Já existe um gestor com esse ID");
-//        }
-//
-//        if (!fornecedorRepository.existsById(usuario.getFornecedor().getId())) {
-//            throw new NegocioException("Não existe um fornecedor com esse ID");
-//        }
-//        usuario.setDataCadastro(LocalDate.now());
-//        usuario.setStatus(StatusUsuario.ATIVO);
-//        return usuarioRepository.save(usuario);
-//    }
+    @Transactional
+    public Usuario cadastrar(Usuario usuario) {
+        usuario.setDataCadastro(LocalDate.now());
+        usuario.setStatus(StatusUsuario.ATIVO);
+        return usuarioRepository.save(usuario);
+    }
 
 //    public ResponseEntity<Usuario> excluir(Long usuarioId) {
 //        if(!usuarioRepository.existsById(usuarioId)) {

@@ -1,4 +1,4 @@
-package net.weg.gestor.api.modelantiga.usuarioinputDTO;
+package net.weg.gestor.api.model.input;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class FornecedorInputDTO {
 
-    private Long Id;
+    private Long id;
+
 }

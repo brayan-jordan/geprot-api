@@ -2,8 +2,6 @@ package net.weg.gestor.api.assembler;
 
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.modelantiga.RoleUsuarioDTO;
-import net.weg.gestor.api.modelantiga.usuarioinputDTO.RoleUsuarioInputDTO;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -19,7 +17,7 @@ public class RoleUsuarioAssembler {
     private ModelMapper modelMapper;
     private RoleUsuarioRepository roleUsuarioRepository;
 
-    public RoleUsuarios toEntity(RoleUsuarioInputDTO roleUsuarioInputDTO){
+    /*public RoleUsuarios toEntity(RoleUsuarioInputDTO roleUsuarioInputDTO){
         return modelMapper.map(roleUsuarioInputDTO, RoleUsuarios.class);
     }
 
@@ -29,6 +27,6 @@ public class RoleUsuarioAssembler {
 
     public RoleUsuarioDTO toModel(RoleUsuarios roleUsuarios){
         return modelMapper.map(roleUsuarios, RoleUsuarioDTO.class);
-    }
+    }*/
 
 }

@@ -3,7 +3,6 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.modelantiga.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
@@ -52,18 +51,18 @@ public class ProjetoService {
 //        return projetoAssembler.toCollectionModel(projetoRepository.findByStatus(status));
 //    }
 
-    public Projeto saveProject(ProjetoInputDTO projeto){
-        Projeto projeto1 = projetoAssembler.toEntity(projeto);
-        projeto1.setDataCadastro(LocalDate.now());
-        projeto1.setHorasPrevistas(0);
-        projeto1.setValor(0);
-        projeto1.setHorasTrabalhadas(0);
-        projeto1.setValorUtilizado(0);
-        projeto1.setStatus(StatusProjeto.NAO_INICIADO);
-        projetoRepository.save(projeto1);
-
-        return projeto1;
-    }
+//    public Projeto saveProject(ProjetoInputDTO projeto){
+//        Projeto projeto1 = projetoAssembler.toEntity(projeto);
+//        projeto1.setDataCadastro(LocalDate.now());
+//        projeto1.setHorasPrevistas(0);
+//        projeto1.setValor(0);
+//        projeto1.setHorasTrabalhadas(0);
+//        projeto1.setValorUtilizado(0);
+//        projeto1.setStatus(StatusProjeto.NAO_INICIADO);
+//        projetoRepository.save(projeto1);
+//
+//        return projeto1;
+//    }
 
 //    public String cadastrar(ProjetoInputDTO projeto) {
 //        int taxa = 0;
