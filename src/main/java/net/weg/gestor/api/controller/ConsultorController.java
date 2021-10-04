@@ -1,6 +1,7 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.weg.gestor.api.assembler.ConsultorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
@@ -15,6 +16,8 @@ import net.weg.gestor.domain.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/consultor")
@@ -42,7 +45,18 @@ public class ConsultorController {
         consultorRecebeDados.setUsuario(usuario1);
         consultorRecebeDados.setFornecedor(fornecedorRepository.findByIdFornecedor(consultor.getFornecedor().getId()));
         Consultor consultor1 = consultorService.cadastrar(consultorRecebeDados);
-
         return consultorAssembler.toModel(consultor1);
     }
+
+
+    @GetMapping("/listar")
+    public List<ConsultorDTO> listarConsultores(){
+        return consultorService.listarTodos();
+    }
+
+    @GetMapping("/buscar/{consultorId}")
+    public ConsultorDTO listarConsultores(@PathVariable long consultorId){
+        return consultorService.buscarConsultor(consultorId);
+    }
+
 }
