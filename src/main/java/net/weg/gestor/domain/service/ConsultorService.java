@@ -2,10 +2,14 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ConsultorAssembler;
+import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.ConsultorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -19,4 +23,12 @@ public class ConsultorService {
     }
 
 
+    public List<ConsultorDTO> listarTodos() {
+        return consultorAssembler.toCollectionModel(consultorRepository.findAll());
+    }
+
+    public ConsultorDTO buscarConsultor(long consultorId) {
+        return consultorAssembler.toModel(consultorRepository.findById(consultorId)
+                .orElseThrow(() -> new NegocioException("Consultor não encontrado")));
+    }
 }
