@@ -1,7 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
+import net.weg.gestor.api.modelantiga.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;

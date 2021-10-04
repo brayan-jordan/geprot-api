@@ -2,10 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.domain.service.CCPagantesService;
-import net.weg.gestor.api.model.SecoesDTO;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @AllArgsConstructor
 @RestController

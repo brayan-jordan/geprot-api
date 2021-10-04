@@ -1,0 +1,14 @@
+package net.weg.gestor.api.modelantiga.projetoinputDTO;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class AlocarConsultoresInputDTO {
+
+    private Long usuarios_id;
+
+    private int limiteHoras;
+
+}

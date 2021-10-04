@@ -3,7 +3,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.model.projetoinputDTO.ProjetoInputDTO;
+import net.weg.gestor.api.modelantiga.projetoinputDTO.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.StatusProjeto;
 import net.weg.gestor.domain.repository.*;
