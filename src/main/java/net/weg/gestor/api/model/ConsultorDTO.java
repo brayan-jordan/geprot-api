@@ -13,6 +13,6 @@ public class ConsultorDTO {
 
     private FornecedorDTO fornecedor;
 
-    private double preco_hora;
+    private double precoHora;
 
 }

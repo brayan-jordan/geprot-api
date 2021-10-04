@@ -47,19 +47,7 @@ public class UsuarioController {
 //        return usuarioService.listartodos();
 //    }
 
-    @PostMapping("/cadastrar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ConsultorDTO cadastrar(@RequestBody ConsultorInputDTO consultor) {
-        Usuario newUsuario = usuarioAssembler.toEntity(consultor.getUsuario());
-        RoleUsuarios novaRole = new RoleUsuarios();
-        novaRole.setUsuarios_id(newUsuario.getId());
-        newUsuario.setSenha(new BCryptPasswordEncoder().encode(consultor.getUsuario().getSenha()));
-        Usuario usuario1 = usuarioService.cadastrar(newUsuario);
-        novaRole.setRole_nome("ROLE_CONSULTOR");
-        roleUsuarioService.cadastrar(novaRole);
-        Consultor consultor1 = consultorAssembler.toEntity(consultor);
-        return consultorAssembler.toModel(consultor1);
-    }
+
 
 //    @PutMapping("/editar/admin/{usuarioId}")
 //    public RoleUsuarioDTO editaPermissaoAdmin(@Valid @PathVariable long usuarioId){

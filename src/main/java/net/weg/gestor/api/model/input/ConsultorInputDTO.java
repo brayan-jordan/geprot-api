@@ -7,10 +7,12 @@ import lombok.Setter;
 @Setter
 public class ConsultorInputDTO {
 
+    private long id;
+
     private UsuarioInputDTO usuario;
 
     private FornecedorInputDTO fornecedor;
 
-    private double preco_hora;
+    private double precoHora;
 
 }
