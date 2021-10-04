@@ -1,7 +1,9 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.assembler.SecaoAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.SecaoDTO;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.*;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
@@ -21,11 +23,11 @@ public class SecaoService {
     private UsuarioAssembler usuarioAssembler;
     private ProjetoRepository projetoRepository;
     private CCPagantesRepository ccPagantesRepository;
+    private SecaoAssembler secaoAssembler;
 
-    @Transactional
-    public Secao buscar(Long secaoId) {
-        return secaoRepository.findById(secaoId).
-                orElseThrow(() -> new NegocioException("Nao foi encontrado uma seção com esse ID"));
+    public SecaoDTO buscar(Long secaoId) {
+        return secaoAssembler.toModel(secaoRepository.findById(secaoId).orElseThrow(
+            () -> new NegocioException("Secao nao encontrada")));
     }
 
 //    @Transactional

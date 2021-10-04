@@ -2,6 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,11 @@ public class ProjetoController {
     @GetMapping("/listar/{secaoId}")
     public List<ProjetoDTO> listarPorSecao(@PathVariable Long secaoId) {
         return projetoService.listarPorSecao(secaoId);
+    }
+
+    @GetMapping("/buscar/{secaoId}/{projetoId}")
+    public ProjetoDetalhadoDTO buscarInfoProjeto(@PathVariable Long secaoId, @PathVariable Long projetoId) {
+        return projetoService.buscarProjeto(secaoId, projetoId);
     }
 
 //    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")

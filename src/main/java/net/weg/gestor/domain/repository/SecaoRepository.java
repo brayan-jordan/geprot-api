@@ -12,4 +12,5 @@ public interface SecaoRepository extends JpaRepository<Secao, Long> {
     Secao findByIdAux(long secaoid);
 
 
+
 }

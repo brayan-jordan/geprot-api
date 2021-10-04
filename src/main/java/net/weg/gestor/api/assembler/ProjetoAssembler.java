@@ -1,7 +1,10 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
@@ -32,6 +35,21 @@ public class ProjetoAssembler {
 
     public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
+        ProjetoDetalhadoDTO projetoDetalhado = modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
+        List<CCPaganteDTO> ccPagantesProjeto = new ArrayList<>();
+        ccPagantes.forEach(ccpagante -> {
+            ccPagantesProjeto.add(new CCPaganteDTO(
+                    ccpagante.getSecao().getId(),
+                    ccpagante.getSecao().getNome(),
+                    ccpagante.getTaxa()
+            ));
+        });
+        projetoDetalhado.setCcPagantes(ccPagantesProjeto);
+        return projetoDetalhado;
+
     }
 
 

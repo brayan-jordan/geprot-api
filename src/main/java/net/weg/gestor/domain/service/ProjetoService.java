@@ -4,6 +4,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.exception.NegocioException;
@@ -37,6 +38,13 @@ public class ProjetoService {
         });
         return projetoAssembler.toCollectionModel(projetos);
 
+    }
+
+    public ProjetoDetalhadoDTO buscarProjeto(Long secaoId ,Long projetoId) {
+        return projetoAssembler.toModelDetalhada(
+                projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado")),
+                ccPagantesService.listarPorSecaoAndProjeto(secaoId, projetoId)
+        );
     }
 
 
