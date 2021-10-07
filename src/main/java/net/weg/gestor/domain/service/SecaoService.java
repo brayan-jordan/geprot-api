@@ -13,6 +13,8 @@ import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SecaoService {
@@ -28,6 +30,10 @@ public class SecaoService {
     public SecaoDTO buscar(Long secaoId) {
         return secaoAssembler.toModel(secaoRepository.findById(secaoId).orElseThrow(
             () -> new NegocioException("Secao nao encontrada")));
+    }
+
+    public List<SecaoDTO> listarTodas() {
+        return secaoAssembler.toCollectionModel(secaoRepository.findAll());
     }
 
 //    @Transactional

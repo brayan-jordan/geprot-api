@@ -11,6 +11,7 @@ import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
 import net.weg.gestor.domain.service.ConsultorService;
+import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import net.weg.gestor.domain.service.RoleUsuarioService;
 import net.weg.gestor.domain.service.UsuarioService;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ConsultorController {
 
+    private ConsultoresAlocadosService consultoresAlocadosService;
     private UsuarioAssembler usuarioAssembler;
     private UsuarioService usuarioService;
     private RoleUsuarioService roleUsuarioService;
@@ -58,5 +60,11 @@ public class ConsultorController {
     public ConsultorDTO listarConsultores(@PathVariable long consultorId){
         return consultorService.buscarConsultor(consultorId);
     }
+
+//    @PostMapping("/alocar")
+//    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
+//        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
+//    }
+
 
 }

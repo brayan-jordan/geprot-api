@@ -13,5 +13,4 @@ public class GestorApplication {
 //		System.out.println(new BCryptPasswordEncoder().encode("123456"));
 
 	}
-
 }
