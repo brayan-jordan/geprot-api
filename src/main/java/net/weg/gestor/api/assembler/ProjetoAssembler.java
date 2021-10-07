@@ -28,7 +28,6 @@ public class ProjetoAssembler {
 
     public ProjetoDTO toModel(Projeto projeto) {
         ProjetoDTO projetoDTO = modelMapper.map(projeto, ProjetoDTO.class);
-        projetoDTO.setHorasRestantes(projeto.getHorasPrevistas() - projeto.getHorasTrabalhadas());
         projetoDTO.setValorRestante(projetoDTO.getValor() - projetoDTO.getValorUtilizado());
         return projetoDTO;
     }

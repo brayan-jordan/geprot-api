@@ -17,13 +17,9 @@ public class ProjetoDTO {
     private LocalDate dataCadastro;
     private int horasPrevistas;
     private int horasTrabalhadas;
-    private int horasRestantes;
     private double valor;
     private double valorUtilizado;
     private double valorRestante;
     private StatusProjeto status;
-    private String descricao;
-    private String nomeSolicitante;
-    private String nomeResponsavel;
 
 }

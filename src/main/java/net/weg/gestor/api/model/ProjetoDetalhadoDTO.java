@@ -27,6 +27,5 @@ public class ProjetoDetalhadoDTO {
     private String descricao;
     private String nomeSolicitante;
     private String nomeResponsavel;
-    private List<CCPaganteDTO> ccPagantes;
 
 }

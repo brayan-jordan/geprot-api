@@ -22,24 +22,6 @@ public class CCPagantesService {
     private ProjetoRepository projetoRepository;
     private SecaoRepository secaoRepository;
 
-//    public List<SecoesDTO> listartodos() {
-//        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findAll());
-//
-//    }
-
-//    public void saveCcPagantes(ProjetoInputDTO project, Long idCadastro) {
-//        List<CCPagantes> newCcPagantes = ccPagantesAssembler.toCollectionEntity(project.getCcpagantes());
-//        for (int i = 0; i < newCcPagantes.size(); ++i) {
-//            newCcPagantes.get(i).setProjetos_id(idCadastro);
-//        }
-//        ccPagantesRepository.saveAll(newCcPagantes);
-//    }
-
-//    public List<SecoesDTO> listarporprojeto(Long projetoid) {
-//        return ccPagantesAssembler.toCollectionModel(ccPagantesRepository.findByIdCC(projetoid));
-//
-//    }
-
     public List<CCPagantes> listarPorSecao(Long secaoId) {
         Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Essa secao nao paga nenhum projeto"));
         return ccPagantesRepository.findBySecao(secao);
