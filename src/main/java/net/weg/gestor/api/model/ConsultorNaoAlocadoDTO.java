@@ -7,7 +7,6 @@ import net.weg.gestor.api.model.FornecedorDTO;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class ConsultorNaoAlocadoDTO {
 
     private Long id;
