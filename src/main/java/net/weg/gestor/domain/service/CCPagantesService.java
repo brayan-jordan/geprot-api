@@ -35,12 +35,15 @@ public class CCPagantesService {
     }
 
     public List<CCPaganteDTO> buscarCCpagantesProjeto(Long projetoId) {
-        if (!projetoRepository.existsById(projetoId)) {
-            throw new NegocioException("Não encontrado projeto com esse ID");
-        }
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
+        List<CCPagantes> ccPagantesProjeto = ccPagantesRepository.buscarCCpagantesProjeto(projeto);
 
-    return null;
+        List<CCPaganteDTO> returnCCpagantes = ccPagantesAssembler.toCollectionModel(ccPagantesProjeto);
+        returnCCpagantes.forEach(ccpagante -> {
 
+        });
+
+        return null;
     }
 
 }
