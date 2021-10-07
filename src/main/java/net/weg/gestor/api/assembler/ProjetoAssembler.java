@@ -46,7 +46,6 @@ public class ProjetoAssembler {
                     ccpagante.getTaxa()
             ));
         });
-        projetoDetalhado.setCcPagantes(ccPagantesProjeto);
         return projetoDetalhado;
 
     }
