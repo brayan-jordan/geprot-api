@@ -1,6 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.api.model.SecaoDTO;
 import net.weg.gestor.domain.entities.Secao;
 import net.weg.gestor.domain.repository.SecaoRepository;
@@ -24,11 +25,5 @@ public class SecaoAssembler {
     public List<SecaoDTO> toCollectionModel(List<Secao> secoes) {
         return secoes.stream().map(this::toModel).collect(Collectors.toList());
     }
-
-
-//    public List<UsuarioDTO> toCollectionModel(List<Usuario> usuarios) {
-//        return usuarios.stream().map(this::toModel).collect(Collectors.toList());
-//
-//    }
 
 }

@@ -12,6 +12,7 @@ import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,15 +36,11 @@ public class CCPagantesService {
     }
 
     public List<CCPaganteDTO> buscarCCpagantesProjeto(Long projetoId) {
-        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(
+                () -> new NegocioException("Nao existe projeto com esse ID"));
+
         List<CCPagantes> ccPagantesProjeto = ccPagantesRepository.buscarCCpagantesProjeto(projeto);
-
-        List<CCPaganteDTO> returnCCpagantes = ccPagantesAssembler.toCollectionModel(ccPagantesProjeto);
-        returnCCpagantes.forEach(ccpagante -> {
-
-        });
-
-        return null;
+        return ccPagantesAssembler.toCollectionModel(ccPagantesProjeto, projeto);
     }
 
 }
