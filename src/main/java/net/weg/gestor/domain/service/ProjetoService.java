@@ -75,7 +75,6 @@ public class ProjetoService {
                 throw new NegocioException("Nao existe um consultor com algum ID informado");
             }
         });
-
     }
 
 
