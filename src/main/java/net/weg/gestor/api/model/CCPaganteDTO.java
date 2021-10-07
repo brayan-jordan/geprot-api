@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class CCPaganteDTO {
 
     private Long id;
@@ -13,5 +14,6 @@ public class CCPaganteDTO {
     private String nome;
 
     private double valorPagante;
+
 
 }

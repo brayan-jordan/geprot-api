@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -20,21 +21,14 @@ public class CCPagantesAssembler {
     private ProjetoRepository projetoRepository;
     private SecaoRepository secaoRepository;
 
-    public CCPaganteDTO toModel(CCPagantes ccPagante, Projeto projeto) {
-        CCPaganteDTO ccPagantes = modelMapper.map(ccPagante, CCPaganteDTO.class);
-        ccPagantes.setId(ccPagante.getSecao().getId());
-        ccPagantes.setNome(ccPagante.getSecao().getNome());
-        ccPagantes.setValorPagante(projeto.getValor() * 100 / ccPagante.getTaxa());
-        return ccPagantes;
+    public CCPaganteDTO toModel(CCPagantes ccPagante) {
+        return new CCPaganteDTO(ccPagante.getSecao().getId(), ccPagante.getSecao().getNome(), ccPagante.getTaxa());
     }
 
-    public ArrayList<CCPaganteDTO> toCollectionModel(List<CCPagantes> ccPagantes, Projeto projeto) {
-        ArrayList<CCPaganteDTO> listaCCPagantes = new ArrayList<>();
-        ccPagantes.forEach(ccPagantes1 -> {
-            CCPaganteDTO ccPagantesDTO = toModel(ccPagantes1, projeto);
-            listaCCPagantes.add(ccPagantesDTO);
-        });
-        return listaCCPagantes;
+    public List<CCPaganteDTO> toCollectionModel(List<CCPagantes> ccPagantes) {
+        return ccPagantes.stream().map(this::toModel).collect(Collectors.toList());
+
     }
+
 
 }

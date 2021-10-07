@@ -36,11 +36,25 @@ public class CCPagantesService {
     }
 
     public List<CCPaganteDTO> buscarCCpagantesProjeto(Long projetoId) {
-        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(
-                () -> new NegocioException("Nao existe projeto com esse ID"));
+        Projeto projeto = projetoRepository.findById(projetoId).
+                orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
 
-        List<CCPagantes> ccPagantesProjeto = ccPagantesRepository.buscarCCpagantesProjeto(projeto);
-        return ccPagantesAssembler.toCollectionModel(ccPagantesProjeto, projeto);
+//      Passando a lista dos ccpagantes diretamente para o método que fara o retorno, evitando armazenar dados em cache que
+//        atrasam o fluxo do sistema
+        return calcularValoresPagante(ccPagantesAssembler.toCollectionModel(
+                ccPagantesRepository.buscarCCpagantesProjeto(projeto)),
+                projeto.getValor()
+        );
     }
+
+    public List<CCPaganteDTO> calcularValoresPagante(List<CCPaganteDTO> ccPagantes, double valorProjeto) {
+        ccPagantes.forEach(ccPaganteProjeto -> {
+//            O valor de CC Pagante está vindo do método anterior com a taxa que o mesmo paga, assim economizando linhas de código
+//            apesar de deixar menos legivel
+            ccPaganteProjeto.setValorPagante(valorProjeto * 100 / ccPaganteProjeto.getValorPagante());
+        });
+        return ccPagantes;
+    }
+
 
 }
