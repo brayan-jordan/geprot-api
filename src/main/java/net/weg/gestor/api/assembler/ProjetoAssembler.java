@@ -2,7 +2,7 @@ package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.CCPaganteDTO;
-import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
@@ -26,13 +26,13 @@ public class ProjetoAssembler {
     private CCPagantesRepository ccPagantesRepository;
 
 
-    public ProjetoDTO toModel(Projeto projeto) {
-        ProjetoDTO projetoDTO = modelMapper.map(projeto, ProjetoDTO.class);
-        projetoDTO.setValorRestante(projetoDTO.getValor() - projetoDTO.getValorUtilizado());
-        return projetoDTO;
+    public ProjetoCardDTO toModel(Projeto projeto) {
+        ProjetoCardDTO projetoCardDTO = modelMapper.map(projeto, ProjetoCardDTO.class);
+        projetoCardDTO.setValorRestante(projetoCardDTO.getValor() - projetoCardDTO.getValorUtilizado());
+        return projetoCardDTO;
     }
 
-    public List<ProjetoDTO> toCollectionModel(List<Projeto> projetos) {
+    public List<ProjetoCardDTO> toCollectionModel(List<Projeto> projetos) {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
@@ -46,6 +46,8 @@ public class ProjetoAssembler {
                     ccpagante.getTaxa()
             ));
         });
+        projetoDetalhado.setHorasRestantes(projetoDetalhado.getHorasPrevistas() - projetoDetalhado.getHorasTrabalhadas());
+        projetoDetalhado.setValorRestante(projetoDetalhado.getValor() - projetoDetalhado.getValorUtilizado());
         return projetoDetalhado;
 
     }

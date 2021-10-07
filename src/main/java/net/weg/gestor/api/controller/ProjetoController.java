@@ -1,13 +1,11 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
-import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,7 +16,7 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping("/listar/{secaoId}")
-    public List<ProjetoDTO> listarPorSecao(@PathVariable Long secaoId) {
+    public List<ProjetoCardDTO> listarPorSecao(@PathVariable Long secaoId) {
         return projetoService.listarPorSecao(secaoId);
     }
 

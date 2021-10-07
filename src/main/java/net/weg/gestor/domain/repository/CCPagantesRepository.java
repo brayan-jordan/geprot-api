@@ -1,6 +1,5 @@
 package net.weg.gestor.domain.repository;
 
-import net.weg.gestor.api.model.ProjetoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Secao;

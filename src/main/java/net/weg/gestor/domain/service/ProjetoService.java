@@ -3,7 +3,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
-import net.weg.gestor.api.model.ProjetoDTO;
+import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.api.model.input.projetoinput.AlocarCCPagantesInputDTO;
 import net.weg.gestor.api.model.input.projetoinput.ProjetoInputDTO;
@@ -32,7 +32,7 @@ public class ProjetoService {
     private SecaoService secaoService;
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
 
-    public List<ProjetoDTO> listarPorSecao(Long secaoId) {
+    public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
         List<CCPagantes> secoesPagantes = ccPagantesService.listarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
         secoesPagantes.forEach(secao -> {

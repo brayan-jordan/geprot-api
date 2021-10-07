@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class ProjetoDTO {
+public class ProjetoCardDTO {
 
     private Long id;
     private String nome;
