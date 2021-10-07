@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "consultores_alocados")
-public class ConsultoresAlocados {
+public class ConsultorAlocado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

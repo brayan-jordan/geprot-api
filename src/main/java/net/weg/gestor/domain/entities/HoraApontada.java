@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(name = "horas_apontadas")
-public class HorasApontadas {
+public class HoraApontada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

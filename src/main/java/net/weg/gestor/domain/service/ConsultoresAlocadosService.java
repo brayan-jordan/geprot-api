@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ConsultoresAlocadosAssembler;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.domain.entities.Consultor;
-import net.weg.gestor.domain.entities.ConsultoresAlocados;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.ConsultorRepository;

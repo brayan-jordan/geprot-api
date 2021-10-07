@@ -1,12 +1,8 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.domain.entities.HorasApontadas;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -14,19 +10,19 @@ public class HorasAssembler {
 
     private ModelMapper modelMapper;
 
-//    public ColunaHoraApontadaDTO toModel(HorasApontadas horasApontadas) {
+//    public ColunaHoraApontadaDTO toModel(HoraApontada horasApontadas) {
 //        return modelMapper.map(horasApontadas, ColunaHoraApontadaDTO.class);
 //    }
 //
-//    public List<ColunaHoraApontadaDTO> toCollectionModel(List<HorasApontadas> horasApontadas) {
+//    public List<ColunaHoraApontadaDTO> toCollectionModel(List<HoraApontada> horasApontadas) {
 //        return horasApontadas.stream().map(this::toModel).collect(Collectors.toList());
 //    }
 //
-//    public HorasApontadas toEntity(ApontamentoDeHoraInputDTO apontamento) {
-//        return modelMapper.map(apontamento, HorasApontadas.class);
+//    public HoraApontada toEntity(ApontamentoDeHoraInputDTO apontamento) {
+//        return modelMapper.map(apontamento, HoraApontada.class);
 //    }
 //
-//    public HorasApontadasTotalDTO toModelTotal(HorasApontadas horasApontadas) {
+//    public HorasApontadasTotalDTO toModelTotal(HoraApontada horasApontadas) {
 //        return modelMapper.map(horasApontadas, HorasApontadasTotalDTO.class);
 //    }
 

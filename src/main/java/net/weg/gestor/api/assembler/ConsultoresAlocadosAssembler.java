@@ -3,9 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.domain.entities.Consultor;
-import net.weg.gestor.domain.entities.ConsultoresAlocados;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
-import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

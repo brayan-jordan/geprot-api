@@ -2,7 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.HorasAssembler;
-import net.weg.gestor.domain.entities.HorasApontadas;
+import net.weg.gestor.domain.entities.HoraApontada;
 import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
 import net.weg.gestor.domain.repository.HorasApontadasRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
@@ -22,16 +22,16 @@ public class HorasService {
     private HorasAssembler horasAssembler;
     private ComponentsService componentsService;
 
-    public List<HorasApontadas> listarTodos() {
+    public List<HoraApontada> listarTodos() {
         return horasApontadasRepository.findAll();
     }
 
 //    public ArrayList<HorasApontadasTotalDTO> getApontamentoTotal(Long projetoId) {
-//        List<HorasApontadas> thisHorasApontadas = horasApontadasRepository.findTeste(projetoRepository.findByIdProjeto(projetoId));
+//        List<HoraApontada> thisHorasApontadas = horasApontadasRepository.findTeste(projetoRepository.findByIdProjeto(projetoId));
 //        ArrayList<HorasApontadasTotalDTO> listToReturn = new ArrayList<>();
 //        for (int i = 0; i < thisHorasApontadas.size(); ++i) {
 //            HorasApontadasTotalDTO horaApontada = new HorasApontadasTotalDTO();
-//            ConsultoresAlocados consultor = consultoresAlocadosRepository.buscar
+//            ConsultorAlocado consultor = consultoresAlocadosRepository.buscar
 //                    (thisHorasApontadas.get(i).getUsuario().getId(), projetoId);
 //            horaApontada.setQuantidade_horas(consultor.getLimiteHoras());
 //            horaApontada.setHorasTotais(horasApontadasRepository.buscarHoraTotalUser
@@ -95,11 +95,11 @@ public class HorasService {
 //    }
 //
 //    public String aprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-//        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
+//        List<HoraApontada> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
 //        if (horasApontadas.size() == 0) {
 //            throw new NegocioException("Esse consultor já está com todas suas horas aprovadas");
 //        }
-//        for (HorasApontadas horasApontada : horasApontadas) {
+//        for (HoraApontada horasApontada : horasApontadas) {
 //            horasApontada.setStatus("APROVADO");
 //        }
 //        horasApontadasRepository.saveAll(horasApontadas);
@@ -107,11 +107,11 @@ public class HorasService {
 //    }
 //
 //    public String reprovarApontamentosConsultor(Long projetoId, Long usuarioId) {
-//        List<HorasApontadas> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
+//        List<HoraApontada> horasApontadas = componentsService.buscarHorasPorStatus(projetoId, usuarioId, "PENDENTE");
 //        if (horasApontadas.size() == 0) {
 //            throw new NegocioException("Esse consultor não tem horas pendentes para serem reprovadas");
 //        }
-//        for (HorasApontadas horasApontada : horasApontadas) {
+//        for (HoraApontada horasApontada : horasApontadas) {
 //            horasApontada.setStatus("REPROVADO");
 //        }
 //        horasApontadasRepository.saveAll(horasApontadas);
@@ -125,7 +125,7 @@ public class HorasService {
 //            throw new NegocioException("Esse consultor não está alocado nesse projeto, tente novamente");
 //        }
 //
-//        ConsultoresAlocados alocado = consultoresAlocadosRepository.buscar(consultorId, projetoId);
+//        ConsultorAlocado alocado = consultoresAlocadosRepository.buscar(consultorId, projetoId);
 //
 //        if ((apontamento.getQuantidade_horas() + alocado.getHorasApontadas()) > alocado.getLimiteHoras()) {
 //            throw new NegocioException("Voce esta tentando apontar mais horas que o seu limite!");
@@ -138,13 +138,13 @@ public class HorasService {
 //            throw new NegocioException("Ajuste primeiramente suas horas reprovadas para conseguir apontar novamente");
 //        }
 //
-//        HorasApontadas horaApontada = horasAssembler.toEntity(apontamento);
+//        HoraApontada horaApontada = horasAssembler.toEntity(apontamento);
 //        horaApontada.setData(LocalDate.now());
 //        horaApontada.setUsuario(consultor);
 //        horaApontada.setProjeto(projeto);
 //        horaApontada.setStatus("PENDENTE");
 //        horasApontadasRepository.save(horaApontada);
-//        ConsultoresAlocados consultoresAlocados = consultoresAlocadosRepository.buscar(consultorId, projetoId);
+//        ConsultorAlocado consultoresAlocados = consultoresAlocadosRepository.buscar(consultorId, projetoId);
 //        consultoresAlocados.setHorasApontadas(consultoresAlocados.getHorasApontadas() + apontamento.getQuantidade_horas());
 //        consultoresAlocadosRepository.save(consultoresAlocados);
 //        Projeto projetoEdit = projetoRepository.findByIdProjeto(projetoId);

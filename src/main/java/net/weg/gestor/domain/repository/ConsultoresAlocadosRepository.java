@@ -1,7 +1,7 @@
 package net.weg.gestor.domain.repository;
 
 import net.weg.gestor.domain.entities.Consultor;
-import net.weg.gestor.domain.entities.ConsultoresAlocados;
+import net.weg.gestor.domain.entities.ConsultorAlocado;
 import net.weg.gestor.domain.entities.Projeto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ConsultoresAlocadosRepository extends JpaRepository<ConsultoresAlocados, Long> {
+public interface ConsultoresAlocadosRepository extends JpaRepository<ConsultorAlocado, Long> {
 
-    @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1 and c.projeto = ?2")
-    Optional<ConsultoresAlocados>  verificaSeConsultorEstaAlocado(Consultor consultor, Projeto projeto);
+    @Query("SELECT c FROM ConsultorAlocado c where c.consultor = ?1 and c.projeto = ?2")
+    Optional<ConsultorAlocado>  verificaSeConsultorEstaAlocado(Consultor consultor, Projeto projeto);
 
-    @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1")
-    List<ConsultoresAlocados> todasDemandasAlocadas(Consultor consultor);
+    @Query("SELECT c FROM ConsultorAlocado c where c.consultor = ?1")
+    List<ConsultorAlocado> todasDemandasAlocadas(Consultor consultor);
 
 }

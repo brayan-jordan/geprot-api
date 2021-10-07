@@ -3,7 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import net.weg.gestor.domain.entities.HorasApontadas;
+import net.weg.gestor.domain.entities.HoraApontada;
 import net.weg.gestor.domain.service.HorasService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class HorasController {
     private HorasService horasService;
 
     @GetMapping("/listar")
-    List<HorasApontadas> listarTodos() {
+    List<HoraApontada> listarTodos() {
         return horasService.listarTodos();
     }
 
