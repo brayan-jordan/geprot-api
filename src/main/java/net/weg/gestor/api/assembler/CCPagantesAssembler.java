@@ -29,7 +29,7 @@ public class CCPagantesAssembler {
     }
 
     public ArrayList<CCPaganteDTO> toCollectionModel(List<CCPagantes> ccPagantes, Projeto projeto) {
-        ArrayList<CCPaganteDTO> listaCCPagantes = new ArrayList<CCPaganteDTO>();
+        ArrayList<CCPaganteDTO> listaCCPagantes = new ArrayList<>();
         ccPagantes.forEach(ccPagantes1 -> {
             CCPaganteDTO ccPagantesDTO = toModel(ccPagantes1, projeto);
             listaCCPagantes.add(ccPagantesDTO);
