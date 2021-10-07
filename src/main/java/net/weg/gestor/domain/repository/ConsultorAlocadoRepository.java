@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ConsultoresAlocadosRepository extends JpaRepository<ConsultorAlocado, Long> {
+public interface ConsultorAlocadoRepository extends JpaRepository<ConsultorAlocado, Long> {
 
     @Query("SELECT c FROM ConsultorAlocado c where c.consultor = ?1 and c.projeto = ?2")
     Optional<ConsultorAlocado>  verificaSeConsultorEstaAlocado(Consultor consultor, Projeto projeto);

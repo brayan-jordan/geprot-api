@@ -3,7 +3,7 @@ package net.weg.gestor.api.assembler;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.domain.entities.Consultor;
-import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
+import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class ConsultoresAlocadosAssembler {
 
     private ModelMapper modelMapper;
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
 
     public ConsultorNaoAlocadoDTO toModelNaoAlocado(Consultor consultorNaoAlocado) {
         ConsultorNaoAlocadoDTO consultorNaoAlocadoDTO = modelMapper.map(consultorNaoAlocado, ConsultorNaoAlocadoDTO.class);
-        consultorNaoAlocadoDTO.setQuantidade_projetos_alocado(consultoresAlocadosRepository.todasDemandasAlocadas(consultorNaoAlocado).size());
+        consultorNaoAlocadoDTO.setQuantidade_projetos_alocado(consultorAlocadoRepository.todasDemandasAlocadas(consultorNaoAlocado).size());
         return consultorNaoAlocadoDTO;
     }
 

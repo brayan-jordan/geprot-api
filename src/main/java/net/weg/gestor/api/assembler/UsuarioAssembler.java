@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class UsuarioAssembler {
 
     private RoleUsuarioRepository roleUsuarioRepository;
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
     private GestorRepository gestorRepository;
     private SecaoAssembler secaoAssembler;
     private SecaoRepository secaoRepository;
@@ -49,7 +49,7 @@ public class UsuarioAssembler {
 
 //    public UsuarioConsultorDTO toModelConsultor(Usuario usuario) {
 //        UsuarioConsultorDTO returnUsuario = modelMapper.map(usuario, UsuarioConsultorDTO.class);
-//        returnUsuario.setDemandas(consultoresAlocadosRepository.findByIdConsultor2(returnUsuario.getId()).size());
+//        returnUsuario.setDemandas(consultorAlocadoRepository.findByIdConsultor2(returnUsuario.getId()).size());
 //        returnUsuario.setDataFormatada(returnUsuario.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 //        return returnUsuario;
 //    }

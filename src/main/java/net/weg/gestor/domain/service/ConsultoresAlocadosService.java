@@ -7,7 +7,7 @@ import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.ConsultorRepository;
-import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
+import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ConsultoresAlocadosService {
 
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private ProjetoRepository projetoRepository;
@@ -33,7 +33,7 @@ public class ConsultoresAlocadosService {
         ArrayList<Consultor> consultoresNaoAlocados = new ArrayList<>();
         List<Consultor> allConsultores = consultorRepository.findAll();
         allConsultores.forEach(consultor -> {
-            if (consultoresAlocadosRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isEmpty()) {
+            if (consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isEmpty()) {
                 consultoresNaoAlocados.add(consultorRepository.findById(consultor.getId()).
 //                        Nesse caso o orElse não seria necessário porém por retornar um Optional se torna obrigatório
 //                          contér uma tratativa de erro

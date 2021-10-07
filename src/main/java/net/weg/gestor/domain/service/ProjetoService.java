@@ -30,7 +30,7 @@ public class ProjetoService {
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
     private SecaoService secaoService;
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
 
     public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
         List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);

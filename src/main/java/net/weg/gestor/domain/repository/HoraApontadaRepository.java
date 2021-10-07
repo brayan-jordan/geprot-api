@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HorasApontadasRepository extends JpaRepository<HoraApontada, Long> {
+public interface HoraApontadaRepository extends JpaRepository<HoraApontada, Long> {
 
 //    @Query("SELECT h FROM HoraApontada h WHERE h.projeto = ?1 ORDER BY usuario")
 //    List<HoraApontada> findAllInAProject (Projeto projeto);

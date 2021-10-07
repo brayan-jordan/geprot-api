@@ -1,18 +1,16 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
-import net.weg.gestor.domain.repository.ConsultoresAlocadosRepository;
+import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +20,7 @@ public class ProjetoAssembler {
 
     private ModelMapper modelMapper;
     private UsuarioRepository usuarioRepository;
-    private ConsultoresAlocadosRepository consultoresAlocadosRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
     private CCPagantesRepository ccPagantesRepository;
 
 
