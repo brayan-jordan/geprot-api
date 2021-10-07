@@ -2,6 +2,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.CCPagantesAssembler;
+import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Secao;
@@ -31,6 +32,15 @@ public class CCPagantesService {
         Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Nao existe uma secao com esse ID"));
         Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
         return ccPagantesRepository.findBySecaoAndProjeto(secao, projeto);
+    }
+
+    public List<CCPaganteDTO> buscarCCpagantesProjeto(Long projetoId) {
+        if (!projetoRepository.existsById(projetoId)) {
+            throw new NegocioException("Não encontrado projeto com esse ID");
+        }
+
+    return null;
+
     }
 
 }

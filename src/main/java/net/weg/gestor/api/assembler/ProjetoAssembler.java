@@ -43,6 +43,6 @@ public class ProjetoAssembler {
         return projetoDetalhado;
 
     }
-    
+
 
 }
