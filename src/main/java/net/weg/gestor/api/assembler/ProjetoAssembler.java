@@ -38,14 +38,6 @@ public class ProjetoAssembler {
 
     public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
         ProjetoDetalhadoDTO projetoDetalhado = modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
-        List<CCPaganteDTO> ccPagantesProjeto = new ArrayList<>();
-        ccPagantes.forEach(ccpagante -> {
-            ccPagantesProjeto.add(new CCPaganteDTO(
-                    ccpagante.getSecao().getId(),
-                    ccpagante.getSecao().getNome(),
-                    ccpagante.getTaxa()
-            ));
-        });
         projetoDetalhado.setHorasRestantes(projetoDetalhado.getHorasPrevistas() - projetoDetalhado.getHorasTrabalhadas());
         projetoDetalhado.setValorRestante(projetoDetalhado.getValor() - projetoDetalhado.getValorUtilizado());
         return projetoDetalhado;
