@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -14,5 +15,8 @@ public interface ConsultoresAlocadosRepository extends JpaRepository<Consultores
 
     @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1 and c.projeto = ?2")
     Optional<ConsultoresAlocados>  verificaSeConsultorEstaAlocado(Consultor consultor, Projeto projeto);
+
+    @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1")
+    List<ConsultoresAlocados> todasDemandasAlocadas(Consultor consultor);
 
 }

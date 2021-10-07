@@ -1,8 +1,10 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class ProjetoController {
 
     private ProjetoService projetoService;
+    private ConsultoresAlocadosService consultoresAlocadosService;
 
     @GetMapping("/listar/{secaoId}")
     public List<ProjetoCardDTO> listarPorSecao(@PathVariable Long secaoId) {
@@ -23,6 +26,11 @@ public class ProjetoController {
     @GetMapping("/buscar/{secaoId}/{projetoId}")
     public ProjetoDetalhadoDTO buscarInfoProjeto(@PathVariable Long secaoId, @PathVariable Long projetoId) {
         return projetoService.buscarProjeto(secaoId, projetoId);
+    }
+
+    @GetMapping("/naoalocados/{projetoId}")
+    public List<ConsultorNaoAlocadoDTO> buscarNaoAlocados(@PathVariable Long projetoId) {
+        return consultoresAlocadosService.buscarNaoAlocados(projetoId);
     }
 
 //    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")

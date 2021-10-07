@@ -42,6 +42,7 @@ public class ConsultoresAlocadosService {
             }
         });
 
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresNaoAlocados);
 
     }
 

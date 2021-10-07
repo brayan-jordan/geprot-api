@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.weg.gestor.api.assembler.ConsultorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
+import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.RoleUsuarios;
@@ -65,6 +66,7 @@ public class ConsultorController {
 //    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
 //        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
 //    }
+
 
 
 }
