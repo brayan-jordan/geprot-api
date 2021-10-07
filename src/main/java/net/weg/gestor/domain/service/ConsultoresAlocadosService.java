@@ -34,6 +34,7 @@ public class ConsultoresAlocadosService {
 
         });
 
+        return null;
     }
 
 }

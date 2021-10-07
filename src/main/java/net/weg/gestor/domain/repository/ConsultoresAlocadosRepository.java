@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ConsultoresAlocadosRepository extends JpaRepository<ConsultoresAlocados, Long> {
 
-    @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1 and c.projeto = 2?")
+    @Query("SELECT c FROM ConsultoresAlocados c where c.consultor = ?1 and c.projeto = ?2")
     Optional<ConsultoresAlocados>  verificaSeConsultorEstaAlocado(Consultor consultor, Projeto projeto);
 
 }
