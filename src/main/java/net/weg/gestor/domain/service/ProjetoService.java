@@ -33,7 +33,7 @@ public class ProjetoService {
     private ConsultoresAlocadosRepository consultoresAlocadosRepository;
 
     public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
-        List<CCPagantes> secoesPagantes = ccPagantesService.listarPorSecao(secaoId);
+        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
         secoesPagantes.forEach(secao -> {
             projetos.add(projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
@@ -46,7 +46,7 @@ public class ProjetoService {
     public ProjetoDetalhadoDTO buscarProjeto(Long secaoId ,Long projetoId) {
         return projetoAssembler.toModelDetalhada(
                 projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado")),
-                ccPagantesService.listarPorSecaoAndProjeto(secaoId, projetoId)
+                ccPagantesService.buscarPorSecaoAndProjeto(secaoId, projetoId)
         );
     }
 

@@ -24,16 +24,7 @@ public class CCPagantesService {
     private ProjetoRepository projetoRepository;
     private SecaoRepository secaoRepository;
 
-    public List<CCPagantes> listarPorSecao(Long secaoId) {
-        Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Essa secao nao paga nenhum projeto"));
-        return ccPagantesRepository.findBySecao(secao);
-    }
 
-    public List<CCPagantes> listarPorSecaoAndProjeto(Long secaoId, Long projetoId) {
-        Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Nao existe uma secao com esse ID"));
-        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
-        return ccPagantesRepository.findBySecaoAndProjeto(secao, projeto);
-    }
 
     public List<CCPaganteDTO> buscarCCpagantesProjeto(Long projetoId) {
         Projeto projeto = projetoRepository.findById(projetoId).
@@ -54,6 +45,17 @@ public class CCPagantesService {
             ccPaganteProjeto.setValorPagante(valorProjeto * 100 / ccPaganteProjeto.getValorPagante());
         });
         return ccPagantes;
+    }
+
+    public List<CCPagantes> buscarPorSecao(Long secaoId) {
+        Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Essa secao nao paga nenhum projeto"));
+        return ccPagantesRepository.findBySecao(secao);
+    }
+
+    public List<CCPagantes> buscarPorSecaoAndProjeto(Long secaoId, Long projetoId) {
+        Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Nao existe uma secao com esse ID"));
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
+        return ccPagantesRepository.findBySecaoAndProjeto(secao, projeto);
     }
 
 
