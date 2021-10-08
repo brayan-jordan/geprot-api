@@ -28,10 +28,6 @@ public class ProjetoController {
         return projetoService.buscarProjeto(secaoId, projetoId);
     }
 
-    @GetMapping("/naoalocados/{projetoId}")
-    public List<ConsultorNaoAlocadoDTO> buscarNaoAlocados(@PathVariable Long projetoId) {
-        return consultoresAlocadosService.buscarNaoAlocados(projetoId);
-    }
 
 //    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")
 //    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca, @PathVariable int typeStatus) {

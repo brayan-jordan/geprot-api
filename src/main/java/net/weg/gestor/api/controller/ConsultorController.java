@@ -62,6 +62,13 @@ public class ConsultorController {
         return consultorService.buscarConsultor(consultorId);
     }
 
+    @GetMapping("/naoalocados")
+    public List<ConsultorNaoAlocadoDTO> buscarNaoAlocados() {
+        return consultoresAlocadosService.buscarNaoAlocados();
+    }
+
+
+
 //    @PostMapping("/alocar")
 //    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
 //        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
