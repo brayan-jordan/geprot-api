@@ -3,6 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.GestorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.model.GestorDTO;
 import net.weg.gestor.api.model.UsuarioLoginInputDTO;
 import net.weg.gestor.domain.entities.AuthenticationResponse;
 import net.weg.gestor.domain.entities.Gestor;
@@ -46,8 +47,8 @@ public class LoginController {
                 usuario1.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
         usuario1 = usuarioRepository.findByEmail(usuario1.getEmail());
-        Gestor gestor = gestorRepository.findByUsuarioId(usuario1.getId());
-        return ResponseEntity.ok(new AuthenticationResponse(jwt,gestorAssembler.toModel(gestor) ));
+        GestorDTO gestor = gestorAssembler.toModel(gestorRepository.findByUsuarioId(usuario1.getId()));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt,gestor));
     }
 
 }
