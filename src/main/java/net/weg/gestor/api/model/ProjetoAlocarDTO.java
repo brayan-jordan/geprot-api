@@ -1,0 +1,22 @@
+package net.weg.gestor.api.model;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Date;
+
+@Getter
+@Setter
+public class ProjetoAlocarDTO {
+
+    private Long id;
+
+    private String nome;
+
+    private String nomeResponsavel;
+
+    private Date dataCadastro;
+
+    private boolean isAllocated;
+
+}
