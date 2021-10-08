@@ -1,4 +1,4 @@
-package net.weg.gestor.api.comm;
+package net.weg.gestor.api.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
