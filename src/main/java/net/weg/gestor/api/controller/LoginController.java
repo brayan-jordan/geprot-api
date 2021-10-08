@@ -1,10 +1,13 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.assembler.GestorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.UsuarioLoginInputDTO;
 import net.weg.gestor.domain.entities.AuthenticationResponse;
+import net.weg.gestor.domain.entities.Gestor;
 import net.weg.gestor.domain.entities.Usuario;
+import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.security.ImplementsUserDetailsService;
 import net.weg.gestor.security.JWTUtil;
@@ -26,6 +29,8 @@ public class LoginController {
     private JWTUtil jwtUtil;
     private UsuarioAssembler usuarioAssembler;
     private UsuarioRepository usuarioRepository;
+    private GestorRepository gestorRepository;
+    private GestorAssembler gestorAssembler;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UsuarioLoginInputDTO usuario) throws Exception {
@@ -41,7 +46,8 @@ public class LoginController {
                 usuario1.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
         usuario1 = usuarioRepository.findByEmail(usuario1.getEmail());
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        Gestor gestor = gestorRepository.findByUsuarioId(usuario1.getId());
+        return ResponseEntity.ok(new AuthenticationResponse(jwt,gestorAssembler.toModel(gestor) ));
     }
 
 }
