@@ -13,6 +13,6 @@ public class AlocarConsultorInputDTO {
 
     private Long projetoId;
 
-    private Long quantidadeHoras;
+    private int quantidadeHoras;
 
 }
