@@ -26,7 +26,7 @@ public class ConsultoresAlocadosService {
     private UsuarioService usuarioService;
     private UsuarioRepository usuarioRepository;
 
-    public List<ConsultorNaoAlocadoDTO> buscarNaoAlocados() {
+    public List<ConsultorNaoAlocadoDTO> buscarConsultores() {
         return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultorRepository.findAll());
 
     }

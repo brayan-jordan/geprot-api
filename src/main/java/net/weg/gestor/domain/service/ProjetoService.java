@@ -50,6 +50,10 @@ public class ProjetoService {
         );
     }
 
+    public ProjetoDetalhadoDTO buscarIfConsultorNotAlocatted(Long consultorId) {
+
+    }
+
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
         projetoValidations(projeto);
         return "Falta fazer cadastrar o projeto :)";
