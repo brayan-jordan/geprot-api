@@ -25,6 +25,7 @@ public class ConsultorAssembler {
     }
 
     public ConsultorDTO toModel(Consultor consultor){
+        String data =  toString(consultor.getUsuario().getDataCadastro());
         return modelMapper.map(consultor, ConsultorDTO.class);
     }
 
