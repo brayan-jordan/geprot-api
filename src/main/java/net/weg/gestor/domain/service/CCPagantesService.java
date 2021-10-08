@@ -1,7 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.CCPagantesAssembler;
+import net.weg.gestor.api.map.CCPagantesAssembler;
 import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
@@ -12,7 +12,6 @@ import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor

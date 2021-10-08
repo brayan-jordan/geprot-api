@@ -1,10 +1,8 @@
-package net.weg.gestor.api.assembler;
+package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.input.FornecedorInputDTO;
-import net.weg.gestor.api.model.input.UsuarioInputDTO;
 import net.weg.gestor.domain.entities.Fornecedor;
-import net.weg.gestor.domain.entities.Usuario;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

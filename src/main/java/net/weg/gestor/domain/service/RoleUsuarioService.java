@@ -1,12 +1,11 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.RoleUsuarioAssembler;
+import net.weg.gestor.api.map.RoleUsuarioAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

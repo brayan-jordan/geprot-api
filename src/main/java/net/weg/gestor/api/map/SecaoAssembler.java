@@ -1,7 +1,6 @@
-package net.weg.gestor.api.assembler;
+package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.api.model.SecaoDTO;
 import net.weg.gestor.domain.entities.Secao;
 import net.weg.gestor.domain.repository.SecaoRepository;

@@ -1,15 +1,13 @@
-package net.weg.gestor.api.assembler;
+package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.CCPaganteDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
-import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package net.weg.gestor.api.assembler;
+package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
@@ -8,7 +8,6 @@ import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
-import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import org.modelmapper.ModelMapper;

@@ -2,7 +2,7 @@ package net.weg.gestor.domain.service;
 
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.map.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;

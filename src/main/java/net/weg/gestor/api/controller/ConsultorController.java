@@ -1,8 +1,8 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.ConsultorAssembler;
-import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.map.ConsultorAssembler;
+import net.weg.gestor.api.map.UsuarioAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;

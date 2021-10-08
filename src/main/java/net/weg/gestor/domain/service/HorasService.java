@@ -1,7 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.HorasAssembler;
+import net.weg.gestor.api.map.HorasAssembler;
 import net.weg.gestor.domain.entities.HoraApontada;
 import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import net.weg.gestor.domain.repository.HoraApontadaRepository;

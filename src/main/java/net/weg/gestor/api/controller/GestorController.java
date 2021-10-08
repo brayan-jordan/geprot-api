@@ -1,7 +1,7 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.GestorAssembler;
+import net.weg.gestor.api.map.GestorAssembler;
 import net.weg.gestor.api.model.GestorDTO;
 import net.weg.gestor.api.model.input.GestorInputUpdate;
 import net.weg.gestor.domain.entities.Gestor;

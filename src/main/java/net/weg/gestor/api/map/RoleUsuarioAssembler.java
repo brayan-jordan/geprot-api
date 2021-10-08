@@ -1,14 +1,10 @@
-package net.weg.gestor.api.assembler;
+package net.weg.gestor.api.map;
 
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.repository.RoleUsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component

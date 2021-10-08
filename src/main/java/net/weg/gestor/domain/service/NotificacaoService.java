@@ -1,7 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.NotificacaoAssembler;
+import net.weg.gestor.api.map.NotificacaoAssembler;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.Notificacao;
 import net.weg.gestor.domain.repository.NotificacaoRepository;

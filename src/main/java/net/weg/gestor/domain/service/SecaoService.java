@@ -1,17 +1,15 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.SecaoAssembler;
-import net.weg.gestor.api.assembler.UsuarioAssembler;
+import net.weg.gestor.api.map.SecaoAssembler;
+import net.weg.gestor.api.map.UsuarioAssembler;
 import net.weg.gestor.api.model.SecaoDTO;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.entities.*;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

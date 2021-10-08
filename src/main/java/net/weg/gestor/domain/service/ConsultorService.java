@@ -1,7 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.ConsultorAssembler;
+import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.exception.NegocioException;

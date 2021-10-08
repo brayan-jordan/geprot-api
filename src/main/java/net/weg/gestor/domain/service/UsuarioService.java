@@ -1,8 +1,7 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.assembler.UsuarioAssembler;
-import net.weg.gestor.api.model.GestorDTO;
+import net.weg.gestor.api.map.UsuarioAssembler;
 import net.weg.gestor.api.model.input.GestorInputUpdate;
 import net.weg.gestor.domain.entities.StatusUsuario;
 import net.weg.gestor.domain.entities.Usuario;
