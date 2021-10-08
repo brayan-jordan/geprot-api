@@ -29,9 +29,6 @@ public class Consultor {
     private Fornecedor fornecedor;
 
     @ManyToMany
-    @JoinTable(name = "consultores_alocados", joinColumns =
-    @JoinColumn(name = "consultores_id", referencedColumnName = "id"), inverseJoinColumns =
-    @JoinColumn(name = "projetos_id", referencedColumnName = "id"))
     private List<Projeto> projetos;
 
     private double precoHora;
