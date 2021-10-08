@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model.input.projetoinput;
+package net.weg.gestor.api.model.cadastrarprojetoinput;
 
 import lombok.Getter;
 import lombok.Setter;
