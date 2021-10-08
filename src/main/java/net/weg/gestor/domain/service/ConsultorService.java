@@ -22,11 +22,6 @@ public class ConsultorService {
         return consultorRepository.save(consultor);
     }
 
-
-    public List<ConsultorDTO> listarTodos() {
-        return consultorAssembler.toCollectionModel(consultorRepository.findAll());
-    }
-
     public ConsultorDTO buscarConsultor(long consultorId) {
         return consultorAssembler.toModel(consultorRepository.findById(consultorId)
                 .orElseThrow(() -> new NegocioException("Consultor não encontrado")));

@@ -50,18 +50,12 @@ public class ConsultorController {
         return consultorAssembler.toModel(consultor1);
     }
 
-
-    @GetMapping("/listar")
-    public List<ConsultorDTO> listarConsultores(){
-        return consultorService.listarTodos();
-    }
-
     @GetMapping("/buscar/{consultorId}")
     public ConsultorDTO listarConsultores(@PathVariable long consultorId){
         return consultorService.buscarConsultor(consultorId);
     }
 
-    @GetMapping("/naoalocados")
+    @GetMapping("/listar")
     public List<ConsultorNaoAlocadoDTO> buscarConsultores() {
         return consultoresAlocadosService.buscarConsultores();
     }
