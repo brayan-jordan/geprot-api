@@ -5,6 +5,7 @@ import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
+import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
@@ -35,13 +36,14 @@ public class ProjetoAssembler {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
-    public ProjetoAlocarDTO toModelAlocado(Projeto projeto) {
-        return modelMapper.map(projeto, ProjetoAlocarDTO.class);
+    public ProjetoAlocarDTO toModelAlocado(Projeto projeto, Consultor consultor) {
+        ProjetoAlocarDTO projetoAlocar = modelMapper.map(projeto, ProjetoAlocarDTO.class);
+
     }
 
-    public List<ProjetoAlocarDTO> toCollectionModelAlocado(List<Projeto> projetos) {
-        return projetos.stream().map(this::toModelAlocado).collect(Collectors.toList());
-    }
+//    public List<ProjetoAlocarDTO> toCollectionModelAlocado(List<Projeto> projetos) {
+//        return projetos.stream().map(this::toModelAlocado).collect(Collectors.toList());
+//    }
 
     public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
         ProjetoDetalhadoDTO projetoDetalhado = modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
