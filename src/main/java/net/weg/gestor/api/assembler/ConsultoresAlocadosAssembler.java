@@ -20,6 +20,7 @@ public class ConsultoresAlocadosAssembler {
 
     public ConsultorNaoAlocadoDTO toModelNaoAlocado(Consultor consultorNaoAlocado) {
         ConsultorNaoAlocadoDTO consultorNaoAlocadoDTO = modelMapper.map(consultorNaoAlocado, ConsultorNaoAlocadoDTO.class);
+        consultorNaoAlocadoDTO.setNome(consultorNaoAlocado.getUsuario().getNome());
         consultorNaoAlocadoDTO.setQuantidade_projetos_alocado(consultorAlocadoRepository.todasDemandasAlocadas(consultorNaoAlocado).size());
         return consultorNaoAlocadoDTO;
     }
