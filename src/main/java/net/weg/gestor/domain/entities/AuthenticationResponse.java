@@ -10,6 +10,6 @@ public class AuthenticationResponse {
 
     private String jwt;
 
-    private GestorDTO gestorDTO;
+    private GestorDTO gestor;
 
 }
