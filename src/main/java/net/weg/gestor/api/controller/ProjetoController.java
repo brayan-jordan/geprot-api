@@ -2,6 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
+import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.service.ConsultoresAlocadosService;
@@ -28,7 +29,10 @@ public class ProjetoController {
         return projetoService.buscarProjeto(secaoId, projetoId);
     }
 
-
+    @GetMapping("/alocados/{consultorId}")
+    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long consultorId) {
+        return projetoService.buscarIfConsultorNotAlocatted(consultorId);
+    }
 
 
 //    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")

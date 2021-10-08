@@ -3,6 +3,7 @@ package net.weg.gestor.api.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,7 +16,7 @@ public class ProjetoAlocarDTO {
 
     private String nomeResponsavel;
 
-    private Date dataCadastro;
+    private LocalDate dataCadastro;
 
     private boolean isAllocated;
 
