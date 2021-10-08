@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
@@ -49,6 +50,10 @@ public class ProjetoAssembler {
             listReturnProjetos.add(toModelAlocado(projeto, consultor));
         });
         return listReturnProjetos;
+    }
+
+    public Projeto toEntity(ProjetoInputDTO projeto) {
+        return modelMapper.map(projeto, Projeto.class);
     }
 
     public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
