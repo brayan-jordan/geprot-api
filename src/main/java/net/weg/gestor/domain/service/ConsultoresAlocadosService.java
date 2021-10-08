@@ -38,9 +38,9 @@ public class ConsultoresAlocadosService {
         Projeto projeto = projetoRepository.findById(alocar.getProjetoId()).orElseThrow(
                 () -> new NegocioException("Projeto nao encontrado"));
 
-//        consultorAlocadoRepository.save(new ConsultorAlocado())
+        consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras()));
 
-        return null;
+        return "deu boa";
     }
 
     public boolean verifyConsultorIsAllocatedInProject(Projeto projeto, Consultor consultor) {
