@@ -31,6 +31,15 @@ public class ConsultoresAlocadosService {
 
     }
 
+    public String alocarConsultor(Long consultorId, Long projetoId) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado"));
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(
+                () -> new NegocioException("Projeto nao encontrado"));
+
+        return null;
+    }
+
     public boolean verifyConsultorIsAllocatedInProject(Projeto projeto, Consultor consultor) {
         return consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isPresent();
     }
