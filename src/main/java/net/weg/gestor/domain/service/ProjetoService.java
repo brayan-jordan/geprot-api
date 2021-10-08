@@ -80,7 +80,7 @@ public class ProjetoService {
         }
 
         projeto.getConsultores().forEach(consultorInputDTO -> {
-            if (!consultorRepository.existsById(consultorInputDTO.getId())) {
+            if (!consultorRepository.existsById(consultorInputDTO.getConsultorId())) {
                 throw new NegocioException("Nao existe um consultor com algum ID informado");
             }
         });
