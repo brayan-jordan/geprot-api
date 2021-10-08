@@ -61,7 +61,7 @@ public class ProjetoService {
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
         projetoValidations(projeto);
-        Long projetoId = projetoRepository.save(projetoAssembler.toEntity(projeto)).getId(); 
+        Long projetoId = projetoRepository.save(projetoAssembler.toEntity(projeto)).getId();
         return "Falta fazer cadastrar o projeto :)";
     }
 

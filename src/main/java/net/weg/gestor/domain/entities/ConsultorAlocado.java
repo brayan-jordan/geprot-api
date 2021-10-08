@@ -35,4 +35,9 @@ public class ConsultorAlocado {
 
     private int horasApontadas;
 
+    public ConsultorAlocado(Projeto projeto, Consultor consultor, int limiteHoras) {
+        this.projeto = projeto;
+        this.consultor = consultor;
+        this.limiteHoras = limiteHoras;
+    }
 }
