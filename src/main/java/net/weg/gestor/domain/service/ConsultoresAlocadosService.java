@@ -32,11 +32,7 @@ public class ConsultoresAlocadosService {
     }
 
     public boolean verifyConsultorIsAllocatedInProject(Projeto projeto, Consultor consultor) {
-        if (consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isPresent()) {
-            return true;
-        }
-
-        return false;
+        return consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isPresent();
     }
 
 }
