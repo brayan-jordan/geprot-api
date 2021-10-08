@@ -51,7 +51,7 @@ public class ProjetoService {
     }
 
     public ProjetoDetalhadoDTO buscarIfConsultorNotAlocatted(Long consultorId) {
-
+        return null;
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {

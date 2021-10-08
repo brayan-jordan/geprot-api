@@ -1,6 +1,7 @@
 package net.weg.gestor.api.assembler;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
@@ -32,6 +33,14 @@ public class ProjetoAssembler {
 
     public List<ProjetoCardDTO> toCollectionModel(List<Projeto> projetos) {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    public ProjetoAlocarDTO toModelAlocado(Projeto projeto) {
+        return modelMapper.map(projeto, ProjetoAlocarDTO.class);
+    }
+
+    public List<ProjetoAlocarDTO> toCollectionModelAlocado(List<Projeto> projetos) {
+        return projetos.stream().map(this::toModelAlocado).collect(Collectors.toList());
     }
 
     public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
