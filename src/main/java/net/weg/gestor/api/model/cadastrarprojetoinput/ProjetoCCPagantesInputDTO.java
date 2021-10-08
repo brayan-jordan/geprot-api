@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AlocarCCPagantesInputDTO {
+public class ProjetoCCPagantesInputDTO {
 
     private Long secaoId;
 

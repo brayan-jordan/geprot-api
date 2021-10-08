@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AlocarConsultoresInputDTO {
+public class ProjetoConsultoresInputDTO {
 
     private Long consultorId;
 

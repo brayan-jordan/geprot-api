@@ -6,7 +6,7 @@ import net.weg.gestor.api.assembler.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
-import net.weg.gestor.api.model.cadastrarprojetoinput.AlocarCCPagantesInputDTO;
+import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
@@ -73,7 +73,7 @@ public class ProjetoService {
             throw new NegocioException("Voce nao alocou nenhum consultor");
         }
 
-        int taxa = projeto.getCcpagantes().stream().mapToInt(AlocarCCPagantesInputDTO::getTaxa).sum();
+        int taxa = projeto.getCcpagantes().stream().mapToInt(ProjetoCCPagantesInputDTO::getTaxa).sum();
 
         if (taxa != 100) {
             throw new NegocioException("Taxa é diferente de 100%");

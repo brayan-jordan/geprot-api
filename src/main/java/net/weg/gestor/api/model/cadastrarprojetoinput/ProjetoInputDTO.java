@@ -21,8 +21,8 @@ public class ProjetoInputDTO {
 
     private LocalDate dataFinalizacao;
 
-    private List<ConsultorInputDTO> consultores;
+    private List<ProjetoConsultoresInputDTO> consultores;
 
-    private List<AlocarCCPagantesInputDTO> ccpagantes;
+    private List<ProjetoCCPagantesInputDTO> ccpagantes;
 
 }
