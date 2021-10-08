@@ -27,7 +27,7 @@ CREATE TABLE consultores_alocados (
     projetos_id bigint not null,
     consultores_id bigint not null,
     limite_horas int not null,
-    horas_apontadas int not null,
+    horas_apontadas int not null default 0,
     primary key(id)
 );
 

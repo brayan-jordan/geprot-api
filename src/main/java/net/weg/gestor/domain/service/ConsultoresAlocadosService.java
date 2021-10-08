@@ -3,7 +3,9 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultoresAlocadosAssembler;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
+import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.entities.ConsultorAlocado;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.ConsultorRepository;
@@ -30,11 +32,13 @@ public class ConsultoresAlocadosService {
 
     }
 
-    public String alocarConsultor(Long consultorId, Long projetoId) {
-        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+    public String alocarConsultor(AlocarConsultorInputDTO alocar) {
+        Consultor consultor = consultorRepository.findById(alocar.getConsultorId()).orElseThrow(
                 () -> new NegocioException("Consultor nao encontrado"));
-        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(
+        Projeto projeto = projetoRepository.findById(alocar.getProjetoId()).orElseThrow(
                 () -> new NegocioException("Projeto nao encontrado"));
+
+//        consultorAlocadoRepository.save(new ConsultorAlocado())
 
         return null;
     }
