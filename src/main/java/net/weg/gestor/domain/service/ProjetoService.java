@@ -3,11 +3,13 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.assembler.ProjetoAssembler;
+import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.api.model.input.projetoinput.AlocarCCPagantesInputDTO;
 import net.weg.gestor.api.model.input.projetoinput.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
+import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
@@ -48,6 +50,13 @@ public class ProjetoService {
                 projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado")),
                 ccPagantesService.buscarPorSecaoAndProjeto(secaoId, projetoId)
         );
+    }
+
+    public List<ProjetoAlocarDTO> buscarIfConsultorNotAlocatted(Long consultorId) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado"));
+
+        return projetoAssembler.toCollectionModelAlocado(projetoRepository.findAll(), consultor);
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {

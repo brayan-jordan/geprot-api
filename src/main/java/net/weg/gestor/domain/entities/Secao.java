@@ -32,9 +32,6 @@ public class Secao {
     double verba;
 
     @ManyToMany
-    @JoinTable(name = "cc_pagantes", joinColumns =
-    @JoinColumn(name = "secoes_id", referencedColumnName = "id"), inverseJoinColumns =
-    @JoinColumn(name = "projetos_id", referencedColumnName = "id"))
     List<Projeto> projetos;
 
 }

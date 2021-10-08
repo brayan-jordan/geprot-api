@@ -1,7 +1,6 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import net.weg.gestor.api.assembler.ConsultorAssembler;
 import net.weg.gestor.api.assembler.UsuarioAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
@@ -61,6 +60,13 @@ public class ConsultorController {
     public ConsultorDTO listarConsultores(@PathVariable long consultorId){
         return consultorService.buscarConsultor(consultorId);
     }
+
+    @GetMapping("/naoalocados")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultores() {
+        return consultoresAlocadosService.buscarConsultores();
+    }
+
+
 
 //    @PostMapping("/alocar")
 //    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
