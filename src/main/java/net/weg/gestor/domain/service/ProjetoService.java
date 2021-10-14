@@ -8,6 +8,7 @@ import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
+import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
@@ -62,6 +63,11 @@ public class ProjetoService {
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
         projetoValidations(projeto);
         Long projetoId = projetoRepository.save(projetoAssembler.toEntity(projeto)).getId();
+        ccPagantesService.saveCCPagantesProjeto(projeto.getCcpagantes(), projetoId);
+        projeto.getConsultores().forEach(consultor -> {
+            consultoresAlocadosService.alocarConsultor(new AlocarConsultorInputDTO(
+                    consultor.getConsultorId(), projetoId, consultor.getQuantidadeHoras()));
+        });
         return "Falta fazer cadastrar o projeto :)";
     }
 
