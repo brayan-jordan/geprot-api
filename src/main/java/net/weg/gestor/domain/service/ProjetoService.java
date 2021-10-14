@@ -62,7 +62,7 @@ public class ProjetoService {
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
         projetoValidations(projeto);
-        Long projetoId = projetoRepository.save(projetoAssembler.toEntity(projeto)).getId();
+        Long projetoId = projetoRepository.save(projetoAssembler.toEntityCadastro(projeto)).getId();
         ccPagantesService.saveCCPagantesProjeto(projeto.getCcpagantes(), projetoId);
         projeto.getConsultores().forEach(consultor -> {
             consultoresAlocadosService.alocarConsultor(new AlocarConsultorInputDTO(

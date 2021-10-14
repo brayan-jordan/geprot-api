@@ -58,7 +58,7 @@ public class ProjetoAssembler {
         return listReturnProjetos;
     }
 
-    public Projeto toEntity(ProjetoInputDTO projeto) {
+    public Projeto toEntityCadastro(ProjetoInputDTO projeto) {
         Projeto projetoEntity = modelMapper.map(projeto, Projeto.class);
         projetoEntity.setStatus(StatusProjeto.NAO_INICIADO);
         projetoEntity.setDataCadastro(LocalDate.now());
