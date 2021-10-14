@@ -20,10 +20,11 @@ public class ConsultorAlocadoDTO {
 
     private int horasApontadas;
 
-    public ConsultorAlocadoDTO(String nome, Long id, FornecedorDTO fornecedor, int limiteHoras) {
+    public ConsultorAlocadoDTO(String nome, Long id, FornecedorDTO fornecedor, int limiteHoras, int horasApontadas) {
         this.nome = nome;
         this.id = id;
         this.fornecedor = fornecedor;
         this.limiteHoras = limiteHoras;
+        this.horasApontadas = horasApontadas;
     }
 }

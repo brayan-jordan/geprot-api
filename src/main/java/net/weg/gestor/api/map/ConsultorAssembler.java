@@ -32,7 +32,12 @@ public class ConsultorAssembler {
 
     public ConsultorAlocadoDTO toModelConsultorAlocado(ConsultorAlocado consultorAlocado) {
        ConsultorDTO consultor = this.toModel(consultorAlocado.getConsultor());
-       return new ConsultorAlocadoDTO(consultor.getUsuario().getNome(), consultor.getId(), consultor.getFornecedor(), consultorAlocado.getLimiteHoras());
+       return new ConsultorAlocadoDTO(consultor.getUsuario().getNome(),
+               consultor.getId(),
+               consultor.getFornecedor(),
+               consultorAlocado.getLimiteHoras(),
+               consultorAlocado.getHorasApontadas()
+           );
     }
 
     public List<ConsultorAlocadoDTO> toCollectionModelAlocado(List<ConsultorAlocado> consultoresAlocados) {
