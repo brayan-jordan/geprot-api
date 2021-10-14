@@ -34,6 +34,10 @@ public class SecaoService {
         return secaoAssembler.toCollectionModel(secaoRepository.findAll());
     }
 
+    public SecaoDTO buscarSecao(long secaoId) {
+        return secaoAssembler.toModel(secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Seção não encontrada")));
+    }
+
 //    @Transactional
 //    public List<Secao> listar() {
 //        return secaoRepository.findAll();

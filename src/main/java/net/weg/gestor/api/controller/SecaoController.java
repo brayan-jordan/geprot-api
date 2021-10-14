@@ -19,6 +19,11 @@ public class SecaoController {
         return secaoService.listarTodas();
     }
 
+    @GetMapping("/buscar/{secaoId}")
+    public SecaoDTO buscarSecao(@PathVariable long secaoId){
+        return secaoService.buscarSecao(secaoId);
+    }
+
 
 //    @GetMapping("/listar/{secaoId}")
 //    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
