@@ -4,16 +4,21 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoConsultoresInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
+import net.weg.gestor.domain.entities.StatusProjeto;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
+import net.weg.gestor.domain.repository.ConsultorRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +31,7 @@ public class ProjetoAssembler {
     private UsuarioRepository usuarioRepository;
     private CCPagantesRepository ccPagantesRepository;
     private ConsultoresAlocadosService consultoresAlocadosService;
+    private ConsultorRepository consultorRepository;
 
 
     public ProjetoCardDTO toModel(Projeto projeto) {
@@ -53,7 +59,15 @@ public class ProjetoAssembler {
     }
 
     public Projeto toEntity(ProjetoInputDTO projeto) {
-        return modelMapper.map(projeto, Projeto.class);
+        Projeto projetoEntity = modelMapper.map(projeto, Projeto.class);
+        projetoEntity.setStatus(StatusProjeto.NAO_INICIADO);
+        projetoEntity.setDataCadastro(LocalDate.now());
+        int horasPrevistas = projeto.getConsultores().stream().mapToInt(ProjetoConsultoresInputDTO::getQuantidadeHoras).sum();
+        projetoEntity.setHorasPrevistas(horasPrevistas);
+        double valor = projeto.getConsultores().stream().mapToDouble(consultor ->
+                consultor.getQuantidadeHoras() * consultorRepository.getPrecoHora(consultor.getConsultorId())).sum();
+        projetoEntity.setValor(valor);
+        return projetoEntity;
     }
 
     public ProjetoDetalhadoDTO toModelDetalhada(Projeto projeto, List<CCPagantes> ccPagantes) {
