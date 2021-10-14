@@ -8,3 +8,5 @@ INSERT INTO role_usuarios VALUES (null,"ROLE_GESTOR",1);
 INSERT INTO gestores VALUES (67264, 1, 1);
 
 INSERT INTO projetos VALUES (null,'Teste', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '0', 'Dale garaio', 'Brendon', 'Guizada');
+
+INSERT INTO cc_pagantes VALUES (null, 1,1,100);

@@ -35,9 +35,16 @@ public class ProjetoController {
         return projetoService.buscarIfConsultorNotAlocatted(consultorId);
     }
 
+
+    @GetMapping("/buscar/{projetoId}")
+    public ProjetoCardDTO listarProjetoID(@PathVariable Long projetoId){
+          return projetoService.listarPorId(projetoId);
+    }
+
     @PostMapping("/cadastrar")
     public String cadastrarProjeto(@RequestBody ProjetoInputDTO projeto) {
         return projetoService.cadastrarProjeto(projeto);
     }
+
 
 }
