@@ -53,16 +53,4 @@ public class Projeto {
     @NotNull
     private String nomeResponsavel;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "consultores_alocados", joinColumns =
-        @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
-        @JoinColumn(name = "consultores_id", referencedColumnName = "id"))
-    List<Consultor> consultores;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "cc_pagantes", joinColumns =
-        @JoinColumn(name = "projetos_id", referencedColumnName = "id"), inverseJoinColumns =
-        @JoinColumn(name = "secoes_id", referencedColumnName = "id"))
-    List<Secao> secaos;
-
 }
