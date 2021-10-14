@@ -17,6 +17,8 @@ public class ProjetoInputDTO {
 
     private String nomeSolicitante;
 
+    private String descricao;
+
     private LocalDate dataInicio;
 
     private LocalDate dataFinalizacao;

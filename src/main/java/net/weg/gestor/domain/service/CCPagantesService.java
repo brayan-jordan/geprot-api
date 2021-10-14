@@ -3,6 +3,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.CCPagantesAssembler;
 import net.weg.gestor.api.model.CCPaganteDTO;
+import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Secao;
@@ -55,6 +56,20 @@ public class CCPagantesService {
         Secao secao = secaoRepository.findById(secaoId).orElseThrow(() -> new NegocioException("Nao existe uma secao com esse ID"));
         Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID"));
         return ccPagantesRepository.findBySecaoAndProjeto(secao, projeto);
+    }
+
+    public void saveCCPagante(ProjetoCCPagantesInputDTO ccPagante, Long projetoId) {
+        ccPagantesRepository.save(new CCPagantes(
+                projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Nao existe projeto com esse ID")),
+                secaoRepository.findById(ccPagante.getSecaoId()).orElseThrow(() -> new NegocioException("Nao existe")),
+                ccPagante.getTaxa()
+        ));
+    }
+
+    public void saveCCPagantesProjeto(List<ProjetoCCPagantesInputDTO> ccPagantes, Long projetoId) {
+        ccPagantes.forEach(ccPagante -> {
+            saveCCPagante(ccPagante, projetoId);
+        });
     }
 
 

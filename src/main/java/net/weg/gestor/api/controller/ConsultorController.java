@@ -5,6 +5,7 @@ import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.UsuarioAssembler;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
+import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.RoleUsuarios;
@@ -60,16 +61,13 @@ public class ConsultorController {
         return consultoresAlocadosService.buscarConsultores();
     }
 
-//    @PostMapping("/alocar")
-//    public String alocarConsultor(@RequestBody AlocarConsultorInputDTO alocar) {
-//        return consultoresAlocadosService.alocarConsultor(alocar);
-//    }
+    @PostMapping("/alocar")
+    public String alocarConsultor(@RequestBody AlocarConsultorInputDTO alocar) {
+        return consultoresAlocadosService.alocarConsultor(alocar);
+    }
 
 
-//    @PostMapping("/alocar")
-//    public ConsultorDTO alocarConsultor(@RequestBody AlocarConsultorInputDTO alocarConsultorInputDTO) {
-//        return consultoresAlocadosService.alocarConsultor(alocarConsultorInputDTO);
-//    }
+
 
 
 
