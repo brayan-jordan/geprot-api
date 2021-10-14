@@ -18,34 +18,6 @@ public class HorasController {
 
     private HorasService horasService;
 
-    @GetMapping("/listar")
-    List<HoraApontada> listarTodos() {
-        return horasService.listarTodos();
-    }
 
-//    @PostMapping("/apontar")
-//    String apontamentoConsultor(@RequestBody @Valid ApontamentoDeHoraInputDTO apontamento) {
-//        return horasService.apontarHoras(apontamento);
-//    }
-//
-//    @GetMapping("/listar/{projetoId}/{usuarioId}")
-//    ListaApontamentoConsultor listarApontamentoConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
-//        return horasService.buscarApontamentoConsultor(projetoId, usuarioId);
-//    }
-
-//    @PatchMapping("/aprovar/{projetoId}/{usuarioId}")
-//    String aprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
-//        return horasService.aprovarApontamentosConsultor(projetoId, usuarioId);
-//    }
-//
-//    @PutMapping("/reprovar/{projetoId}/{usuarioId}")
-//    String reprovarApontamentosConsultor(@PathVariable Long projetoId, @PathVariable Long usuarioId) {
-//        return horasService.reprovarApontamentosConsultor(projetoId, usuarioId);
-//    }
-
-//    @GetMapping("/listar/{projetoId}")
-//    ArrayList<HorasApontadasTotalDTO> teste(@PathVariable Long projetoId) {
-//        return horasService.getApontamentoTotal(projetoId);
-//    }
 
 }
