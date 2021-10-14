@@ -88,4 +88,7 @@ public class ProjetoService {
     }
 
 
+    public ProjetoCardDTO listarPorId(Long projetoId) {
+        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));
+    }
 }

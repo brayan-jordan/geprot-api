@@ -34,6 +34,11 @@ public class ProjetoController {
         return projetoService.buscarIfConsultorNotAlocatted(consultorId);
     }
 
+    @GetMapping("/buscar/{projetoId}")
+    public ProjetoCardDTO listarProjetoID(@PathVariable Long projetoId){
+          return projetoService.listarPorId(projetoId);
+    }
+
 
 //    @GetMapping("/listarcontaining/{secaoId}/{busca}/{typeStatus}")
 //    public List<ProjetoDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String busca, @PathVariable int typeStatus) {

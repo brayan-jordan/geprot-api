@@ -14,7 +14,7 @@ public class CCPagantesController {
 
     private CCPagantesService ccPagantesService;
 
-    @GetMapping("/projeto/{projetoId}")
+    @GetMapping("/buscar/{projetoId}")
     public List<CCPaganteDTO> buscarCCpagantesProjeto(@PathVariable Long projetoId) {
         return ccPagantesService.buscarCCpagantesProjeto(projetoId);
     }
