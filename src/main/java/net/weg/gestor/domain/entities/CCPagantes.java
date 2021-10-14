@@ -33,4 +33,9 @@ public class CCPagantes {
     @NotNull
     private double taxa;
 
+    public CCPagantes(Projeto projeto, Secao secao, double taxa) {
+        this.projeto = projeto;
+        this.secao = secao;
+        this.taxa = taxa;
+    }
 }
