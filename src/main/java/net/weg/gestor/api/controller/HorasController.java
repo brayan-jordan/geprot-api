@@ -21,7 +21,7 @@ public class HorasController {
 
     @GetMapping("/{projetoId}")
     public List<ConsultorAlocadoDTO> buscarConsultoresAlocadosProjeto(@PathVariable Long projetoId) {
-
+        return horasService.buscarConsultoresAlocadosProjeto(projetoId);
     }
 
 }
