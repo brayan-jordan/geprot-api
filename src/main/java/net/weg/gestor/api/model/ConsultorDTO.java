@@ -15,4 +15,6 @@ public class ConsultorDTO {
 
     private double precoHora;
 
+
+
 }

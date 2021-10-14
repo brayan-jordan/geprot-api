@@ -1,9 +1,11 @@
 package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.ConsultorDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.entities.ConsultorAlocado;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +30,13 @@ public class ConsultorAssembler {
         return modelMapper.map(consultor, ConsultorDTO.class);
     }
 
+    public ConsultorAlocadoDTO toModelConsultorAlocado(ConsultorAlocado consultorAlocado) {
+       ConsultorDTO consultor = this.toModel(consultorAlocado.getConsultor());
+       return new ConsultorAlocadoDTO(consultor.getUsuario().getNome(), consultor.getId(), consultor.getFornecedor(), consultorAlocado.getLimiteHoras());
+    }
+
+    public List<ConsultorAlocadoDTO> toCollectionModelAlocado(List<ConsultorAlocado> consultoresAlocados) {
+        return consultoresAlocados.stream().map(this::toModelConsultorAlocado).collect(Collectors.toList());
+    }
 
 }

@@ -16,6 +16,14 @@ public class ConsultorAlocadoDTO {
 
     private StatusApontamento statusApontamento;
 
-    private int horasTotais;
+    private int limiteHoras;
 
+    private int horasApontadas;
+
+    public ConsultorAlocadoDTO(String nome, Long id, FornecedorDTO fornecedor, int limiteHoras) {
+        this.nome = nome;
+        this.id = id;
+        this.fornecedor = fornecedor;
+        this.limiteHoras = limiteHoras;
+    }
 }
