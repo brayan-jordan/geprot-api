@@ -12,6 +12,7 @@ import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
+import net.weg.gestor.domain.entities.StatusProjeto;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,36 @@ public class ProjetoService {
             Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
                     () -> new NegocioException("Projeto nao encontrado"));
             if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
+                projetos.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetos);
+    }
+
+    public List<ProjetoCardDTO> buscarPorStringAndFiltro(Long secaoId, String campoBusca, int status) {
+        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
+        List<Projeto> projetos = new ArrayList<>();
+        StatusProjeto statusConvertido = convertFilter(status);
+        secoesPagantes.forEach(secao -> {
+            Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+                    () -> new NegocioException("Projeto nao encontrado"));
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT)) &&
+                    projeto.getStatus().equals(statusConvertido)
+            ) {
+                projetos.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetos);
+    }
+
+    public List<ProjetoCardDTO> buscarPorStatus(Long secaoId, int status) {
+        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
+        List<Projeto> projetos = new ArrayList<>();
+        StatusProjeto statusConvertido = convertFilter(status);
+        secoesPagantes.forEach(secao -> {
+            Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+                    () -> new NegocioException("Projeto nao encontrado"));
+            if (projeto.getStatus().equals(statusConvertido)) {
                 projetos.add(projeto);
             }
         });
@@ -107,6 +138,20 @@ public class ProjetoService {
         });
     }
 
+    public StatusProjeto convertFilter(int filtroInteiro) {
+        switch (filtroInteiro) {
+            case 1:
+                return StatusProjeto.ATRASADO;
+            case 2:
+                return StatusProjeto.CONCLUIDO;
+            case 3:
+                return StatusProjeto.EM_ANDAMENTO;
+            case 4:
+                return StatusProjeto.NAO_INICIADO;
+            default:
+                return null;
+        }
+    }
 
     public ProjetoCardDTO listarPorId(Long projetoId) {
         return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));

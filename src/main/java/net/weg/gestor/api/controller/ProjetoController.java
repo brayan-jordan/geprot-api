@@ -25,9 +25,19 @@ public class ProjetoController {
         return projetoService.listarPorSecao(secaoId);
     }
 
-    @GetMapping("/listar/{secaoId}/{campoBusca}")
+    @GetMapping("/listar/busca/{secaoId}/{campoBusca}")
     public List<ProjetoCardDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String campoBusca) {
         return projetoService.buscarPorString(secaoId, campoBusca);
+    }
+
+    @GetMapping("/listar/busca/{secaoId}/{campoBusca}/{status}")
+    public List<ProjetoCardDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String campoBusca, @PathVariable int status) {
+        return projetoService.buscarPorStringAndFiltro(secaoId, campoBusca, status);
+    }
+
+    @GetMapping("/listar/status/{secaoId}/{status}")
+    public List<ProjetoCardDTO> listarComFiltroStatus(@PathVariable Long secaoId, @PathVariable int status) {
+        return projetoService.buscarPorStatus(secaoId, status);
     }
 
     @GetMapping("/buscar/{secaoId}/{projetoId}")
