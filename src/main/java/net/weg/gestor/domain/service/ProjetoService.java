@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @AllArgsConstructor
@@ -44,6 +45,19 @@ public class ProjetoService {
         });
         return projetoAssembler.toCollectionModel(projetos);
 
+    }
+
+    public List<ProjetoCardDTO> buscarPorString(Long secaoId, String campoBusca) {
+        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
+        List<Projeto> projetos = new ArrayList<>();
+        secoesPagantes.forEach(secao -> {
+            Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+                    () -> new NegocioException("Projeto nao encontrado"));
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
+                projetos.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetos);
     }
 
     public ProjetoDetalhadoDTO buscarProjeto(Long secaoId ,Long projetoId) {

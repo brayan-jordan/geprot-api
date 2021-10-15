@@ -25,6 +25,11 @@ public class ProjetoController {
         return projetoService.listarPorSecao(secaoId);
     }
 
+    @GetMapping("/listar/{secaoId}/{campoBusca}")
+    public List<ProjetoCardDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String campoBusca) {
+        return projetoService.buscarPorString(secaoId, campoBusca);
+    }
+
     @GetMapping("/buscar/{secaoId}/{projetoId}")
     public ProjetoDetalhadoDTO buscarInfoProjeto(@PathVariable Long secaoId, @PathVariable Long projetoId) {
         return projetoService.buscarProjeto(secaoId, projetoId);
