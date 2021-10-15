@@ -21,5 +21,6 @@ public class ProjetoCardDTO {
     private double valorUtilizado;
     private double valorRestante;
     private StatusProjeto status;
+    private double barraProgresso;
 
 }

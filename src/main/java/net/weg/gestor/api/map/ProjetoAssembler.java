@@ -37,6 +37,7 @@ public class ProjetoAssembler {
     public ProjetoCardDTO toModel(Projeto projeto) {
         ProjetoCardDTO projetoCardDTO = modelMapper.map(projeto, ProjetoCardDTO.class);
         projetoCardDTO.setValorRestante(projetoCardDTO.getValor() - projetoCardDTO.getValorUtilizado());
+        projetoCardDTO.setBarraProgresso((projetoCardDTO.getHorasTrabalhadas() * 100)/ projetoCardDTO.getHorasPrevistas());
         return projetoCardDTO;
     }
 
