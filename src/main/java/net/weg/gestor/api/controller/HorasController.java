@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.api.model.ConsultorAlocadoDTO;
+import net.weg.gestor.api.model.consultorhoras.ConsultorAndHorasDTO;
 import net.weg.gestor.domain.entities.HoraApontada;
 import net.weg.gestor.domain.service.HorasService;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class HorasController {
     @GetMapping("/{projetoId}")
     public List<ConsultorAlocadoDTO> buscarConsultoresAlocadosProjeto(@PathVariable Long projetoId) {
         return horasService.buscarConsultoresAlocadosProjeto(projetoId);
+    }
+
+    @GetMapping("/{projetoId}/{consultorId}")
+    public ConsultorAndHorasDTO buscarHorasConsultor(@PathVariable Long projetoId, @PathVariable Long consultorId) {
+        return horasService.buscarHorasConsultor(projetoId, consultorId);
     }
 
 }

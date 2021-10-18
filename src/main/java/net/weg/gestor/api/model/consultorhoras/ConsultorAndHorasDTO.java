@@ -3,6 +3,7 @@ package net.weg.gestor.api.model.consultorhoras;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,6 +16,8 @@ public class ConsultorAndHorasDTO {
 
     private int horasTotais;
 
-    private Long totalGasto;
+    private double totalGasto;
+
+    private double precoHora;
 
 }

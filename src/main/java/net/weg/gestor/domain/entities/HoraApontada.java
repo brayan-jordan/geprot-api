@@ -29,7 +29,7 @@ public class HoraApontada {
 
     @NotNull
     @Size(min = 1, max = 24)
-    private int quantidade_horas;
+    private int quantidadeHoras;
 
     @NotNull
     private LocalDate data;
@@ -39,7 +39,7 @@ public class HoraApontada {
     private Consultor consultor;
 
     @NotBlank
-    private String descricao_trabalho;
+    private String descricaoTrabalho;
 
     private StatusApontamento status;
 
