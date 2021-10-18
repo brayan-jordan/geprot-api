@@ -25,9 +25,7 @@ public class HorasService {
     private ConsultorAssembler consultorAssembler;
     private ConsultorRepository consultorRepository;
     private ProjetoRepository projetoRepository;
-    private UsuarioRepository usuarioRepository;
     private HorasAssembler horasAssembler;
-    private ComponentsService componentsService;
 
     public List<HoraApontada> listarTodos() {
         return horaApontadaRepository.findAll();
