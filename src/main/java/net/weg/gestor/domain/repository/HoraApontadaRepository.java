@@ -13,12 +13,12 @@ import java.util.List;
 public interface HoraApontadaRepository extends JpaRepository<HoraApontada, Long> {
 
     @Query("SELECT h FROM HoraApontada h where h.consultor = ?1 and h.status = 2")
-    List<HoraApontada> buscarHorasPendentesConsultor(Long consultorId);
+    List<HoraApontada> buscarHorasPendentesConsultor(Consultor consultor);
 
     @Query("SELECT h FROM HoraApontada h where h.consultor = ?1 and h.status = 0")
-    List<HoraApontada> buscarHorasAprovadasConsultor(Long consultorId);
+    List<HoraApontada> buscarHorasAprovadasConsultor(Consultor consultor);
 
     @Query("SELECT h FROM HoraApontada h where h.consultor = ?1 and h.status = 1")
-    List<HoraApontada> buscarHorasReprovadasConsultor(Long consultorId);
+    List<HoraApontada> buscarHorasReprovadasConsultor(Consultor consultor);
 
 }
