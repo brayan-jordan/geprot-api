@@ -35,8 +35,8 @@ public class HorasService {
 
     public List<ConsultorAlocadoDTO> buscarConsultoresAlocadosProjeto(Long projetoId) {
         Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("a"));
-        return consultorAssembler.toCollectionModelAlocado(consultorAlocadoRepository.consultoresAlocadosProjeto(projeto));
-
+        List<ConsultorAlocadoDTO> consultores = consultorAssembler.toCollectionModelAlocado(consultorAlocadoRepository.consultoresAlocadosProjeto(projeto));
+        return consultores;
     }
 
 }
