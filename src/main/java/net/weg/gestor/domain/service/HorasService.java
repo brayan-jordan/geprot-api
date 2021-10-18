@@ -49,7 +49,7 @@ public class HorasService {
         return consultores;
     }
 
-    public ConsultorAndHorasDTO buscarHorasConsultor(Long consultorId, Long projetoId) {
+    public ConsultorAndHorasDTO buscarHorasConsultor(Long projetoId, Long consultorId) {
         Consultor consultor = consultorRepository.findById(consultorId).
                 orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
 

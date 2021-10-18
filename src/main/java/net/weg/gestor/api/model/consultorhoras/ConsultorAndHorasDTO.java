@@ -2,6 +2,7 @@ package net.weg.gestor.api.model.consultorhoras;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.api.model.UsuarioDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Setter
 public class ConsultorAndHorasDTO {
 
-    private String nome;
+    private UsuarioDTO usuario;
 
     private List<HoraApontadaDTO> horas;
 
