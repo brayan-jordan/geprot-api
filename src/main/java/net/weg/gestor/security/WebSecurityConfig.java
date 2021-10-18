@@ -52,13 +52,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/listar/string/{secaoId}/{campoBusca}",
             "/horas/{projetoId}",
             "/horas/{projetoId}/{consultorId}",
-            "/horas/aprovar/{projetoId}/{consultorId}"
     };
 
     private static final String[] USUARIO_LIST = {
             "/projetos/listar/{secaoId}",
             "/projetos/concluidos/7dias/{secaoId}",
-            "/consultores/alocar"
+            "/consultores/alocar",
+            "/horas/aprovar/{projetoId}/{consultorId}"
     };
 
     @Override
