@@ -30,4 +30,9 @@ public class HorasController {
         return horasService.buscarHorasConsultor(projetoId, consultorId);
     }
 
+    @PutMapping("/aprovar/{projetoId}/{consultorId}")
+    public String aprovarHoras(@PathVariable Long projetoId, @PathVariable Long consultorId) {
+        return horasService.aprovarHoras(projetoId, consultorId);
+    }
+
 }

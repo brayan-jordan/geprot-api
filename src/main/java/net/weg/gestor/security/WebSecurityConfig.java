@@ -51,7 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/listar/status/{secaoId}/{status}",
             "/listar/string/{secaoId}/{campoBusca}",
             "/horas/{projetoId}",
-            "/horas/{projetoId}/{consultorId}"
+            "/horas/{projetoId}/{consultorId}",
+            "/horas/aprovar/{projetoId}/{consultorId}"
     };
 
     private static final String[] USUARIO_LIST = {
