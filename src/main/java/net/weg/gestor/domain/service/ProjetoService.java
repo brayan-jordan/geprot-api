@@ -40,6 +40,10 @@ public class ProjetoService {
         return projetos;
     }
 
+    public ProjetoCardDTO buscarPorId(Long projetoId) {
+        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));
+    }
+
     public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
         return projetoAssembler.toCollectionModel(buscarTodosProjetoSecao(secaoId));
     }
@@ -111,7 +115,7 @@ public class ProjetoService {
         return "Falta fazer cadastrar o projeto :)";
     }
 
-    public void projetoValidations(ProjetoInputDTO projeto) {
+    private void projetoValidations(ProjetoInputDTO projeto) {
         if (projeto.getCcpagantes().size() == 0) {
             throw new NegocioException("Voce nao alocou nenhum centro de custo pagante");
         }
@@ -133,7 +137,7 @@ public class ProjetoService {
         });
     }
 
-    public StatusProjeto convertFilter(int filtroInteiro) {
+    private StatusProjeto convertFilter(int filtroInteiro) {
         switch (filtroInteiro) {
             case 1:
                 return StatusProjeto.ATRASADO;
@@ -148,7 +152,5 @@ public class ProjetoService {
         }
     }
 
-    public ProjetoCardDTO buscarPorId(Long projetoId) {
-        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));
-    }
+
 }
