@@ -25,6 +25,7 @@ import java.util.List;
 @RequestMapping("/consultor")
 @AllArgsConstructor
 public class ConsultorController {
+    /*  Nessa classe será controlado as rotas dos consultores e suas funções    */
 
     private ConsultoresAlocadosService consultoresAlocadosService;
     private UsuarioAssembler usuarioAssembler;
@@ -37,18 +38,17 @@ public class ConsultorController {
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public ConsultorDTO cadastrar(@RequestBody ConsultorInputDTO consultor) {
-        Usuario newUsuario = usuarioAssembler.toEntity(consultor.getUsuario());
+        Usuario novoUsuario = usuarioAssembler.toEntity(consultor.getUsuario());
         RoleUsuarios novaRole = new RoleUsuarios();
-        newUsuario.setSenha(new BCryptPasswordEncoder().encode(consultor.getUsuario().getSenha()));
-        Usuario usuario1 = usuarioService.cadastrar(newUsuario);
-        novaRole.setUsuarios_id(usuario1.getId());
-        novaRole.setRole_nome("ROLE_CONSULTOR");
-        roleUsuarioService.cadastrar(novaRole);
-        Consultor consultorRecebeDados = consultorAssembler.toEntity(consultor);
-        consultorRecebeDados.setUsuario(usuario1);
-        consultorRecebeDados.setFornecedor(fornecedorRepository.findByIdFornecedor(consultor.getFornecedor().getId()));
-        Consultor consultor1 = consultorService.cadastrar(consultorRecebeDados);
-        return consultorAssembler.toModel(consultor1);
+        novoUsuario.setSenha(new BCryptPasswordEncoder().encode(consultor.getUsuario().getSenha()));
+        Usuario usuarioCadastrado = usuarioService.cadastrar(novoUsuario);
+        roleUsuarioService.cadastrar(usuarioCadastrado.getId());
+        Consultor consultorCadastrar = consultorAssembler.toEntity(consultor);
+        consultorCadastrar.setUsuario(usuarioCadastrado);
+        consultorCadastrar.setFornecedor(fornecedorRepository.
+                findByIdFornecedor(consultor.getFornecedor().getId()));
+        consultorCadastrar = consultorService.cadastrar(consultorCadastrar);
+        return consultorAssembler.toModel(consultorCadastrar);
     }
 
     @GetMapping("/buscar/{consultorId}")
