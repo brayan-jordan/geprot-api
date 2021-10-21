@@ -28,8 +28,6 @@ import java.util.stream.Collectors;
 public class ProjetoAssembler {
 
     private ModelMapper modelMapper;
-    private UsuarioRepository usuarioRepository;
-    private CCPagantesRepository ccPagantesRepository;
     private ConsultoresAlocadosService consultoresAlocadosService;
     private ConsultorRepository consultorRepository;
 
@@ -54,7 +52,7 @@ public class ProjetoAssembler {
     public List<ProjetoAlocarDTO> toCollectionModelAlocado(List<Projeto> projetos, Consultor consultor) {
         ArrayList<ProjetoAlocarDTO> listReturnProjetos = new ArrayList<>();
         projetos.forEach(projeto -> {
-            listReturnProjetos.add(toModelAlocado(projeto, consultor));
+            listReturnProjetos.add(this.toModelAlocado(projeto, consultor));
         });
         return listReturnProjetos;
     }

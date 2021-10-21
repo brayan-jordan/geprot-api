@@ -1,7 +1,6 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
@@ -26,13 +25,13 @@ public class ProjetoController {
     }
 
     @GetMapping("/listar/string/{secaoId}/{campoBusca}")
-    public List<ProjetoCardDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String campoBusca) {
-        return projetoService.buscarPorString(secaoId, campoBusca);
+    public List<ProjetoCardDTO> buscarPorNome(@PathVariable Long secaoId, @PathVariable String campoBusca) {
+        return projetoService.buscarPorNome(secaoId, campoBusca);
     }
 
     @GetMapping("/listar/stringandstatus/{secaoId}/{campoBusca}/{status}")
     public List<ProjetoCardDTO> listarContainingAndStatus(@PathVariable Long secaoId, @PathVariable String campoBusca, @PathVariable int status) {
-        return projetoService.buscarPorStringAndFiltro(secaoId, campoBusca, status);
+        return projetoService.buscarPorNomeEStatus(secaoId, campoBusca, status);
     }
 
     @GetMapping("/listar/status/{secaoId}/{status}")
@@ -45,9 +44,9 @@ public class ProjetoController {
         return projetoService.buscarProjeto(secaoId, projetoId);
     }
 
-    @GetMapping("/alocados/{consultorId}")
-    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long consultorId) {
-        return projetoService.buscarIfConsultorNotAlocatted(consultorId);
+    @GetMapping("/alocados/{secaoId}/{consultorId}")
+    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long secaoId , @PathVariable Long consultorId) {
+        return projetoService.buscarProjetosConsultorNaoAlocado(consultorId, secaoId);
     }
 
 
