@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/gestor")
 @AllArgsConstructor
 public class GestorController {
+    /*  Nessa classe terá as rotas dos gestores de edição de senha e nome  */
 
     private GestorRepository gestorRepository;
     private UsuarioRepository usuarioRepository;
