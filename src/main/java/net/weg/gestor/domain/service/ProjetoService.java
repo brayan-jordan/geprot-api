@@ -3,9 +3,8 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ProjetoAssembler;
-import net.weg.gestor.api.model.ProjetoAlocarDTO;
-import net.weg.gestor.api.model.ProjetoCardDTO;
-import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
+import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;

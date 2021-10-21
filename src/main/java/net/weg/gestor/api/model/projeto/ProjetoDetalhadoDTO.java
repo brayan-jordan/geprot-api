@@ -1,14 +1,16 @@
-package net.weg.gestor.api.model;
+package net.weg.gestor.api.model.projeto;
 
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.domain.entities.StatusProjeto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-public class ProjetoCardDTO {
+public class ProjetoDetalhadoDTO {
 
     private Long id;
     private String nome;
@@ -17,11 +19,13 @@ public class ProjetoCardDTO {
     private LocalDate dataCadastro;
     private int horasPrevistas;
     private int horasTrabalhadas;
+    private int horasRestantes;
     private double valor;
     private double valorUtilizado;
     private double valorRestante;
-    private String nomeReponsavel;
     private StatusProjeto status;
-    private double barraProgresso;
+    private String descricao;
+    private String nomeSolicitante;
+    private String nomeResponsavel;
 
 }

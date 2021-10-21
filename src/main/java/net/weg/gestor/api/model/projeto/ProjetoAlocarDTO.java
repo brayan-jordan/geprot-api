@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model;
+package net.weg.gestor.api.model.projeto;
 
 import lombok.Getter;
 import lombok.Setter;
