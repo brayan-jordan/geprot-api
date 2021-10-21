@@ -17,16 +17,20 @@ import java.util.List;
 public class ProjetoController {
 
     private ProjetoService projetoService;
-    private ConsultoresAlocadosService consultoresAlocadosService;
 
     @GetMapping("/listar/{secaoId}")
     public List<ProjetoCardDTO> listarPorSecao(@PathVariable Long secaoId) {
         return projetoService.listarPorSecao(secaoId);
     }
 
-    @GetMapping("/listar/string/{secaoId}/{campoBusca}")
+    @GetMapping("/buscarnome/{secaoId}/{campoBusca}")
     public List<ProjetoCardDTO> buscarPorNome(@PathVariable Long secaoId, @PathVariable String campoBusca) {
         return projetoService.buscarPorNome(secaoId, campoBusca);
+    }
+
+    @GetMapping("/buscarresponsavel/{secaoId}/{campoBusca}")
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(@PathVariable Long secaoId, @PathVariable String campoBusca) {
+        return projetoService.buscarPorNomeResponsavel(secaoId, campoBusca);
     }
 
     @GetMapping("/listar/stringandstatus/{secaoId}/{campoBusca}/{status}")
@@ -39,11 +43,6 @@ public class ProjetoController {
         return projetoService.buscarPorStatus(secaoId, status);
     }
 
-    @GetMapping("/buscar/{secaoId}/{projetoId}")
-    public ProjetoDetalhadoDTO buscarInfoProjeto(@PathVariable Long secaoId, @PathVariable Long projetoId) {
-        return projetoService.buscarProjeto(secaoId, projetoId);
-    }
-
     @GetMapping("/alocados/{secaoId}/{consultorId}")
     public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long secaoId , @PathVariable Long consultorId) {
         return projetoService.buscarProjetosConsultorNaoAlocado(consultorId, secaoId);
@@ -51,8 +50,8 @@ public class ProjetoController {
 
 
     @GetMapping("/buscar/{projetoId}")
-    public ProjetoCardDTO listarProjetoID(@PathVariable Long projetoId){
-          return projetoService.listarPorId(projetoId);
+    public ProjetoCardDTO buscarPorId(@PathVariable Long projetoId){
+          return projetoService.buscarPorId(projetoId);
     }
 
     @PostMapping("/cadastrar")

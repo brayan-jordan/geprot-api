@@ -61,6 +61,16 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetos);
     }
 
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String campoBusca) {
+        List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        projetos.forEach(projeto -> {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
+                projetos.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetos);
+    }
+
     public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String campoBusca, int status) {
         List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
@@ -78,12 +88,9 @@ public class ProjetoService {
     }
 
     public List<ProjetoCardDTO> buscarPorStatus(Long secaoId, int status) {
-        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
-        List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
         StatusProjeto statusConvertido = convertFilter(status);
-        secoesPagantes.forEach(secao -> {
-            Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
-                    () -> new NegocioException("Projeto nao encontrado"));
+        projetos.forEach(projeto -> {
             if (projeto.getStatus().equals(statusConvertido)) {
                 projetos.add(projeto);
             }
@@ -91,35 +98,12 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetos);
     }
 
-    public ProjetoDetalhadoDTO buscarProjeto(Long secaoId ,Long projetoId) {
-        return projetoAssembler.toModelDetalhada(
-                projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado")),
-                ccPagantesService.buscarPorSecaoAndProjeto(secaoId, projetoId)
-        );
-    }
 
     public List<ProjetoAlocarDTO> buscarProjetosConsultorNaoAlocado(Long consultorId, Long secaoId) {
         Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
                 () -> new NegocioException("Consultor nao encontrado"));
 
         return projetoAssembler.toCollectionModelAlocado(buscarTodosProjetoSecao(secaoId), consultor);
-    }
-
-    public List<ProjetoAlocarDTO> buscarProjetosConsultorNaoAlocadoComFiltroPesquisa(
-            Long consultorId,
-            String pesquisa
-        )
-    {
-        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
-                () -> new NegocioException("Consultor nao encontrado"));
-        List<Projeto> todosProjetos = projetoRepository.findAll();
-        List<Projeto> projetosFiltrados = new ArrayList<>();
-        todosProjetos.forEach(projeto -> {
-            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
-                projetosFiltrados.add(projeto);
-            }
-        });
-        return projetoAssembler.toCollectionModelAlocado(projetosFiltrados, consultor);
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
@@ -170,7 +154,7 @@ public class ProjetoService {
         }
     }
 
-    public ProjetoCardDTO listarPorId(Long projetoId) {
+    public ProjetoCardDTO buscarPorId(Long projetoId) {
         return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));
     }
 }
