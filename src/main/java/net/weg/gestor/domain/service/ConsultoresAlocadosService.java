@@ -51,11 +51,11 @@ public class ConsultoresAlocadosService {
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
             if (consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
-                todosConsultores.add(consultor);
+                consultoresPesquisados.add(consultor);
             }
         });
 
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
     }
 
     public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(Long id) {
