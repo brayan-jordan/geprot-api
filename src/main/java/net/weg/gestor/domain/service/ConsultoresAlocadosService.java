@@ -14,7 +14,9 @@ import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @AllArgsConstructor
 @Service
@@ -30,6 +32,18 @@ public class ConsultoresAlocadosService {
     public List<ConsultorNaoAlocadoDTO> buscarConsultores() {
         return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultorRepository.findAll());
 
+    }
+
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(String pesquisa) {
+        List<Consultor> consultoresPesquisados = new ArrayList<>();
+        List<Consultor> todosConsultores = consultorRepository.findAll();
+        todosConsultores.forEach(consultor -> {
+            if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
+                todosConsultores.add(consultor);
+            }
+        });
+
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
     }
 
     public String alocarConsultor(AlocarConsultorInputDTO alocar) {
