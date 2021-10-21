@@ -52,7 +52,7 @@ public class ConsultorController {
     }
 
     @GetMapping("/buscar/{consultorId}")
-    public ConsultorDTO listarConsultores(@PathVariable long consultorId){
+    public ConsultorDTO buscarConsultorUnicoPorId(@PathVariable long consultorId){
         return consultorService.buscarConsultor(consultorId);
     }
 
@@ -61,7 +61,7 @@ public class ConsultorController {
         return consultoresAlocadosService.buscarConsultores();
     }
 
-    @GetMapping("/buscar/{pesquisarPorId}")
+    @GetMapping("/buscartodos/{pesquisarPorId}")
     public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(@PathVariable Long pesquisaPorId) {
         return consultoresAlocadosService.buscarConsultoresPorId(pesquisaPorId);
     }
