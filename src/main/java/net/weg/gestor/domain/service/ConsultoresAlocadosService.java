@@ -62,12 +62,12 @@ public class ConsultoresAlocadosService {
         List<Consultor> consultoresPesquisados = new ArrayList<>();
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
-            if (consultor.getId() == id) {
-                todosConsultores.add(consultor);
+            if (consultor.getId().equals(id)) {
+                consultoresPesquisados.add(consultor);
             }
         });
 
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
     }
 
     public String alocarConsultor(AlocarConsultorInputDTO alocar) {
@@ -81,7 +81,6 @@ public class ConsultoresAlocadosService {
         }
 
         consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras()));
-
         return "deu boa";
     }
 
