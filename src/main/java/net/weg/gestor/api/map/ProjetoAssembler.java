@@ -42,7 +42,7 @@ public class ProjetoAssembler {
 
     public ProjetoAlocarDTO toModelAlocado(Projeto projeto, Consultor consultor) {
         ProjetoAlocarDTO projetoAlocar = modelMapper.map(projeto, ProjetoAlocarDTO.class);
-        projetoAlocar.setAllocated(consultoresAlocadosService.verificaSeConsultorEstáAlocadoEmProjeto(projeto, consultor));
+        projetoAlocar.setAllocated(consultoresAlocadosService.verificaSeConsultorEstaAlocadoEmProjeto(projeto, consultor));
         return projetoAlocar;
     }
 
