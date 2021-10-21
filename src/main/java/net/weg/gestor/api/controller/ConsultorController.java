@@ -61,6 +61,21 @@ public class ConsultorController {
         return consultoresAlocadosService.buscarConsultores();
     }
 
+    @GetMapping("/buscar/{pesquisarPorId}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(@PathVariable Long pesquisaPorId) {
+        return consultoresAlocadosService.buscarConsultoresPorId(pesquisaPorId);
+    }
+
+    @GetMapping("/buscar/{pesquisaPorNome}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(@PathVariable String pesquisaPorNome) {
+        return consultoresAlocadosService.buscarConsultoresPorNome(pesquisaPorNome);
+    }
+
+    @GetMapping("/buscar/{pesquisaPorNomeFornecedor}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedor(@PathVariable String pesquisaPorNomeFornecedor) {
+        return consultoresAlocadosService.buscarConsultoresPorNomeFornecedor(pesquisaPorNomeFornecedor);
+    }
+
     @PostMapping("/alocar")
     public String alocarConsultor(@RequestBody AlocarConsultorInputDTO alocar) {
         return consultoresAlocadosService.alocarConsultor(alocar);
