@@ -1,23 +1,23 @@
-package net.weg.gestor.api.model;
+package net.weg.gestor.api.model.usuario;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.domain.entities.StatusUsuario;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
-public class ProjetoAlocarDTO {
+public class UsuarioDTO {
 
     private Long id;
 
     private String nome;
 
-    private String nomeResponsavel;
+    private String email;
 
     private LocalDate dataCadastro;
 
-    private boolean isAllocated;
+    private StatusUsuario status;
 
 }

@@ -36,4 +36,8 @@ public class DashboardController {
 //        return dashboardService.buscarUltimoAno(secaoId);
 //    }
 
+//    @GetMapping("/listar/{secaoId}")
+//    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
+//        return secaoService.listarDashboard(secaoId);
+//    }
 }

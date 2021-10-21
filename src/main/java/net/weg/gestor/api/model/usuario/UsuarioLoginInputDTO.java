@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model;
+package net.weg.gestor.api.model.usuario;
 
 import lombok.Getter;
 import lombok.Setter;

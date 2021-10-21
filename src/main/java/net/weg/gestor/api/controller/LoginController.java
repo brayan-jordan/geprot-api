@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.GestorAssembler;
 import net.weg.gestor.api.map.UsuarioAssembler;
 import net.weg.gestor.api.model.GestorDTO;
-import net.weg.gestor.api.model.UsuarioLoginInputDTO;
+import net.weg.gestor.api.model.usuario.UsuarioLoginInputDTO;
 import net.weg.gestor.domain.entities.AuthenticationResponse;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.GestorRepository;

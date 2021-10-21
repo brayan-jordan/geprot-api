@@ -3,7 +3,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.HorasAssembler;
-import net.weg.gestor.api.model.ConsultorAlocadoDTO;
+import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorAndHorasDTO;
 import net.weg.gestor.api.model.consultorhoras.HoraApontadaDTO;
 import net.weg.gestor.domain.entities.*;

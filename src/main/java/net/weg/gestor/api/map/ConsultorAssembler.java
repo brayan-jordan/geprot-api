@@ -1,8 +1,8 @@
 package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ConsultorAlocadoDTO;
-import net.weg.gestor.api.model.ConsultorDTO;
+import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
+import net.weg.gestor.api.model.consultor.ConsultorDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorAndHorasDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;

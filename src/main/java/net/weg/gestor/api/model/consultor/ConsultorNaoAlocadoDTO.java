@@ -1,4 +1,4 @@
-package net.weg.gestor.api.model;
+package net.weg.gestor.api.model.consultor;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

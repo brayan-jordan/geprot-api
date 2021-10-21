@@ -1,7 +1,7 @@
 package net.weg.gestor.api.map;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.UsuarioLoginInputDTO;
+import net.weg.gestor.api.model.usuario.UsuarioLoginInputDTO;
 import net.weg.gestor.api.model.input.UsuarioInputDTO;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.*;

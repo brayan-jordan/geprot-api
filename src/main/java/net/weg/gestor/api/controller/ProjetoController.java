@@ -1,11 +1,9 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ProjetoAlocarDTO;
-import net.weg.gestor.api.model.ProjetoCardDTO;
-import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
+import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
-import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
