@@ -81,7 +81,7 @@ public class ConsultoresAlocadosService {
         }
 
         consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras()));
-        return "deu boa";
+        return "Consultor alocado com sucesso";
     }
 
     public boolean verifyConsultorIsAllocatedInProject(Projeto projeto, Consultor consultor) {
