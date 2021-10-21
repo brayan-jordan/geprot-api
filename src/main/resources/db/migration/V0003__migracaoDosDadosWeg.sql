@@ -34,3 +34,16 @@ INSERT INTO cc_pagantes VALUES (null, 5,1,100);
 INSERT INTO cc_pagantes VALUES (null, 6,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 7,1,100);
+
+INSERT INTO usuarios VALUES
+(null, "Brendon consultor", "brendon@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(123, 2, 1, 12);
+
+INSERT INTO consultores_alocados VALUES
+(null, 1, 123, 120, 60);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "Trabalho bem feito, parabéns", 2);
