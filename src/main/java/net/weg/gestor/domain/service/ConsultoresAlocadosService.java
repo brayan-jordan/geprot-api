@@ -46,6 +46,30 @@ public class ConsultoresAlocadosService {
         return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
     }
 
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedor(String pesquisa) {
+        List<Consultor> consultoresPesquisados = new ArrayList<>();
+        List<Consultor> todosConsultores = consultorRepository.findAll();
+        todosConsultores.forEach(consultor -> {
+            if (consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
+                todosConsultores.add(consultor);
+            }
+        });
+
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
+    }
+
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(Long id) {
+        List<Consultor> consultoresPesquisados = new ArrayList<>();
+        List<Consultor> todosConsultores = consultorRepository.findAll();
+        todosConsultores.forEach(consultor -> {
+            if (consultor.getId() == id) {
+                todosConsultores.add(consultor);
+            }
+        });
+
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(todosConsultores);
+    }
+
     public String alocarConsultor(AlocarConsultorInputDTO alocar) {
         Consultor consultor = consultorRepository.findById(alocar.getConsultorId()).orElseThrow(
                 () -> new NegocioException("Consultor nao encontrado"));
