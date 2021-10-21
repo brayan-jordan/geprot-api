@@ -11,6 +11,7 @@ import java.util.List;
 @RequestMapping("/secao")
 @AllArgsConstructor
 public class SecaoController {
+    /*  Nessa classe é controlada as rotas das seções para a listagem de dados  */
 
     private SecaoService secaoService;
 
@@ -24,9 +25,4 @@ public class SecaoController {
         return secaoService.buscarSecao(secaoId);
     }
 
-
-//    @GetMapping("/listar/{secaoId}")
-//    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
-//        return secaoService.listarDashboard(secaoId);
-//    }
 }
