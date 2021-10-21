@@ -1,7 +1,6 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
 import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
@@ -18,42 +17,41 @@ import java.util.List;
 public class ProjetoController {
 
     private ProjetoService projetoService;
-    private ConsultoresAlocadosService consultoresAlocadosService;
 
     @GetMapping("/listar/{secaoId}")
     public List<ProjetoCardDTO> listarPorSecao(@PathVariable Long secaoId) {
         return projetoService.listarPorSecao(secaoId);
     }
 
-    @GetMapping("/listar/string/{secaoId}/{campoBusca}")
-    public List<ProjetoCardDTO> listarContaining(@PathVariable Long secaoId, @PathVariable String campoBusca) {
-        return projetoService.buscarPorString(secaoId, campoBusca);
+    @GetMapping("/buscar/nome/{secaoId}/{campoBusca}")
+    public List<ProjetoCardDTO> buscarPorNome(@PathVariable Long secaoId, @PathVariable String campoBusca) {
+        return projetoService.buscarPorNome(secaoId, campoBusca);
     }
 
-    @GetMapping("/listar/stringandstatus/{secaoId}/{campoBusca}/{status}")
+    @GetMapping("/buscar/responsavel/{secaoId}/{campoBusca}")
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(@PathVariable Long secaoId, @PathVariable String campoBusca) {
+        return projetoService.buscarPorNomeResponsavel(secaoId, campoBusca);
+    }
+
+    @GetMapping("/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}")
     public List<ProjetoCardDTO> listarContainingAndStatus(@PathVariable Long secaoId, @PathVariable String campoBusca, @PathVariable int status) {
-        return projetoService.buscarPorStringAndFiltro(secaoId, campoBusca, status);
+        return projetoService.buscarPorNomeEStatus(secaoId, campoBusca, status);
     }
 
-    @GetMapping("/listar/status/{secaoId}/{status}")
+    @GetMapping("/buscar/status/{secaoId}/{status}")
     public List<ProjetoCardDTO> listarComFiltroStatus(@PathVariable Long secaoId, @PathVariable int status) {
         return projetoService.buscarPorStatus(secaoId, status);
     }
 
-    @GetMapping("/buscar/{secaoId}/{projetoId}")
-    public ProjetoDetalhadoDTO buscarInfoProjeto(@PathVariable Long secaoId, @PathVariable Long projetoId) {
-        return projetoService.buscarProjeto(secaoId, projetoId);
-    }
-
-    @GetMapping("/alocados/{consultorId}")
-    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long consultorId) {
-        return projetoService.buscarIfConsultorNotAlocatted(consultorId);
+    @GetMapping("/alocados/{secaoId}/{consultorId}")
+    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long secaoId , @PathVariable Long consultorId) {
+        return projetoService.buscarProjetosConsultorNaoAlocado(consultorId, secaoId);
     }
 
 
     @GetMapping("/buscar/{projetoId}")
-    public ProjetoCardDTO listarProjetoID(@PathVariable Long projetoId){
-          return projetoService.listarPorId(projetoId);
+    public ProjetoCardDTO buscarPorId(@PathVariable Long projetoId){
+          return projetoService.buscarPorId(projetoId);
     }
 
     @PostMapping("/cadastrar")

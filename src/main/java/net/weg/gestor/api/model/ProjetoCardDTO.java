@@ -20,6 +20,7 @@ public class ProjetoCardDTO {
     private double valor;
     private double valorUtilizado;
     private double valorRestante;
+    private String nomeReponsavel;
     private StatusProjeto status;
     private double barraProgresso;
 
