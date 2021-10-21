@@ -26,16 +26,10 @@ import java.util.Locale;
 public class ProjetoService {
 
     private ProjetoRepository projetoRepository;
-    private UsuarioRepository usuarioRepository;
-    private VerificationsService verificationsService;
     private ProjetoAssembler projetoAssembler;
-    private SecaoRepository secaoRepository;
     private ConsultorRepository consultorRepository;
-    private CCPagantesRepository ccPagantesRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
-    private SecaoService secaoService;
-    private ConsultorAlocadoRepository consultorAlocadoRepository;
 
     private List<Projeto> buscarTodosProjetoSecao(Long secaoId) {
         List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
@@ -53,27 +47,30 @@ public class ProjetoService {
 
     public List<ProjetoCardDTO> buscarPorNome(Long secaoId, String campoBusca) {
         List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
         projetos.forEach(projeto -> {
             if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
-                projetos.add(projeto);
+                projetosFiltrados.add(projeto);
             }
         });
-        return projetoAssembler.toCollectionModel(projetos);
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
     public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String campoBusca) {
         List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
         projetos.forEach(projeto -> {
             if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
-                projetos.add(projeto);
+                projetosFiltrados.add(projeto);
             }
         });
-        return projetoAssembler.toCollectionModel(projetos);
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
     public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String campoBusca, int status) {
         List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> projetosFiltrados = new ArrayList<>();
         StatusProjeto statusConvertido = convertFilter(status);
         secoesPagantes.forEach(secao -> {
             Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
@@ -81,21 +78,22 @@ public class ProjetoService {
             if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT)) &&
                     projeto.getStatus().equals(statusConvertido)
             ) {
-                projetos.add(projeto);
+                projetosFiltrados.add(projeto);
             }
         });
-        return projetoAssembler.toCollectionModel(projetos);
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
     public List<ProjetoCardDTO> buscarPorStatus(Long secaoId, int status) {
         List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
         StatusProjeto statusConvertido = convertFilter(status);
         projetos.forEach(projeto -> {
             if (projeto.getStatus().equals(statusConvertido)) {
-                projetos.add(projeto);
+                projetosFiltrados.add(projeto);
             }
         });
-        return projetoAssembler.toCollectionModel(projetos);
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
 
