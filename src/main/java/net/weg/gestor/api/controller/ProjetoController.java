@@ -33,7 +33,7 @@ public class ProjetoController {
         return projetoService.buscarPorNomeResponsavel(secaoId, campoBusca);
     }
 
-        @GetMapping("/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}")
+    @GetMapping("/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}")
     public List<ProjetoCardDTO> listarContainingAndStatus(@PathVariable Long secaoId, @PathVariable String campoBusca, @PathVariable int status) {
         return projetoService.buscarPorNomeEStatus(secaoId, campoBusca, status);
     }
