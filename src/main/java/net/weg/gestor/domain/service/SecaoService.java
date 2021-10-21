@@ -18,11 +18,6 @@ import java.util.List;
 public class SecaoService {
 
     private SecaoRepository secaoRepository;
-    private VerificationsService verificationsService;
-    private UsuarioRepository usuarioRepository;
-    private UsuarioAssembler usuarioAssembler;
-    private ProjetoRepository projetoRepository;
-    private CCPagantesRepository ccPagantesRepository;
     private SecaoAssembler secaoAssembler;
 
     public SecaoDTO buscar(Long secaoId) {

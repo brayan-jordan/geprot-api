@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ConsultorAndHorasDTO {
+public class ConsultorComSuasHorasApontadas {
 
     private UsuarioDTO usuario;
 

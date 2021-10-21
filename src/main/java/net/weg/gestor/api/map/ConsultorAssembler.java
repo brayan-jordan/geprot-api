@@ -3,7 +3,7 @@ package net.weg.gestor.api.map;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultor.ConsultorDTO;
-import net.weg.gestor.api.model.consultorhoras.ConsultorAndHorasDTO;
+import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.ConsultorAlocado;
@@ -45,8 +45,8 @@ public class ConsultorAssembler {
         return consultoresAlocados.stream().map(this::toModelConsultorAlocado).collect(Collectors.toList());
     }
 
-    public ConsultorAndHorasDTO toModelConsultorAndHoras(Consultor consultor) {
-        return modelMapper.map(consultor, ConsultorAndHorasDTO.class);
+    public ConsultorComSuasHorasApontadas toModelConsultorAndHoras(Consultor consultor) {
+        return modelMapper.map(consultor, ConsultorComSuasHorasApontadas.class);
     }
 
 }

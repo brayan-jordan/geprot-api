@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.HorasAssembler;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
-import net.weg.gestor.api.model.consultorhoras.ConsultorAndHorasDTO;
+import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.api.model.consultorhoras.HoraApontadaDTO;
 import net.weg.gestor.domain.entities.*;
 import net.weg.gestor.domain.exception.NegocioException;
@@ -33,33 +33,48 @@ public class HorasService {
 
     public List<ConsultorAlocadoDTO> buscarConsultoresAlocadosProjeto(Long projetoId) {
         Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("a"));
-        List<ConsultorAlocadoDTO> consultores = consultorAssembler.toCollectionModelAlocado(consultorAlocadoRepository.consultoresAlocadosProjeto(projeto));
+//        Busca todos os consultores alocados do projeto desejado, e já os transforma no formato de classe de retorno
+//        para depois apenas fazer as verificações e retornar os dados
+        List<ConsultorAlocadoDTO> consultores = consultorAssembler.toCollectionModelAlocado(
+                consultorAlocadoRepository.consultoresAlocadosProjeto(projeto)
+        );
+
+//        Já nessa parte o status dos apontamentos precisam ter apenas 1 status, então
+//        segundo a regra de negócio caso ele tenha alguma hora reprovada não terá pendentes, mantendo
+//        seu status como reprovado, caso tenha pendente não terá reprovada, mantendo seu status como pendente
+//        e por fim caso não contenha nem pendentes nem reprovadas estará com todas suas horas aprovadas
         consultores.forEach(consultor -> {
-            if (horaApontadaRepository.buscarHorasReprovadasConsultor(consultorRepository.getById(consultor.getId())).size() > 0) {
+            if (horaApontadaRepository.buscarHorasReprovadasConsultor(
+                consultorRepository.getById(consultor.getId())).size() > 0)
+            {
                 consultor.setStatusApontamento(REPROVADO);
-                return;
             }
-            if (horaApontadaRepository.buscarHorasPendentesConsultor(consultorRepository.getById(consultor.getId())).size() > 0) {
+            else if (horaApontadaRepository.buscarHorasPendentesConsultor(
+                    consultorRepository.getById(consultor.getId())).size() > 0)
+            {
                 consultor.setStatusApontamento(StatusApontamento.PENDENTE);
-                return;
             }
-            consultor.setStatusApontamento(StatusApontamento.APROVADO);
+            else {
+                consultor.setStatusApontamento(StatusApontamento.APROVADO);
+            }
         });
 
         return consultores;
     }
 
-    public ConsultorAndHorasDTO buscarHorasConsultor(Long projetoId, Long consultorId) {
+    public ConsultorComSuasHorasApontadas buscarHorasConsultor(Long projetoId, Long consultorId) {
         Consultor consultor = consultorRepository.findById(consultorId).
-                orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
+                orElseThrow(() -> new NegocioException("Consultor nao encontrado")
+        );
 
         Projeto projeto = projetoRepository.findById(projetoId).
-                orElseThrow(() -> new NegocioException("Projeto nao encontrado"));
+                orElseThrow(() -> new NegocioException("Projeto nao encontrado")
+        );
 
-        ConsultorAndHorasDTO consultorAndHorasDTO = consultorAssembler.toModelConsultorAndHoras(consultor);
-        consultorAndHorasDTO.setHoras(buscarHorasConsultorAndProjeto(projeto, consultor));
-        calcularHorasTotaisAndValorGasto(consultorAndHorasDTO);
-        return consultorAndHorasDTO;
+        ConsultorComSuasHorasApontadas consultorComSuasHorasApontadas = consultorAssembler.toModelConsultorAndHoras(consultor);
+        consultorComSuasHorasApontadas.setHoras(buscarHorasConsultorAndProjeto(projeto, consultor));
+        calcularHorasTotaisAndValorGasto(consultorComSuasHorasApontadas);
+        return consultorComSuasHorasApontadas;
     }
 
     private List<HoraApontadaDTO> buscarHorasConsultorAndProjeto(Projeto projeto, Consultor consultor) {
@@ -75,10 +90,10 @@ public class HorasService {
         return todasHorasConsultor;
     }
 
-    private void calcularHorasTotaisAndValorGasto (ConsultorAndHorasDTO consultorAndHorasDTO) {
-        consultorAndHorasDTO.getHoras().forEach(horaApontadaDTO -> {
-            consultorAndHorasDTO.setHorasTotais(consultorAndHorasDTO.getHorasTotais() + horaApontadaDTO.getQuantidadeHoras());
-            consultorAndHorasDTO.setTotalGasto(consultorAndHorasDTO.getTotalGasto() + horaApontadaDTO.getQuantidadeHoras() * consultorAndHorasDTO.getPrecoHora());
+    private void calcularHorasTotaisAndValorGasto (ConsultorComSuasHorasApontadas consultorComSuasHorasApontadas) {
+        consultorComSuasHorasApontadas.getHoras().forEach(horaApontadaDTO -> {
+            consultorComSuasHorasApontadas.setHorasTotais(consultorComSuasHorasApontadas.getHorasTotais() + horaApontadaDTO.getQuantidadeHoras());
+            consultorComSuasHorasApontadas.setTotalGasto(consultorComSuasHorasApontadas.getTotalGasto() + horaApontadaDTO.getQuantidadeHoras() * consultorComSuasHorasApontadas.getPrecoHora());
         });
     }
 
