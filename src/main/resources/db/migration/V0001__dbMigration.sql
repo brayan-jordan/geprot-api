@@ -84,7 +84,8 @@ CREATE TABLE projetos (
 );
 
 CREATE TABLE role (
-    nome varchar(20)
+    nome varchar(20),
+    primary key (nome)
 );
 
 CREATE TABLE role_usuarios (
