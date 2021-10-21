@@ -10,10 +10,7 @@ import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.StatusProjeto;
-import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ConsultorRepository;
-import net.weg.gestor.domain.repository.UsuarioRepository;
 import net.weg.gestor.domain.service.ConsultoresAlocadosService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -45,7 +42,7 @@ public class ProjetoAssembler {
 
     public ProjetoAlocarDTO toModelAlocado(Projeto projeto, Consultor consultor) {
         ProjetoAlocarDTO projetoAlocar = modelMapper.map(projeto, ProjetoAlocarDTO.class);
-        projetoAlocar.setAllocated(consultoresAlocadosService.verifyConsultorIsAllocatedInProject(projeto, consultor));
+        projetoAlocar.setAllocated(consultoresAlocadosService.verificaSeConsultorEstáAlocadoEmProjeto(projeto, consultor));
         return projetoAlocar;
     }
 

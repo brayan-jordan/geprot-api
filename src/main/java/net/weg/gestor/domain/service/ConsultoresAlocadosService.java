@@ -76,7 +76,7 @@ public class ConsultoresAlocadosService {
         Projeto projeto = projetoRepository.findById(alocar.getProjetoId()).orElseThrow(
                 () -> new NegocioException("Projeto nao encontrado"));
 
-        if (consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isPresent()) {
+        if (verificaSeConsultorEstáAlocadoEmProjeto(projeto, consultor)) {
             throw new NegocioException("Esse consultor já estava alocado ao projeto, tente, verifique os dados informados");
         }
 
@@ -84,7 +84,7 @@ public class ConsultoresAlocadosService {
         return "Consultor alocado com sucesso";
     }
 
-    public boolean verifyConsultorIsAllocatedInProject(Projeto projeto, Consultor consultor) {
+    public boolean verificaSeConsultorEstáAlocadoEmProjeto(Projeto projeto, Consultor consultor) {
         return consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isPresent();
     }
 
