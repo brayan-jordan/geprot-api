@@ -67,13 +67,10 @@ public class ProjetoService {
     }
 
     public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String campoBusca, int status) {
-        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
-        List<Projeto> projetos = new ArrayList<>();
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
         StatusProjeto statusConvertido = convertFilter(status);
-        secoesPagantes.forEach(secao -> {
-            Projeto projeto = projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
-                    () -> new NegocioException("Projeto nao encontrado"));
+        todosProjetos.forEach(projeto -> {
             if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT)) &&
                     projeto.getStatus().equals(statusConvertido)
             ) {
