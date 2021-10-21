@@ -40,16 +40,16 @@ public class ProjetoAssembler {
         return projetos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
-    public ProjetoAlocarDTO toModelAlocado(Projeto projeto, Consultor consultor) {
+    public ProjetoAlocarDTO toModelProjetoAlocar(Projeto projeto, Consultor consultor) {
         ProjetoAlocarDTO projetoAlocar = modelMapper.map(projeto, ProjetoAlocarDTO.class);
         projetoAlocar.setAllocated(consultoresAlocadosService.verificaSeConsultorEstaAlocadoEmProjeto(projeto, consultor));
         return projetoAlocar;
     }
 
-    public List<ProjetoAlocarDTO> toCollectionModelAlocado(List<Projeto> projetos, Consultor consultor) {
+    public List<ProjetoAlocarDTO> toCollectionModelProjetosAlocar(List<Projeto> projetos, Consultor consultor) {
         ArrayList<ProjetoAlocarDTO> listReturnProjetos = new ArrayList<>();
         projetos.forEach(projeto -> {
-            listReturnProjetos.add(this.toModelAlocado(projeto, consultor));
+            listReturnProjetos.add(this.toModelProjetoAlocar(projeto, consultor));
         });
         return listReturnProjetos;
     }

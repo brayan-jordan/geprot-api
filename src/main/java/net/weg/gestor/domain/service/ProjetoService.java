@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ProjetoAssembler;
 import net.weg.gestor.api.model.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.ProjetoCardDTO;
-import net.weg.gestor.api.model.ProjetoDetalhadoDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
@@ -32,10 +31,10 @@ public class ProjetoService {
     private ConsultoresAlocadosService consultoresAlocadosService;
 
     private List<Projeto> buscarTodosProjetoSecao(Long secaoId) {
-        List<CCPagantes> secoesPagantes = ccPagantesService.buscarPorSecao(secaoId);
+        List<CCPagantes> ccPagantes = ccPagantesService.buscarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
-        secoesPagantes.forEach(secao -> {
-            projetos.add(projetoRepository.findById(secao.getProjeto().getId()).orElseThrow(
+        ccPagantes.forEach(ccPagante -> {
+            projetos.add(projetoRepository.findById(ccPagante.getProjeto().getId()).orElseThrow(
                     () -> new NegocioException("Projeto nao encontrado")));
         });
         return projetos;
@@ -46,9 +45,9 @@ public class ProjetoService {
     }
 
     public List<ProjetoCardDTO> buscarPorNome(Long secaoId, String campoBusca) {
-        List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
-        projetos.forEach(projeto -> {
+        todosProjetos.forEach(projeto -> {
             if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
                 projetosFiltrados.add(projeto);
             }
@@ -57,9 +56,9 @@ public class ProjetoService {
     }
 
     public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String campoBusca) {
-        List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
-        projetos.forEach(projeto -> {
+        todosProjetos.forEach(projeto -> {
             if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
                 projetosFiltrados.add(projeto);
             }
@@ -82,10 +81,10 @@ public class ProjetoService {
     }
 
     public List<ProjetoCardDTO> buscarPorStatus(Long secaoId, int status) {
-        List<Projeto> projetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
         StatusProjeto statusConvertido = convertFilter(status);
-        projetos.forEach(projeto -> {
+        todosProjetos.forEach(projeto -> {
             if (projeto.getStatus().equals(statusConvertido)) {
                 projetosFiltrados.add(projeto);
             }
@@ -98,7 +97,7 @@ public class ProjetoService {
         Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
                 () -> new NegocioException("Consultor nao encontrado"));
 
-        return projetoAssembler.toCollectionModelAlocado(buscarTodosProjetoSecao(secaoId), consultor);
+        return projetoAssembler.toCollectionModelProjetosAlocar(buscarTodosProjetoSecao(secaoId), consultor);
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
