@@ -100,7 +100,7 @@ public class ConsultorController {
         return consultorService.buscarConsultoresPorIdeNomeFornecedor(id, nomefornecedor);
     }
 
-    @GetMapping("/buscar/nomefornecedor/id/nome/{nomefornecedor}/{id}/{nome")
+    @GetMapping("/buscar/nomefornecedor/id/nome/{nomefornecedor}/{id}/{nome}")
     public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedorEIdENome(
             @PathVariable String nomefornecedor,
             @PathVariable Long id,
