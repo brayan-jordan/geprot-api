@@ -61,19 +61,43 @@ public class ConsultorController {
         return consultorService.buscarTodosConsultores();
     }
 
-    @GetMapping("/buscar/id/{pesquisarPorId}")
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(@PathVariable Long pesquisaPorId) {
-        return consultorService.buscarConsultoresPorId(pesquisaPorId);
+    @GetMapping("/buscar/id/{id}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(@PathVariable Long id) {
+        return consultorService.buscarConsultoresPorId(id);
     }
 
-    @GetMapping("/buscar/nome/{pesquisaPorNome}")
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(@PathVariable String pesquisaPorNome) {
-        return consultorService.buscarConsultoresPorNome(pesquisaPorNome);
+    @GetMapping("/buscar/nome/{nome}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(@PathVariable String nome) {
+        return consultorService.buscarConsultoresPorNome(nome);
     }
 
-    @GetMapping("/buscar/nomefornecedor/{pesquisaPorNomeFornecedor}")
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedor(@PathVariable String pesquisaPorNomeFornecedor) {
-        return consultorService.buscarConsultoresPorNomeFornecedor(pesquisaPorNomeFornecedor);
+    @GetMapping("/buscar/nomefornecedor/{nomefornecedor}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedor(@PathVariable String nomefornecedor) {
+        return consultorService.buscarConsultoresPorNomeFornecedor(nomefornecedor);
+    }
+
+    @GetMapping("/buscar/nome/nomefornecedor/{nome}/{nomefornecedor}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeENomeFornecedor(
+            @PathVariable String nome,
+            @PathVariable String nomeFornecedor)
+    {
+        return consultorService.buscarConsultoresPorNomeFornecedorENome(nome, nomeFornecedor);
+    }
+
+    @GetMapping("/buscar/nome/id/{nome}/{id}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeEId(
+            @PathVariable String nome,
+            @PathVariable Long id)
+    {
+        return consultorService.buscarConsultoresPorIdeNome(id, nome);
+    }
+
+    @GetMapping("/buscar/nomefornecedor/id/{nomefornecedor}/{id}")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedorEId(
+            @PathVariable String nomefornecedor,
+            @PathVariable Long id)
+    {
+        return consultorService.buscarConsultoresPorIdeNomeFornecedor(id, nomefornecedor);
     }
 
     @PostMapping("/alocar")
