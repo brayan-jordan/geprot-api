@@ -3,6 +3,8 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.dashboard.DashboardVerba;
 import net.weg.gestor.domain.entities.Projeto;
+import net.weg.gestor.domain.entities.Secao;
+import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
@@ -16,17 +18,18 @@ public class DashboardService {
     private ProjetoService projetoService;
     private SecaoRepository secaoRepository;
     private ProjetoRepository projetoRepository;
+    private CCPagantesRepository ccPagantesRepository;
 
     public DashboardVerba listarVerbas(Long secaoId) {
-        double verbaUtilizada = 0;
+        double verbaUtilizada;
+        Secao secao = secaoRepository.findByIdAux(secaoId);
         DashboardVerba dashboardVerba = new DashboardVerba();
-        dashboardVerba.setVerbaAprovada(secaoRepository.findByVerba(secaoId));
+        dashboardVerba.setVerbaTotal(secaoRepository.findByVerba(secaoId));
         List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
-        projetos.forEach(projeto -> {
-            verbaUtilizada +=
-        });
-
-
+        verbaUtilizada = projetos.stream().mapToDouble(projeto -> projetoRepository.findByVerba(projeto.getId()) *
+                ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto)
+                / 100).sum();
+        dashboardVerba.setVerbaUtilizada();
     }
 
 //    public List<BasePorMesDashboardDTO> buscar7days(long secaoId) {

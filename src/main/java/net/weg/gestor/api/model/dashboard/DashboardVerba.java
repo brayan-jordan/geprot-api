@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class DashboardVerba {
 
-    private double verbaAprovada;
+    private double verbaTotal;
 
-    private double verbaDisponivel;
+    private double verbaUtilizada;
 }
