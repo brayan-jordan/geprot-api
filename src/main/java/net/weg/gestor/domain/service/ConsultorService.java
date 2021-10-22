@@ -28,20 +28,22 @@ public class ConsultorService {
         return consultorRepository.save(consultor);
     }
 
+    public List<ConsultorNaoAlocadoDTO> buscarTodosConsultores() {
+        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultorRepository.findAll());
+    }
+
     public ConsultorDTO buscarConsultor(long consultorId) {
         return consultorAssembler.toModel(consultorRepository.findById(consultorId)
                 .orElseThrow(() -> new NegocioException("Consultor não encontrado")));
-    }
-
-    public List<ConsultorNaoAlocadoDTO> buscarTodosConsultores() {
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultorRepository.findAll());
     }
 
     public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(String pesquisaPorNome) {
         List<Consultor> consultoresPesquisados = new ArrayList<>();
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
-            if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(pesquisaPorNome.toLowerCase(Locale.ROOT))) {
+            if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(
+                pesquisaPorNome.toLowerCase(Locale.ROOT)))
+            {
                 consultoresPesquisados.add(consultor);
             }
         });
@@ -53,7 +55,9 @@ public class ConsultorService {
         List<Consultor> consultoresPesquisados = new ArrayList<>();
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
-            if (consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))) {
+            if (consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
+                pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT)))
+            {
                 consultoresPesquisados.add(consultor);
             }
         });
@@ -61,11 +65,13 @@ public class ConsultorService {
         return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
     }
 
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(Long id) {
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(Long pesquisaPorId) {
         List<Consultor> consultoresPesquisados = new ArrayList<>();
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
-            if (consultor.getId().toString().toLowerCase(Locale.ROOT).contains(id.toString().toLowerCase(Locale.ROOT))) {
+            if (consultor.getId().toString().toLowerCase(Locale.ROOT).contains(
+                pesquisaPorId.toString().toLowerCase(Locale.ROOT)))
+            {
                 consultoresPesquisados.add(consultor);
             }
         });
@@ -80,9 +86,9 @@ public class ConsultorService {
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
             if (consultor.getId().toString().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorId.toString().toLowerCase(Locale.ROOT)) &&
+                pesquisaPorId.toString().toLowerCase(Locale.ROOT)) &&
                 consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNome.toLowerCase(Locale.ROOT))
+                pesquisaPorNome.toLowerCase(Locale.ROOT))
             ) {
                 consultoresPesquisados.add(consultor);
             }
@@ -98,9 +104,9 @@ public class ConsultorService {
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
             if (consultor.getId().toString().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorId.toString().toLowerCase(Locale.ROOT)) &&
+                pesquisaPorId.toString().toLowerCase(Locale.ROOT)) &&
                 consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
+                pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
             ) {
                 consultoresPesquisados.add(consultor);
             }
@@ -116,9 +122,9 @@ public class ConsultorService {
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
             if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
                 consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
+                pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
             ) {
                 consultoresPesquisados.add(consultor);
             }
@@ -134,9 +140,9 @@ public class ConsultorService {
         List<Consultor> todosConsultores = consultorRepository.findAll();
         todosConsultores.forEach(consultor -> {
             if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
-                    consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
-                            pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
+                pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
+                pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT))
             ) {
                 consultoresPesquisados.add(consultor);
             }
