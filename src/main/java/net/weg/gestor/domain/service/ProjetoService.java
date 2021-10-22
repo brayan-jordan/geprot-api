@@ -62,6 +62,32 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String pesquisaPorNomeResponsavel) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+    public List<ProjetoCardDTO> buscarPorId(Long secaoId, Long pesquisaPorId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
     public List<ProjetoCardDTO> buscarPorNomeENomeResponsavel(
             Long secaoId,
             String pesquisaPorNome,
@@ -141,18 +167,7 @@ public class ProjetoService {
         return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
-    public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String pesquisaPorNomeResponsavel) {
-        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
-        List<Projeto> projetosFiltrados = new ArrayList<>();
-        todosProjetos.forEach(projeto -> {
-            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
-                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
-            ) {
-                projetosFiltrados.add(projeto);
-            }
-        });
-        return projetoAssembler.toCollectionModel(projetosFiltrados);
-    }
+
 
     public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String pesquisaPorNome, int status) {
         List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
