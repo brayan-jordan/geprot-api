@@ -14,4 +14,15 @@ public class DashboardProjetosDTO {
     private double projetosEmAndamento;
 
     private double projetosConcluidos;
+
+    private double restoProjetosNaoIniciados;
+
+    private double restoProjetosAtrasados;
+
+    private double restoProjetosEmAndamento;
+
+    private double restoProjetosConcluidos;
+
+
+
 }

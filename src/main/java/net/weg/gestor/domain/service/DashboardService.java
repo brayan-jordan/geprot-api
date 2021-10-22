@@ -38,9 +38,14 @@ public class DashboardService {
     public DashboardProjetosDTO listarProjetos(long secaoId){
         DashboardProjetosDTO dashboardProjetosDTO = new DashboardProjetosDTO();
         dashboardProjetosDTO.setProjetosAtrasados(this.porcentualPorStatus(StatusProjeto.ATRASADO,secaoId));
+        dashboardProjetosDTO.setRestoProjetosAtrasados(100 - dashboardProjetosDTO.getRestoProjetosAtrasados());
         dashboardProjetosDTO.setProjetosEmAndamento(this.porcentualPorStatus(StatusProjeto.EM_ANDAMENTO,secaoId));
+        dashboardProjetosDTO.setRestoProjetosEmAndamento(100 - dashboardProjetosDTO.getProjetosEmAndamento());
         dashboardProjetosDTO.setProjetosNaoIniciados(this.porcentualPorStatus(StatusProjeto.NAO_INICIADO,secaoId));
+        dashboardProjetosDTO.setRestoProjetosNaoIniciados(100 - dashboardProjetosDTO.getProjetosNaoIniciados());
         dashboardProjetosDTO.setProjetosConcluidos(this.porcentualPorStatus(StatusProjeto.CONCLUIDO,secaoId));
+        dashboardProjetosDTO.setRestoProjetosConcluidos(100 - dashboardProjetosDTO.getProjetosConcluidos());
+
         return dashboardProjetosDTO;
     }
 
