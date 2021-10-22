@@ -30,7 +30,7 @@ public class ProjetoService {
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
 
-    private List<Projeto> buscarTodosProjetoSecao(Long secaoId) {
+    public List<Projeto> buscarTodosProjetoSecao(Long secaoId) {
         List<CCPagantes> ccPagantes = ccPagantesService.buscarPorSecao(secaoId);
         List<Projeto> projetos = new ArrayList<>();
         ccPagantes.forEach(ccPagante -> {
