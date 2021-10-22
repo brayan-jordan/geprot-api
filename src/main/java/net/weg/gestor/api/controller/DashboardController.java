@@ -19,6 +19,11 @@ public class DashboardController {
 
     private DashboardService dashboardService;
 
+    @GetMapping("/verbas/{secaoId}")
+    public DashboardVerba listarDashboard(@PathVariable Long secaoId){
+        return dashboardService.listarVerbas(secaoId);
+    }
+
 //    @GetMapping("/concluidos/7dias/{secaoId}")
 //    public List<BasePorMesDashboardDTO> buscar7days(@PathVariable long secaoId) {
 //        return dashboardService.buscar7days(secaoId);
@@ -39,8 +44,4 @@ public class DashboardController {
 //        return dashboardService.buscarUltimoAno(secaoId);
 //    }
 
-    @GetMapping("/verbas/{secaoId}")
-    public DashboardVerba listarDashboard(@PathVariable Long secaoId){
-        return dashboardService.listarVerbas(secaoId);
-    }
 }

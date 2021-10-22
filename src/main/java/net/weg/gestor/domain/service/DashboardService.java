@@ -24,12 +24,13 @@ public class DashboardService {
         double verbaUtilizada;
         Secao secao = secaoRepository.findByIdAux(secaoId);
         DashboardVerba dashboardVerba = new DashboardVerba();
-        dashboardVerba.setVerbaTotal(secaoRepository.findByVerba(secaoId));
+        dashboardVerba.setVerbaTotal(secaoRepository.findByIdAux(secaoId).getVerba());
         List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
-        verbaUtilizada = projetos.stream().mapToDouble(projeto -> projetoRepository.findByVerba(projeto.getId()) *
-                ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto)
+        verbaUtilizada = projetos.stream().mapToDouble(projeto -> (projeto.getValor()) *
+                (ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto).getTaxa())
                 / 100).sum();
-        dashboardVerba.setVerbaUtilizada();
+        dashboardVerba.setVerbaUtilizada(verbaUtilizada);
+        return dashboardVerba;
     }
 
 //    public List<BasePorMesDashboardDTO> buscar7days(long secaoId) {

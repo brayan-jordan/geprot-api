@@ -21,7 +21,7 @@ public interface CCPagantesRepository extends JpaRepository<CCPagantes, Long> {
     @Query("SELECT c FROM CCPagantes c WHERE c.projeto = ?1 GROUP BY secao")
     List<CCPagantes> buscarCCpagantesProjeto(Projeto projeto);
 
-    @Query("SELECT c.taxa FROM CCPagantes c WHERE c.secao = ?1 and c.projeto = ?2")
-    double buscarTaxaCCpagantes(Secao secao, Projeto projeto);
+    @Query("SELECT c FROM CCPagantes c WHERE c.secao = ?1 and c.projeto = ?2")
+    CCPagantes buscarTaxaCCpagantes(Secao secao, Projeto projeto);
 
 }

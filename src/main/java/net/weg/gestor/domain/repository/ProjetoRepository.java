@@ -10,6 +10,4 @@ import java.util.List;
 @Repository
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
-    @Query("SELECT p.verba Projeto p WHERE p.id = ?1")
-    Double findByVerba (long secaoId);
 }
