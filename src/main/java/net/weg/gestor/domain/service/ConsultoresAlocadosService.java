@@ -26,49 +26,8 @@ public class ConsultoresAlocadosService {
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private ProjetoRepository projetoRepository;
-    private UsuarioService usuarioService;
-    private UsuarioRepository usuarioRepository;
 
-    public List<ConsultorNaoAlocadoDTO> buscarConsultores() {
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultorRepository.findAll());
 
-    }
-
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNome(String pesquisa) {
-        List<Consultor> consultoresPesquisados = new ArrayList<>();
-        List<Consultor> todosConsultores = consultorRepository.findAll();
-        todosConsultores.forEach(consultor -> {
-            if (consultor.getUsuario().getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
-                consultoresPesquisados.add(consultor);
-            }
-        });
-
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
-    }
-
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedor(String pesquisa) {
-        List<Consultor> consultoresPesquisados = new ArrayList<>();
-        List<Consultor> todosConsultores = consultorRepository.findAll();
-        todosConsultores.forEach(consultor -> {
-            if (consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(pesquisa.toLowerCase(Locale.ROOT))) {
-                consultoresPesquisados.add(consultor);
-            }
-        });
-
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
-    }
-
-    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorId(Long id) {
-        List<Consultor> consultoresPesquisados = new ArrayList<>();
-        List<Consultor> todosConsultores = consultorRepository.findAll();
-        todosConsultores.forEach(consultor -> {
-            if (consultor.getId().equals(id)) {
-                consultoresPesquisados.add(consultor);
-            }
-        });
-
-        return consultoresAlocadosAssembler.toCollectionModelNaoAlocado(consultoresPesquisados);
-    }
 
     public String alocarConsultor(AlocarConsultorInputDTO alocar) {
         Consultor consultor = consultorRepository.findById(alocar.getConsultorId()).orElseThrow(
