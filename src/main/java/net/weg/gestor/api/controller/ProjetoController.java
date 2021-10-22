@@ -43,17 +43,27 @@ public class ProjetoController {
     }
 
     @GetMapping("/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}")
-    public List<ProjetoCardDTO> listarContainingAndStatus(@PathVariable Long secaoId, @PathVariable String campoBusca, @PathVariable int status) {
+    public List<ProjetoCardDTO> listarContainingAndStatus(
+            @PathVariable Long secaoId,
+            @PathVariable String campoBusca,
+            @PathVariable int status
+    ) {
         return projetoService.buscarPorNomeEStatus(secaoId, campoBusca, status);
     }
 
     @GetMapping("/buscar/status/{secaoId}/{status}")
-    public List<ProjetoCardDTO> listarComFiltroStatus(@PathVariable Long secaoId, @PathVariable int status) {
+    public List<ProjetoCardDTO> listarComFiltroStatus(
+            @PathVariable Long secaoId,
+            @PathVariable int status
+    ) {
         return projetoService.buscarPorStatus(secaoId, status);
     }
 
     @GetMapping("/alocados/{secaoId}/{consultorId}")
-    public List<ProjetoAlocarDTO> projetosAlocados(@PathVariable Long secaoId , @PathVariable Long consultorId) {
+    public List<ProjetoAlocarDTO> projetosAlocados(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId
+    ) {
         return projetoService.buscarProjetosConsultorNaoAlocado(consultorId, secaoId);
     }
 
