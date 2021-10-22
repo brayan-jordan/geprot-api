@@ -1,9 +1,11 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
-import net.weg.gestor.api.model.dashboard.DashboardVerba;
+import net.weg.gestor.api.model.dashboard.DashboardProjetosDTO;
+import net.weg.gestor.api.model.dashboard.DashboardVerbaDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Secao;
+import net.weg.gestor.domain.entities.StatusProjeto;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
@@ -20,17 +22,32 @@ public class DashboardService {
     private ProjetoRepository projetoRepository;
     private CCPagantesRepository ccPagantesRepository;
 
-    public DashboardVerba listarVerbas(Long secaoId) {
+    public DashboardVerbaDTO listarVerbas(Long secaoId) {
         double verbaUtilizada;
         Secao secao = secaoRepository.findByIdAux(secaoId);
-        DashboardVerba dashboardVerba = new DashboardVerba();
-        dashboardVerba.setVerbaTotal(secaoRepository.findByIdAux(secaoId).getVerba());
+        DashboardVerbaDTO dashboardVerbaDTO = new DashboardVerbaDTO();
+        dashboardVerbaDTO.setVerbaTotal(secaoRepository.findByIdAux(secaoId).getVerba());
         List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
         verbaUtilizada = projetos.stream().mapToDouble(projeto -> (projeto.getValor()) *
                 (ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto).getTaxa())
                 / 100).sum();
-        dashboardVerba.setVerbaUtilizada(verbaUtilizada);
-        return dashboardVerba;
+        dashboardVerbaDTO.setVerbaUtilizada(verbaUtilizada);
+        return dashboardVerbaDTO;
+    }
+
+    public DashboardProjetosDTO listarProjetos(long secaoId){
+        DashboardProjetosDTO dashboardProjetosDTO = new DashboardProjetosDTO();
+        dashboardProjetosDTO.setProjetosAtrasados(this.porcentualPorStatus(StatusProjeto.ATRASADO,secaoId));
+        dashboardProjetosDTO.setProjetosEmAndamento(this.porcentualPorStatus(StatusProjeto.EM_ANDAMENTO,secaoId));
+        dashboardProjetosDTO.setProjetosNaoIniciados(this.porcentualPorStatus(StatusProjeto.NAO_INICIADO,secaoId));
+        dashboardProjetosDTO.setProjetosConcluidos(this.porcentualPorStatus(StatusProjeto.CONCLUIDO,secaoId));
+        return dashboardProjetosDTO;
+    }
+
+    public double porcentualPorStatus(StatusProjeto statusProjeto, long secaoId){
+        List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
+        int qtdePorStatus = (int) projetos.stream().filter(projeto -> projeto.getStatus() == statusProjeto).count();
+        return (qtdePorStatus * 100) / projetos.size();
     }
 
 //    public List<BasePorMesDashboardDTO> buscar7days(long secaoId) {

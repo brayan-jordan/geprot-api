@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DashboardVerba {
+public class DashboardVerbaDTO {
 
     private double verbaTotal;
 
