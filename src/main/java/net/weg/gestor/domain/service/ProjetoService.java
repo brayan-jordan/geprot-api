@@ -35,47 +35,146 @@ public class ProjetoService {
         List<Projeto> projetos = new ArrayList<>();
         ccPagantes.forEach(ccPagante -> {
             projetos.add(projetoRepository.findById(ccPagante.getProjeto().getId()).orElseThrow(
-                    () -> new NegocioException("Projeto nao encontrado")));
+                    () -> new NegocioException("Projeto nao encontrado")
+            ));
         });
         return projetos;
     }
 
     public ProjetoCardDTO buscarPorId(Long projetoId) {
-        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Id inválido")));
+        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(
+                () -> new NegocioException("Id inválido")
+        ));
     }
 
     public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
         return projetoAssembler.toCollectionModel(buscarTodosProjetoSecao(secaoId));
     }
 
-    public List<ProjetoCardDTO> buscarPorNome(Long secaoId, String campoBusca) {
+    public List<ProjetoCardDTO> buscarPorNome(Long secaoId, String pesquisaPorNome) {
         List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
         todosProjetos.forEach(projeto -> {
-            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(pesquisaPorNome.toLowerCase(Locale.ROOT))) {
                 projetosFiltrados.add(projeto);
             }
         });
         return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
-    public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String campoBusca) {
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(Long secaoId, String pesquisaPorNomeResponsavel) {
         List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
         todosProjetos.forEach(projeto -> {
-            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT))) {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
                 projetosFiltrados.add(projeto);
             }
         });
         return projetoAssembler.toCollectionModel(projetosFiltrados);
     }
 
-    public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String campoBusca, int status) {
+    public List<ProjetoCardDTO> buscarPorId(Long secaoId, Long pesquisaPorId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+    public List<ProjetoCardDTO> buscarPorNomeENomeResponsavel(
+            Long secaoId,
+            String pesquisaPorNome,
+            String pesquisaPorNomeResponsavel
+    ) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+    public List<ProjetoCardDTO> buscarPorNomeEId(
+            Long secaoId,
+            String pesquisaPorNome,
+            Long pesquisaPorId
+    ) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+    public List<ProjetoCardDTO> buscarPorNomeResponsavelEId(
+            Long secaoId,
+            String pesquisaPorNomeResponsavel,
+            Long pesquisaPorId
+    ) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT)) &&
+                projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+    public List<ProjetoCardDTO> buscarPorNomeNomeResponsavelEId(
+            Long secaoId,
+            String pesquisaPorNomeResponsavel,
+            String pesquisaPorNome,
+            Long pesquisaPorId
+    ) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT)) &&
+                projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT)) &&
+                projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNome.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+        return projetoAssembler.toCollectionModel(projetosFiltrados);
+    }
+
+
+
+    public List<ProjetoCardDTO> buscarPorNomeEStatus(Long secaoId, String pesquisaPorNome, int status) {
         List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<Projeto> projetosFiltrados = new ArrayList<>();
         StatusProjeto statusConvertido = convertFilter(status);
         todosProjetos.forEach(projeto -> {
-            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(campoBusca.toLowerCase(Locale.ROOT)) &&
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
                     projeto.getStatus().equals(statusConvertido)
             ) {
                 projetosFiltrados.add(projeto);
@@ -99,18 +198,30 @@ public class ProjetoService {
 
     public List<ProjetoAlocarDTO> buscarProjetosConsultorNaoAlocado(Long consultorId, Long secaoId) {
         Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
-                () -> new NegocioException("Consultor nao encontrado"));
+                () -> new NegocioException("Consultor nao encontrado")
+        );
 
         return projetoAssembler.toCollectionModelProjetosAlocar(buscarTodosProjetoSecao(secaoId), consultor);
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
+//        Chama o método void que faz as verificações se é possível cadastrar esse projeto
         projetoValidations(projeto);
+
+//        Salva o projeto e pega o ID para usar nas entidades fracas
         Long projetoId = projetoRepository.save(projetoAssembler.toEntityCadastro(projeto)).getId();
+
+//        Pega a lista de cc pagantes e manda para um método próprio as salvar
         ccPagantesService.saveCCPagantesProjeto(projeto.getCcpagantes(), projetoId);
+
+//        Pega consultor por consultor dos escolhidos e salva em consultores alocados
         projeto.getConsultores().forEach(consultor -> {
             consultoresAlocadosService.alocarConsultor(new AlocarConsultorInputDTO(
-                    consultor.getConsultorId(), projetoId, consultor.getQuantidadeHoras()));
+                    consultor.getConsultorId(),
+                    projetoId,
+                    consultor.getQuantidadeHoras()
+                )
+            );
         });
         return "Falta fazer cadastrar o projeto :)";
     }

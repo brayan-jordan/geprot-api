@@ -21,14 +21,25 @@ public class ProjetoController {
         return projetoService.listarPorSecao(secaoId);
     }
 
-    @GetMapping("/buscar/nome/{secaoId}/{campoBusca}")
-    public List<ProjetoCardDTO> buscarPorNome(@PathVariable Long secaoId, @PathVariable String campoBusca) {
-        return projetoService.buscarPorNome(secaoId, campoBusca);
+    @GetMapping("/buscar/nome/{secaoId}/{nome}")
+    public List<ProjetoCardDTO> buscarPorNome(@PathVariable Long secaoId, @PathVariable String nome) {
+        return projetoService.buscarPorNome(secaoId, nome);
     }
 
-    @GetMapping("/buscar/responsavel/{secaoId}/{campoBusca}")
-    public List<ProjetoCardDTO> buscarPorNomeResponsavel(@PathVariable Long secaoId, @PathVariable String campoBusca) {
-        return projetoService.buscarPorNomeResponsavel(secaoId, campoBusca);
+    @GetMapping("/buscar/responsavel/{secaoId}/{nomeresponsavel}")
+    public List<ProjetoCardDTO> buscarPorNomeResponsavel(
+            @PathVariable Long secaoId,
+            @PathVariable String nomeresponsavel
+    ) {
+        return projetoService.buscarPorNomeResponsavel(secaoId, nomeresponsavel);
+    }
+
+    @GetMapping("/buscar/id/{secaoId}/{id}")
+    public List<ProjetoCardDTO> buscarPorId(
+            @PathVariable Long secaoId,
+            @PathVariable Long id
+    ) {
+        return projetoService.buscarPorId(secaoId, id);
     }
 
     @GetMapping("/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}")

@@ -144,7 +144,7 @@ public class ConsultorService {
                 consultor.getFornecedor().getNome().toLowerCase(Locale.ROOT).contains(
                     pesquisaPorNomeFornecedor.toLowerCase(Locale.ROOT)) &&
                 consultor.getId().toString().toLowerCase(Locale.ROOT).contains(
-                        pesquisaPorId.toString().toLowerCase(Locale.ROOT)
+                    pesquisaPorId.toString().toLowerCase(Locale.ROOT)
                 )
             ) {
                 consultoresPesquisados.add(consultor);
