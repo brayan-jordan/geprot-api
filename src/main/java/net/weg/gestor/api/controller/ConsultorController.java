@@ -100,6 +100,15 @@ public class ConsultorController {
         return consultorService.buscarConsultoresPorIdeNomeFornecedor(id, nomefornecedor);
     }
 
+    @GetMapping("/buscar/nomefornecedor/id/nome/{nomefornecedor}/{id}/{nome")
+    public List<ConsultorNaoAlocadoDTO> buscarConsultoresPorNomeFornecedorEIdENome(
+            @PathVariable String nomefornecedor,
+            @PathVariable Long id,
+            @PathVariable String nome)
+    {
+        return consultorService.buscarConsultoresPorNomeFornecedorENomeEId(nome, nomefornecedor, id);
+    }
+
     @PostMapping("/alocar")
     public String alocarConsultor(@RequestBody AlocarConsultorInputDTO alocar) {
         return consultoresAlocadosService.alocarConsultor(alocar);
