@@ -1,13 +1,33 @@
 package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.dashboard.DashboardVerba;
+import net.weg.gestor.domain.entities.Projeto;
+import net.weg.gestor.domain.repository.ProjetoRepository;
+import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
 public class DashboardService {
 
     private ProjetoService projetoService;
+    private SecaoRepository secaoRepository;
+    private ProjetoRepository projetoRepository;
+
+    public DashboardVerba listarVerbas(Long secaoId) {
+        double verbaUtilizada = 0;
+        DashboardVerba dashboardVerba = new DashboardVerba();
+        dashboardVerba.setVerbaAprovada(secaoRepository.findByVerba(secaoId));
+        List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
+        projetos.forEach(projeto -> {
+            verbaUtilizada +=
+        });
+
+
+    }
 
 //    public List<BasePorMesDashboardDTO> buscar7days(long secaoId) {
 //        List<BasePorMesDashboardDTO> lista = new ArrayList<>();

@@ -3,7 +3,10 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.api.model.dashboard.DashboardVerba;
 import net.weg.gestor.domain.service.DashboardService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,8 +39,8 @@ public class DashboardController {
 //        return dashboardService.buscarUltimoAno(secaoId);
 //    }
 
-//    @GetMapping("/listar/{secaoId}")
-//    public DashboardSecaoDTO listarDashboard(@PathVariable Long secaoId){
-//        return secaoService.listarDashboard(secaoId);
-//    }
+    @GetMapping("/verbas/{secaoId}")
+    public DashboardVerba listarDashboard(@PathVariable Long secaoId){
+        return dashboardService.listarVerbas(secaoId);
+    }
 }
