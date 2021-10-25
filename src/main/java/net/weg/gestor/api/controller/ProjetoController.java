@@ -64,7 +64,75 @@ public class ProjetoController {
             @PathVariable Long secaoId,
             @PathVariable Long consultorId
     ) {
-        return projetoService.buscarProjetosConsultorNaoAlocado(consultorId, secaoId);
+        return projetoService.alocBuscarProjeto(consultorId, secaoId);
+    }
+
+    @GetMapping("/alocados/nome/{secaoId}/{consultorId}/{nome}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNome(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String nome
+    ) {
+        return projetoService.alocBuscarProjetoComNomeProjeto(consultorId, secaoId, nome);
+    }
+
+    @GetMapping("/alocados/nomeresponsavel/{secaoId}/{consultorId}/{nomeresponsavel}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNomeResponsavel(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String nomeresponsavel
+    ) {
+        return projetoService.alocBuscarProjetoComNomeResponsavel(consultorId, secaoId, nomeresponsavel);
+    }
+
+    @GetMapping("/alocados/nomeresponsavel/nome/{secaoId}/{consultorId}/{nomeresponsavel}/{nome}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNomeResponsavelENome(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String nomeresponsavel,
+            @PathVariable String nome
+    ) {
+        return projetoService.alocBuscarProjetoComNomeeNomeResponsavel(consultorId, secaoId, nome, nomeresponsavel);
+    }
+
+    @GetMapping("/alocados/id/nome/{secaoId}/{consultorId}/{id}/{nome}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNomeeId(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String id,
+            @PathVariable String nome
+    ) {
+        return projetoService.alocBuscarProjetoComIdeNome(consultorId, secaoId, id, nome);
+    }
+
+    @GetMapping("/alocados/id/nomeresponsavel/{secaoId}/{consultorId}/{id}/{nomeresponsavel}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNomeResponsaveleId(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String id,
+            @PathVariable String nomeresponsavel
+    ) {
+        return projetoService.alocBuscarProjetoComIdeNomeResponsavel(consultorId, secaoId, id, nomeresponsavel);
+    }
+
+    @GetMapping("/alocados/id/nomeresponsavel/nome/{secaoId}/{consultorId}/{id}/{nomeresponsavel}/{nome}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComNomeResponsaveleId(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String id,
+            @PathVariable String nomeresponsavel,
+            @PathVariable String nome
+    ) {
+        return projetoService.alocBuscarProjetoComNomeeNomeResponsaveleId(consultorId, secaoId, nome, nomeresponsavel, id);
+    }
+
+    @GetMapping("/alocados/id/{secaoId}/{consultorId}/{id}")
+    public List<ProjetoAlocarDTO> projetosAlocadosComId(
+            @PathVariable Long secaoId,
+            @PathVariable Long consultorId,
+            @PathVariable String id
+    ) {
+        return projetoService.alocBuscarProjetoComId(consultorId, secaoId, id);
     }
 
 

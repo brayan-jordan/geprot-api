@@ -196,12 +196,181 @@ public class ProjetoService {
     }
 
 
-    public List<ProjetoAlocarDTO> buscarProjetosConsultorNaoAlocado(Long consultorId, Long secaoId) {
+    public List<ProjetoAlocarDTO> alocBuscarProjeto(Long consultorId, Long secaoId) {
         Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
                 () -> new NegocioException("Consultor nao encontrado")
         );
 
         return projetoAssembler.toCollectionModelProjetosAlocar(buscarTodosProjetoSecao(secaoId), consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComNomeResponsavel(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorNomeResponsavel
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComId(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorId
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComNomeProjeto(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorNomeProjeto
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeProjeto.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComIdeNome(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorId,
+            String pesquisaPorNomeProjeto
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toLowerCase(Locale.ROOT)) &&
+                projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeProjeto.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComIdeNomeResponsavel(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorId,
+            String pesquisaPorNomeResponsavel
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toLowerCase(Locale.ROOT)) &&
+                projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComNomeeNomeResponsavel(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorNome,
+            String pesquisaPorNomeResponsavel
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
+    }
+
+    public List<ProjetoAlocarDTO> alocBuscarProjetoComNomeeNomeResponsaveleId(
+            Long consultorId,
+            Long secaoId,
+            String pesquisaPorNome,
+            String pesquisaPorNomeResponsavel,
+            String pesquisaPorId
+    ) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado")
+        );
+
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<Projeto> projetosFiltrados = new ArrayList<>();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getNome().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNome.toLowerCase(Locale.ROOT)) &&
+                projeto.getNomeResponsavel().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorNomeResponsavel.toLowerCase(Locale.ROOT)) &&
+                projeto.getId().toString().toLowerCase(Locale.ROOT).contains(
+                    pesquisaPorId.toLowerCase(Locale.ROOT))
+            ) {
+                projetosFiltrados.add(projeto);
+            }
+        });
+
+        return projetoAssembler.toCollectionModelProjetosAlocar(projetosFiltrados, consultor);
     }
 
     public String cadastrarProjeto(ProjetoInputDTO projeto) {
