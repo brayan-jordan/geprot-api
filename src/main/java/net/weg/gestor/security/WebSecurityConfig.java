@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/listar/status/{secaoId}/{status}",
             "/listar/string/{secaoId}/{campoBusca}",
             "/horas/{projetoId}",
-            "/horas/{projetoId}/{consultorId}",
+            //"/horas/aprovar/{projetoId}/{consultorId}",
             "/projetos/buscar/responsavel/{secaoId}/{campoBusca}",
             "/projetos/buscar/nomeestatus/{secaoId}/{campoBusca}/{status}",
             "/projetos/buscar/status/{secaoId}/{status}",
@@ -80,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.PUT, GESTOR_LIST).hasRole("GESTOR")
+                .antMatchers(HttpMethod.PUT, "/horas/aprovar/{projetoId}/{consultorId}").permitAll()
                 .antMatchers(HttpMethod.PATCH, GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.POST,GESTOR_LIST).hasRole("GESTOR")
                 .antMatchers(HttpMethod.DELETE,GESTOR_LIST).hasRole("GESTOR")

@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class HorasController {
+public class    HorasController {
 
     private HorasService horasService;
 
