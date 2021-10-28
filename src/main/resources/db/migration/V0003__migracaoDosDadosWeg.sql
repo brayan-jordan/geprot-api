@@ -1,4 +1,4 @@
-INSERT INTO secoes VALUES (null, "Centro weg", "Arthur", 500000.00);
+INSERT INTO secoes VALUES (null, "Centro weg", 500000.00);
 INSERT INTO role VALUES ("ROLE_GESTOR");
 INSERT INTO role VALUES ("ROLE_CONSULTOR");
 INSERT INTO fornecedores VALUES (1,"CentroWeg","centroweg@gmail.com");

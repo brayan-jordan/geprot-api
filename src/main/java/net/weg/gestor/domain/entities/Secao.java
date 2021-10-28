@@ -26,9 +26,6 @@ public class Secao {
     String nome;
 
     @NotBlank
-    private String nomeResponsavel;
-
-    @NotBlank
     double verba;
 
     @ManyToMany
