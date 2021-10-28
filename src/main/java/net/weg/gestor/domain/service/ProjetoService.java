@@ -4,6 +4,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ProjetoAssembler;
 import net.weg.gestor.api.model.DashboardConcluidos;
+import net.weg.gestor.api.model.DashboardConcluidosPorMes;
 import net.weg.gestor.api.model.DashboardConcluidosPorPeriodo;
 import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
@@ -19,6 +20,7 @@ import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -511,16 +513,47 @@ public class ProjetoService {
         return ultimoMes;
     }
 
-    private List<DashboardConcluidosPorPeriodo> mapear6meses() {
-        List<DashboardConcluidosPorPeriodo> ultimoMes = new ArrayList<>();
+    private List<DashboardConcluidosPorMes> mapear6meses() {
+        List<DashboardConcluidosPorMes> ultimos6meses = new ArrayList<>();
         LocalDate date = LocalDate.now();
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 6; ++i) {
             if (i != 0) {
-                date = date.minusDays(7);
+                date = date.minusMonths(1);
             }
-            ultimoMes.add(new DashboardConcluidosPorPeriodo((date.minusDays(7)), (date.minusDays(1)), 0));
+            String mesCerto = date.format(DateTimeFormatter.ofPattern("MM/yyyy"));
+            ultimos6meses.add(new DashboardConcluidosPorMes(mesCerto, 0));
         }
-        return ultimoMes;
+
+        return ultimos6meses;
+    }
+
+    private int converterParaODiaDaListaUltimos6Mes(LocalDate dataProjeto) {
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 6; ++i) {
+            if (i != 0) {
+                date = date.minusMonths(1);
+            }
+            if (dataProjeto.getMonth().equals(date.getMonth())) {
+                return i;
+            }
+        }
+
+        return 1000;
+    }
+
+    public List<DashboardConcluidosPorMes> concluidosUltimos6Mes(Long secaoId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<DashboardConcluidosPorMes> ultimos6meses = mapear6meses();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getDataFinalizacao() != null) {
+                if ((projeto.getDataFinalizacao().isBefore(LocalDate.now()) || projeto.getDataFinalizacao().isEqual(LocalDate.now())) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusMonths(6))) {
+                    ultimos6meses.get(converterParaODiaDaListaUltimos6Mes(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
+                    ultimos6meses.get(converterParaODiaDaListaUltimos6Mes(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
+                }
+            }
+        });
+
+        return ultimos6meses;
     }
 
 }

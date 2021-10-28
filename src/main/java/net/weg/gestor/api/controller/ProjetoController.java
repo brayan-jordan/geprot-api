@@ -2,6 +2,7 @@ package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.model.DashboardConcluidos;
+import net.weg.gestor.api.model.DashboardConcluidosPorMes;
 import net.weg.gestor.api.model.DashboardConcluidosPorPeriodo;
 import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
@@ -156,6 +157,11 @@ public class ProjetoController {
     @GetMapping("/dashboard/mes/{secaoId}")
     public List<DashboardConcluidosPorPeriodo> buscarUltimoMes(@PathVariable Long secaoId) {
         return projetoService.concluidosUltimoMes(secaoId);
+    }
+
+    @GetMapping("/dashboard/6meses/{secaoId}")
+    public List<DashboardConcluidosPorMes> buscarUltimos6Mes(@PathVariable Long secaoId) {
+        return projetoService.concluidosUltimos6Mes(secaoId);
     }
 
 }
