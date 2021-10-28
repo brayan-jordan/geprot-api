@@ -4,6 +4,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ProjetoAssembler;
 import net.weg.gestor.api.model.DashboardConcluidos;
+import net.weg.gestor.api.model.DashboardConcluidosPorPeriodo;
 import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
@@ -434,7 +435,6 @@ public class ProjetoService {
         }
     }
 
-//    Início das funções para listar projetos concluídos nos ultímos 7 dias
     private List<DashboardConcluidos> mapearUltimos7Dias() {
         List<DashboardConcluidos> ultimos7dias = new ArrayList<>();
         LocalDate date = LocalDate.now();
@@ -445,7 +445,7 @@ public class ProjetoService {
         return ultimos7dias;
     }
 
-    private int converterParaODiaDaLista(LocalDate dataProjeto) {
+    private int converterParaODiaDaListaUltimos7Dias(LocalDate dataProjeto) {
         for (int i = 0; i < 7; ++i) {
             if (dataProjeto.isEqual(LocalDate.now().minusDays((i + 1)))) {
                 return i;
@@ -459,15 +459,68 @@ public class ProjetoService {
         List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
         List<DashboardConcluidos> ultimos7dias = mapearUltimos7Dias();
         todosProjetos.forEach(projeto -> {
-            if (projeto.getDataFinalizacao() != null && !projeto.getDataFinalizacao().equals(LocalDate.now())) {
+            if (projeto.getDataFinalizacao() != null) {
                 if (projeto.getDataFinalizacao().isBefore(LocalDate.now()) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusDays(7))) {
-                    ultimos7dias.get(converterParaODiaDaLista(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
-                    ultimos7dias.get(converterParaODiaDaLista(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
+                    ultimos7dias.get(converterParaODiaDaListaUltimos7Dias(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
+                    ultimos7dias.get(converterParaODiaDaListaUltimos7Dias(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
                 }
             }
         });
 
         return ultimos7dias;
+    }
+
+    private List<DashboardConcluidosPorPeriodo> mapearUltimoMes() {
+        List<DashboardConcluidosPorPeriodo> ultimoMes = new ArrayList<>();
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 4; ++i) {
+            if (i != 0) {
+                date = date.minusDays(7);
+            }
+            ultimoMes.add(new DashboardConcluidosPorPeriodo((date.minusDays(7)), (date.minusDays(1)), 0));
+        }
+        return ultimoMes;
+    }
+
+    private int converterParaODiaDaListaUltimoMes(LocalDate dataProjeto) {
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 4; ++i) {
+            if (i != 0) {
+                date = date.minusDays(7);
+            }
+            if ((dataProjeto.isBefore(date) || dataProjeto.isEqual(date)) && dataProjeto.isAfter((date.minusDays(7)))) {
+                return i;
+            }
+        }
+
+        return 1000;
+    }
+
+    public List<DashboardConcluidosPorPeriodo> concluidosUltimoMes(Long secaoId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<DashboardConcluidosPorPeriodo> ultimoMes = mapearUltimoMes();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getDataFinalizacao() != null) {
+                if (projeto.getDataFinalizacao().isBefore(LocalDate.now()) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusDays(28))) {
+                    ultimoMes.get(converterParaODiaDaListaUltimoMes(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
+                    ultimoMes.get(converterParaODiaDaListaUltimoMes(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
+                }
+            }
+        });
+
+        return ultimoMes;
+    }
+
+    private List<DashboardConcluidosPorPeriodo> mapear6meses() {
+        List<DashboardConcluidosPorPeriodo> ultimoMes = new ArrayList<>();
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 5; ++i) {
+            if (i != 0) {
+                date = date.minusDays(7);
+            }
+            ultimoMes.add(new DashboardConcluidosPorPeriodo((date.minusDays(7)), (date.minusDays(1)), 0));
+        }
+        return ultimoMes;
     }
 
 }
