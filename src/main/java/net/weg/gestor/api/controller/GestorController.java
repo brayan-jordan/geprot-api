@@ -23,12 +23,18 @@ public class GestorController {
     private UsuarioService usuarioService;
     private GestorAssembler gestorAssembler;
 
-    @PutMapping("/editar/{gestorId}")
-    public GestorDTO editar(@PathVariable long gestorId, @RequestBody GestorInputUpdate gestorEntradaAlterações){
+    @PutMapping("editar/senha/{gestorId}")
+    public String editarSenha(@PathVariable long gestorId, String newSenha){
         Gestor gestor = gestorRepository.findById(gestorId).orElseThrow(() -> new NegocioException("Não existe um gestor com esse id"));
-        Usuario usuario = usuarioRepository.findById(gestor.getUsuario().getId()).orElseThrow(() -> new NegocioException("Não existe um usuario com esse id"));
-        gestor.setUsuario(usuarioService.atualizarUsuario(usuario, gestorEntradaAlterações));
-        return gestorAssembler.toModel(gestor);
+        gestor.setUsuario(usuarioService.atualizarSenha(gestor.getUsuario(),newSenha));
+        return newSenha;
+    }
+
+    @PutMapping("editar/nome/{gestorId}")
+    public String editarNome(@PathVariable long gestorId, String newNome){
+        Gestor gestor = gestorRepository.findById(gestorId).orElseThrow(() -> new NegocioException("Não existe um gestor com esse id"));
+        gestor.setUsuario(usuarioService.atualizarNome(gestor.getUsuario(),newNome));
+        return newNome;
     }
 
 }
