@@ -11,6 +11,4 @@ public class SecaoDTO {
 
     private String nome;
 
-    private String nomeResponsavel;
-
 }
