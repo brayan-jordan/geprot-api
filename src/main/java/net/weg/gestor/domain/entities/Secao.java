@@ -23,7 +23,7 @@ public class Secao {
 
     @NotBlank
     @Size(min = 5, max = 100)
-    String nome;        
+    String nome;
 
     @NotBlank
     double verba;
