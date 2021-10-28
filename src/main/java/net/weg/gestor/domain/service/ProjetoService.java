@@ -434,10 +434,7 @@ public class ProjetoService {
         }
     }
 
-//    private int contarProjetosConcluidosPorDia(LocalDate date) {
-//        return projetoRepository.contarProjetosConcluidosPorDia(date).size();
-//    }
-
+//    Início das funções para listar projetos concluídos nos ultímos 7 dias
     private List<DashboardConcluidos> mapearUltimos7Dias() {
         List<DashboardConcluidos> ultimos7dias = new ArrayList<>();
         LocalDate date = LocalDate.now();
@@ -472,6 +469,5 @@ public class ProjetoService {
 
         return ultimos7dias;
     }
-
 
 }
