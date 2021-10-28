@@ -3,6 +3,7 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ProjetoAssembler;
+import net.weg.gestor.api.model.DashboardConcluidos;
 import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
@@ -433,8 +434,43 @@ public class ProjetoService {
         }
     }
 
-    private int contarProjetosConcluidosPorDia(LocalDate date) {
-        return 1;
+//    private int contarProjetosConcluidosPorDia(LocalDate date) {
+//        return projetoRepository.contarProjetosConcluidosPorDia(date).size();
+//    }
+
+    private List<DashboardConcluidos> mapearUltimos7Dias() {
+        List<DashboardConcluidos> ultimos7dias = new ArrayList<>();
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 7; ++i) {
+            date = date.minusDays(1);
+            ultimos7dias.add(new DashboardConcluidos(date, 0));
+        }
+        return ultimos7dias;
+    }
+
+    private int converterParaODiaDaLista(LocalDate dataProjeto) {
+        for (int i = 0; i < 7; ++i) {
+            if (dataProjeto.isEqual(LocalDate.now().minusDays((i + 1)))) {
+                return i;
+            }
+        }
+
+        return 1000;
+    }
+
+    public List<DashboardConcluidos> concluidosUltimos7Dias(Long secaoId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<DashboardConcluidos> ultimos7dias = mapearUltimos7Dias();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getDataFinalizacao() != null && !projeto.getDataFinalizacao().equals(LocalDate.now())) {
+                if (projeto.getDataFinalizacao().isBefore(LocalDate.now()) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusDays(7))) {
+                    ultimos7dias.get(converterParaODiaDaLista(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
+                    ultimos7dias.get(converterParaODiaDaLista(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
+                }
+            }
+        });
+
+        return ultimos7dias;
     }
 
 
