@@ -16,6 +16,7 @@ import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -430,6 +431,10 @@ public class ProjetoService {
             default:
                 return null;
         }
+    }
+
+    private int contarProjetosConcluidosPorDia(LocalDate date) {
+        return 1;
     }
 
 
