@@ -9,6 +9,8 @@ import net.weg.gestor.domain.repository.GestorRepository;
 import net.weg.gestor.domain.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+
 @RestController
 @RequestMapping("/gestor")
 @AllArgsConstructor
@@ -32,10 +34,10 @@ public class GestorController {
     }
 
     @PutMapping("editar/nome/{gestorId}/{gestorNome}")
-    public String editarNome(@PathVariable long gestorId, @PathVariable String gestorNome){
+    public GestorDTO editarNome(@PathVariable long gestorId, @PathVariable String gestorNome){
         Gestor gestor = gestorRepository.findById(gestorId).orElseThrow(() -> new NegocioException("Não existe um gestor com esse id"));
-        gestor.setUsuario(usuarioService.atualizarNome(gestor.getUsuario(),gestorNome));
-        return gestorNome;
+        gestor.getUsuario().setNome(gestorNome);
+        return gestorAssembler.toModel(gestorRepository.save(gestor));
     }
 
 }

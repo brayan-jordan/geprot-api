@@ -42,10 +42,5 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizarNome(Usuario usuario, String newNome){
-        usuario.setNome(newNome);
-        return usuarioRepository.save(usuario);
-    }
-
 
 }

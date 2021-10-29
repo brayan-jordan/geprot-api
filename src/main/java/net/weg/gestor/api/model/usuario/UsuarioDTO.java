@@ -16,8 +16,6 @@ public class UsuarioDTO {
 
     private String email;
 
-    private String senha;
-
     private LocalDate dataCadastro;
 
     private StatusUsuario status;
