@@ -556,4 +556,47 @@ public class ProjetoService {
         return ultimos6meses;
     }
 
+    private List<DashboardConcluidosPorMes> mapear12meses() {
+        List<DashboardConcluidosPorMes> ultimos6meses = new ArrayList<>();
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 12; ++i) {
+            if (i != 0) {
+                date = date.minusMonths(1);
+            }
+            String mesCerto = date.format(DateTimeFormatter.ofPattern("MM/yyyy"));
+            ultimos6meses.add(new DashboardConcluidosPorMes(mesCerto, 0));
+        }
+
+        return ultimos6meses;
+    }
+
+    private int converterParaODiaDaListaUltimos12Mes(LocalDate dataProjeto) {
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 12; ++i) {
+            if (i != 0) {
+                date = date.minusMonths(1);
+            }
+            if (dataProjeto.getMonth().equals(date.getMonth())) {
+                return i;
+            }
+        }
+
+        return 1000;
+    }
+
+    public List<DashboardConcluidosPorMes> concluidosUltimos12Mes(Long secaoId) {
+        List<Projeto> todosProjetos = buscarTodosProjetoSecao(secaoId);
+        List<DashboardConcluidosPorMes> ultimos12meses = mapear12meses();
+        todosProjetos.forEach(projeto -> {
+            if (projeto.getDataFinalizacao() != null) {
+                if ((projeto.getDataFinalizacao().isBefore(LocalDate.now()) || projeto.getDataFinalizacao().isEqual(LocalDate.now())) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusMonths(6))) {
+                    ultimos12meses.get(converterParaODiaDaListaUltimos6Mes(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
+                    ultimos12meses.get(converterParaODiaDaListaUltimos6Mes(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
+                }
+            }
+        });
+
+        return ultimos12meses;
+    }
+
 }

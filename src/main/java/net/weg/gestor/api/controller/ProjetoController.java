@@ -164,4 +164,9 @@ public class ProjetoController {
         return projetoService.concluidosUltimos6Mes(secaoId);
     }
 
+    @GetMapping("/dashboard/ano/{secaoId}")
+    public List<DashboardConcluidosPorMes> buscarUltimos12Mes(@PathVariable Long secaoId) {
+        return projetoService.concluidosUltimos12Mes(secaoId);
+    }
+
 }

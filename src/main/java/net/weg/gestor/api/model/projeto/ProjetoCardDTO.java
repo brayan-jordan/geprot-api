@@ -1,5 +1,6 @@
 package net.weg.gestor.api.model.projeto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.domain.entities.StatusProjeto;
@@ -14,11 +15,13 @@ public class ProjetoCardDTO {
     private String nome;
     private LocalDate dataInicio;
     private LocalDate dataFinalizacao;
-    private LocalDate dataCadastro;
     private int horasPrevistas;
     private int horasTrabalhadas;
     private double valor;
+
+    @JsonIgnore
     private double valorUtilizado;
+
     private double valorRestante;
     private String nomeReponsavel;
     private StatusProjeto status;
