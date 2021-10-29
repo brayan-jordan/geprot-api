@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 public class DashboardConcluidos {
 
-    private LocalDate data;
+    private String data;
 
     private int quantidadeConcluidos;
 

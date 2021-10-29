@@ -11,9 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class DashboardConcluidosPorPeriodo {
 
-    private LocalDate dataInicio;
 
-    private LocalDate dataFim;
+    private String periodo;
 
     private int quantidadeConcluidos;
 }

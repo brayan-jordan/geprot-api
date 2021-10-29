@@ -442,7 +442,7 @@ public class ProjetoService {
         LocalDate date = LocalDate.now();
         for (int i = 0; i < 7; ++i) {
             date = date.minusDays(1);
-            ultimos7dias.add(new DashboardConcluidos(date, 0));
+            ultimos7dias.add(new DashboardConcluidos(date.format(DateTimeFormatter.ofPattern("dd/MM")), 0));
         }
         return ultimos7dias;
     }
@@ -479,7 +479,7 @@ public class ProjetoService {
             if (i != 0) {
                 date = date.minusDays(7);
             }
-            ultimoMes.add(new DashboardConcluidosPorPeriodo((date.minusDays(7)), (date.minusDays(1)), 0));
+            ultimoMes.add(new DashboardConcluidosPorPeriodo((date.minusDays(7).format(DateTimeFormatter.ofPattern("dd/MM"))) + "-" + (date.minusDays(1).format(DateTimeFormatter.ofPattern("dd/MM"))), 0));
         }
         return ultimoMes;
     }
