@@ -146,7 +146,7 @@ public class HorasService {
                 StatusApontamento.PENDENTE)
         );
 
-        consultorAlocado.setHorasApontadas(consultorAlocado.getLimiteHoras() + infoHoraApontada.getQuantidadeHoras());
+        consultorAlocado.setHorasApontadas(consultorAlocado.getHorasApontadas() + infoHoraApontada.getQuantidadeHoras());
 
         consultorAlocadoRepository.save(consultorAlocado);
 
