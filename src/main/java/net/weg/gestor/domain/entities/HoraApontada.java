@@ -43,4 +43,12 @@ public class HoraApontada {
 
     private StatusApontamento status;
 
+    public HoraApontada(Projeto projeto, int quantidadeHoras, LocalDate data, Consultor consultor, String descricaoTrabalho, StatusApontamento status) {
+        this.projeto = projeto;
+        this.quantidadeHoras = quantidadeHoras;
+        this.data = data;
+        this.consultor = consultor;
+        this.descricaoTrabalho = descricaoTrabalho;
+        this.status = status;
+    }
 }

@@ -3,6 +3,7 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.HorasAssembler;
+import net.weg.gestor.api.model.apontarhora.ApontarHoraInputDTO;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.api.model.consultorhoras.HoraApontadaDTO;
@@ -11,6 +12,7 @@ import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,5 +119,38 @@ public class HorasService {
         horaApontadaRepository.saveAll(horaApontadas);
 
         return "Deu boa";
+    }
+
+    public String apontarHoras(ApontarHoraInputDTO infoHoraApontada) {
+        Consultor consultor = consultorRepository.findById(infoHoraApontada.getConsultorId()).orElseThrow(
+                () -> new NegocioException("Consultor nao encontrado com esse ID")
+        );
+
+        Projeto projeto = projetoRepository.findById(infoHoraApontada.getProjetoId()).orElseThrow(
+                () -> new NegocioException("Projeto nao encontrado com esse ID")
+        );
+
+        if (consultorAlocadoRepository.verificaSeConsultorEstaAlocado(consultor, projeto).isEmpty()) {
+            throw new NegocioException("Voce nao esta alocado nesse projeto para apontar horas");
+        }
+
+        ConsultorAlocado consultorAlocado = consultorAlocadoRepository.buscarConsultorAlocadoEmProjeto(consultor, projeto);
+
+        if (consultorAlocado.getHorasApontadas() + infoHoraApontada.getQuantidadeHoras() > consultorAlocado.getLimiteHoras()) {
+            throw new NegocioException("Voce nao tem mais esse tanto de horas disponiveis para apontar");
+        }
+
+        horaApontadaRepository.save(new HoraApontada(
+                projeto, infoHoraApontada.getQuantidadeHoras(),
+                LocalDate.now(), consultor, infoHoraApontada.getDescricaoApontamento(),
+                StatusApontamento.PENDENTE)
+        );
+
+        consultorAlocado.setHorasApontadas(consultorAlocado.getLimiteHoras() + infoHoraApontada.getQuantidadeHoras());
+
+        consultorAlocadoRepository.save(consultorAlocado);
+
+        return "Hora apontada com sucesso";
+
     }
 }

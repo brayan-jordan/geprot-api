@@ -22,4 +22,7 @@ public interface ConsultorAlocadoRepository extends JpaRepository<ConsultorAloca
     @Query("SELECT c FROM ConsultorAlocado c where c.projeto = ?1")
     List<ConsultorAlocado> consultoresAlocadosProjeto(Projeto projeto);
 
+    @Query("SELECT c FROM ConsultorAlocado c where c.consultor = ?1 and c.projeto = ?2")
+    ConsultorAlocado  buscarConsultorAlocadoEmProjeto(Consultor consultor, Projeto projeto);
+
 }
