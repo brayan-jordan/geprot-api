@@ -74,5 +74,9 @@ public class ProjetoAssembler {
 
     }
 
+    public ProjetoDetalhadoDTO toModelDetalhado(Projeto projeto) {
+        return modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
+    }
+
 
 }

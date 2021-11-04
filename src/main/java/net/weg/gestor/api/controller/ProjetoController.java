@@ -7,6 +7,7 @@ import net.weg.gestor.api.model.DashboardConcluidosPorPeriodo;
 import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
+import net.weg.gestor.api.model.projeto.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -140,7 +141,7 @@ public class ProjetoController {
 
 
     @GetMapping("/buscar/{projetoId}")
-    public ProjetoCardDTO buscarPorId(@PathVariable Long projetoId){
+    public ProjetoDetalhadoDTO buscarPorId(@PathVariable Long projetoId){
           return projetoService.buscarPorId(projetoId);
     }
 

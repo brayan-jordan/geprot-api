@@ -7,19 +7,19 @@ INSERT INTO usuarios VALUES
 INSERT INTO role_usuarios VALUES (null,"ROLE_GESTOR",1);
 INSERT INTO gestores VALUES (67264, 1, 1);
 
-INSERT INTO projetos VALUES (null,'Teste', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '0', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Gerenciamento de demandas', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '0', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Projeto legal', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '1', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'PGDMS', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Jonathan', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '2', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Realizar plano de testes', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Guizada', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Projeto parque', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Robert', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '2', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Geprot', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Brayan', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Projeto TDSX', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
-INSERT INTO projetos VALUES (null,'Brendon', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Dale garaio', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Projeto QFD', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
 INSERT INTO cc_pagantes VALUES (null, 1,1,100);
 

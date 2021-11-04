@@ -11,6 +11,7 @@ import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
+import net.weg.gestor.api.model.projeto.ProjetoDetalhadoDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
@@ -46,10 +47,9 @@ public class ProjetoService {
         return projetos;
     }
 
-    public ProjetoCardDTO buscarPorId(Long projetoId) {
-        return projetoAssembler.toModel(projetoRepository.findById(projetoId).orElseThrow(
-                () -> new NegocioException("Id inválido")
-        ));
+    public ProjetoDetalhadoDTO buscarPorId(Long projetoId) {
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException("Projeto nao encontrado com esse ID"));
+        return projetoAssembler.toModelDetalhado(projeto);
     }
 
     public List<ProjetoCardDTO> listarPorSecao(Long secaoId) {
