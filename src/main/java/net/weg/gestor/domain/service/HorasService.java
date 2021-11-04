@@ -154,6 +154,7 @@ public class HorasService {
         consultorAlocado.setHorasApontadas(consultorAlocado.getHorasApontadas() + infoHoraApontada.getQuantidadeHoras());
         projeto.setValorUtilizado(projeto.getValorUtilizado() + (infoHoraApontada.getQuantidadeHoras() * consultor.getPrecoHora()));
 
+        projetoRepository.save(projeto);
         consultorAlocadoRepository.save(consultorAlocado);
 
         return "Hora apontada com sucesso";
