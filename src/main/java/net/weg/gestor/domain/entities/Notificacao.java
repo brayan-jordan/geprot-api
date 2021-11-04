@@ -30,4 +30,10 @@ public class Notificacao {
 
     private boolean statusLeitura;
 
+    public Notificacao(String descricao, Usuario usuario, LocalDate data, boolean statusLeitura) {
+        this.descricao = descricao;
+        this.usuario = usuario;
+        this.data = data;
+        this.statusLeitura = statusLeitura;
+    }
 }

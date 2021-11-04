@@ -2,11 +2,14 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.NotificacaoAssembler;
+import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.entities.Notificacao;
 import net.weg.gestor.domain.repository.NotificacaoRepository;
 import net.weg.gestor.domain.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
@@ -58,5 +61,15 @@ public class NotificacaoService {
 //    public int buscarNaoLidas(Long usuarioId) {
 //        return notificacaoRepository.buscarQuantidadeNaoLida(usuarioRepository.findByIdUsuario(usuarioId)).size();
 //    }
+
+    public String adicionarNovaNotificacao(String descricao, Long usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(
+                () -> new NegocioException("Usuario nao encontrado para esse ID")
+        );
+
+        notificacaoRepository.save(new Notificacao(descricao, usuario, LocalDate.now(), false));
+
+        return "Notificado";
+    }
 
 }
