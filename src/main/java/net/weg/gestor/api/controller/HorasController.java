@@ -3,6 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.weg.gestor.api.model.apontarhora.ApontarHoraInputDTO;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.domain.service.HorasService;
@@ -34,6 +35,9 @@ public class    HorasController {
         return horasService.aprovarHoras(projetoId, consultorId);
     }
 
-
+    @PutMapping("/apontar")
+    public String apontarHoras(@RequestBody ApontarHoraInputDTO infoHoras) {
+        return horasService.apontarHoras(infoHoras);
+    }
 
 }
