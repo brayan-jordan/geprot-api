@@ -1,8 +1,11 @@
 package net.weg.gestor.api.controller;
 
 import lombok.AllArgsConstructor;
+import net.weg.gestor.api.model.NotificacaoDTO;
 import net.weg.gestor.domain.service.NotificacaoService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -20,6 +23,11 @@ public class NotificacaoController {
 //    public InfoNotificacoesDTO buscarNotificacoes(@PathVariable Long usuarioId) {
 //        return notificacaoService.buscarTodasNotificacoes(usuarioId);
 //    }
+
+    @GetMapping("/{usuarioId}")
+    public List<NotificacaoDTO> buscarNotificacoesUsuario(@PathVariable Long usuarioId) {
+        return notificacaoService.buscarNotificacoesUsuario(usuarioId);
+    }
 
     @PutMapping("/marcarlida/{notificacaoId}")
     public String marcarLida(@PathVariable Long notificacaoId) {
