@@ -75,7 +75,10 @@ public class ProjetoAssembler {
     }
 
     public ProjetoDetalhadoDTO toModelDetalhado(Projeto projeto) {
-        return modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
+        ProjetoDetalhadoDTO projetoDetalhadoDTO = modelMapper.map(projeto, ProjetoDetalhadoDTO.class);
+        projetoDetalhadoDTO.setHorasRestantes(projetoDetalhadoDTO.getHorasPrevistas() - projetoDetalhadoDTO.getHorasTrabalhadas());
+        projetoDetalhadoDTO.setValorRestante(projetoDetalhadoDTO.getValor() - projetoDetalhadoDTO.getValorUtilizado());
+        return projetoDetalhadoDTO;
     }
 
 

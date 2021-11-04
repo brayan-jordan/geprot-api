@@ -20,4 +20,6 @@ public class ConsultorComSuasHorasApontadas {
 
     private double precoHora;
 
+    private boolean podeApontar;
+
 }

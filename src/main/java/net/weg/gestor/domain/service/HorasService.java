@@ -76,6 +76,10 @@ public class HorasService {
         ConsultorComSuasHorasApontadas consultorComSuasHorasApontadas = consultorAssembler.toModelConsultorAndHoras(consultor);
         consultorComSuasHorasApontadas.setHoras(buscarHorasConsultorAndProjeto(projeto, consultor));
         calcularHorasTotaisAndValorGasto(consultorComSuasHorasApontadas);
+        ConsultorAlocado consultorAlocado = consultorAlocadoRepository.buscarConsultorAlocadoEmProjeto(consultor, projeto);
+        if (consultorAlocado.getLimiteHoras() != consultorComSuasHorasApontadas.getHorasTotais()) {
+            consultorComSuasHorasApontadas.setPodeApontar(true);
+        }
         return consultorComSuasHorasApontadas;
     }
 
@@ -95,8 +99,9 @@ public class HorasService {
     private void calcularHorasTotaisAndValorGasto (ConsultorComSuasHorasApontadas consultorComSuasHorasApontadas) {
         consultorComSuasHorasApontadas.getHoras().forEach(horaApontadaDTO -> {
             consultorComSuasHorasApontadas.setHorasTotais(consultorComSuasHorasApontadas.getHorasTotais() + horaApontadaDTO.getQuantidadeHoras());
-            consultorComSuasHorasApontadas.setTotalGasto(consultorComSuasHorasApontadas.getTotalGasto() + horaApontadaDTO.getQuantidadeHoras() * consultorComSuasHorasApontadas.getPrecoHora());
         });
+
+        consultorComSuasHorasApontadas.setTotalGasto(consultorComSuasHorasApontadas.getHorasTotais() * consultorComSuasHorasApontadas.getPrecoHora());
     }
 
     public String aprovarHoras(Long projetoId, Long consultorId) {
