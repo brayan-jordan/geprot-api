@@ -61,7 +61,6 @@ CREATE TABLE notificacoes (
     usuarios_id bigint not null,
     data date not null,
     status_leitura int,
-    tipo varchar(30) not null,
     primary key (id)
 );
 

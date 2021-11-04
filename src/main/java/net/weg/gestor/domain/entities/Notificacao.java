@@ -30,6 +30,4 @@ public class Notificacao {
 
     private boolean statusLeitura;
 
-    private TypeNotificacao tipo;
-
 }
