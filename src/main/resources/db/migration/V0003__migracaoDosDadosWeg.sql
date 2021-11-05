@@ -89,6 +89,18 @@ INSERT INTO projetos VALUES (null,'GEW - Demandas', '2020-02-02', '2021-11-04', 
 
 INSERT INTO projetos VALUES (null,'Projeto natal', '2020-02-02', '2021-11-03', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Testezin zika', '2020-10-30', '2021-10-30', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
 INSERT INTO cc_pagantes VALUES (null, 1,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 2,1,100);
@@ -170,6 +182,18 @@ INSERT INTO cc_pagantes VALUES (null, 39,1,100);
 INSERT INTO cc_pagantes VALUES (null, 40,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 41,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 42,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 43,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 44,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 45,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 46,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 47,1,100);
 
 INSERT INTO usuarios VALUES
 (null, "Brendon consultor", "brendon@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
