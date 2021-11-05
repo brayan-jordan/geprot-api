@@ -7,15 +7,15 @@ INSERT INTO usuarios VALUES
 INSERT INTO role_usuarios VALUES (null,"ROLE_GESTOR",1);
 INSERT INTO gestores VALUES (67264, 1, 1);
 
-INSERT INTO projetos VALUES (null,'GDTWEG', '2020-02-02', '2020-02-08', '2020-02-02', '120', '120', '1500', '1111', '0', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'GDTWEG', '2020-02-02', '2020-02-08', '2020-02-02', '120', '120', '1500', '1111', '0', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guilherme Lynz');
 
-INSERT INTO projetos VALUES (null,'PGMWEG', '2020-02-02', '2021-11-04', '2020-02-02', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'PGMWEG', '2020-02-02', '2021-11-04', '2020-02-02', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Jackson Felipe');
 
-INSERT INTO projetos VALUES (null,'Planificar testes', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Planificar testes', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Rodrigo Kelbert');
 
-INSERT INTO projetos VALUES (null,'Projeto parque', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Projeto parque', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Felipe Zolz');
 
-INSERT INTO projetos VALUES (null,'Geprot', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+INSERT INTO projetos VALUES (null,'Geprot', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Robert da Costa');
 
 INSERT INTO projetos VALUES (null,'Projeto TDSX', '2020-02-02', '2020-02-08', '2020-02-02', '67', '0', '1500', '1111', '3', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
@@ -202,6 +202,47 @@ INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 INSERT INTO consultores VALUES
 (123, 2, 1, 12);
 
+INSERT INTO usuarios VALUES
+(null, "Daniela", "daniela@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(124, 3, 1, 12);
+
+INSERT INTO usuarios VALUES
+(null, "Jean", "jean@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(125, 4, 1, 12);
+
+INSERT INTO usuarios VALUES
+(null, "Gabriel", "gabriel@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(126, 5, 1, 12);
+
+INSERT INTO usuarios VALUES
+(null, "Fernando", "fernando@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(127, 6, 1, 12);
+
+INSERT INTO usuarios VALUES
+(null, "Marcia", "marcia@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(128, 7, 1, 12);
+
+INSERT INTO usuarios VALUES
+(null, "Lucia", "lucia@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
+INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
+
+INSERT INTO consultores VALUES
+(129, 8, 1, 12);
 
 INSERT INTO consultores_alocados VALUES
 (null, 1, 123, 120, 120);
