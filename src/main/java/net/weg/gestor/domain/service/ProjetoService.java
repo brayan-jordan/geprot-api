@@ -462,7 +462,7 @@ public class ProjetoService {
         List<DashboardConcluidos> ultimos7dias = mapearUltimos7Dias();
         todosProjetos.forEach(projeto -> {
             if (projeto.getDataFinalizacao() != null) {
-                if (projeto.getDataFinalizacao().isBefore(LocalDate.now()) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusDays(7))) {
+                if (projeto.getDataFinalizacao().isBefore(LocalDate.now()) && projeto.getDataFinalizacao().isAfter(LocalDate.now().minusDays(8))) {
                     ultimos7dias.get(converterParaODiaDaListaUltimos7Dias(projeto.getDataFinalizacao())).setQuantidadeConcluidos(
                     ultimos7dias.get(converterParaODiaDaListaUltimos7Dias(projeto.getDataFinalizacao())).getQuantidadeConcluidos() + 1);
                 }
