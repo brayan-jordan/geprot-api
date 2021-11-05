@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static net.weg.gestor.domain.entities.StatusApontamento.REPROVADO;
 
@@ -77,9 +78,7 @@ public class HorasService {
         consultorComSuasHorasApontadas.setHoras(buscarHorasConsultorAndProjeto(projeto, consultor));
         calcularHorasTotaisAndValorGasto(consultorComSuasHorasApontadas);
         ConsultorAlocado consultorAlocado = consultorAlocadoRepository.buscarConsultorAlocadoEmProjeto(consultor, projeto);
-        if (consultorAlocado.getLimiteHoras() != consultorComSuasHorasApontadas.getHorasTotais()) {
-            consultorComSuasHorasApontadas.setPodeApontar(true);
-        }
+        consultorComSuasHorasApontadas.setPodeApontar(verificaSePodeAprovar(consultor, projeto));
         return consultorComSuasHorasApontadas;
     }
 
@@ -159,5 +158,17 @@ public class HorasService {
 
         return "Hora apontada com sucesso";
 
+    }
+
+    private boolean verificaSePodeAprovar(Consultor consultor, Projeto projeto) {
+        boolean podeApontar = false;
+
+        if (horaApontadaRepository.buscarHorasReprovadasConsultorAndProjeto(consultor, projeto).size() == 0
+            && horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto).size() > 0
+        ) {
+            podeApontar = true;
+        }
+
+        return podeApontar;
     }
 }

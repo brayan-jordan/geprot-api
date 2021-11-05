@@ -42,8 +42,24 @@ INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 INSERT INTO consultores VALUES
 (123, 2, 1, 12);
 
+
 INSERT INTO consultores_alocados VALUES
-(null, 1, 123, 120, 60);
+(null, 1, 123, 120, 120);
 
 INSERT INTO horas_apontadas VALUES
 (null, 1, 20, 20200202, 123, "Trabalho bem feito, parabéns", 2);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "Java e Mysql", 2);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "Planejando testes e executando", 2);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "Descrição das horas apontadas", 2);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "Coisa linda de hora apontada", 2);
+
+INSERT INTO horas_apontadas VALUES
+(null, 1, 20, 20200202, 123, "De certo vai dar boa demais", 2);
