@@ -61,6 +61,34 @@ INSERT INTO projetos VALUES (null,'Github', '2020-02-02', '2021-10-29', '2020-02
 
 INSERT INTO projetos VALUES (null,'Facebook', '2020-02-02', '2020-02-08', '2020-02-02', '67', '12', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
 
+INSERT INTO projetos VALUES (null,'IPVA', '2020-02-02', '2020-11-01', '2021-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'IPVA', '2020-02-02', '2020-11-01', '2021-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'IPVA', '2020-02-02', '2020-11-01', '2021-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'IPVA', '2020-02-02', '2020-11-01', '2021-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'GEW - Demandas', '2020-02-02', '2021-11-04', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
+INSERT INTO projetos VALUES (null,'Projeto natal', '2020-02-02', '2021-11-03', '2020-02-02', '67', '12', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada');
+
 INSERT INTO cc_pagantes VALUES (null, 1,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 2,1,100);
@@ -114,6 +142,34 @@ INSERT INTO cc_pagantes VALUES (null, 25,1,100);
 INSERT INTO cc_pagantes VALUES (null, 26,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 27,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 28,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 29,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 30,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 31,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 32,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 33,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 34,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 35,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 36,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 37,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 38,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 39,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 40,1,100);
+
+INSERT INTO cc_pagantes VALUES (null, 41,1,100);
 
 INSERT INTO usuarios VALUES
 (null, "Brendon consultor", "brendon@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
