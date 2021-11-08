@@ -103,6 +103,19 @@ CREATE TABLE usuarios (
     primary key(id)
 );
 
+CREATE TABLE skill (
+    id bigint auto_increment,
+    nome varchar(20),
+    primary key (id)
+);
+
+CREATE TABLE skills_consultores (
+   id bigint auto_increment,
+   skill_id bigint,
+   consultores_id bigint,
+   primary key (id)
+);
+
 
 
 

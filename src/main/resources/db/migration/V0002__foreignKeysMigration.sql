@@ -36,3 +36,9 @@ FOREIGN KEY (secoes_id) REFERENCES secoes (id);
 
 ALTER TABLE notificacoes ADD CONSTRAINT fk_usuarios_notificacoes
 FOREIGN KEY (usuarios_id) REFERENCES usuarios (id);
+
+ALTER TABLE skills_consultores ADD CONSTRAINT fk_skill_id
+FOREIGN KEY (skill_id) REFERENCES skill (id);
+
+ALTER TABLE skills_consultores ADD CONSTRAINT fk_skill_consultor
+FOREIGN KEY (consultores_id) REFERENCES consultores (id);
