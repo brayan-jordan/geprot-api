@@ -264,3 +264,8 @@ INSERT INTO horas_apontadas VALUES
 
 INSERT INTO horas_apontadas VALUES
 (null, 1, 20, 20200202, 123, "De certo vai dar boa demais", 2);
+
+INSERT INTO skill VALUES
+(null, "JAVA"),(null, "Abape"),(null, "CSS"),(null, "HTML"),(null, "React JS"),(null, "React Native"),
+(null, "Ruby"),(null, "Angular"),(null, "C#"),(null, "C"),(null, "C++"),(null, "JavaScript"),(null, "Kotlin"),
+(null, "Elixir"),(null, "Deployment"),(null, "Figma"),(null, "Phyton");
