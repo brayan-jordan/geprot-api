@@ -183,70 +183,70 @@ INSERT INTO usuarios VALUES
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(123, 2, 1, 12);
+(null, 2, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Daniela", "daniela@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(124, 3, 1, 12);
+(null, 3, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Jean", "jean@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(125, 4, 1, 12);
+(null, 4, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Gabriel", "gabriel@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(126, 5, 1, 12);
+(null, 5, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Fernando", "fernando@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(127, 6, 1, 12);
+(null, 6, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Marcia", "marcia@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(128, 7, 1, 12);
+(null, 7, 1, 12);
 
 INSERT INTO usuarios VALUES
 (null, "Lucia", "lucia@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
 
 INSERT INTO consultores VALUES
-(129, 8, 1, 12);
+(null, 8, 1, 12);
 
 INSERT INTO consultores_alocados VALUES
-(null, 1, 123, 120, 120);
+(null, 1, 1, 120, 120);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "Trabalho bem feito, parabéns", 2);
+(null, 1, 20, 20200202, 1, "Trabalho bem feito, parabéns", 2);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "Java e Mysql", 2);
+(null, 1, 20, 20200202, 1, "Java e Mysql", 2);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "Planejando testes e executando", 2);
+(null, 1, 20, 20200202, 1, "Planejando testes e executando", 2);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "Descrição das horas apontadas", 2);
+(null, 1, 20, 20200202, 1, "Descrição das horas apontadas", 2);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "Coisa linda de hora apontada", 2);
+(null, 1, 20, 20200202, 1, "Coisa linda de hora apontada", 2);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 123, "De certo vai dar boa demais", 2);
+(null, 1, 20, 20200202, 1, "De certo vai dar boa demais", 2);
 
 INSERT INTO skill VALUES
 (null, "JAVA"),(null, "Abape"),(null, "CSS"),(null, "HTML"),(null, "React JS"),(null, "React Native"),
