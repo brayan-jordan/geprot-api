@@ -10,8 +10,6 @@ import java.util.List;
 @Setter
 public class ConsultorInputDTO {
 
-    private long id;
-
     private UsuarioInputDTO usuario;
 
     private FornecedorInputDTO fornecedor;

@@ -14,7 +14,7 @@ CREATE TABLE cc_pagantes (
 );
 
 CREATE TABLE consultores (
-    id bigint not null,
+    id bigint not null auto_increment,
     usuarios_id bigint not null,
     fornecedores_id bigint not null,
     preco_hora double(10, 2) not null,
