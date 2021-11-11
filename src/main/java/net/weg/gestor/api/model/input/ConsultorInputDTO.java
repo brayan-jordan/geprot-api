@@ -3,6 +3,9 @@ package net.weg.gestor.api.model.input;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class ConsultorInputDTO {
@@ -14,5 +17,7 @@ public class ConsultorInputDTO {
     private FornecedorInputDTO fornecedor;
 
     private double precoHora;
+
+    private List<SkillInput> skills;
 
 }

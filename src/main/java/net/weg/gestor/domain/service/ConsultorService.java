@@ -22,6 +22,7 @@ public class ConsultorService {
     private ConsultorAssembler consultorAssembler;
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
+    private SkillService skillService;
 
     @Transactional
     public Consultor cadastrar(Consultor consultor) {

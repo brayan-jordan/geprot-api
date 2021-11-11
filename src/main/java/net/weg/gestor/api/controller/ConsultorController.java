@@ -9,12 +9,10 @@ import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.RoleUsuarios;
+import net.weg.gestor.domain.entities.Skill;
 import net.weg.gestor.domain.entities.Usuario;
 import net.weg.gestor.domain.repository.FornecedorRepository;
-import net.weg.gestor.domain.service.ConsultorService;
-import net.weg.gestor.domain.service.ConsultoresAlocadosService;
-import net.weg.gestor.domain.service.RoleUsuarioService;
-import net.weg.gestor.domain.service.UsuarioService;
+import net.weg.gestor.domain.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +32,7 @@ public class ConsultorController {
     private ConsultorAssembler consultorAssembler;
     private ConsultorService consultorService;
     private FornecedorRepository fornecedorRepository;
+    private SkillService skillService;
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
@@ -47,6 +46,7 @@ public class ConsultorController {
         consultorCadastrar.setUsuario(usuarioCadastrado);
         consultorCadastrar.setFornecedor(fornecedorRepository.
                 findByIdFornecedor(consultor.getFornecedor().getId()));
+        consultorCadastrar.setSkills(skillService.buscarSkillsSelecionadas(consultor.getSkills()));
         consultorCadastrar = consultorService.cadastrar(consultorCadastrar);
         return consultorAssembler.toModel(consultorCadastrar);
     }
