@@ -178,6 +178,11 @@ INSERT INTO cc_pagantes VALUES (null, 46,1,100);
 
 INSERT INTO cc_pagantes VALUES (null, 47,1,100);
 
+INSERT INTO skill VALUES
+(null, "JAVA"),(null, "Abape"),(null, "CSS"),(null, "HTML"),(null, "React JS"),(null, "React Native"),
+(null, "Ruby"),(null, "Angular"),(null, "C#"),(null, "C"),(null, "C++"),(null, "JavaScript"),(null, "Kotlin"),
+(null, "Elixir"),(null, "Deployment"),(null, "Figma"),(null, "Phyton");
+
 INSERT INTO usuarios VALUES
 (null, "Brendon consultor", "brendon@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");
 INSERT INTO role_usuarios VALUES (null,"ROLE_CONSULTOR",1);
@@ -228,7 +233,7 @@ INSERT INTO consultores VALUES
 (null, 8, 1, 12);
 
 INSERT INTO consultores_alocados VALUES
-(null, 1, 1, 120, 120);
+(null, 1, 1, 120, 120, 1);
 
 INSERT INTO horas_apontadas VALUES
 (null, 1, 20, 20200202, 1, "Trabalho bem feito, parabéns", 2);
@@ -248,7 +253,3 @@ INSERT INTO horas_apontadas VALUES
 INSERT INTO horas_apontadas VALUES
 (null, 1, 20, 20200202, 1, "De certo vai dar boa demais", 2);
 
-INSERT INTO skill VALUES
-(null, "JAVA"),(null, "Abape"),(null, "CSS"),(null, "HTML"),(null, "React JS"),(null, "React Native"),
-(null, "Ruby"),(null, "Angular"),(null, "C#"),(null, "C"),(null, "C++"),(null, "JavaScript"),(null, "Kotlin"),
-(null, "Elixir"),(null, "Deployment"),(null, "Figma"),(null, "Phyton");

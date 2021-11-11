@@ -42,3 +42,6 @@ FOREIGN KEY (skill_id) REFERENCES skill (id);
 
 ALTER TABLE skills_consultores ADD CONSTRAINT fk_skill_consultor
 FOREIGN KEY (consultores_id) REFERENCES consultores (id);
+
+ALTER TABLE consultores_alocados ADD CONSTRAINT fk_skill_alocada
+FOREIGN KEY (skill_id) REFERENCES skill (id);

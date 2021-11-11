@@ -20,6 +20,8 @@ public class ConsultorAlocado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "projetos_id")
@@ -34,6 +36,10 @@ public class ConsultorAlocado {
     private int limiteHoras;
 
     private int horasApontadas;
+
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
+    private Skill skill;
 
     public ConsultorAlocado(Projeto projeto, Consultor consultor, int limiteHoras) {
         this.projeto = projeto;
