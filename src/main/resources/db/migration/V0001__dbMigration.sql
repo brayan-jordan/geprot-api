@@ -1,7 +1,6 @@
 CREATE TABLE secoes (
     id bigint not null auto_increment,
     nome varchar(100) not null,
-    verba double(10, 2) not null,
     primary key (id)
 );
 
@@ -78,6 +77,7 @@ CREATE TABLE projetos (
     descricao varchar(1000) not null,
     nome_solicitante varchar(50) not null,
     nome_responsavel varchar(50) not null,
+    verba double(10,2),
     primary key (id)
 );
 

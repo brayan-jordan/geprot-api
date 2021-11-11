@@ -25,9 +25,6 @@ public class Secao {
     @Size(min = 5, max = 100)
     String nome;
 
-    @NotBlank
-    double verba;
-
     @ManyToMany
     List<Projeto> projetos;
 

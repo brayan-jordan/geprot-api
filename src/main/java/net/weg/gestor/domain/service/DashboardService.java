@@ -26,7 +26,6 @@ public class DashboardService {
         double verbaUtilizada;
         Secao secao = secaoRepository.findByIdAux(secaoId);
         DashboardVerbaDTO dashboardVerbaDTO = new DashboardVerbaDTO();
-        dashboardVerbaDTO.setVerbaTotal(secaoRepository.findByIdAux(secaoId).getVerba());
         List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
         verbaUtilizada = projetos.stream().mapToDouble(projeto -> (projeto.getValor()) *
                 (ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto).getTaxa())

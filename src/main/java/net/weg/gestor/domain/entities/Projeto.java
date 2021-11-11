@@ -53,4 +53,7 @@ public class Projeto {
     @NotNull
     private String nomeResponsavel;
 
+    @NotNull
+    private double verba;
+
 }
