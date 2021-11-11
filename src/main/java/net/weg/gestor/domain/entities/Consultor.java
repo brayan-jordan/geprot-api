@@ -33,8 +33,8 @@ public class Consultor {
     private List<Projeto> projetos;
 
     @ManyToMany
-    @JoinTable(name = "skills_consultores", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "consultores_id", referencedColumnName = "id"))
+    @JoinTable(name = "skills_consultores", joinColumns = @JoinColumn(name = "consultores_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id"))
     private List<Skill> skills;
 
     private double precoHora;
