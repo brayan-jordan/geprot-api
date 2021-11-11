@@ -7,6 +7,7 @@ import net.weg.gestor.api.model.consultor.ConsultorDTO;
 import net.weg.gestor.api.model.consultor.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.input.ConsultorInputDTO;
+import net.weg.gestor.api.model.input.SkillDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.RoleUsuarios;
 import net.weg.gestor.domain.entities.Skill;
@@ -121,7 +122,10 @@ public class ConsultorController {
         return consultoresAlocadosService.alocarConsultor(alocar);
     }
 
-
+    @GetMapping("/skills")
+    public List<SkillDTO> listarSkills(){
+        return skillService.listarSkills();
+    }
 
 
 
