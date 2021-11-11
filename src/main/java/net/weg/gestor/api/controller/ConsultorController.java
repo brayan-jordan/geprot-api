@@ -51,9 +51,16 @@ public class ConsultorController {
         return consultorAssembler.toModel(consultorCadastrar);
     }
 
+
+
     @GetMapping("/buscar/{consultorId}")
     public ConsultorDTO buscarConsultorUnicoPorId(@PathVariable long consultorId){
         return consultorService.buscarConsultor(consultorId);
+    }
+
+    @GetMapping("/listarporskill/{skillId}")
+    public List<ConsultorDTO> buscarConsultorPorSkill(@PathVariable Long skillId) {
+        return consultorService.buscarConsultoresPorSkill(skillId);
     }
 
     @GetMapping("/listar")

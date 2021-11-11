@@ -6,14 +6,17 @@ import net.weg.gestor.api.map.ConsultoresAlocadosAssembler;
 import net.weg.gestor.api.model.consultor.ConsultorDTO;
 import net.weg.gestor.api.model.consultor.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.entities.Skill;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.ConsultorRepository;
+import net.weg.gestor.domain.repository.SkillRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @AllArgsConstructor
@@ -22,11 +25,35 @@ public class ConsultorService {
     private ConsultorAssembler consultorAssembler;
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
-    private SkillService skillService;
+    private SkillRepository skillRepository;
 
     @Transactional
     public Consultor cadastrar(Consultor consultor) {
         return consultorRepository.save(consultor);
+    }
+
+    public List<ConsultorDTO> buscarConsultoresPorSkill(Long skillId) {
+        Skill skill = skillRepository.buscarPorId(skillId);
+        List<ConsultorDTO> consultoresComASkill = new ArrayList<>();
+        List<Consultor> consultores = consultorRepository.findAll();
+        consultores.forEach(consultor -> {
+            if (verificaSeConsultorTemCertaSkill(skill, consultor).get()) {
+                consultoresComASkill.add(consultorAssembler.toModel(consultor));
+            }
+        });
+
+        return consultoresComASkill;
+    }
+
+    public AtomicBoolean verificaSeConsultorTemCertaSkill(Skill skill, Consultor consultor) {
+        AtomicBoolean temCertaSkill = new AtomicBoolean(false);
+        consultor.getSkills().forEach(skill1 -> {
+            if (skill1.getNome().equals(skill.getNome())) {
+                temCertaSkill.set(true);
+            }
+        });
+
+        return temCertaSkill;
     }
 
     public List<ConsultorNaoAlocadoDTO> buscarTodosConsultores() {
