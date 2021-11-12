@@ -111,13 +111,35 @@ public class HorasService {
                 orElseThrow(() -> new NegocioException("Projeto nao encontrado"));
 
         if (horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto).size() == 0) {
-            throw new NegocioException("Esse consultor não tem horas para serem apontadas");
+            throw new NegocioException("Esse consultor não tem horas para serem avaliadas");
         }
 
         List<HoraApontada> horaApontadas = horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto);
 
         horaApontadas.forEach(horaApontada -> {
             horaApontada.setStatus(StatusApontamento.APROVADO);
+        });
+
+        horaApontadaRepository.saveAll(horaApontadas);
+
+        return "Deu boa";
+    }
+
+    public String reprovarHoras(Long projetoId, Long consultorId) {
+        Consultor consultor = consultorRepository.findById(consultorId).
+                orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
+
+        Projeto projeto = projetoRepository.findById(projetoId).
+                orElseThrow(() -> new NegocioException("Projeto nao encontrado"));
+
+        if (horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto).size() == 0) {
+            throw new NegocioException("Esse consultor não tem horas para serem avaliadas");
+        }
+
+        List<HoraApontada> horaApontadas = horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto);
+
+        horaApontadas.forEach(horaApontada -> {
+            horaApontada.setStatus(REPROVADO);
         });
 
         horaApontadaRepository.saveAll(horaApontadas);

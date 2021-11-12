@@ -35,6 +35,13 @@ public class    HorasController {
         return horasService.aprovarHoras(projetoId, consultorId);
     }
 
+    @PutMapping("/reprovar/{projetoId}/{consultorId}")
+    public String reprovarHoras(@PathVariable Long projetoId, @PathVariable Long consultorId) {
+        return horasService.reprovarHoras(projetoId, consultorId);
+    }
+
+
+
     @PutMapping("/apontar")
     public String apontarHoras(@RequestBody ApontarHoraInputDTO infoHoras) {
         return horasService.apontarHoras(infoHoras);
