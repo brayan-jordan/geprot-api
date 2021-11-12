@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.HorasAssembler;
 import net.weg.gestor.api.model.apontarhora.ApontarHoraInputDTO;
+import net.weg.gestor.api.model.apontarhora.MotivoReprovacao;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.api.model.consultorhoras.HoraApontadaDTO;
@@ -125,7 +126,7 @@ public class HorasService {
         return "Deu boa";
     }
 
-    public String reprovarHoras(Long projetoId, Long consultorId) {
+    public String reprovarHoras(Long projetoId, Long consultorId, MotivoReprovacao motivoReprovacao) {
         Consultor consultor = consultorRepository.findById(consultorId).
                 orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
 
@@ -140,6 +141,7 @@ public class HorasService {
 
         horaApontadas.forEach(horaApontada -> {
             horaApontada.setStatus(REPROVADO);
+            horaApontada.setMotivoReprovacao(motivoReprovacao.getMotivo());
         });
 
         horaApontadaRepository.saveAll(horaApontadas);

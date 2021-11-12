@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import net.weg.gestor.api.model.apontarhora.ApontarHoraInputDTO;
+import net.weg.gestor.api.model.apontarhora.MotivoReprovacao;
 import net.weg.gestor.api.model.consultor.ConsultorAlocadoDTO;
 import net.weg.gestor.api.model.consultorhoras.ConsultorComSuasHorasApontadas;
 import net.weg.gestor.domain.service.HorasService;
@@ -36,11 +37,12 @@ public class    HorasController {
     }
 
     @PutMapping("/reprovar/{projetoId}/{consultorId}")
-    public String reprovarHoras(@PathVariable Long projetoId, @PathVariable Long consultorId) {
-        return horasService.reprovarHoras(projetoId, consultorId);
+    public String reprovarHoras(@PathVariable Long projetoId,
+                                @PathVariable Long consultorId,
+                                @RequestBody MotivoReprovacao motivoReprovacao
+    ) {
+        return horasService.reprovarHoras(projetoId, consultorId, motivoReprovacao);
     }
-
-
 
     @PutMapping("/apontar")
     public String apontarHoras(@RequestBody ApontarHoraInputDTO infoHoras) {
