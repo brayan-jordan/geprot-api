@@ -52,6 +52,7 @@ CREATE TABLE horas_apontadas (
     consultores_id bigint not null,
     descricao_trabalho varchar(300),
     status VARCHAR(15),
+    motivo_reprovacao VARCHAR(200),
     primary key (id)
 );
 

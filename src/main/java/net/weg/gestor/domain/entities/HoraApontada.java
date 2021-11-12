@@ -38,6 +38,8 @@ public class HoraApontada {
     @ManyToOne
     private Consultor consultor;
 
+    private String motivoReprovacao;
+
     @NotBlank
     private String descricaoTrabalho;
 
@@ -50,5 +52,6 @@ public class HoraApontada {
         this.consultor = consultor;
         this.descricaoTrabalho = descricaoTrabalho;
         this.status = status;
-    }
+        this.descricaoTrabalho = "-";
+    };
 }

@@ -236,20 +236,20 @@ INSERT INTO consultores_alocados VALUES
 (null, 1, 1, 120, 120, 1);
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "Trabalho bem feito, parabéns", 2);
+(null, 1, 20, 20200202, 1, "Trabalho bem feito, parabéns", 2, "-");
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "Java e Mysql", 2);
+(null, 1, 20, 20200202, 1, "Java e Mysql", 2, "-");
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "Planejando testes e executando", 2);
+(null, 1, 20, 20200202, 1, "Planejando testes e executando", 2, "-");
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "Descrição das horas apontadas", 2);
+(null, 1, 20, 20200202, 1, "Descrição das horas apontadas", 2, "-");
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "Coisa linda de hora apontada", 2);
+(null, 1, 20, 20200202, 1, "Coisa linda de hora apontada", 2, "-");
 
 INSERT INTO horas_apontadas VALUES
-(null, 1, 20, 20200202, 1, "De certo vai dar boa demais", 2);
+(null, 1, 20, 20200202, 1, "De certo vai dar boa demais", 2, "-");
 

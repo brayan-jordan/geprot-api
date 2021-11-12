@@ -7,11 +7,9 @@ import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.ConsultorAlocado;
 import net.weg.gestor.domain.entities.Projeto;
+import net.weg.gestor.domain.entities.Skill;
 import net.weg.gestor.domain.exception.NegocioException;
-import net.weg.gestor.domain.repository.ConsultorRepository;
-import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
-import net.weg.gestor.domain.repository.ProjetoRepository;
-import net.weg.gestor.domain.repository.UsuarioRepository;
+import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class ConsultoresAlocadosService {
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private ProjetoRepository projetoRepository;
-
+    private SkillRepository skillRepository;
 
 
     public String alocarConsultor(AlocarConsultorInputDTO alocar) {
@@ -41,7 +39,12 @@ public class ConsultoresAlocadosService {
             throw new NegocioException("Esse consultor já estava alocado ao projeto, tente, verifique os dados informados");
         }
 
-        consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras()));
+//        Skill skillParaAlocar = consultor.getSkills().get(alocar.getNumeroSkill());
+
+//        Por enquanto está com valores sintéticos pois no front ainda não tem algo que envia o número
+        Skill skillParaAlocar = skillRepository.buscarPorId(1L);
+
+        consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras(), skillParaAlocar));
         return "Consultor alocado com sucesso";
     }
 
