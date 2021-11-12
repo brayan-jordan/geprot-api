@@ -6,11 +6,13 @@ import net.weg.gestor.api.model.dashboard.DashboardVerbaDTO;
 import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Secao;
 import net.weg.gestor.domain.entities.StatusProjeto;
+import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.CCPagantesRepository;
 import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,19 +21,21 @@ public class DashboardService {
 
     private ProjetoService projetoService;
     private SecaoRepository secaoRepository;
-    private ProjetoRepository projetoRepository;
-    private CCPagantesRepository ccPagantesRepository;
 
     public DashboardVerbaDTO listarVerbas(Long secaoId) {
-        double verbaUtilizada;
-        Secao secao = secaoRepository.findByIdAux(secaoId);
-        DashboardVerbaDTO dashboardVerbaDTO = new DashboardVerbaDTO();
+        List<Projeto> projetosNaoConcluidos = new ArrayList<>();
+        Secao secao = secaoRepository.findById(secaoId).orElseThrow(
+                () -> new NegocioException("Seção nao encontrado com esse ID")
+        );
         List<Projeto> projetos = projetoService.buscarTodosProjetoSecao(secaoId);
-        verbaUtilizada = projetos.stream().mapToDouble(projeto -> (projeto.getValor()) *
-                (ccPagantesRepository.buscarTaxaCCpagantes(secao, projeto).getTaxa())
-                / 100).sum();
-        dashboardVerbaDTO.setVerbaUtilizada(verbaUtilizada);
-        return dashboardVerbaDTO;
+        projetos.forEach(projeto -> {
+            if (projeto.getStatus() != StatusProjeto.CONCLUIDO) {
+                projetosNaoConcluidos.add(projeto);
+            }
+        });
+        double verbaAprovada = projetosNaoConcluidos.stream().mapToDouble(Projeto::getValor).sum();
+        double verbaUtilizada = projetosNaoConcluidos.stream().mapToDouble(Projeto::getValorUtilizado).sum();
+        return new DashboardVerbaDTO(verbaAprovada, verbaUtilizada);
     }
 
     public DashboardProjetosDTO listarProjetos(long secaoId){
