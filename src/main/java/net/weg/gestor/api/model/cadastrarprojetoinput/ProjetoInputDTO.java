@@ -27,4 +27,6 @@ public class ProjetoInputDTO {
 
     private List<ProjetoCCPagantesInputDTO> ccpagantes;
 
+    private double verba;
+
 }
