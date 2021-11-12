@@ -15,4 +15,6 @@ public class AlocarConsultorInputDTO {
 
     private int quantidadeHoras;
 
+    private int numeroSkill;
+
 }

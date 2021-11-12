@@ -41,9 +41,10 @@ public class ConsultorAlocado {
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
-    public ConsultorAlocado(Projeto projeto, Consultor consultor, int limiteHoras) {
+    public ConsultorAlocado(Projeto projeto, Consultor consultor, int limiteHoras, Skill skill) {
         this.projeto = projeto;
         this.consultor = consultor;
         this.limiteHoras = limiteHoras;
+        this.skill = skill;
     }
 }
