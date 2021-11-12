@@ -393,11 +393,12 @@ public class ProjetoService {
             consultoresAlocadosService.alocarConsultor(new AlocarConsultorInputDTO(
                     consultor.getConsultorId(),
                     projetoId,
-                    consultor.getQuantidadeHoras()
+                    consultor.getQuantidadeHoras(),
+                    consultor.getNumeroDaSkill()
                 )
             );
         });
-        return "Falta fazer cadastrar o projeto :)";
+        return "Projeto cadastrado";
     }
 
     private void projetoValidations(ProjetoInputDTO projeto) {

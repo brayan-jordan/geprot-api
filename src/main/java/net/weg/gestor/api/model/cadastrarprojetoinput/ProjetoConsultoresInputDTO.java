@@ -11,4 +11,6 @@ public class ProjetoConsultoresInputDTO {
 
     private int quantidadeHoras;
 
+    private int numeroDaSkill;
+
 }
