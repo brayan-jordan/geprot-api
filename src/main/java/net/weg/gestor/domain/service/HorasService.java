@@ -161,14 +161,8 @@ public class HorasService {
     }
 
     private boolean verificaSePodeAprovar(Consultor consultor, Projeto projeto) {
-        boolean podeApontar = false;
 
-        if (horaApontadaRepository.buscarHorasReprovadasConsultorAndProjeto(consultor, projeto).size() == 0
-            && horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto).size() > 0
-        ) {
-            podeApontar = true;
-        }
-
-        return podeApontar;
+        return horaApontadaRepository.buscarHorasReprovadasConsultorAndProjeto(consultor, projeto).size() == 0
+                && horaApontadaRepository.buscarHorasPendentesConsultorAndProjeto(consultor, projeto).size() > 0;
     }
 }
