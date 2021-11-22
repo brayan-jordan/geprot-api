@@ -123,6 +123,16 @@ public class HorasService {
 
         horaApontadaRepository.saveAll(horaApontadas);
 
+        if (horaApontadaRepository.buscarHorasReprovadasProjeto(projeto).size() == 0
+            && horaApontadaRepository.buscarHorasPendentesProjeto(projeto).size() == 0
+            && projeto.getHorasPrevistas() == projeto.getHorasTrabalhadas()
+        ) {
+
+            projeto.setStatus(StatusProjeto.CONCLUIDO);
+        }
+
+        projetoRepository.save(projeto);
+
         return "Deu boa";
     }
 
@@ -176,10 +186,9 @@ public class HorasService {
 
         consultorAlocado.setHorasApontadas(consultorAlocado.getHorasApontadas() + infoHoraApontada.getQuantidadeHoras());
         projeto.setValorUtilizado(projeto.getValorUtilizado() + (infoHoraApontada.getQuantidadeHoras() * consultor.getPrecoHora()));
+        projeto.setHorasTrabalhadas(projeto.getHorasTrabalhadas() + infoHoraApontada.getQuantidadeHoras());
 
-        if (projeto.getHorasPrevistas() == projeto.getHorasTrabalhadas()) {
-            projeto.setStatus(StatusProjeto.CONCLUIDO);
-        }
+
 
         projetoRepository.save(projeto);
         consultorAlocadoRepository.save(consultorAlocado);
