@@ -188,7 +188,9 @@ public class HorasService {
         projeto.setValorUtilizado(projeto.getValorUtilizado() + (infoHoraApontada.getQuantidadeHoras() * consultor.getPrecoHora()));
         projeto.setHorasTrabalhadas(projeto.getHorasTrabalhadas() + infoHoraApontada.getQuantidadeHoras());
 
-
+        if (projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
+            projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
+        }
 
         projetoRepository.save(projeto);
         consultorAlocadoRepository.save(consultorAlocado);
