@@ -45,4 +45,10 @@ public class NotificacaoService {
         return notificacaoAssembler.toCollectionModel(notificacaoRepository.buscarNotificacoesUsuario(usuario));
     }
 
+    public NotificacaoDTO buscarnotificacaoId(Long notificacaoId){
+        return notificacaoAssembler.toModel(notificacaoRepository.findById(notificacaoId)
+                .orElseThrow(() -> new NegocioException("Id não encontrado")));
+    }
+
+
 }
