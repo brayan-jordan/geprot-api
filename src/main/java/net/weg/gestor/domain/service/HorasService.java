@@ -129,6 +129,7 @@ public class HorasService {
         ) {
 
             projeto.setStatus(StatusProjeto.CONCLUIDO);
+            projeto.setDataFinalizacao(LocalDate.now());
         }
 
         projetoRepository.save(projeto);
@@ -190,6 +191,7 @@ public class HorasService {
 
         if (projeto.getStatus().equals(StatusProjeto.NAO_INICIADO)) {
             projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
+            projeto.setDataInicio(LocalDate.now());
         }
 
         projetoRepository.save(projeto);
