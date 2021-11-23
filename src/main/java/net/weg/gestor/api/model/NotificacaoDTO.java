@@ -13,6 +13,8 @@ public class NotificacaoDTO {
 
     private Long id;
 
+    private String titulo;
+
     private String descricao;
 
     private UsuarioDTO usuario;

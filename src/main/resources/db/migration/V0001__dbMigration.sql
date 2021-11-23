@@ -59,6 +59,7 @@ CREATE TABLE horas_apontadas (
 CREATE TABLE notificacoes (
     id bigint not null auto_increment,
     descricao varchar(200) not null,
+    titulo varchar(40) not null,
     usuarios_id bigint not null,
     data date not null,
     status_leitura int,
