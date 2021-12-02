@@ -15,6 +15,8 @@ public class ProjetoInputDTO {
 
     private String nomeResponsavel;
 
+    private String alfanumericoAta;
+
     private String nomeSolicitante;
 
     private String descricao;

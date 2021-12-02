@@ -20,6 +20,7 @@ public class ProjetoDetalhadoDTO {
     private int horasPrevistas;
     private int horasTrabalhadas;
     private int horasRestantes;
+    private String alfanumericoAta;
     private double valor;
     private double valorUtilizado;
     private double valorRestante;

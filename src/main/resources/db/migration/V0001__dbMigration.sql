@@ -72,6 +72,7 @@ CREATE TABLE projetos (
     data_inicio date,
     data_finalizacao date,
     data_cadastro date,
+    alfanumerico_ata varchar(60),
     horas_previstas int not null,
     horas_trabalhadas int,
     valor double(10, 2) not null,

@@ -18,6 +18,7 @@ public class ProjetoCardDTO {
     private int horasPrevistas;
     private int horasTrabalhadas;
     private double valor;
+    private String alfanumericoAta;
 
     @JsonIgnore
     private double valorUtilizado;

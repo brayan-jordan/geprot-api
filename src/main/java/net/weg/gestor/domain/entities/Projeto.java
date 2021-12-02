@@ -27,6 +27,8 @@ public class Projeto {
     @Size(min = 5)
     String nome;
 
+    private String alfanumericoAta;
+
     LocalDate dataInicio;
 
     LocalDate dataFinalizacao;
