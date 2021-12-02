@@ -51,11 +51,11 @@ INSERT INTO projetos VALUES (null,'IPTU', '2020-02-02', '2020-02-08', '2020-02-0
 
 INSERT INTO projetos VALUES (null,'IPVA', '2020-02-02', '2020-11-01', '2021-02-02', '00001', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
 
-INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '00001', '2020-02-02', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
+INSERT INTO projetos VALUES (null,'Almoço especial', '2020-10-31', '2021-10-31', '2020-02-02','00001',  '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
 
-INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31', '00001', '2020-02-02', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
+INSERT INTO projetos VALUES (null,'Atualizar gmail', '2020-02-02', '2021-10-31','2020-02-02', '00001',  '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
 
-INSERT INTO projetos VALUES (null,'Jira software', '2020-02-02', '2020-02-08', '00001', '2020-02-02', '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
+INSERT INTO projetos VALUES (null,'Jira software', '2020-02-02', '2020-02-08','2020-02-02', '00001',  '67', '0', '1500', '1111', '2', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
 
 INSERT INTO projetos VALUES (null,'Github', '2020-02-02', '2021-10-29', '2020-02-02', '00001', '67', '0', '1500', '1111', '1', 'Descricao de um projeto interessante, porem apenas escrevendo algumas coisas para preencher o campo em branco, visando o tamanho da div', 'Brendon', 'Guizada',15000);
 
