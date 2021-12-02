@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.SkillAssembler;
 import net.weg.gestor.api.model.input.SkillDTO;
 import net.weg.gestor.api.model.input.SkillInput;
+import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Skill;
+import net.weg.gestor.domain.exception.NegocioException;
+import net.weg.gestor.domain.repository.ConsultorRepository;
 import net.weg.gestor.domain.repository.SkillRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,7 @@ import java.util.List;
 public class SkillService {
 
     private SkillRepository skillRepository;
-
+    private ConsultorRepository consultorRepository;
     private SkillAssembler skillAssembler;
 
     public List<Skill> buscarSkillsSelecionadas(List<SkillInput> idDasSkills) {
@@ -30,5 +33,10 @@ public class SkillService {
 
     public List<SkillDTO> listarSkills(){
         return skillAssembler.toCollectionModel(skillRepository.findAll());
+    }
+
+    public List<SkillDTO> listarSkillsConsultor(Long consultorId) {
+        Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
+        return skillAssembler.toCollectionModel(consultor.getSkills());
     }
 }
