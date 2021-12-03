@@ -122,14 +122,14 @@ public class ConsultorController {
         return consultoresAlocadosService.alocarConsultor(alocar);
     }
 
-    @GetMapping("/skills/{consultorId}")
-    public List<SkillDTO> buscarSkillsConsultor(@PathVariable Long consultorId) {
-        return skillService.listarSkillsConsultor(consultorId);
-    }
-
     @GetMapping("/skills")
     public List<SkillDTO> listarSkills(){
         return skillService.listarSkills();
+    }
+
+    @GetMapping("/skills/{consultorId}")
+    public List<SkillDTO> buscarSkillsConsultor(@PathVariable Long consultorId) {
+        return skillService.listarSkillsConsultor(consultorId);
     }
 
 
