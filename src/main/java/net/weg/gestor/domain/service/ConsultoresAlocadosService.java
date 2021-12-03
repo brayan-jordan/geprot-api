@@ -2,19 +2,13 @@ package net.weg.gestor.domain.service;
 
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultoresAlocadosAssembler;
-import net.weg.gestor.api.model.consultor.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.ConsultorAlocado;
 import net.weg.gestor.domain.entities.Projeto;
-import net.weg.gestor.domain.entities.Skill;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 @AllArgsConstructor
 @Service
@@ -39,7 +33,7 @@ public class ConsultoresAlocadosService {
             throw new NegocioException("Esse consultor já estava alocado ao projeto, tente, verifique os dados informados");
         }
 
-        var skillParaAlocar = skillRepository.buscarPorId((long) alocar.getNumeroSkill());
+        var skillParaAlocar = skillRepository.buscarPorId((long) alocar.getSkillId());
 
         consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras(), skillParaAlocar));
         return "Consultor alocado com sucesso";
