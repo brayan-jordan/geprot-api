@@ -81,7 +81,6 @@ CREATE TABLE projetos (
     descricao varchar(1000) not null,
     nome_solicitante varchar(50) not null,
     nome_responsavel varchar(50) not null,
-    verba double(10,2),
     primary key (id)
 );
 
