@@ -33,7 +33,7 @@ public class ConsultoresAlocadosService {
             throw new NegocioException("Esse consultor já estava alocado ao projeto, tente, verifique os dados informados");
         }
 
-        var skillParaAlocar = skillRepository.buscarPorId((long) alocar.getSkillId());
+        var skillParaAlocar = skillRepository.buscarPorId((long) alocar.getNumeroDaSkill());
 
         consultorAlocadoRepository.save(new ConsultorAlocado(projeto, consultor, alocar.getQuantidadeHoras(), skillParaAlocar));
         return "Consultor alocado com sucesso";
