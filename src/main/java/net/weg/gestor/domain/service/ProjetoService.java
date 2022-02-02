@@ -12,6 +12,7 @@ import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoCCPagantesInputDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.projeto.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.projeto.ProjetoEditInputDTO;
 import net.weg.gestor.domain.entities.CCPagantes;
 import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.Projeto;
@@ -45,6 +46,23 @@ public class ProjetoService {
             ));
         });
         return projetos;
+    }
+
+    public String editarProjeto(Long projetoId, ProjetoEditInputDTO infosEditar) {
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException(
+                "Nao existe um projeto com esse ID"
+        ));
+
+        projeto.setNome(infosEditar.getNome());
+        projeto.setDescricao(infosEditar.getDescricao());
+        projeto.setDataFinalizacao(infosEditar.getDataEncerramento());
+        projeto.setHorasPrevistas(infosEditar.getHorasAprovadas());
+        projeto.setValor(infosEditar.getVerbasAprovadas());
+
+//        Falta mudar os consultores com a nova lista vindo do front
+
+        projetoRepository.save(projeto);
+        return "Projeto editado";
     }
 
     public ProjetoDetalhadoDTO buscarPorId(Long projetoId) {

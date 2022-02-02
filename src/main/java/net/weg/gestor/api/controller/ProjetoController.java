@@ -8,6 +8,7 @@ import net.weg.gestor.api.model.projeto.ProjetoAlocarDTO;
 import net.weg.gestor.api.model.projeto.ProjetoCardDTO;
 import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.projeto.ProjetoDetalhadoDTO;
+import net.weg.gestor.api.model.projeto.ProjetoEditInputDTO;
 import net.weg.gestor.domain.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,11 @@ public class ProjetoController {
     @GetMapping("/listar/{secaoId}")
     public List<ProjetoCardDTO> listarPorSecao(@PathVariable Long secaoId) {
         return projetoService.listarPorSecao(secaoId);
+    }
+
+    @PutMapping("/editar/{projetoId}")
+    public String editarProjeto(@PathVariable Long projetoId, @RequestBody ProjetoEditInputDTO projetoEditInputDTO) {
+        return projetoService.editarProjeto(projetoId, projetoEditInputDTO);
     }
 
     @GetMapping("/buscar/nome/{secaoId}/{nome}")
