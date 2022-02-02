@@ -3,12 +3,17 @@ package net.weg.gestor.domain.service;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.ConsultoresAlocadosAssembler;
+import net.weg.gestor.api.model.ConsultorAlocadoNoProjetoDTO;
 import net.weg.gestor.api.model.consultor.ConsultorDTO;
 import net.weg.gestor.api.model.consultor.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.domain.entities.Consultor;
+import net.weg.gestor.domain.entities.ConsultorAlocado;
+import net.weg.gestor.domain.entities.Projeto;
 import net.weg.gestor.domain.entities.Skill;
 import net.weg.gestor.domain.exception.NegocioException;
+import net.weg.gestor.domain.repository.ConsultorAlocadoRepository;
 import net.weg.gestor.domain.repository.ConsultorRepository;
+import net.weg.gestor.domain.repository.ProjetoRepository;
 import net.weg.gestor.domain.repository.SkillRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +31,8 @@ public class ConsultorService {
     private ConsultorRepository consultorRepository;
     private ConsultoresAlocadosAssembler consultoresAlocadosAssembler;
     private SkillRepository skillRepository;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
+    private ProjetoRepository projetoRepository;
 
     @Transactional
     public Consultor cadastrar(Consultor consultor) {
@@ -43,6 +50,26 @@ public class ConsultorService {
         });
 
         return consultoresComASkill;
+    }
+
+    public List<ConsultorAlocadoNoProjetoDTO> buscarConsultorePorProjeto(Long projetoId) {
+        List<ConsultorAlocadoNoProjetoDTO> consultoresDto = new ArrayList<>();
+        Projeto projeto = projetoRepository.findById(projetoId).orElseThrow(() -> new NegocioException(
+                "Projeto nao encontrado"
+        ));
+
+        List<ConsultorAlocado> todosConsultoresDoProjeto = consultorAlocadoRepository.consultoresAlocadosProjeto(projeto);
+
+        todosConsultoresDoProjeto.forEach(consultorDoProjeto -> {
+            ConsultorAlocadoNoProjetoDTO consultorAlocadoNoProjetoDTO = new ConsultorAlocadoNoProjetoDTO();
+            consultorAlocadoNoProjetoDTO.setHorasAlocadas(consultorDoProjeto.getLimiteHoras());
+            consultorAlocadoNoProjetoDTO.setNome(consultorDoProjeto.getConsultor().getUsuario().getNome());
+            consultorAlocadoNoProjetoDTO.setSkill(consultorDoProjeto.getSkill());
+            consultoresDto.add(consultorAlocadoNoProjetoDTO);
+        });
+
+        return consultoresDto;
+
     }
 
     public AtomicBoolean verificaSeConsultorTemCertaSkill(Skill skill, Consultor consultor) {

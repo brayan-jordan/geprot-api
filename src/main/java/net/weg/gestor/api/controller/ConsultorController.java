@@ -3,6 +3,7 @@ package net.weg.gestor.api.controller;
 import lombok.AllArgsConstructor;
 import net.weg.gestor.api.map.ConsultorAssembler;
 import net.weg.gestor.api.map.UsuarioAssembler;
+import net.weg.gestor.api.model.ConsultorAlocadoNoProjetoDTO;
 import net.weg.gestor.api.model.consultor.ConsultorDTO;
 import net.weg.gestor.api.model.consultor.ConsultorNaoAlocadoDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
@@ -52,7 +53,10 @@ public class ConsultorController {
         return consultorAssembler.toModel(consultorCadastrar);
     }
 
-
+    @GetMapping("/porprojeto/{projetoId}")
+    public List<ConsultorAlocadoNoProjetoDTO> consultoresDoProjeto(@PathVariable Long projetoId) {
+        return consultorService.buscarConsultorePorProjeto(projetoId);
+    }
 
     @GetMapping("/buscar/{consultorId}")
     public ConsultorDTO buscarConsultorUnicoPorId(@PathVariable long consultorId){
