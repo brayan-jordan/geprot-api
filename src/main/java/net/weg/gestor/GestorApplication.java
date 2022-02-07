@@ -10,7 +10,7 @@ public class GestorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestorApplication.class, args);
 //
-		System.out.println(new BCryptPasswordEncoder().encode("123456"));
+//		System.out.println(new BCryptPasswordEncoder().encode("123456"));
 
 	}
 }
