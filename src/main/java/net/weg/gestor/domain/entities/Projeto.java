@@ -17,11 +17,24 @@ import java.util.List;
 @Setter
 @Table(name = "projetos")
 @NoArgsConstructor
-public class Projeto {
+public class Projeto implements Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    public Object clone() {
+        Object clone = null;
+
+        try {
+            clone = super.clone();
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return clone;
+    }
 
     @NotBlank
     @Size(min = 5)
@@ -54,5 +67,7 @@ public class Projeto {
 
     @NotNull
     private String nomeResponsavel;
+
+
 
 }
