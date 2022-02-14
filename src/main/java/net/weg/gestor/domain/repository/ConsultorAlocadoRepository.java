@@ -4,9 +4,11 @@ import net.weg.gestor.domain.entities.Consultor;
 import net.weg.gestor.domain.entities.ConsultorAlocado;
 import net.weg.gestor.domain.entities.Projeto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,5 +26,10 @@ public interface ConsultorAlocadoRepository extends JpaRepository<ConsultorAloca
 
     @Query("SELECT c FROM ConsultorAlocado c where c.consultor = ?1 and c.projeto = ?2")
     ConsultorAlocado  buscarConsultorAlocadoEmProjeto(Consultor consultor, Projeto projeto);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE From ConsultorAlocado c where c.projeto = ?1")
+    void deletarConsultoresProjeto(Projeto projeto);
 
 }

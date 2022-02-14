@@ -59,7 +59,8 @@ public class ProjetoService {
         projeto.setHorasPrevistas(infosEditar.getHorasAprovadas());
         projeto.setValor(infosEditar.getVerbasAprovadas());
 
-//        Falta mudar os consultores com a nova lista vindo do front
+
+
 
         projetoRepository.save(projeto);
         return "Projeto editado";
