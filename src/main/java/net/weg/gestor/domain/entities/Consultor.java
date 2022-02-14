@@ -30,9 +30,6 @@ public class Consultor {
     private Fornecedor fornecedor;
 
     @ManyToMany
-    private List<Projeto> projetos;
-
-    @ManyToMany
     @JoinTable(name = "skills_consultores", joinColumns = @JoinColumn(name = "consultores_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id"))
     private List<Skill> skills;

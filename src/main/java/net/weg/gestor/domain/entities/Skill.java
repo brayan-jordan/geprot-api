@@ -1,5 +1,6 @@
 package net.weg.gestor.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class Skill {
 
     private String nome;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "skills")
     private List<Consultor> consultores;
 
 }

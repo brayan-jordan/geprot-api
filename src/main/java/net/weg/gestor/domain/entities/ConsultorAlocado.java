@@ -20,8 +20,6 @@ public class ConsultorAlocado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @NotNull
     @ManyToOne
     @JoinColumn(name = "projetos_id")

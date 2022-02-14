@@ -23,19 +23,6 @@ public class Projeto implements Cloneable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    public Object clone() {
-        Object clone = null;
-
-        try {
-            clone = super.clone();
-
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-
-        return clone;
-    }
-
     @NotBlank
     @Size(min = 5)
     String nome;

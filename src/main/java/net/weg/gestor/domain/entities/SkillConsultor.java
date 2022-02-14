@@ -15,7 +15,7 @@ public class SkillConsultor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long numeroDaSkill;
+    private Long skill_id;
 
     private Long consultores_id;
 
