@@ -39,4 +39,9 @@ public class SkillService {
         Consultor consultor = consultorRepository.findById(consultorId).orElseThrow(() -> new NegocioException("Consultor nao encontrado"));
         return skillAssembler.toCollectionModel(consultor.getSkills());
     }
+
+    public SkillDTO buscarSkillPeloId(Long skillId) {
+        Skill skill = skillRepository.buscarPorId(skillId);
+        return skillAssembler.toModel(skill);
+    }
 }

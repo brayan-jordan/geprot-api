@@ -136,6 +136,11 @@ public class ConsultorController {
         return skillService.listarSkillsConsultor(consultorId);
     }
 
+    @GetMapping("/pegaskill/{skillId}")
+    public SkillDTO buscarSkillPeloId(@PathVariable Long skillId) {
+        return skillService.buscarSkillPeloId(skillId);
+    }
+
 
 
 
