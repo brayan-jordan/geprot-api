@@ -62,6 +62,7 @@ public class ConsultorService {
 
         todosConsultoresDoProjeto.forEach(consultorDoProjeto -> {
             ConsultorAlocadoNoProjetoDTO consultorAlocadoNoProjetoDTO = new ConsultorAlocadoNoProjetoDTO();
+            consultorAlocadoNoProjetoDTO.setId(consultorDoProjeto.getConsultor().getId());
             consultorAlocadoNoProjetoDTO.setHorasAlocadas(consultorDoProjeto.getLimiteHoras());
             consultorAlocadoNoProjetoDTO.setNome(consultorDoProjeto.getConsultor().getUsuario().getNome());
             consultorAlocadoNoProjetoDTO.setSkill(consultorDoProjeto.getSkill());

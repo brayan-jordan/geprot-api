@@ -13,6 +13,8 @@ import net.weg.gestor.domain.entities.Skill;
 @NoArgsConstructor
 public class ConsultorAlocadoNoProjetoDTO {
 
+    private Long id;
+
     private String nome;
 
     private Skill skill;
