@@ -11,5 +11,7 @@ public interface ConsultorRepository extends JpaRepository<Consultor, Long> {
     @Query("SELECT (precoHora) FROM Consultor c where c.id = ?1")
     double getPrecoHora(Long consultorId);
 
+    @Query("SELECT c From Consultor c where c.id = ?1")
+    Consultor buscarConsultorPeloId(Long consultorId);
 
 }

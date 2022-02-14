@@ -13,10 +13,7 @@ import net.weg.gestor.api.model.cadastrarprojetoinput.ProjetoInputDTO;
 import net.weg.gestor.api.model.input.AlocarConsultorInputDTO;
 import net.weg.gestor.api.model.projeto.ProjetoDetalhadoDTO;
 import net.weg.gestor.api.model.projeto.ProjetoEditInputDTO;
-import net.weg.gestor.domain.entities.CCPagantes;
-import net.weg.gestor.domain.entities.Consultor;
-import net.weg.gestor.domain.entities.Projeto;
-import net.weg.gestor.domain.entities.StatusProjeto;
+import net.weg.gestor.domain.entities.*;
 import net.weg.gestor.domain.exception.NegocioException;
 import net.weg.gestor.domain.repository.*;
 import org.springframework.stereotype.Service;
@@ -34,8 +31,10 @@ public class ProjetoService {
     private ProjetoRepository projetoRepository;
     private ProjetoAssembler projetoAssembler;
     private ConsultorRepository consultorRepository;
+    private SkillRepository skillRepository;
     private CCPagantesService ccPagantesService;
     private ConsultoresAlocadosService consultoresAlocadosService;
+    private ConsultorAlocadoRepository consultorAlocadoRepository;
 
     public List<Projeto> buscarTodosProjetoSecao(Long secaoId) {
         List<CCPagantes> ccPagantes = ccPagantesService.buscarPorSecao(secaoId);
@@ -59,8 +58,18 @@ public class ProjetoService {
         projeto.setHorasPrevistas(infosEditar.getHorasAprovadas());
         projeto.setValor(infosEditar.getVerbasAprovadas());
 
-
-
+        consultorAlocadoRepository.deletarConsultoresProjeto(projeto);
+        infosEditar.getConsultores().forEach(consultorEditarProjetoDTO -> {
+            Consultor consultor = consultorRepository.buscarConsultorPeloId(consultorEditarProjetoDTO.getId());
+            List<Skill> todasAsSkills = skillRepository.findAll();
+            if (consultorEditarProjetoDTO.getSkill_id() == 18) {
+                ConsultorAlocado consultorAlocado = new ConsultorAlocado(projeto, consultor, consultorEditarProjetoDTO.getHoras(), todasAsSkills.get(17));
+                consultorAlocadoRepository.save(consultorAlocado);
+            } else {
+                ConsultorAlocado consultorAlocado = new ConsultorAlocado(projeto, consultor, consultorEditarProjetoDTO.getHoras(), todasAsSkills.get(consultorEditarProjetoDTO.getSkill_id() - 1));
+                consultorAlocadoRepository.save(consultorAlocado);
+            }
+        });
 
         projetoRepository.save(projeto);
         return "Projeto editado";

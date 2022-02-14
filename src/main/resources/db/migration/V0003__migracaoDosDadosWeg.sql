@@ -152,7 +152,7 @@ INSERT INTO cc_pagantes VALUES (null, 47,1,100);
 INSERT INTO skill VALUES
 (null, "JAVA"),(null, "Abape"),(null, "CSS"),(null, "HTML"),(null, "React JS"),(null, "React Native"),
 (null, "Ruby"),(null, "Angular"),(null, "C#"),(null, "C"),(null, "C++"),(null, "JavaScript"),(null, "Kotlin"),
-(null, "Elixir"),(null, "Deployment"),(null, "Figma"),(null, "Phyton");
+(null, "Elixir"),(null, "Deployment"),(null, "Figma"),(null, "Phyton"), (null, "Skill Default");
 
 INSERT INTO usuarios VALUES
 (null, "Brendon consultor", "brendon@gmail.com", 20200202, 0, "$2a$10$Q8nuSLSscslGgdAux4NSkencXRmriLAuJXoOKLahJGbNlqfKsi8ZS");

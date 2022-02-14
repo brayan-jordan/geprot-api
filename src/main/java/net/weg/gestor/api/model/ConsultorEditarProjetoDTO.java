@@ -11,4 +11,6 @@ public class ConsultorEditarProjetoDTO {
 
     private int horas;
 
+    private int skill_id;
+
 }
